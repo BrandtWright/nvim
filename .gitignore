@@ -1,0 +1,5 @@
+.neoconf.json
+*.log
+lazy-lock.json
+lazyvim.json
+spell/
