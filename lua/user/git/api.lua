@@ -11,20 +11,18 @@ end
 
 local M = {}
 
---- Returns true if `cwd` is a git repository, else false with an error message.
----@param path string
----@return boolean
----@return string
+--- Returns true if `cwd` is a git repository, else false with an error message
+---@param path string: directory path
+---@return boolean: true if `path` is or is in a git repositry, else false
+---@return string: an error message if `path` is not a valid git repository, else an empty string
 M.is_repo = function(path)
   path = path or vim.uv.cwd()
 
-  -- Ensure path is a string
   if not require("bw.util.guard").is_string(path) then
     local error_msg = string.format("is_repo(path): path must be a string but was: %s", type(path))
     return false, error_msg
   end
 
-  -- Ensure path is a directory
   if not require("bw.util.fs").is_directory(path) then
     local error_msg = string.format("is_repo(path): %s is not a directory.", path)
     return false, error_msg
@@ -40,8 +38,9 @@ M.is_repo = function(path)
   end
 end
 
----@param path string
----@return boolean
+--- Checks to see if a git repository contains changes
+---@param path string: directory path
+---@return boolean true if path is or is in a git repository and the repository contains changes, else false
 M.has_changes = function(path)
   path = path or vim.uv.cwd()
   local cmd = string.format("git -C %s diff --quiet --exit-code", path)
@@ -112,6 +111,8 @@ function M.files_with_preview(path)
   end
 end
 
+--- View git status
+---@param path string: the path to the git directory to view
 function M.status(path)
   path = path or vim.uv.cwd()
   if needs_no_repo_warning(path) or needs_no_changes_warning(path) then
@@ -120,6 +121,8 @@ function M.status(path)
   require("telescope.builtin").git_status({ cwd = path })
 end
 
+--- View git branches
+---@param path string: the path to the git direvtory to view
 function M.branches(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -127,6 +130,8 @@ function M.branches(path)
   end
 end
 
+---View git commits
+---@param path string: the path to the git directory to view
 function M.commits(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
