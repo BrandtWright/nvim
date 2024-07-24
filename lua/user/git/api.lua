@@ -1,6 +1,3 @@
--- TODO: Fix method signatures
--- (remove/change path argument where it does not make sense)
-
 local icon = ""
 local module_name = "user.git.api"
 
@@ -86,6 +83,8 @@ local needs_no_changes_warning = function(path)
   return true
 end
 
+--- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command,
+---@param path string: the path of the git repository (default: `cwd`)
 function M.files(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -104,6 +103,8 @@ function M.files(path)
   end
 end
 
+--- Fuzzy search (with previewer) for files tracked by Git. This command lists the output of the `git ls-files` command
+---@param path string|nil: the path of the git repository (default: `cwd`)
 function M.files_with_preview(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -111,8 +112,37 @@ function M.files_with_preview(path)
   end
 end
 
---- View git status
----@param path string: the path to the git directory to view
+--- Fuzzy find for commits with diff preview
+---@param path string|nil: the path to the git repository (default `cwd`)
+function M.commits(path)
+  path = path or vim.uv.cwd()
+  if not needs_no_repo_warning(path) then
+    require("telescope.builtin").git_commits({ cwd = path })
+  end
+end
+
+--- Fuzzy find commits for the file specified by `path` (default: current buffer)
+---@param path string|nil: the path to the file to view commits for (default: current buffer)
+function M.buffer_commits(path)
+  path = path or vim.api.nvim_buf_get_name(0)
+  if not needs_no_repo_warning(path) then
+    require("telescope.builtin").git_bcommits({ cwd = path })
+  end
+end
+
+-- TODO: implement bcommit_range
+
+--- List branches for a git repository, with output from `git log --oneline` shown in the preview window
+---@param path string|nil: the path to the git repository (default: `cwd`)
+function M.branches(path)
+  path = path or vim.uv.cwd()
+  if not needs_no_repo_warning(path) then
+    require("telescope.builtin").git_branches({ cwd = path })
+  end
+end
+
+--- Fuzzy find uncommited changes in a git repository
+---@param path string|nil: the path to the git repository (default: `cwd`)
 function M.status(path)
   path = path or vim.uv.cwd()
   if needs_no_repo_warning(path) or needs_no_changes_warning(path) then
@@ -121,31 +151,8 @@ function M.status(path)
   require("telescope.builtin").git_status({ cwd = path })
 end
 
---- View git branches
----@param path string: the path to the git direvtory to view
-function M.branches(path)
-  path = path or vim.uv.cwd()
-  if not needs_no_repo_warning(path) then
-    require("telescope.builtin").git_branches({ cwd = path })
-  end
-end
-
----View git commits
----@param path string: the path to the git directory to view
-function M.commits(path)
-  path = path or vim.uv.cwd()
-  if not needs_no_repo_warning(path) then
-    require("telescope.builtin").git_commits({ cwd = path })
-  end
-end
-
-function M.buffer_commits(path)
-  path = path or vim.uv.cwd()
-  if not needs_no_repo_warning(path) then
-    require("telescope.builtin").git_bcommits({ cwd = path })
-  end
-end
-
+--- Fuzzy find stash items in a git repositoryy
+---@param path string|nil: the path to the git repository (default: `cwd`)
 function M.stash(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -153,20 +160,17 @@ function M.stash(path)
   end
 end
 
-function M.tags(path)
-  path = path or vim.uv.cwd()
-  if not needs_no_repo_warning(path) then
-    require("telescope.builtin").git_tags({ cwd = path })
-  end
-end
-
+--- Perform a ':Gdiffsplit!'
+---@param path string|nil: the path to a file with git confluicts (default: current buffer)
 function M.resolve_conflicts(path)
-  path = path or vim.uv.cwd()
+  path = path or vim.api.nvim_buf_get_name(0)
   if not needs_no_repo_warning(path) then
     vim.cmd("Gvdiffsplit!")
   end
 end
 
+--- Open a figitive (`:Git status`) split
+---@param path string|nil: the path to a git repository (default: `cwd`)
 function M.fugitive(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -174,6 +178,8 @@ function M.fugitive(path)
   end
 end
 
+--- Show the output of `:Git log`
+---@param path string|nil: the path to a git repository (default: `cwd`)
 function M.log(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -181,6 +187,8 @@ function M.log(path)
   end
 end
 
+--- Perform a `:diffget //2`
+---@param path string|nil: the path to a git repository (default: `cwd`)
 function M.diff_get_2(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
@@ -188,6 +196,8 @@ function M.diff_get_2(path)
   end
 end
 
+--- Perform a `:diffget //3`
+---@param path string|nil: the path to a git repository (default: `cwd`)
 function M.diff_get_3(path)
   path = path or vim.uv.cwd()
   if not needs_no_repo_warning(path) then
