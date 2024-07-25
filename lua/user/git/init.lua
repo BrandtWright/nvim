@@ -21,6 +21,18 @@ return {
       { "<leader>gF", git.files_with_preview, mode = "n", desc = "Files (With Preview)" },
       { "<leader>gS", git.status, mode = "n", desc = "Git Status (Tele)" },
       { "<leader>gy", git.branches, mode = "n", desc = "Branches" },
+      {
+        "<leader>gbr",
+        function()
+          local from = vim.fn.getpos("'<")[2] -- line number of visual selection start
+          local to = vim.fn.getpos("'>")[2] -- line number of visual selection end
+          local path = vim.api.nvim_buf_get_name(0)
+          vim.notify(string.format("From: %s\nTo: %s\nPath: %s", from, to, path))
+          git.buffer_commits_range(path, from, to)
+        end,
+        mode = "v",
+        desc = "Buffer Commits (Range)",
+      },
     },
   },
   {
