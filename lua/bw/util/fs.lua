@@ -15,6 +15,9 @@ M.is_valid_path = function(path)
   return stat ~= nil
 end
 
+--- Returns true if `path` is a directory
+---@param path string
+---@return boolean
 M.is_directory = function(path)
   if not is_string(path) then
     return false

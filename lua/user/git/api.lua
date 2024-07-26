@@ -1,3 +1,13 @@
+--------------------------------------------------------------------------------
+-- Imports
+--------------------------------------------------------------------------------
+local fs = require("bw.util.fs")
+local sp = require("bw.util.specification")
+
+--------------------------------------------------------------------------------
+-- Locals
+--------------------------------------------------------------------------------
+
 local icon = ""
 local module_name = "user.git.api"
 
@@ -5,6 +15,83 @@ local warn = function(msg)
   local toaster = require("user.notification.api")
   toaster.warn(msg, icon, module_name)
 end
+
+local specifications = {
+
+  is_string = function(item)
+    return type(item) == "string"
+  end,
+
+  is_directory = function(item)
+    return fs.is_directory(item)
+  end,
+}
+
+local warnings = {
+
+  is_string = function(item)
+    return string.format("expected `string` but got: %s", type(item))
+  end,
+
+  is_directory = function(item)
+    return string.format("%s is not a directory", item)
+  end,
+}
+
+local handle = function(item, funcs)
+  for k, func in pairs(funcs) do
+    if not func(item) then
+      if warnings[k] then
+        warn(warnings[k](item))
+      end
+      return false
+    end
+  end
+  return true
+end
+
+local M = {}
+
+--------------------------------------------------------------------------------
+-- Methods
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+-- Actions
+--------------------------------------------------------------------------------
+
+--- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command
+---@param path string: the path of the git repository (default: `cwd`)
+function M.files(path)
+  path = path or vim.uv.cwd()
+
+  -- is string
+  -- is dir
+  -- can ls
+
+  local specs = { is_string = specifications.is_string, is_directory = specifications.is_directory }
+
+  if not handle(path, specs) then
+    return
+  end
+
+  local themes = require("telescope.themes")
+  local opts = themes.get_dropdown({
+    cwd = path,
+    winblend = 10,
+    border = true,
+    previewer = false,
+    shorten_path = false,
+    layout_config = {
+      width = 0.5,
+    },
+  })
+  require("telescope.builtin").git_files(opts)
+end
+
+--------------------------------------------------------------------------------
+-- Clean Up
+--------------------------------------------------------------------------------
 
 local is_string = require("bw.util.guard").is_string
 local is_file = require("bw.util.fs").is_file
@@ -24,8 +111,6 @@ local find_rev_parse_location = function(path)
     return nil
   end
 end
-
-local M = {}
 
 M.is_git_root = function(path)
   if not is_directory(path) then
@@ -157,26 +242,6 @@ local needs_no_changes_warning = function(path)
   end
   warn("No Changes")
   return true
-end
-
---- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command,
----@param path string: the path of the git repository (default: `cwd`)
-function M.files(path)
-  path = path or vim.uv.cwd()
-  if not needs_no_repo_warning(path) then
-    local themes = require("telescope.themes")
-    local opts = themes.get_dropdown({
-      cwd = path,
-      winblend = 10,
-      border = true,
-      previewer = false,
-      shorten_path = false,
-      layout_config = {
-        width = 0.5,
-      },
-    })
-    require("telescope.builtin").git_files(opts)
-  end
 end
 
 --- Fuzzy search (with previewer) for files tracked by Git. This command lists the output of the `git ls-files` command
