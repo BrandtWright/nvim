@@ -27,7 +27,8 @@ Test = function(item)
     if input_type == "string" then
       return maybe.just(input)
     end
-    vim.notify(string.format("expected string but got %s", input_type))
+    local format_string = "expected string but got %s with value %s"
+    vim.notify(string.format(format_string, input_type, input))
     return maybe.nothing()
   end
 
