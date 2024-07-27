@@ -1,4 +1,10 @@
--- Define the Maybe type
+---@class Maybe
+---@field just function
+---@field nothing function
+---@field unit function
+---@field bind function
+---@field is_just boolean
+---@field value any
 local maybe = {}
 maybe.__index = maybe
 

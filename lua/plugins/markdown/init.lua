@@ -1,20 +1,29 @@
+local c = require("bw.config.colors")
+local highlights = require("bw.config.highlights")
+highlights.register({
+  { name = "RenderMarkdownH1Bg", fg = c.terminal, bg = c.dark_red, styles = { "b" } },
+  { name = "RenderMarkdownH2Bg", fg = c.terminal, bg = c.dark_orange, styles = { "b" } },
+  { name = "RenderMarkdownH3Bg", fg = c.terminal, bg = c.gold, styles = { "b" } },
+  { name = "RenderMarkdownH4Bg", fg = c.terminal, bg = c.purple, styles = { "b" } },
+  { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.blue, styles = { "b" } },
+  { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.cyan, styles = { "b" } },
+  { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
+})
 return {
   {
-    "lukas-reineke/headlines.nvim",
-    opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "Headline1", fg = c.terminal, bg = c.dark_red, styles = { "b" } },
-        { name = "Headline2", fg = c.terminal, bg = c.dark_orange, styles = { "b" } },
-        { name = "Headline3", fg = c.terminal, bg = c.gold, styles = { "b" } },
-      })
-
-      opts = opts or {}
-
-      -- Markdown
-      opts.markdown = opts.markdown or {}
-      opts.markdown.fat_headlines = false
-    end,
+    "MeanderingProgrammer/markdown.nvim",
+    opts = {
+      file_types = { "markdown", "norg", "rmd", "org" },
+      code = {
+        sign = false,
+        width = "block",
+        right_pad = 1,
+      },
+      heading = {
+        sign = false,
+        icons = {},
+      },
+    },
+    ft = { "markdown", "norg", "rmd", "org" },
   },
 }
