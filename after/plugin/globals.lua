@@ -174,18 +174,20 @@ Test = function(item)
     end
   end
 
-  local is_string = create_maybe_check(specs.is_string)
-
-  local function is_directory(opts)
-    return is_string(opts):bind(function(value)
-      return create_maybe_check(specs.is_directory)(value)
+  local function wrap(inner, outer)
+    return inner:bind(function(value)
+      return create_maybe_check(outer)(value)
     end)
   end
 
+  local is_string = create_maybe_check(specs.is_string)
+
+  local function is_directory(opts)
+    return wrap(is_string(opts), specs.is_directory)
+  end
+
   local function is_git_directory(opts)
-    return is_directory(opts):bind(function(value)
-      return create_maybe_check(specs.is_git_directory)(value)
-    end)
+    return wrap(is_directory(opts), specs.is_git_directory)
   end
 
   local result = is_git_directory(item)
