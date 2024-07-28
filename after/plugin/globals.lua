@@ -165,6 +165,7 @@ Test = function(item)
   ---@return function
   local function create_maybe_check(spec)
     return function(x)
+      -- vim.notify(string.format("Ensuring: %s", spec.msg))
       if spec.condition(x) then
         return maybe.just(x)
       else
@@ -193,6 +194,6 @@ Test = function(item)
   local result = is_git_directory(item)
 
   if result.is_just then
-    vim.notify(string.format("%s is a git directory", result.value))
+    require("telescope.builtin").git_files({ cwd = result.value })
   end
 end
