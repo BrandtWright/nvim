@@ -130,49 +130,61 @@ end
 Test = function(item)
   local maybe = require("bw.util.specification")
 
-  ---@param x any
-  ---@param predicate boolean
-  ---@param msg string
-  ---@return Maybe
-  local f = function(x, predicate, msg)
-    if predicate then
-      return maybe.just(x)
+  ---@class Spec
+  ---@field condition function
+  ---@field msg string
+
+  ---@type Spec[]
+  local specs = {
+    is_string = {
+      condition = function(opts)
+        return type(opts) == "string"
+      end,
+      msg = "Not a string",
+    },
+
+    is_directory = {
+      condition = function(opts)
+        return require("bw.util.fs").is_directory(opts)
+      end,
+      msg = "Not a directory",
+    },
+
+    is_git_directory = {
+      condition = function(opts)
+        local format_string = "git -C %s rev-parse --show-toplevel"
+        local command = string.format(format_string, vim.fn.expand(opts))
+        vim.fn.system(command)
+        return vim.v.shell_error == 0
+      end,
+      msg = "Not a git directory",
+    },
+  }
+
+  ---@param spec Spec
+  ---@return function
+  local function create_maybe_check(spec)
+    return function(x)
+      if spec.condition(x) then
+        return maybe.just(x)
+      else
+        vim.notify(spec.msg)
+        return maybe.nothing()
+      end
     end
-    vim.notify(msg)
-    return maybe.nothing()
   end
 
-  local function is_string(opts)
-    if type(opts) == "string" then
-      return maybe.just(opts)
-    else
-      vim.notify("not a string")
-      return maybe.nothing()
-    end
-  end
+  local is_string = create_maybe_check(specs.is_string)
 
   local function is_directory(opts)
     return is_string(opts):bind(function(value)
-      if require("bw.util.fs").is_directory(opts) then
-        return maybe.just(value)
-      else
-        vim.notify("not a dir")
-        return maybe.nothing()
-      end
+      return create_maybe_check(specs.is_directory)(value)
     end)
   end
 
   local function is_git_directory(opts)
     return is_directory(opts):bind(function(value)
-      local command = string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand(opts))
-      vim.fn.system(command)
-
-      if vim.v.shell_error == 0 then
-        return maybe.just(value)
-      else
-        vim.notify("not a git dir")
-        return maybe.nothing()
-      end
+      return create_maybe_check(specs.is_git_directory)(value)
     end)
   end
 
