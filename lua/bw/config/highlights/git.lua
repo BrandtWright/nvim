@@ -1,8 +1,8 @@
 local c = require("bw.config.colors")
 
 return {
-  { name = "DiffAdd", fg = c.terminal, bg = c.green },
-  { name = "DiffChange", fg = c.terminal, bg = c.yellow },
-  { name = "DiffDelete", fg = c.terminal, bg = c.red },
-  { name = "DiffText", fg = c.terminal, bg = c.blue },
+  { name = "DiffAdd", fg = c.green, bg = c.terminal },
+  { name = "DiffChange", fg = c.yellow, bg = c.terminal },
+  { name = "DiffDelete", fg = c.red, bg = c.terminal },
+  { name = "DiffText", fg = c.blue, bg = c.terminal },
 }
