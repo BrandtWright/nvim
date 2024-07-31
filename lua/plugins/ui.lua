@@ -27,8 +27,9 @@ return {
         filetypes = {
           "markdown",
           "dashboard",
-          "fm",
+          "Fm",
           "terminal",
+          "lazyterm",
         },
       },
     },
