@@ -27,6 +27,8 @@ return {
         filetypes = {
           "markdown",
           "dashboard",
+          "fm",
+          "terminal",
         },
       },
     },
