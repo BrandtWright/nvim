@@ -62,19 +62,19 @@ map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map(
   "n",
   "<leader>bsh",
-  "<cmd>enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  "<cmd>enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
   { desc = "Open Scratch Buffer" }
 )
 map(
   "n",
   "<leader>bss",
-  "<cmd>split enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  "<cmd>split enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
   { desc = "Open Scratch Buffer (Horizontal Split" }
 )
 map(
   "n",
   "<leader>bsv",
-  "<cmd>vsplit enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  "<cmd>vsplit enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
   { desc = "Open Scratch Buffer (Vertical Split" }
 )
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
