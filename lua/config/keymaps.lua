@@ -59,6 +59,24 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map(
+  "n",
+  "<leader>bsh",
+  "<cmd>enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  { desc = "Open Scratch Buffer" }
+)
+map(
+  "n",
+  "<leader>bss",
+  "<cmd>split enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  { desc = "Open Scratch Buffer (Horizontal Split" }
+)
+map(
+  "n",
+  "<leader>bsv",
+  "<cmd>vsplit enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>",
+  { desc = "Open Scratch Buffer (Vertical Split" }
+)
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
