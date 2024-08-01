@@ -2,6 +2,11 @@
 
 ## TODO
 
+## Tresitter
+
+- Setup better motion key maps for [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+  - Better change-in-function, delete-in-function, etc.
+
 ### AI
 
 - Check out Codium
