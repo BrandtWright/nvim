@@ -51,9 +51,9 @@ local colors = {
 
   -- UI Stuff
   comment = "#575757",
-  cursor_line = "#1d1b1b",
+  cursor_line = "#161717",
   visual = "#2e2e2c",
-  terminal = "#181515",
+  terminal = "#131414",
   statusline = "#3c3836",
 
   -- Duplicates
