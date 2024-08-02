@@ -1,3 +1,11 @@
+local c = require("bw.config.colors")
+local highlights = require("bw.config.highlights")
+highlights.register({
+  { name = "LuaLineDiffAdd", fg = c.green },
+  { name = "LuaLineDiffChange", fg = c.yellow },
+  { name = "LuaLineDiffDelete", fg = c.red },
+})
+
 return {
   {
     "nvim-lualine/lualine.nvim",
