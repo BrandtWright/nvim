@@ -96,4 +96,9 @@ return {
   ------------------------------------------------------------------------------
   { name = "@punctuation.delimiter", fg = c.white, bg = nil, styles = {} },
   { name = "@punctuation.bracket", fg = c.gold, bg = nil, styles = {} },
+
+  ------------------------------------------------------------------------------
+  -- Printf
+  ------------------------------------------------------------------------------
+  { name = "@character.printf", fg = c.bright_green, bg = nil, styles = {} },
 }
