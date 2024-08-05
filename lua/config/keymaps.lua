@@ -170,8 +170,8 @@ end
 -- Neotree Stuff
 --------------------------------------------------------------------------------
 if pcall(require, "neo-tree") then
-  vim.keymap.set("n", "<leader>ns", "<cmd>Neotree left<cr>", { desc = "Neotree Toggle" })
-  vim.keymap.set("n", "<leader>nf", "<cmd>Neotree float<cr>", { desc = "Neotree Toggle" })
+  vim.keymap.set("n", "<leader>es", "<cmd>Neotree left<cr>", { desc = "Neotree Toggle" })
+  vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Neotree Toggle" })
 end
 
 --------------------------------------------------------------------------------
