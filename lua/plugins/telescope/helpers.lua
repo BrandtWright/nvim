@@ -6,14 +6,7 @@ local M = {}
 function M.find_files(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
-  local can_git = require("user.git.api").is_repo(opts.cwd)
-  if can_git then
-    opts.prompt_title = "Git Files"
-    require("telescope.builtin").git_files(opts)
-  else
-    opts.prompt_title = "Find Files"
-    require("telescope.builtin").find_files(opts)
-  end
+  require("telescope.builtin").find_files(opts)
 end
 
 function M.ivy(opts)

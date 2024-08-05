@@ -1,7 +1,8 @@
+-- TODO: Refactor validators towards the telescope api
+
 --------------------------------------------------------------------------------
 -- Imports
 --------------------------------------------------------------------------------
-local fs = require("bw.util.fs")
 local Either = require("user.types.either")
 
 --------------------------------------------------------------------------------
@@ -19,11 +20,6 @@ end
 local string_or_error = function(x)
   return type(x) == "string" and Either.right(x)
     or Either.left(string.format("expected type: `string` but got type: `%s`", type(x)))
-end
-
-local number_or_error = function(x)
-  return type(x) == "number" and Either.right(x)
-    or Either.left(string.format("expected type: `number` but got type: `%s`", type(x)))
 end
 
 local directory_or_error = function(x)
@@ -44,25 +40,41 @@ local git_directory_or_error = function(x)
   end)
 end
 
-local M = {}
-
---------------------------------------------------------------------------------
--- Methods
---------------------------------------------------------------------------------
-
---- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command
----@param path string: the path of the git repository (default: `cwd`)
-function M.files(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
-    result:handle_error(warn)
-    return
+local validate_git_directory = function(opts)
+  -- Not a string
+  if type(opts.cwd) ~= "string" then
+    return Either.left(string.format("expected type: `string` but got type: `%s`", type(opts.cwd)))
   end
 
+  -- Not a directory
+  local lfs = require("lfs")
+  local attr = lfs.attributes(opts.cwd)
+  if not attr or attr.mode ~= "directory" then
+    return Either.left(string.format("%s is not a directory", opts.cwd))
+  end
+
+  -- Not a git directory
+  local path = vim.fn.expand(opts.cwd)
+  local cmd = string.format("git -C %s rev-parse --show-toplevel", path)
+  vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 then
+    return Either.left(string.format("%s is not a git directory", opts.cwd))
+  end
+
+  return Either.right(opts)
+end
+
+local apply_default_values = function(opts)
+  opts = opts or {}
+  opts.cwd = opts.cwd or vim.uv.cwd()
+  return Either.right(opts)
+end
+
+---@param opts table
+---@return Either
+local apply_drop_down_theme = function(opts)
   local themes = require("telescope.themes")
-  local opts = themes.get_dropdown({
-    cwd = path,
+  local defaults = themes.get_dropdown({
     winblend = 10,
     border = true,
     previewer = false,
@@ -71,7 +83,26 @@ function M.files(path)
       width = 0.5,
     },
   })
-  require("telescope.builtin").git_files(opts)
+  opts = vim.tbl_deep_extend("force", opts, defaults)
+  return Either.right(opts)
+end
+
+local M = {}
+
+--------------------------------------------------------------------------------
+-- Methods
+--------------------------------------------------------------------------------
+
+--- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command
+function M.files(opts)
+  return Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+    :bind(apply_drop_down_theme)
+    :bind(function(validated_opts)
+      require("telescope.builtin").git_files(validated_opts)
+      return Either.right(validated_opts)
+    end)
 end
 
 --- Fuzzy search (with previewer) for files tracked by Git. This command lists the output of the `git ls-files` command
@@ -193,6 +224,8 @@ function M.diff_get_3(path)
   end
   vim.cmd("diffget //3")
 end
+
+-- FIX: instrument bcommits and bcommit_range with friendlier validation
 
 --- Fuzzy find commits for the file specified by `path` (default: current buffer)
 ---@param path string|nil: the path to the file to view commits for (default: current buffer)
