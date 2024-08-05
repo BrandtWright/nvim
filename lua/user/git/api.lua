@@ -22,9 +22,8 @@ end
 
 local directory_or_error = function(x)
   return string_or_error(x):bind(function(y)
-    local lfs = require("lfs")
-    local attr = lfs.attributes(y)
-    return attr and attr.mode == "directory" and Either.right(y)
+  local stat = vim.loop.fs_stat(x)
+  return stat and stat.type == 'directory' and Either.right(y)
       or Either.left(string.format("%s is not a directory", y))
   end)
 end
@@ -45,9 +44,8 @@ local validate_git_directory = function(opts)
   end
 
   -- Not a directory
-  local lfs = require("lfs")
-  local attr = lfs.attributes(opts.cwd)
-  if not attr or attr.mode ~= "directory" then
+  local stat = vim.loop.fs_stat(opts.cwd)
+  if not stat or stat.type ~= "directory" then
     return Either.left(string.format("%s is not a directory", opts.cwd))
   end
 
@@ -167,15 +165,15 @@ function M.stash(opts)
 end
 
 --- Perform a ':Gdiffsplit!'
----@param path string|nil: the path to a file with git confluicts (default: current buffer)
-function M.resolve_conflicts(path)
-  path = path or vim.api.nvim_buf_get_name(0)
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.resolve_conflicts(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    vim.cmd("Gvdiffsplit!")
+  else
     result:handle_error(warn)
-    return
   end
-  vim.cmd("Gvdiffsplit!")
 end
 
 --- Open a figitive (`:Git status`) split
