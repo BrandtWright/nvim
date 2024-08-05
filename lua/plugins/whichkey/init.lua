@@ -48,7 +48,7 @@ return {
         { "<leader>f", group = "Find" },
         { "<leader>fg", group = "Git Objects" },
         { "<leader>g", group = "Git" },
-        { "<leader>gb", group = "Buffer" },
+        { "<leader>gb", group = "Buffer", mode = { "n", "v" } },
         { "<leader>gd", group = "Diff" },
         { "<leader>gh", group = "Hunk" },
         { "<leader>gm", group = "Blame" },

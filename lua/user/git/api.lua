@@ -1,11 +1,9 @@
 --------------------------------------------------------------------------------
--- Imports
+-- Adds slightly better validation and error hendling on top of telescope.nvim,
+-- fugitive, and gitsigns and provides somee utility functions
 --------------------------------------------------------------------------------
-local Either = require("user.types.either")
 
---------------------------------------------------------------------------------
--- Locals
---------------------------------------------------------------------------------
+local Either = require("user.types.either")
 
 local icon = ""
 local module_name = "user.git.api"
@@ -179,22 +177,24 @@ function M.diff_get_3(opts)
   end
 end
 
--- FIX: instrument bcommits and bcommit_range with friendlier validation
-
 --- Fuzzy find commits for the file specified by `path` (default: current buffer)
----@param path string|nil: the path to the file to view commits for (default: current buffer)
-function M.buffer_commits(path)
-  path = path or vim.api.nvim_buf_get_name(0)
-  require("telescope.builtin").git_bcommits({ current_file = path })
+function M.buffer_commits(opts)
+  local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_bcommits({ current_file = opts })
+  else
+    result:handle_error(warn)
+  end
 end
 
 --- Fuzzy find commits for the file specified by `path` (default: current buffer)
----@param path string|nil: the path to the file to view commits for (default: current buffer)
----@param from number: the line number of the start range to find commits for
----@param to number: the line number of the end range to find commits for
-function M.buffer_commits_range(path, from, to)
-  path = path or vim.api.nvim_buf_get_name(0)
-  require("telescope.builtin").git_bcommits_range({ current_file = path, from = from, to = to })
+function M.buffer_commits_range(opts)
+  local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_bcommits_range(opts)
+  else
+    result:handle_error(warn)
+  end
 end
 
 return M
