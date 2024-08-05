@@ -93,15 +93,27 @@ local M = {}
 -- Methods
 --------------------------------------------------------------------------------
 
+function M.git_files_ls(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+    :bind(apply_drop_down_theme)
+  if result.is_right then
+    require("telescope.builtin").git_files(result.value)
+  else
+    result:handle_error(warn)
+  end
+end
+
 --- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command
 function M.files(opts)
   return Either.unit(opts)
     :bind(apply_default_values)
     :bind(validate_git_directory)
     :bind(apply_drop_down_theme)
-    :bind(function(validated_opts)
-      require("telescope.builtin").git_files(validated_opts)
-      return Either.right(validated_opts)
+    :bind(function(x)
+      require("telescope.builtin").git_files(x)
+      return Either.right(x)
     end)
 end
 
