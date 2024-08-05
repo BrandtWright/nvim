@@ -15,28 +15,6 @@ local warn = function(msg)
   toaster.warn(msg, icon, module_name)
 end
 
-local string_or_error = function(x)
-  return type(x) == "string" and Either.right(x)
-    or Either.left(string.format("expected type: `string` but got type: `%s`", type(x)))
-end
-
-local directory_or_error = function(x)
-  return string_or_error(x):bind(function(y)
-    local stat = vim.loop.fs_stat(x)
-    return stat and stat.type == "directory" and Either.right(y)
-      or Either.left(string.format("%s is not a directory", y))
-  end)
-end
-
-local git_directory_or_error = function(x)
-  return directory_or_error(x):bind(function(y)
-    local path = vim.fn.expand(y)
-    local cmd = string.format("git -C %s rev-parse --show-toplevel", path)
-    vim.fn.systemlist(cmd)
-    return vim.v.shell_error == 0 and Either.right(y) or Either.left(string.format("%s is not a git directory", y))
-  end)
-end
-
 local validate_git_directory = function(opts)
   -- Not a string
   if type(opts.cwd) ~= "string" then
