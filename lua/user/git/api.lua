@@ -1,5 +1,3 @@
--- TODO: Refactor validators towards the telescope api
-
 --------------------------------------------------------------------------------
 -- Imports
 --------------------------------------------------------------------------------
@@ -93,7 +91,9 @@ local M = {}
 -- Methods
 --------------------------------------------------------------------------------
 
-function M.git_files_ls(opts)
+--- Fuzzy search for files tracked by Git. This command lists the output of the
+--- `git ls-files` command
+function M.files(opts)
   local result = Either.unit(opts)
     :bind(apply_default_values)
     :bind(validate_git_directory)
@@ -105,76 +105,65 @@ function M.git_files_ls(opts)
   end
 end
 
---- Fuzzy search for files tracked by Git. This command lists the output of the `git ls-files` command
-function M.files(opts)
-  return Either.unit(opts)
+--- Fuzzy search (with previewer) for files tracked by Git. This command lists
+--- the output of the `git ls-files` command
+function M.files_with_preview(opts)
+  local result = Either.unit(opts)
     :bind(apply_default_values)
     :bind(validate_git_directory)
-    :bind(apply_drop_down_theme)
-    :bind(function(x)
-      require("telescope.builtin").git_files(x)
-      return Either.right(x)
-    end)
-end
-
---- Fuzzy search (with previewer) for files tracked by Git. This command lists the output of the `git ls-files` command
----@param path string|nil: the path of the git repository (default: `cwd`)
-function M.files_with_preview(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+  if result.is_right then
+    require("telescope.builtin").git_files(result.value)
+  else
     result:handle_error(warn)
-    return
   end
-  require("telescope.builtin").git_files({ cwd = path })
 end
 
 --- Fuzzy find for commits with diff preview
----@param path string|nil: the path to the git repository (default `cwd`)
-function M.commits(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.commits(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_commits(result.value)
+  else
     result:handle_error(warn)
-    return
   end
-  require("telescope.builtin").git_commits({ cwd = path })
 end
 
 --- List branches for a git repository, with output from `git log --oneline` shown in the preview window
----@param path string|nil: the path to the git repository (default: `cwd`)
-function M.branches(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.branches(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_branches(result.value)
+  else
     result:handle_error(warn)
-    return
   end
-  require("telescope.builtin").git_branches({ cwd = path })
 end
 
 --- Fuzzy find uncommited changes in a git repository
----@param path string|nil: the path to the git repository (default: `cwd`)
-function M.status(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.status(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_status(result.value)
+  else
     result:handle_error(warn)
-    return
   end
-  require("telescope.builtin").git_status({ cwd = path })
 end
 
 --- Fuzzy find stash items in a git repositoryy
----@param path string|nil: the path to the git repository (default: `cwd`)
-function M.stash(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.stash(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    require("telescope.builtin").git_stash(result.value)
+  else
     result:handle_error(warn)
-    return
   end
-  require("telescope.builtin").git_stash({ cwd = path })
 end
 
 --- Perform a ':Gdiffsplit!'
@@ -190,51 +179,51 @@ function M.resolve_conflicts(path)
 end
 
 --- Open a figitive (`:Git status`) split
----@param path string|nil: the path to a git repository (default: `cwd`)
-function M.fugitive(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.fugitive(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    vim.cmd("Git")
+  else
     result:handle_error(warn)
-    return
   end
-  vim.cmd("Git")
 end
 
 --- Show the output of `:Git log`
----@param path string|nil: the path to a git repository (default: `cwd`)
-function M.log(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.log(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    vim.cmd("Git log")
+  else
     result:handle_error(warn)
-    return
   end
-  vim.cmd("Git log")
 end
 
 --- Perform a `:diffget //2`
----@param path string|nil: the path to a git repository (default: `cwd`)
-function M.diff_get_2(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.diff_get_2(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    vim.cmd("diffget //2")
+  else
     result:handle_error(warn)
-    return
   end
-  vim.cmd("diffget //2")
 end
 
 --- Perform a `:diffget //3`
----@param path string|nil: the path to a git repository (default: `cwd`)
-function M.diff_get_3(path)
-  path = path or vim.uv.cwd()
-  local result = git_directory_or_error(path)
-  if not result.is_right then
+function M.diff_get_3(opts)
+  local result = Either.unit(opts)
+    :bind(apply_default_values)
+    :bind(validate_git_directory)
+  if result.is_right then
+    vim.cmd("diffget //3")
+  else
     result:handle_error(warn)
-    return
   end
-  vim.cmd("diffget //3")
 end
 
 -- FIX: instrument bcommits and bcommit_range with friendlier validation
