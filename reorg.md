@@ -11,13 +11,18 @@
 - Status Line
 - Color Scheme
 - Completion
-- LSP / Treesitter
+- Language Services
+  - LSP
+  - Treesitter
+  - TODO Comments
 - UI
   - Mini-Indentscope
   - Noice
   - Splash Screen
   - Tmux Navigator
-  - TODO Comments
   - Whichkey
-- Tele (file pickers s)?
+- Pickers
+  - File Pickers
+  - Neovim Pickers
 - Slipbox
+- Version Control
