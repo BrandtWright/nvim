@@ -13,6 +13,7 @@
 - Completion
 - Language Services
   - LSP
+  - Mason
   - Treesitter
   - TODO Comments
 - UI
