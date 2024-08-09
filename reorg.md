@@ -1,0 +1,23 @@
+# Plugin Reorg
+
+- File Types:
+  - Bash
+  - Markdown
+  - Etc.
+- AI:
+  - Copilot
+  - ChatGPT
+  - Etc.
+- Status Line
+- Color Scheme
+- Completion
+- LSP / Treesitter
+- UI
+  - Mini-Indentscope
+  - Noice
+  - Splash Screen
+  - Tmux Navigator
+  - TODO Comments
+  - Whichkey
+- Tele (file pickers s)?
+- Slipbox
