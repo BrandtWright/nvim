@@ -14,22 +14,19 @@
   - LSP
   - Mason
   - Treesitter
-  - TODO Comments
 - UI
   - Mini-Indentscope
+  - indent-blankline
   - Splash Screen
   - Whichkey
+  - Colorizer
+  - TODO Comments
+  - All the toggles?
 - Status Line
-- Pickers
+- Search
   - Telescope File Pickers
   - Telescope Neovim Pickers
   - Telescope Note Picker
-  - Neotree
-  - Vifm
-  - Ranger
-  - Vim Vinegar
-  - fm-nvim
-  - Harpoon
 - Version Control
   - Git
   - Fugitive
@@ -39,4 +36,8 @@
   - User/Helpers
 - Navigation
   - Tmux Navigator
+  - Neotree
+  - Vim Vinegar
+  - fm-nvim
+  - Harpoon
 - Blacklist
