@@ -8,7 +8,6 @@
   - Copilot
   - ChatGPT
   - Etc.
-- Status Line
 - Color Scheme
 - Completion
 - Language Services
@@ -18,12 +17,23 @@
   - TODO Comments
 - UI
   - Mini-Indentscope
-  - Noice
   - Splash Screen
-  - Tmux Navigator
   - Whichkey
+- Status Line
 - Pickers
-  - File Pickers
-  - Neovim Pickers
-- Slipbox
+  - Telescope File Pickers
+  - Telescope Neovim Pickers
+  - Telescope Note Picker
+  - Neotree
+  - Vifm
+  - Ranger
 - Version Control
+  - Git
+  - Fugitive
+  - Gitsigns
+- Notification
+  - Noice
+  - User/Helpers
+- Navigation
+  - Vim Vinegar
+  - Tmux Navigator
