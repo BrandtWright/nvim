@@ -27,6 +27,9 @@
   - Neotree
   - Vifm
   - Ranger
+  - Vim Vinegar
+  - fm-nvim
+  - Harpoon
 - Version Control
   - Git
   - Fugitive
@@ -35,5 +38,5 @@
   - Noice
   - User/Helpers
 - Navigation
-  - Vim Vinegar
   - Tmux Navigator
+- Blacklist
