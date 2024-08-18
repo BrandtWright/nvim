@@ -12,6 +12,10 @@ highlights.register({
 
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "git_config", "gitcommit", "git_rebase", "gitignore", "gitattributes" } },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>ga", git.stash, mode = "n", desc = "Stash" },
