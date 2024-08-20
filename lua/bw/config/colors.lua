@@ -51,23 +51,14 @@ local colors = {
 
   -- UI Stuff
   comment = "#575757",
-  cursor_line = "#1d1b1b",
+  cursor_line = "#1a1a1a",
   visual = "#2e2e2c",
-  terminal = "#181515",
+  terminal = "#171717",
   statusline = "#3c3836",
 
   -- Duplicates
   purple = "#8a7b9e",
   light_purple = "#eebaff",
-
-  -- Git Stuff
-  -- TODO: Add highlight groups:
-
-  -- DiffAdd: Used to highlight added lines.
-  -- DiffChange: Used to highlight changed lines.
-  -- DiffDelete: Used to highlight removed lines.
-  -- DiffText: Used to highlight the changed text within a changed line.
-  diff_add = "#0e210d",
 }
 
 return colors
