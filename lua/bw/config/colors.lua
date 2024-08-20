@@ -12,8 +12,6 @@ local colors = {
   gray = "#99968e",
 
   -- Bright Colors
-
-  -- Light Colors
   bright_white = "#fff2d1",
   bright_black = "#575757",
   bright_red = "#ffa099",
