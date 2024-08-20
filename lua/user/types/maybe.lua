@@ -14,12 +14,12 @@ function Maybe.nothing()
   return setmetatable({ is_just = false }, Maybe)
 end
 
--- Monad unit function: lifts a value into the monadic context
+-- Lifts a value into a monadic context
 function Maybe.unit(value)
   return Maybe.just(value)
 end
 
--- Bind function: applies a function to a monadic value
+-- Applies a function to a monadic value
 function Maybe:bind(func)
   if self.is_just then
     return func(self.value)

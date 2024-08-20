@@ -8,12 +8,12 @@ function List.new(value)
   return setmetatable({ value = value }, List)
 end
 
--- Monad unit function: lifts a value into the monadic context
+-- Lifts a value into a monadic context
 function List.unit(value)
   return List.new({ value })
 end
 
--- Bind function: applies a function to each element in the list and flattens the result
+-- Applies a function to each element in the list and flattens the result
 function List:bind(func)
   local result = {}
   for _, v in ipairs(self.value) do
@@ -25,12 +25,12 @@ function List:bind(func)
   return List.new(result)
 end
 
--- Utility function to create a list from a table
+-- Creates a list from a table
 function List.from_table(tbl)
   return List.new(tbl)
 end
 
--- Utility function to convert a list back to a table
+-- Converts a list to a table
 function List:to_table()
   return self.value
 end
