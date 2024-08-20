@@ -8,6 +8,8 @@ highlights.register({
   { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.blue, styles = { "b" } },
   { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.cyan, styles = { "b" } },
   { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
+  { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
+  { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
 })
 return {
   {
