@@ -8,7 +8,6 @@
   - [x] Copilot
   - [x] ChatGPT
   - [x] Etc.
-- [ ] Color Scheme
 - [x] Completion
 - [x] Language Services
   - [x] LSP
@@ -21,7 +20,6 @@
   - [x] Whichkey
   - [x] Colorizer
   - [x] TODO Comments
-  - [ ] All the toggles?
 - [x] Status Line
 - [x] Search
   - [x] Telescope File Pickers
@@ -41,5 +39,7 @@
   - [x] Vim Vinegar
   - [x] fm-nvim
   - [x] Harpoon
+- [ ] Color Scheme
 - [ ] Plugin Blacklist
 - [ ] Key Blacklist
+- [ ] All the toggles?
