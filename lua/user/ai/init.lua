@@ -22,11 +22,26 @@ return {
     event = "VeryLazy",
     keys = {
       {
-        "<leader>acc",
+        "<leader>aa",
         function()
           vim.cmd("ChatGPT")
         end,
         desc = "Open",
+      },
+      {
+        "<leader>ac",
+        function()
+          vim.cmd("ChatGPT")
+        end,
+        desc = "Open",
+      },
+      {
+        "<leader>ad",
+        function()
+          vim.cmd("ChatGPTRun docstring")
+        end,
+        desc = "Doc String",
+        mode = { "n", "x" },
       },
       {
         "<leader>ae",
@@ -34,6 +49,14 @@ return {
           vim.cmd("ChatGPTRun explain_code")
         end,
         desc = "Explain Code",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>af",
+        function()
+          vim.cmd("ChatGPTRun fix_bugs")
+        end,
+        desc = "Fix Bugs",
         mode = { "n", "x" },
       },
       {
@@ -53,43 +76,19 @@ return {
         mode = { "n", "x" },
       },
       {
-        "<leader>ad",
-        function()
-          vim.cmd("ChatGPTRun docstring")
-        end,
-        desc = "Doc String",
-        mode = { "n", "x" },
-      },
-      {
-        "<leader>at",
-        function()
-          vim.cmd("ChatGPTRun add_tests")
-        end,
-        desc = "Add Tests",
-        mode = { "n", "x" },
-      },
-      {
         "<leader>ao",
         function()
           vim.cmd("ChatGPTRun optimize_code")
         end,
-        desc = "Add Tests",
+        desc = "Optimize Code",
         mode = { "n", "x" },
       },
       {
-        "<leader>as",
+        "<leader>ar",
         function()
-          vim.cmd("ChatGPTRun summarize")
+          vim.cmd("ChatGPTRun code_readability_analysis")
         end,
-        desc = "Summarize",
-        mode = { "n", "x" },
-      },
-      {
-        "<leader>af",
-        function()
-          vim.cmd("ChatGPTRun fix_bugs")
-        end,
-        desc = "Fix Bugs",
+        desc = "Code Readability Analysis",
         mode = { "n", "x" },
       },
       {
@@ -101,11 +100,19 @@ return {
         mode = { "n", "x" },
       },
       {
-        "<leader>ar",
+        "<leader>as",
         function()
-          vim.cmd("ChatGPTRun code_readability_analysis")
+          vim.cmd("ChatGPTRun summarize")
         end,
-        desc = "Code Readability Analysis",
+        desc = "Summarize",
+        mode = { "n", "x" },
+      },
+      {
+        "<leader>at",
+        function()
+          vim.cmd("ChatGPTRun add_tests")
+        end,
+        desc = "Add Tests",
         mode = { "n", "x" },
       },
     },
