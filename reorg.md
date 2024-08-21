@@ -7,7 +7,7 @@
 - [x] AI:
   - [x] Copilot
   - [x] ChatGPT
-  - [ ] Etc.
+  - [x] Etc.
 - [ ] Color Scheme
 - [ ] Completion
 - [x] Language Services
