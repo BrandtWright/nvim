@@ -9,7 +9,7 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-lua/plenary.nvim",
     },
-    keys = require("plugins.telescope.keys"),
-    opts = require("plugins.telescope.opts"),
+    keys = require("user.finders.keys"),
+    opts = require("user.finders.opts"),
   },
 }

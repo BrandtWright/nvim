@@ -23,14 +23,14 @@ local find_slip = function()
   if not can_tele then
     return
   end
-  require("plugins.telescope.helpers").find_zettel()
+  require("user.finders.helpers").find_zettel()
 end
 
 local link_slip = function()
   if not can_tele then
     return
   end
-  require("plugins.telescope.helpers").link_zettel()
+  require("user.finders.helpers").link_zettel()
 end
 
 local create_slip = function()

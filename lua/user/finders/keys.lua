@@ -1,4 +1,4 @@
-local tele = require("plugins.telescope.helpers")
+local tele = require("user.finders.helpers")
 
 return {
 
