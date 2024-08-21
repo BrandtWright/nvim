@@ -8,13 +8,13 @@
   - [x] Copilot
   - [x] ChatGPT
   - [x] Etc.
-- [ ] Color Scheme
-- [ ] Completion
+- [x] Color Scheme
+- [x] Completion
 - [x] Language Services
   - [x] LSP
   - [x] Mason
   - [x] Treesitter
-- [ ] Splash Screen
+- [x] Splash Screen
 - [x] UI
   - [x] Mini-Indentscope
   - [x] indent-blankline
@@ -23,10 +23,10 @@
   - [x] TODO Comments
   - [ ] All the toggles?
 - [x] Status Line
-- [ ] Search
-  - [ ] Telescope File Pickers
-  - [ ] Telescope Neovim Pickers
-  - [ ] Telescope Note Picker
+- [x] Search
+  - [x] Telescope File Pickers
+  - [x] Telescope Neovim Pickers
+  - [x] Telescope Note Picker
 - [x] Version Control
   - [x] Git
   - [x] Fugitive

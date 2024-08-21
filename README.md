@@ -2,6 +2,19 @@
 
 ## TODO
 
+## Blacklist
+
+- Sort out blacklist
+  - Key Binds
+    - LazyVim/LazyVim
+    - Lazy/config/keymaps.lua
+    - Plugins
+  - Plugins
+    - bufferline.nvim
+    - vim-illuminate
+    - flash.nvim
+    - nvim-spectre
+
 ## Tresitter
 
 - Setup better motion key maps for [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
