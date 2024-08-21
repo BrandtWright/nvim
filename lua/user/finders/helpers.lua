@@ -150,18 +150,32 @@ end
 -------------------------------------------------------------------------------
 --  Slipbox
 -------------------------------------------------------------------------------
+
+local get_zettle_path = function(entry)
+  local _, j = string.find(entry, ":")
+  local path = string.sub(entry, 1, j - 1)
+  return path
+end
+
+local get_zettle_title = function(entry)
+  local _, j = string.find(entry, ":")
+  local remaining = string.sub(entry, j + 1)
+  _, j = string.find(remaining, ":")
+  local title = string.sub(remaining, 1, j - 1)
+  return title
+end
+
 function M.find_zettel(opts)
   local pickers = require("telescope.pickers")
   local conf = require("telescope.config").values
   local finders = require("telescope.finders")
-  local slipbox = require("bw.util.slipbox")
   opts = opts or {}
   opts.entry_maker = function(entry)
     return {
       value = entry,
-      display = slipbox.get_zettle_title(entry),
+      display = get_zettle_title(entry),
       ordinal = entry,
-      path = slipbox.get_zettle_path(entry),
+      path = get_zettle_path(entry),
     }
   end
   pickers
@@ -182,14 +196,13 @@ function M.link_zettel(opts)
   local actions = require("telescope.actions")
   local action_state = require("telescope.actions.state")
   local finders = require("telescope.finders")
-  local slipbox = require("bw.util.slipbox")
 
   opts.entry_maker = function(entry)
     return {
       value = entry,
-      display = slipbox.get_zettle_title(entry),
+      display = get_zettle_title(entry),
       ordinal = entry,
-      path = slipbox.get_zettle_path(entry),
+      path = get_zettle_path(entry),
     }
   end
   pickers
@@ -202,7 +215,7 @@ function M.link_zettel(opts)
         actions.select_default:replace(function()
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
-          vim.cmd("r ! zet -k " .. slipbox.get_zettle_path(selection.value))
+          vim.cmd("r ! zet -k " .. get_zettle_path(selection.value))
         end)
         return true
       end,
