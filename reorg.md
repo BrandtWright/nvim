@@ -8,7 +8,7 @@
   - [x] Copilot
   - [x] ChatGPT
   - [x] Etc.
-- [x] Color Scheme
+- [ ] Color Scheme
 - [x] Completion
 - [x] Language Services
   - [x] LSP
@@ -41,4 +41,5 @@
   - [x] Vim Vinegar
   - [x] fm-nvim
   - [x] Harpoon
-- [x] Blacklist
+- [ ] Plugin Blacklist
+- [ ] Key Blacklist
