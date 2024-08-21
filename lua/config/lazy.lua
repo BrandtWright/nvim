@@ -28,7 +28,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
-    { import = "plugins" },
     { import = "user" },
     { import = "user.filetypes" },
   },
