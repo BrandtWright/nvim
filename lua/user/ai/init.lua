@@ -68,6 +68,14 @@ return {
         mode = { "n", "x" },
       },
       {
+        "<leader>ai",
+        function()
+          vim.cmd("ChatGPTEditWithInstructions")
+        end,
+        desc = "Edit with Instructions",
+        mode = { "n", "x" },
+      },
+      {
         "<leader>ak",
         function()
           vim.cmd("ChatGPTRun keywords")
@@ -96,7 +104,7 @@ return {
         function()
           vim.cmd("ChatGPTRun roxygen_edit")
         end,
-        desc = "Fix Bugs",
+        desc = "Roxygen Edit",
         mode = { "n", "x" },
       },
       {
