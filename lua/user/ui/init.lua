@@ -88,6 +88,7 @@ return {
         { "<leader>a", group = "AI" },
         { "<leader>ac", group = "ChatGPT" },
         { "<leader>b", group = "Buffer" },
+        { "<leader>bs", group = "Scratch Buffers" },
         { "<leader>c", group = "Code" },
         { "<leader>e", group = "Explore" },
         { "<leader>f", group = "Find" },

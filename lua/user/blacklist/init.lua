@@ -56,8 +56,9 @@ return {
       { "<leader>bb", false }, -- <C-^>
 
       { "<leader>w-", false }, -- <leader>ws
-      { "<leader>-", false }, -- <leader>ws
       { "<leader>w|", false }, -- <leader>wv
+      { "<leader>_", false }, -- <leader>wv
+      { "<leader>-", false }, -- <leader>wv
       { "<leader>|", false }, -- <leader>wv
       { "<leader>gs", false }, -- Fugitive->Status instead of Gitsigns->Status
     },
