@@ -27,6 +27,7 @@
   - [x] Telescope File Pickers
   - [x] Telescope Neovim Pickers
   - [x] Telescope Note Picker
+  - [x] Helpers
 - [x] Version Control
   - [x] Git
   - [x] Fugitive
@@ -40,4 +41,4 @@
   - [x] Vim Vinegar
   - [x] fm-nvim
   - [x] Harpoon
-- [ ] Blacklist
+- [x] Blacklist
