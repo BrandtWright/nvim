@@ -11,6 +11,7 @@ highlights.register({
   { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
   { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
 })
+
 return {
   {
     "MeanderingProgrammer/markdown.nvim",

@@ -4,7 +4,7 @@ local highlights = require("bw.config.highlights")
 local git = require("user.git.api")
 
 highlights.register({
-  -- Treesitter
+  -- Git (Treesitter)
   { name = "GitSignsAdd", fg = c.green, bg = c.terminal, styles = {} },
   { name = "GitSignsChange", fg = c.yellow, bg = c.terminal, styles = {} },
   { name = "GitSignsDelete", fg = c.red, bg = c.terminal, styles = {} },

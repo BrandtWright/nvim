@@ -1,43 +1,43 @@
 # Plugin Reorg
 
-- [ ] File Types:
-  - [ ] Bash
-  - [ ] Markdown
-  - [ ] Etc.
-- [ ] AI:
-  - [ ] Copilot
-  - [ ] ChatGPT
+- [x] File Types:
+  - [x] Bash
+  - [x] Markdown
+  - [x] Etc.
+- [x] AI:
+  - [x] Copilot
+  - [x] ChatGPT
   - [ ] Etc.
 - [ ] Color Scheme
 - [ ] Completion
-- [ ] Language Services
-  - [ ] LSP
-  - [ ] Mason
-  - [ ] Treesitter
-- [ ] UI
-  - [ ] Mini-Indentscope
-  - [ ] indent-blankline
-  - [ ] Splash Screen
-  - [ ] Whichkey
-  - [ ] Colorizer
-  - [ ] TODO Comments
+- [x] Language Services
+  - [x] LSP
+  - [x] Mason
+  - [x] Treesitter
+- [ ] Splash Screen
+- [x] UI
+  - [x] Mini-Indentscope
+  - [x] indent-blankline
+  - [x] Whichkey
+  - [x] Colorizer
+  - [x] TODO Comments
   - [ ] All the toggles?
-- [ ] Status Line
+- [x] Status Line
 - [ ] Search
   - [ ] Telescope File Pickers
   - [ ] Telescope Neovim Pickers
   - [ ] Telescope Note Picker
-- [ ] Version Control
-  - [ ] Git
-  - [ ] Fugitive
-  - [ ] Gitsigns
+- [x] Version Control
+  - [x] Git
+  - [x] Fugitive
+  - [x] Gitsigns
 - [x] Notification
   - [x] Noice
   - [x] User/Helpers
-- [ ] Navigation
-  - [ ] Tmux Navigator
-  - [ ] Neotree
-  - [ ] Vim Vinegar
-  - [ ] fm-nvim
-  - [ ] Harpoon
+- [x] Navigation
+  - [x] Tmux Navigator
+  - [x] Neotree
+  - [x] Vim Vinegar
+  - [x] fm-nvim
+  - [x] Harpoon
 - [ ] Blacklist
