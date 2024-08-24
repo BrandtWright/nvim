@@ -2,8 +2,8 @@ local colors = {
 
   gray = "#99968e",
 
-  white = "#CCBEA3",
-  black = "#12110E",
+  white = "#E6E6E6",
+  black = "#0A0A0A",
   red = "#8F5454",
   orange = "#8F7054",
   yellow = "#8F8F5B",
@@ -15,7 +15,7 @@ local colors = {
   pink = "#8F547B",
 
   -- Bright Colors
-  birght_white = "#FFEECC",
+  birght_white = "#FFFFFF",
   birght_black = "#454037",
   birght_red = "#DB8181",
   birght_orange = "#DBAB81",
@@ -28,7 +28,7 @@ local colors = {
   birght_pink = "#F590D3",
 
   -- Dark Colors
-  dark_white = "#B3A78F",
+  dark_white = "#CCCCCC",
   dark_black = "#0A0908",
   dark_red = "#422727",
   dark_orange = "#423427",
@@ -63,10 +63,10 @@ local colors = {
   gold = "#a38e5d",
 
   -- UI Stuff
-  comment = "#333029",
-  cursor_line = "#141310",
+  comment = "#4D483E",
+  cursor_line = "#0D0D0D",
   visual = "#2e2e2c",
-  terminal = "#12110E",
+  terminal = "#0A0A0A",
   statusline = "#3c3836",
 
   -- Duplicates
