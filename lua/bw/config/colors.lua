@@ -1,7 +1,7 @@
 local colors = {
 
   white = "#ebdbb2",
-  black = "#181815",
+  black = "#575757",
   red = "#bd7671",
   green = "#769482",
   yellow = "#c2c27c",
@@ -9,11 +9,12 @@ local colors = {
   magenta = "#8f7099",
   cyan = "#7b919e",
 
+  -- TODO: Document
   gray = "#99968e",
 
   -- Bright Colors
   bright_white = "#fff2d1",
-  bright_black = "#575757",
+  bright_black = "#737373",
   bright_red = "#ffa099",
   bright_green = "#b9d9b8",
   bright_yellow = "#fcfca4",
@@ -32,20 +33,18 @@ local colors = {
   pale_green = "#57804d",
   other_green = "#9ac95b",
 
+  gold = "#a38e5d",
   light_gold = "#C5B358",
 
   dark_red = "#663f3f",
   really_dark_red = "#331717",
 
-  dark_blue = "#2e4d66",
-  really_dark_blue = "#2e4d66",
   terminal_blue = "#637ca6",
 
   very_light_purple = "#8a7989",
 
   beige = "#c4b0a7",
   brown = "#473d37",
-  gold = "#a38e5d",
 
   -- UI Stuff
   comment = "#575757",
