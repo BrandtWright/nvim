@@ -5,14 +5,7 @@ return {
   { name = "Comment", fg = c.comment, bg = nil, styles = { "i" } },
   { name = "Special", fg = c.gold, bg = c.terminal, styles = {} },
   { name = "Statement", fg = c.gold, bg = c.terminal, styles = {} },
-
-  ------------------------------------------------------------------------------
-  -- Comment
-  ------------------------------------------------------------------------------
-  -- Treesitter
-  { name = "@comment", fg = c.comment, bg = nil, styles = { "i" } },
-  -- Semantic Tokens
-  { name = "@lsp.type.comment", fg = c.comment, bg = nil, styles = { "i" } },
+  { name = "Variable", fg = c.white, bg = c.terminal, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Function
@@ -47,13 +40,16 @@ return {
   -- Variable
   ------------------------------------------------------------------------------
   -- Semantic Tokens
-  { name = "@lsp.type.variable", fg = c.white, bg = nil, styles = {} },
+  -- { name = "@lsp.type.variable", fg = c.white, bg = nil, styles = {} },
+  -- -- LSP
+  -- { name = "@variable", fg = c.white, bg = nil, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Type
   ------------------------------------------------------------------------------
   -- Treesitter
   { name = "@Type", fg = c.bright_green, bg = nil, styles = {} },
+  { name = "@type.builtin", fg = c.gold, bg = nil, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Keyword

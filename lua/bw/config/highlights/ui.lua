@@ -1,7 +1,7 @@
 local c = require("bw.config.colors")
 
 return {
-  { name = "WinSeparator", fg = c.statusline, bg = c.terminal, styles = {} },
+  { name = "WinSeparator", fg = c.comment, bg = c.terminal, styles = {} },
   { name = "EndOfBUffer", fg = c.terminal, bg = c.terminal, styles = {} },
   { name = "Visual", bg = c.visual, styles = {} },
   { name = "CursorLine", bg = c.cursor_line, styles = {} },
