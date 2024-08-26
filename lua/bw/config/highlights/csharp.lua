@@ -10,7 +10,7 @@ return {
   { name = "@lsp.type.class.cs", fg = c.green, bg = nil, styles = {} },
   { name = "@lsp.type.struct.cs", fg = c.bright_cyan, bg = nil, styles = {} },
   { name = "@lsp.type.property.cs", fg = c.white, bg = nil, styles = {} },
-  { name = "@lsp.type.delegateName.cs", fg = c.dark_purple, bg = nil, styles = {} },
+  { name = "@lsp.type.delegateName.cs", fg = c.dark_violet, bg = nil, styles = {} },
   { name = "@lsp.type.extensionMethodName.cs", fg = c.green, bg = nil, styles = {} },
   { name = "@lsp.type.interface.cs", fg = c.gold, bg = nil, styles = {} },
   { name = "@lsp.type.parameter.cs", fg = nil, bg = nil, styles = { "i" } },

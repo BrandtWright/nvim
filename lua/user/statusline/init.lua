@@ -15,17 +15,17 @@ return {
 
       -- Lualine C Colors
       theme.normal.c.fg = c.white
-      theme.normal.c.bg = c.statusline
+      theme.normal.c.bg = c.jet
       theme.insert.c.fg = c.white
-      theme.insert.c.bg = c.statusline
+      theme.insert.c.bg = c.jet
       theme.visual.c.fg = c.white
-      theme.visual.c.bg = c.statusline
+      theme.visual.c.bg = c.jet
       theme.replace.c.fg = c.white
-      theme.replace.c.bg = c.statusline
+      theme.replace.c.bg = c.jet
       theme.command.c.fg = c.white
-      theme.command.c.bg = c.statusline
+      theme.command.c.bg = c.jet
       theme.inactive.c.fg = c.white
-      theme.inactive.c.bg = c.statusline
+      theme.inactive.c.bg = c.jet
 
       opts.options.theme = theme
       opts.options.component_separators = { left = "", right = "" }

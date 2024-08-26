@@ -14,7 +14,6 @@
 --   brown, bold
 --
 -- Shades:
---
 --------------------------------------------------------------------------------
 
 local colors = {
@@ -45,20 +44,30 @@ local colors = {
 
   -- Secondary Colors
   orange = "#ce9178",
-  dark_purple = "#8a7989", -- @lsp.type.delegateName.cs
-  purple = "#8a7b9e",
-  bright_purple = "#eebaff",
+  dark_violet = "#8a7989", -- @lsp.type.delegateName.cs
+  violet = "#8a7b9e",
+  bright_violet = "#eebaff",
 
   -- Tertiary and Extended Colors
   brown = "#473d37",
   gold = "#a38e5d",
 
-  -- TODO: Rename to colors
+  -- TODO: Convert to shades
   comment = "#575757",
   cursor_line = "#1a1a1a",
-  visual = "#2e2e2c",
   terminal = "#171717",
-  statusline = "#3c3836",
+
+  -- TODO: Convert to hues:
+
+  -- Visual
+  shade_50 = "#333333",
+
+  -- Search, CurrentSearch, IncSearch
+  resolution_blue = "#202080",
+
+  -- Primary Window Chrome
+  --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine
+  jet = "#3c3836",
 }
 
 return colors

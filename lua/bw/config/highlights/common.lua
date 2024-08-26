@@ -68,15 +68,15 @@ return {
   -- Conditional
   ------------------------------------------------------------------------------
   -- Treesitter
-  { name = "@conditional", fg = c.purple, bg = nil, styles = {} },
-  { name = "@keyword.conditional", fg = c.purple, bg = nil, styles = {} },
+  { name = "@conditional", fg = c.violet, bg = nil, styles = {} },
+  { name = "@keyword.conditional", fg = c.violet, bg = nil, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Loops
   ------------------------------------------------------------------------------
   -- Treesitter
-  { name = "@repeat", fg = c.bright_purple, bg = nil, styles = {} },
-  { name = "@keyword.repeat", fg = c.bright_purple, bg = nil, styles = {} },
+  { name = "@repeat", fg = c.bright_violet, bg = nil, styles = {} },
+  { name = "@keyword.repeat", fg = c.bright_violet, bg = nil, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Operators
