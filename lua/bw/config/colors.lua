@@ -52,9 +52,7 @@ local colors = {
   brown = "#473d37",
   gold = "#a38e5d",
 
-  -- TODO: Dedupplicate with highlight links
-
-  -- Too many...
+  -- TODO: Too many references... Dedupplicate with highlight links
   terminal = "#171717",
 
   -- CursorLine, ColorColumn, TelescopeSelection
@@ -68,7 +66,7 @@ local colors = {
   resolution_blue = "#202080",
 
   -- Primary Window Chrome
-  --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine
+  --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine, TelescopeSelection
   -- jet = "#3c3836",
   raisin_black = "#2C2826",
 }
