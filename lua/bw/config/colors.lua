@@ -1,3 +1,22 @@
+--------------------------------------------------------------------------------
+-- Color Pallet
+--------------------------------------------------------------------------------
+-- Primary Colors:
+--   red, green and blue
+--
+-- Secondary Colors:
+--   cyan, magenta and yellow
+--
+-- Tertiary Colors:
+--   orange, chartreuse green, spring green, azure, violet and rose
+--
+-- Extended Colors:
+--   brown, bold
+--
+-- Shades:
+--
+--------------------------------------------------------------------------------
+
 local colors = {
 
   -- Normal
@@ -30,7 +49,7 @@ local colors = {
   purple = "#8a7b9e",
   bright_purple = "#eebaff",
 
-  -- Extended Colors
+  -- Tertiary and Extended Colors
   brown = "#473d37",
   gold = "#a38e5d",
 
