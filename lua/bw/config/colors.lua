@@ -67,7 +67,6 @@ local colors = {
 
   -- Primary Window Chrome
   --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine, TelescopeSelection
-  -- jet = "#3c3836",
   raisin_black = "#2C2826",
 }
 
