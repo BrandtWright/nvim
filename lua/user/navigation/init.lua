@@ -1,7 +1,7 @@
 local c = require("bw.config.colors")
 local highlights = require("bw.config.highlights")
 highlights.register({
-  { name = "NeoTreeDirectoryIcon", fg = c.terminal_blue, bg = nil, styles = {} },
+  { name = "NeoTreeDirectoryIcon", fg = c.blue, bg = nil, styles = {} },
   { name = "NeoTreeDirectoryName", fg = c.white, bg = nil, styles = {} },
 })
 

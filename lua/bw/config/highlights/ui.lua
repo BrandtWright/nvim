@@ -17,7 +17,7 @@ return {
   { name = "SignColumn", bg = c.terminal, styles = {} },
   -- jackMort/ChatGPT.nvim uses this for the gutter in its popups
   { name = "FoldColumn", fg = c.gold, bg = c.terminal, styles = {} },
-  { name = "TabLine", fg = c.gray, bg = c.statusline, styles = {} },
+  { name = "TabLine", fg = c.bright_black, bg = c.statusline, styles = {} },
   { name = "TabLineSel", fg = c.white, bg = c.statusline, styles = {} },
   { name = "TabLineFill", fg = c.red, bg = c.statusline, styles = {} },
 }

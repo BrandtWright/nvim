@@ -1,3 +1,4 @@
+-- TODO: Deduplicate (lazy.lua)
 local highlights = function()
   local c = require("bw.config.colors")
   vim.g.terminal_color_0 = c.black -- black

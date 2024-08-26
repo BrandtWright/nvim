@@ -75,8 +75,8 @@ return {
   -- Loops
   ------------------------------------------------------------------------------
   -- Treesitter
-  { name = "@repeat", fg = c.light_purple, bg = nil, styles = {} },
-  { name = "@keyword.repeat", fg = c.light_purple, bg = nil, styles = {} },
+  { name = "@repeat", fg = c.bright_purple, bg = nil, styles = {} },
+  { name = "@keyword.repeat", fg = c.bright_purple, bg = nil, styles = {} },
 
   ------------------------------------------------------------------------------
   -- Operators
