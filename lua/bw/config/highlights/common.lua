@@ -2,7 +2,7 @@ local c = require("bw.config.colors")
 return {
   { name = "Normal", fg = c.white, bg = c.terminal, styles = {} },
   { name = "String", fg = c.orange, bg = nil, styles = {} },
-  { name = "Comment", fg = c.comment, bg = nil, styles = { "i" } },
+  { name = "Comment", fg = c.gray_34, bg = nil, styles = { "i" } },
   { name = "Special", fg = c.gold, bg = c.terminal, styles = {} },
   { name = "Statement", fg = c.gold, bg = c.terminal, styles = {} },
 
@@ -10,9 +10,9 @@ return {
   -- Comment
   ------------------------------------------------------------------------------
   -- Treesitter
-  { name = "@comment", fg = c.comment, bg = nil, styles = { "i" } },
+  { name = "@comment", fg = c.gray_34, bg = nil, styles = { "i" } },
   -- Semantic Tokens
-  { name = "@lsp.type.comment", fg = c.comment, bg = nil, styles = { "i" } },
+  { name = "@lsp.type.comment", fg = c.gray_34, bg = nil, styles = { "i" } },
 
   ------------------------------------------------------------------------------
   -- Function

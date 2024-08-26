@@ -52,22 +52,25 @@ local colors = {
   brown = "#473d37",
   gold = "#a38e5d",
 
-  -- TODO: Convert to shades
-  comment = "#575757",
-  cursor_line = "#1a1a1a",
+  -- TODO: Dedupplicate with highlight links
+
+  -- Too many...
   terminal = "#171717",
 
-  -- TODO: Convert to hues:
-
+  -- CursorLine, ColorColumn, TelescopeSelection
+  gray_10 = "#1a1a1a",
+  -- Comment, @Comment, @lsp.type.comment
+  gray_34 = "#575757",
   -- Visual
-  shade_50 = "#333333",
+  gray_50 = "#333333",
 
   -- Search, CurrentSearch, IncSearch
   resolution_blue = "#202080",
 
   -- Primary Window Chrome
   --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine
-  jet = "#3c3836",
+  -- jet = "#3c3836",
+  raisin_black = "#2C2826",
 }
 
 return colors
