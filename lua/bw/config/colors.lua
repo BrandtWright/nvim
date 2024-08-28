@@ -42,13 +42,13 @@ local colors = {
   dark_red = "#663f3f", -- Markdown only
   dark_orange = "#735244", -- Markdown only
 
-  -- Secondary Colors
+  -- Tertiary Colors
   orange = "#ce9178",
   dark_violet = "#8a7989", -- @lsp.type.delegateName.cs
   violet = "#8a7b9e",
   bright_violet = "#eebaff",
 
-  -- Tertiary and Extended Colors
+  -- Extended Colors
   brown = "#473d37",
   gold = "#a38e5d",
 
