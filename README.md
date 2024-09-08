@@ -4,8 +4,11 @@
 
 - Cyan is pretty washed out in source code. See: `./lua/bw/config/highlights/common.lua`
 - Readme Keymap
-  - Implement or steal get_proj_root()
-  - `:edit proj_root/README.md`
+
+    ```lua
+    local proj_root = LazyVim.root.get()
+    vim.cmd("edit " .. proj_root .. "README.md")
+    ```
 
 ## Blacklist
 
