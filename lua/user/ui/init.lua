@@ -100,6 +100,7 @@ return {
         { "<leader>gm", group = "Blame" },
         { "<leader>gt", group = "Toggle" },
         { "<leader>h", group = "Harpoon" },
+        { "<leader>o", group = "Open" },
         { "<leader>q", group = "Session" },
         { "<leader>r", group = "Grep" },
         { "<leader>s", group = "Search" },
