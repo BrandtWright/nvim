@@ -153,7 +153,7 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 map("n", "<leader>fp", function()
   require("telescope").extensions.project.project()
 end, { desc = "Project", silent = true })
-map("n", "<leader>gm", function()
+map("n", "gM", function()
   require("dist.docs").try_edit_readme()
 end, { desc = "Project Readme File" })
 
