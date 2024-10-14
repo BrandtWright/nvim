@@ -67,6 +67,7 @@ return {
       table.insert(opts.sources, {
         name = "spell",
         keyword_length = 5,
+        max_item_count = 3,
       })
       table.insert(opts.sources, {
         name = "nvim_lsp_signature_help",
