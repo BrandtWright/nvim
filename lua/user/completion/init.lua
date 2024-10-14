@@ -66,7 +66,6 @@ return {
       -- Configure additional sources
       table.insert(opts.sources, {
         name = "spell",
-        option = { keep_all_entries = true },
         keyword_length = 5,
       })
       table.insert(opts.sources, {
