@@ -10,23 +10,20 @@ highlights.register({
   { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
   { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
   { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
+  { name = "@markup.link.label.markdown_inline", fg = c.cyan, styles = {} },
 })
 
 return {
   {
-    "MeanderingProgrammer/markdown.nvim",
+    "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      file_types = { "markdown", "norg", "rmd", "org" },
-      code = {
-        sign = false,
-        width = "block",
-        right_pad = 1,
-      },
-      heading = {
-        sign = false,
-        icons = {},
+      link = {
+        custom = {
+          web = {
+            icon = "",
+          },
+        },
       },
     },
-    ft = { "markdown", "norg", "rmd", "org" },
   },
 }
