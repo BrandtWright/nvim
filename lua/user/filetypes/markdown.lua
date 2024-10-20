@@ -6,7 +6,7 @@ highlights.register({
   { name = "RenderMarkdownH3Bg", fg = c.terminal, bg = c.gold, styles = { "b" } },
   { name = "RenderMarkdownH4Bg", fg = c.terminal, bg = c.violet, styles = { "b" } },
   { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.blue, styles = { "b" } },
-  { name = "RenderMarkdownH5Bg", fg = c.terminal, bg = c.cyan, styles = { "b" } },
+  { name = "RenderMarkdownH6Bg", fg = c.terminal, bg = c.cyan, styles = { "b" } },
   { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
   { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
   { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
