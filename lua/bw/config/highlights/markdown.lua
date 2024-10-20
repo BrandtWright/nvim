@@ -1,7 +1,6 @@
 local c = require("bw.config.colors")
 return {
   { name = "@text.literal.markdown_inline", fg = c.yellow, bg = c.terminal, styles = {} },
-  { name = "@markup.link.label.markdown_inline", fg = c.red, bg = c.terminal, styles = {} },
   { name = "@markup.quote.markdown", fg = c.white, bg = c.terminal, styles = { "i" } },
   -- Lsp Hover Floating Window Uses this:
   { name = "@punctuation.special.markdown", fg = c.brown, bg = nil, styles = {} },
@@ -13,4 +12,3 @@ return {
   { name = "@markup.link.url.markdown_inline", fg = c.cyan, bg = nil, styles = { "u" } },
   { name = "@markup.link.label.markdown_inline", fg = c.cyan, styles = {} },
 }
-
