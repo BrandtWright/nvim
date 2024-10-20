@@ -10,7 +10,6 @@ highlights.register({
   { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
   { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
   { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
-  { name = "@markup.link.label.markdown_inline", fg = c.cyan, styles = {} },
 })
 
 return {
