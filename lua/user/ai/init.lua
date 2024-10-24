@@ -77,6 +77,20 @@ return {
   {
     "zbirenbaum/copilot.lua",
     opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = false,
+        hide_during_completion = true,
+        debounce = 75,
+        keymap = {
+          accept = "<M-y>",
+          accept_word = false,
+          accept_line = false,
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<C-]>",
+        },
+      },
       filetypes = {
         c = true,
         cpp = true,
