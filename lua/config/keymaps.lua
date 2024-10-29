@@ -42,6 +42,12 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 --------------------------------------------------------------------------------
+-- Terminals
+--------------------------------------------------------------------------------
+map("n", "<leader>ms", "<cmd>split | terminal<cr>", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
+map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>", { desc = "Terminal Buffer (Vertical Split)", silent = true })
+
+--------------------------------------------------------------------------------
 -- Lines
 --------------------------------------------------------------------------------
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down", silent = true })
