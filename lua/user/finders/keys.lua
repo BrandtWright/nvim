@@ -19,6 +19,22 @@ return {
 
   { "<leader>ff", tele.find_files, mode = "n", desc = "Files" },
   {
+    "<leader>fh",
+    function()
+      tele.find_files({ cwd = vim.fn.expand("~") })
+    end,
+    mode = "n",
+    desc = "In Home Directory",
+  },
+  {
+    "<leader>fH",
+    function()
+      tele.find_files({ cwd = vim.fn.expand("~"), hidden = true })
+    end,
+    mode = "n",
+    desc = "All Files In Home Directory",
+  },
+  {
     "<leader>fF",
     function()
       tele.find_files({ hidden = true })
