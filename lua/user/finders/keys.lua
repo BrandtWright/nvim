@@ -32,7 +32,23 @@ return {
       tele.find_files({ cwd = vim.fn.expand("~"), hidden = true })
     end,
     mode = "n",
-    desc = "All Files In Home Directory",
+    desc = "Home Directory (All Files)",
+  },
+  {
+    "<leader>fa",
+    function()
+      tele.find_files({ cwd = vim.fn.expand("~/repos/bitpit-host-bootstrapper") })
+    end,
+    mode = "n",
+    desc = "Ansible Playbooks",
+  },
+  {
+    "<leader>fA",
+    function()
+      tele.find_files({ cwd = vim.fn.expand("~/repos/bitpit-host-bootstrapper"), hidden = true })
+    end,
+    mode = "n",
+    desc = "Ansible Playbooks (All Files)",
   },
   {
     "<leader>fF",
@@ -50,7 +66,7 @@ return {
       })
     end,
     mode = "n",
-    desc = "Files from Location",
+    desc = "From Location",
   },
   {
     "<leader>fL",
@@ -61,7 +77,7 @@ return {
       })
     end,
     mode = "n",
-    desc = "All Files from Location",
+    desc = "From Location (All Files)",
   },
   {
     "<leader>fo",
