@@ -85,10 +85,11 @@ map(
 )
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>os", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Scrath Pad" })
 map({ "n" }, "<leader>or", function()
   local proj_root = LazyVim.root.get()
   vim.cmd("edit " .. proj_root .. "/README.md")
-end, { desc = "Open Readme File" })
+end, { desc = "Readme" })
 
 --------------------------------------------------------------------------------
 -- Lists
