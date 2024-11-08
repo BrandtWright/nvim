@@ -170,7 +170,8 @@ end, { desc = "Project Readme File" })
 if pcall(require, "lazyvim") then
   map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
   local lazyterm = function()
-    require("lazyvim.util").terminal(nil, { border = "single", size = { width = 180, height = 30 } })
+    -- require("lazyvim.util").terminal(nil, { border = "single", size = { width = 180, height = 30 } })
+    Snacks.terminal.toggle()
   end
   map("n", "<C-_>", lazyterm, { desc = "Terminal" })
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })

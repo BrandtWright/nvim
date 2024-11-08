@@ -1,5 +1,26 @@
 local M = {}
 
+-- Removed from LazyVim
+-- del("n", "<leader>gg")
+-- del("n", "<leader>gG")
+-- del("n", "<leader>gL")
+-- del("t", "<C-h>")
+-- del("t", "<C-j>")
+-- del("t", "<C-k>")
+-- del("t", "<C-l>")
+
+-- Removed earilier:
+-- del("n", "<leader>gb")
+-- del("n", "<leader>gB")
+-- del("n", "<leader>gf")
+-- del("n", "<leader>gl")
+-- del("n", "<leader>wd")
+-- del("n", "<leader>ww")
+-- del("n", "<leader>w-")
+-- del("n", "<leader>w|")
+-- del("n", "<leader>-")
+-- del("n", "<leader>|")
+
 M.disable = function()
   local del = vim.keymap.del
 
@@ -21,32 +42,11 @@ M.disable = function()
   del("x", "N")
   del("o", "N")
 
-  -- Lazygit
-  del("n", "<leader>gg")
-  del("n", "<leader>gG")
-  -- del("n", "<leader>gb")
-  -- del("n", "<leader>gB")
-  -- del("n", "<leader>gf")
-  -- del("n", "<leader>gl")
-  del("n", "<leader>gL")
-
   -- Floating Terminal
   del("n", "<c-_>")
   del("n", "<leader>fT")
   del("n", "<c-/>")
   del("t", "<c-_>")
-  del("t", "<C-h>")
-  del("t", "<C-j>")
-  del("t", "<C-k>")
-  del("t", "<C-l>")
-
-  -- Windows
-  -- del("n", "<leader>wd")
-  -- del("n", "<leader>ww")
-  -- del("n", "<leader>w-")
-  -- del("n", "<leader>w|")
-  -- del("n", "<leader>-")
-  -- del("n", "<leader>|")
 
   -- tabs (Remove)
   del("n", "<leader><tab>l")
