@@ -123,19 +123,23 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       local can_find_copilot_component = function()
-        local icon = LazyVim.config.icons.kinds.Copilot
-        local component = opts.sections.lualine_x[2]
-        local content = type(component[1]) == "function" and component[1]() or component[1]
-        -- Copilot icon is a multi-byte character ( )
-        if string.sub(content, 1, 2) ~= string.sub(icon, 1, 2) then
-          vim.notify(
-            "Could not find the Copilot component in Lualine.",
-            vim.log.levels.WARN,
-            { title = "Custom Copilot Config", icon = "⚠️" }
-          )
-          return false
-        end
-        return true
+        return false
+        -- local icon = LazyVim.config.icons.kinds.Copilot
+        -- local component = opts.sections.lualine_x[2]
+        -- local content = type(component[1]) == "function" and component[1]() or component[1]
+        -- if content == nil then
+        --   return false
+        -- end
+        -- -- Copilot icon is a multi-byte character ( )
+        -- if string.sub(content, 1, 2) ~= string.sub(icon, 1, 2) then
+        --   vim.notify(
+        --     "Could not find the Copilot component in Lualine.",
+        --     vim.log.levels.WARN,
+        --     { title = "Custom Copilot Config", icon = "⚠️" }
+        --   )
+        --   return false
+        -- end
+        -- return true
       end
 
       local modify_copilot_component = function()
