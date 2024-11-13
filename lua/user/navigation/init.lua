@@ -48,7 +48,7 @@ return {
       {
         "-",
         function()
-          vim.cmd("Vifm")
+          vim.cmd("Explore")
         end,
         desc = "Vifm",
       },
