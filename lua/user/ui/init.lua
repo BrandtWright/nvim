@@ -113,6 +113,7 @@ return {
         { "<leader>x", group = "Lists" },
         { "<leader>z", group = "Slipbox" },
         { "g", group = "Goto" },
+        { "gs", group = "Surround" },
       }
     end,
   },
