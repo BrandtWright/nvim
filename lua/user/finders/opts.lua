@@ -5,7 +5,7 @@ local set_telescope_highlights = function()
     -- LineNr in current_buffer_fuzzy_find
     -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
     { name = "TelescopeResultsSpecialComment", fg = c.brown, bg = c.terminal, styles = {} },
-    { name = "TelescopeSelection", fg = c.white, bg = c.raisin_black },
+    { name = "TelescopeSelection", fg = c.white, bg = c.gray_10, styles = { "b" } },
     { name = "TelescopeSelectionCaret", fg = c.gold, bg = c.terminal, styles = { "b" } },
     { name = "TelescopeMatching", fg = c.green },
   })
