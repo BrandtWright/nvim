@@ -38,10 +38,6 @@ local colors = {
   bright_magenta = "#c99fd6",
   bright_cyan = "#a7cacc",
 
-  -- Dark
-  dark_red = "#663f3f", -- Markdown only
-  dark_orange = "#735244", -- Markdown only
-
   -- Tertiary Colors
   orange = "#ce9178",
   dark_violet = "#8a7989", -- @lsp.type.delegateName.cs
