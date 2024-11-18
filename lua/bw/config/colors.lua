@@ -45,8 +45,8 @@ local colors = {
   bright_violet = "#eebaff",
 
   -- Extended Colors
-  brown = "#473d37",
-  gold = "#a38e5d",
+  brown = "#473d37", -- Mostly UI elements
+  gold = "#a38e5d", -- Lots of LSP stuff
 
   -- TODO: Too many references... Dedupplicate with highlight links
   terminal = "#171717",
