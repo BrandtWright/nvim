@@ -15,12 +15,12 @@ function Either.left(error)
   return setmetatable({ error = error, is_right = false }, Either)
 end
 
--- Lifts a calue into a monadic context
+-- Lifts a value into a monadic context
 function Either.unit(value)
   return Either.right(value)
 end
 
--- Aoolies a vunction to a monadic value
+-- Applies a function to a monadic value
 function Either:bind(func)
   if self.is_right then
     return func(self.value)
