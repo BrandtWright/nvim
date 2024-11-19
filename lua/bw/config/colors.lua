@@ -55,17 +55,17 @@ local colors = {
   bright_white = load_color("color15") or "#fff2d1",
 
   -- Tertiary Colors
-  orange = load_color("") or "#ce9178",
-  dark_violet = load_color("") or "#8a7989", -- @lsp.type.delegateName.cs
-  violet = load_color("") or "#8a7b9e",
-  bright_violet = load_color("na") or "#eebaff",
+  orange = load_color("screen_glasses.ui.orange") or "#ce9178",
+  dark_violet = load_color("screen_glasses.ui.dark_violet") or "#8a7989", -- @lsp.type.delegateName.cs
+  violet = load_color("screen_glasses.ui.violet") or "#8a7b9e",
+  bright_violet = load_color("screen_glasses.ui.bright_violet") or "#eebaff",
 
   -- Extended Colors
-  brown = load_color("") or "#473d37", -- Mostly UI elements
-  gold = load_color("") or "#a38e5d", -- Lots of LSP stuff
+  brown = load_color("screen_glasses.ui.brown") or "#473d37", -- Mostly UI elements
+  gold = load_color("screen_glasses.ui.gold") or "#a38e5d", -- Lots of LSP stuff
 
   -- Terminal (Normal Background)
-  terminal = load_color("") or "#171717",
+  terminal = load_color("background") or "#171717",
 
   -- CursorLine, ColorColumn, TelescopeSelection
   gray_10 = load_color("screen_glasses.ui.gray_10") or "#1a1a1a",
