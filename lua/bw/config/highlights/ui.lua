@@ -28,6 +28,6 @@ return {
   { name = "LineNr", fg = c.brown, bg = c.terminal, styles = {} },
   -- jackMort/ChatGPT.nvim uses `FoldColumn` for the gutter in its popups
   { name = "FoldColumn", fg = c.gold, bg = c.terminal, styles = {} },
-  { name = "CursorLine", bg = c.gray_10, styles = {} },
+  { name = "CursorLine", bg = c.cursorline, styles = {} },
   { name = "ColorColumn", bg = c.gray_10, styles = {} },
 }

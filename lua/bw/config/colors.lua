@@ -80,6 +80,8 @@ local colors = {
   -- Primary Window Chrome
   --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine, TelescopeSelection
   raisin_black = load_color("screen_glasses.ui.raisin_black") or "#2C2826",
+
+  cursorline = load_color("screen_glasses.ui.cursor_line_background") or "1a1816",
 }
 
 return colors
