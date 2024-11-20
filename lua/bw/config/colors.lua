@@ -67,7 +67,7 @@ local colors = {
   -- Terminal (Normal Background)
   terminal = load_color("background") or "#171717",
 
-  -- CursorLine, ColorColumn, TelescopeSelection
+  -- ColorColumn, TelescopeSelection
   gray_10 = load_color("screen_glasses.ui.gray_10") or "#1a1a1a",
   -- Comment, @Comment, @lsp.type.comment
   gray_34 = load_color("screen_glasses.ui.gray_34") or "#575757",
@@ -81,6 +81,7 @@ local colors = {
   --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine, TelescopeSelection
   raisin_black = load_color("screen_glasses.ui.raisin_black") or "#2C2826",
 
+  -- CursorLine
   cursorline = load_color("screen_glasses.ui.cursor_line_background") or "1a1816",
 }
 
