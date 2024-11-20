@@ -1,4 +1,20 @@
-local custom_logo = [[
+local c = require("bw.config.colors")
+local highlights = require("bw.config.highlights")
+highlights.register({
+  { name = "SnacksDashboardHeader", fg = c.green },
+  { name = "SnacksDashboardDesc", fg = c.white },
+  { name = "SnacksDashboardKey", fg = c.white },
+  { name = "SnacksDashboardFooter", fg = c.white },
+  { name = "SnacksDashboardIcon", fg = c.white },
+})
+
+return {
+  {
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          header = [[
 ⠀⢀⣠⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⡾⠿⠿⠿⠿⢷⣶⣦⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⢰⣿⡟⠛⠛⠛⠻⠿⠿⢿⣶⣶⣦⣤⣤⣀⣀⡀⣀⣴⣾⡿⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠻⢿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀
 ⠀⠻⣿⣦⡀⠀⠉⠓⠶⢦⣄⣀⠉⠉⠛⠛⠻⠿⠟⠋⠁⠀⠀⠀⣤⡀⠀⠀⢠⠀⠀⠀⣠⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠟⠛⠛⢻⣿
@@ -20,14 +36,9 @@ local custom_logo = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠟⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
  Do or do not.  There is no try.
-]]
-custom_logo = string.rep("\n", 1) .. custom_logo .. "\n\n"
-
-return {
-  "nvimdev/dashboard-nvim",
-  opts = {
-    config = {
-      header = vim.split(custom_logo, "\n"),
+]],
+        },
+      },
     },
   },
 }
