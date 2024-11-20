@@ -49,6 +49,7 @@ return {
         filetypes = {
           "markdown",
           "dashboard",
+          "snacks_dashboard",
           "Fm",
           "terminal",
           "lazyterm",
