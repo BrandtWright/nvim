@@ -78,11 +78,14 @@ local colors = {
   resolution_blue = load_color("screen_glasses.ui.resolution_blue") or "#202080",
 
   -- Primary Window Chrome
-  --    Tabline, TabLineSel, TabLineFill, WinSeparator, Lualine, TelescopeSelection
+  --    Tabline, TabLineSel, TabLineFill, Lualine, TelescopeSelection
   raisin_black = load_color("screen_glasses.ui.raisin_black") or "#2C2826",
 
   -- CursorLine
   cursorline = load_color("screen_glasses.ui.cursor_line_background") or "1a1816",
+
+  -- WinSeperator
+  win_seperator = load_color("screen_glasses.ui.secondary_background") or "#504945",
 }
 
 return colors

@@ -21,7 +21,7 @@ return {
   { name = "TabLineFill", fg = c.red, bg = c.raisin_black, styles = {} },
 
   -- Main Window
-  { name = "WinSeparator", fg = c.raisin_black, bg = c.terminal, styles = {} },
+  { name = "WinSeparator", fg = c.win_seperator, bg = c.terminal, styles = {} },
   { name = "EndOfBUffer", fg = c.terminal, bg = c.terminal, styles = {} },
   { name = "SignColumn", bg = c.terminal, styles = {} },
   { name = "CursorLineNr", fg = c.brown, bg = c.terminal, styles = {} },
