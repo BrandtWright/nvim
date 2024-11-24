@@ -170,24 +170,13 @@ end, { desc = "Project Readme File" })
 if pcall(require, "lazyvim") then
   map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-  -- snacks.nvim terminal settings
-  vim.keymap.set({ "n", "t" }, "<C-_>", function()
-    -- Get current fFish ile's directory or fallback to current working directory
-    local current_dir = vim.fn.expand("%:p:h")
-    if current_dir == "" or vim.fn.isdirectory(current_dir) == 0 then
-      current_dir = vim.fn.getcwd()
-    end
-
-    -- Check if we're in terminal mode
-    local in_terminal = vim.bo.buftype == "terminal"
-
-    if in_terminal then
-      -- Hide the terminal if we're in terminal mode
+  map({ "n", "t" }, "<C-_>", function()
+    if vim.bo.buftype == "terminal" then
       vim.cmd("hide")
     else
       -- Show/create terminal if we're in normal mode
       Snacks.terminal.toggle("bash", {
-        cwd = current_dir,
+        cwd = vim.fn.getcwd(),
         win = {
           border = "single",
           style = "terminal",
