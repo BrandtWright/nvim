@@ -169,13 +169,35 @@ end, { desc = "Project Readme File" })
 --------------------------------------------------------------------------------
 if pcall(require, "lazyvim") then
   map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-  local lazyterm = function()
-    -- require("lazyvim.util").terminal(nil, { border = "single", size = { width = 180, height = 30 } })
-    Snacks.terminal.toggle()
-  end
-  map("n", "<C-_>", lazyterm, { desc = "Terminal" })
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-  map("t", "<C-_>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+  -- snacks.nvim terminal settings
+  vim.keymap.set({ "n", "t" }, "<C-_>", function()
+    -- Get current fFish ile's directory or fallback to current working directory
+    local current_dir = vim.fn.expand("%:p:h")
+    if current_dir == "" or vim.fn.isdirectory(current_dir) == 0 then
+      current_dir = vim.fn.getcwd()
+    end
+
+    -- Check if we're in terminal mode
+    local in_terminal = vim.bo.buftype == "terminal"
+
+    if in_terminal then
+      -- Hide the terminal if we're in terminal mode
+      vim.cmd("hide")
+    else
+      -- Show/create terminal if we're in normal mode
+      Snacks.terminal.toggle("bash", {
+        cwd = current_dir,
+        win = {
+          border = "single",
+          style = "terminal",
+          relative = "editor",
+          width = 120,
+          height = 25,
+        },
+      })
+    end
+  end, { desc = "Toggle Centered Terminal" })
   map("n", "<leader>fC", function()
     require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
   end, { silent = true, desc = "Plugin Files" })
