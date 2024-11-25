@@ -55,13 +55,18 @@ local colors = {
   bright_white = load_color("color15") or "#fff2d1",
 
   -- Tertiary Colors
-  orange = load_color("screen_glasses.ui.orange") or "#ce9178",
+  orange = load_color("screen_glasses.ui.orange") or "#ce9178", -- String, WhichKeyGroup
   dark_violet = load_color("screen_glasses.ui.dark_violet") or "#8a7989", -- @lsp.type.delegateName.cs
-  violet = load_color("screen_glasses.ui.violet") or "#8a7b9e",
-  bright_violet = load_color("screen_glasses.ui.bright_violet") or "#eebaff",
+  violet = load_color("screen_glasses.ui.violet") or "#8a7b9e", -- Conditional, Hint
+  bright_violet = load_color("screen_glasses.ui.bright_violet") or "#eebaff", -- Repeat
 
-  -- Extended Colors
-  brown = load_color("screen_glasses.ui.brown") or "#473d37", -- Mostly UI elements
+  -- puctuation.special.markdown, float border, CursorLnNumber, LineNumber, ChatGPT, LspInfoBorder, WhichKeyBorder
+  brown = load_color("screen_glasses.ui.brown") or "#473d37",
+
+  -- Statement, Statement Special, function.builtin, constant.builtin, lsp.typemod.function, constructor,
+  -- lsp.tyoe,interface, markup.heading.gitcommit, LazySpecial, markup.list.markdown, FoldColumn,
+  -- markup.heading.1.vimdoc, RenderMarkdownBullet, TelescopeSelectionCaret, NoiceCmdlinePopupBorder, NoicecmdlineIcon,
+  -- NoiceCmdlinePopupTitle, MiniIndestscopeSymbol, WhichKeyDesc
   gold = load_color("screen_glasses.ui.gold") or "#a38e5d", -- Lots of LSP stuff
 
   -- Terminal (Normal Background)
