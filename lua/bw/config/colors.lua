@@ -77,7 +77,7 @@ local colors = {
   -- Comment, @Comment, @lsp.type.comment
   gray_34 = load_color("screen_glasses.ui.gray_34") or "#575757",
   -- Visual
-  gray_50 = load_color("screen_glasses.ui.gray_50") or "#333333",
+  gray_20 = load_color("screen_glasses.ui.gray_50") or "#333333",
 
   -- Search, CurrentSearch, IncSearch
   resolution_blue = load_color("screen_glasses.ui.resolution_blue") or "#202080",

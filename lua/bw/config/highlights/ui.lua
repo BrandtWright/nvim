@@ -8,7 +8,7 @@ return {
   { name = "IncSearch", bg = c.resolution_blue, styles = {} },
 
   -- Selection
-  { name = "Visual", bg = c.gray_50, styles = {} },
+  { name = "Visual", bg = c.gray_20, styles = {} },
 
   -- Floats
   { name = "NormalFloat", bg = c.terminal, styles = {} },
