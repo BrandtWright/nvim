@@ -55,6 +55,7 @@ local colors = {
   bright_white = load_color("color15") or "#fff2d1",
 
   -- Tertiary Colors
+  rose = load_color("screen_glasses.ui.rose") or "#c08081", -- Not implemented
   orange = load_color("screen_glasses.ui.orange") or "#ce9178", -- String, WhichKeyGroup
   dark_violet = load_color("screen_glasses.ui.dark_violet") or "#8a7989", -- @lsp.type.delegateName.cs
   violet = load_color("screen_glasses.ui.violet") or "#8a7b9e", -- Conditional, Hint
