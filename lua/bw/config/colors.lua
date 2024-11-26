@@ -12,7 +12,7 @@
 --   orange, chartreuse green, spring green, azure, violet and rose
 --
 -- Extended Colors:
---   brown, bold
+--   brown, gold
 --
 -- Shades:
 --
