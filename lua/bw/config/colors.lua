@@ -87,7 +87,7 @@ local colors = {
   raisin_black = load_color("screen_glasses.ui.raisin_black") or "#2C2826",
 
   -- CursorLine
-  cursorline = load_color("screen_glasses.ui.cursor_line_background") or "1a1816",
+  cursorline = load_color("screen_glasses.ui.cursor_line_background") or "#1f1d1b",
 
   -- WinSeperator
   win_seperator = load_color("screen_glasses.ui.secondary_background") or "#504945",
