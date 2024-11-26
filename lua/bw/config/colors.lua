@@ -70,7 +70,7 @@ local colors = {
   gold = load_color("screen_glasses.ui.gold") or "#a38e5d", -- Lots of LSP stuff
 
   -- Terminal (Normal Background)
-  terminal = load_color("background") or "#171717",
+  terminal = load_color("background") or "#191816",
 
   -- ColorColumn, TelescopeSelection
   gray_10 = load_color("screen_glasses.ui.gray_10") or "#1a1a1a",
