@@ -9,6 +9,7 @@ return {
   { "akinsho/bufferline.nvim", enabled = false },
   { "vim-illuminate", enabled = false },
   { "folke/flash.nvim", enabled = false },
+  { "ibhagwan/fzf-lua", enabled = false },
   {
     "nvim-pack/nvim-spectre",
     enabled = false,
