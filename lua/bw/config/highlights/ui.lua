@@ -1,6 +1,8 @@
 local c = require("bw.config.colors")
 
 return {
+  { name = "Pmenu", bg = c.terminal },
+  { name = "PmenuSel", bg = c.raisin_black },
 
   -- Search
   { name = "Search", bg = c.resolution_blue, styles = {} },
