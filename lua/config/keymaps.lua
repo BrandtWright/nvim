@@ -121,6 +121,8 @@ map("n", "#", "#zz")
 map("n", "g#", "g#zz")
 map("n", "g*", "g*zz")
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map("n", "{", "{zz")
+map("n", "}", "}zz")
 
 --------------------------------------------------------------------------------
 -- Tabs
