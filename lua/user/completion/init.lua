@@ -1,3 +1,13 @@
+local c = require("bw.config.colors")
+local highlights = require("bw.config.highlights")
+highlights.register({
+  { name = "BlinkCmpKind", bg = c.terminal, fg = c.gold },
+  { name = "BlinkCmpDoc", bg = c.terminal },
+  { name = "BlinkCmpDocSeparator", bg = c.terminal, fg = c.gold },
+  { name = "BlinkCmpDocBorder", bg = c.terminal, fg = c.gold },
+  { name = "BlinkCmpMenuBorder", bg = c.terminal, fg = c.gold },
+})
+
 return {
   {
     "LazyVim/LazyVim",
@@ -7,6 +17,16 @@ return {
           Snippet = "Տ ",
         },
       },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        menu = { border = "single" },
+        documentation = { window = { border = "single" } },
+      },
+      signature = { window = { border = "single" } },
     },
   },
   {
@@ -55,74 +75,76 @@ return {
       },
     },
   },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "f3fora/cmp-spell",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-    },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      local colors = require("bw.config.colors")
-
-      -- Configure Colors
-      vim.cmd("hi CmpItemAbbrMatch guifg=" .. colors.bright_green)
-      vim.cmd("hi CmpItemAbbrMatchFuzzy guifg=" .. colors.white)
-      vim.cmd("hi CmpItemKindFunction guifg=" .. colors.blue)
-      vim.cmd("hi CmpItemKindSnippet guifg=" .. colors.green)
-
-      opts = opts or {}
-      opts.preselect = cmp.PreselectMode.None
-
-      opts.completion = {
-        completeopt = "menu,menuone,noinsert,noselect",
-      }
-
-      opts.window = {
-        completion = cmp.config.window.bordered({
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-        }),
-
-        documentation = cmp.config.window.bordered({
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-        }),
-      }
-
-      opts.mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-b>"] = cmp.mapping.scroll_docs(-1),
-        ["<C-f>"] = cmp.mapping.scroll_docs(1),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<S-CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-        ["<C-CR>"] = function(fallback)
-          cmp.abort()
-          fallback()
-        end,
-      })
-      opts.experimental = {}
-
-      -- Configure additional sources
-      table.insert(opts.sources, {
-        name = "spell",
-        keyword_length = 5,
-        max_item_count = 3,
-      })
-      table.insert(opts.sources, {
-        name = "nvim_lsp_signature_help",
-        option = { keep_all_entries = true },
-        keyword_length = 5,
-      })
-    end,
-  },
 }
+-- 20250130
+--   {
+--     "hrsh7th/nvim-cmp",
+--     dependencies = {
+--       "f3fora/cmp-spell",
+--       "hrsh7th/cmp-nvim-lsp-signature-help",
+--     },
+--     opts = function(_, opts)
+--       local cmp = require("cmp")
+--       local colors = require("bw.config.colors")
+--
+--       -- Configure Colors
+--       vim.cmd("hi CmpItemAbbrMatch guifg=" .. colors.bright_green)
+--       vim.cmd("hi CmpItemAbbrMatchFuzzy guifg=" .. colors.white)
+--       vim.cmd("hi CmpItemKindFunction guifg=" .. colors.blue)
+--       vim.cmd("hi CmpItemKindSnippet guifg=" .. colors.green)
+--
+--       opts = opts or {}
+--       opts.preselect = cmp.PreselectMode.None
+--
+--       opts.completion = {
+--         completeopt = "menu,menuone,noinsert,noselect",
+--       }
+--
+--       opts.window = {
+--         completion = cmp.config.window.bordered({
+--           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+--         }),
+--
+--         documentation = cmp.config.window.bordered({
+--           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+--         }),
+--       }
+--
+--       opts.mapping = cmp.mapping.preset.insert({
+--         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+--         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+--         ["<C-b>"] = cmp.mapping.scroll_docs(-1),
+--         ["<C-f>"] = cmp.mapping.scroll_docs(1),
+--         ["<C-Space>"] = cmp.mapping.complete(),
+--         ["<C-e>"] = cmp.mapping.abort(),
+--         -- Set `select` to `false` to only confirm explicitly selected items.
+--         ["<CR>"] = cmp.mapping.confirm({ select = false }),
+--         -- Set `select` to `false` to only confirm explicitly selected items.
+--         ["<S-CR>"] = cmp.mapping.confirm({
+--           behavior = cmp.ConfirmBehavior.Replace,
+--           select = true,
+--         }),
+--         ["<C-CR>"] = function(fallback)
+--           cmp.abort()
+--           fallback()
+--         end,
+--       })
+--       opts.experimental = {}
+--
+--       -- Configure additional sources
+--       table.insert(opts.sources, {
+--         name = "spell",
+--         keyword_length = 5,
+--         max_item_count = 3,
+--       })
+--       table.insert(opts.sources, {
+--         name = "nvim_lsp_signature_help",
+--         option = { keep_all_entries = true },
+--         keyword_length = 5,
+--       })
+--     end,
+--   },
+-- }
 
 -- return {
 --   {
