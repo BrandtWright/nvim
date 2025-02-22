@@ -21,6 +21,29 @@ return {
   {
     "folke/todo-comments.nvim",
   },
+  {
+    "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>ut",
+        function()
+          if vim.b.miniindentscope_disable then
+            vim.b.miniindentscope_disable = nil
+          else
+            vim.b.miniindentscope_disable = true
+          end
+
+          if Snacks.indent.enabled then
+            Snacks.indent.disable()
+          else
+            Snacks.indent.enable()
+          end
+        end,
+        mode = "n",
+        desc = "Toggle Snacks.indent",
+      },
+    },
+  },
   -- {
   "echasnovski/mini.indentscope",
   main = "ibl",
