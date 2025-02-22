@@ -1,6 +1,27 @@
 local c = require("bw.config.colors")
 local highlights = require("bw.config.highlights")
-local integrations = require("user.ui.integrations")
+
+-- integrations
+local toggle_indent_lines = function()
+  -- Snacks
+  if package.loaded["snacks"] then
+    if Snacks.indent.enabled then
+      Snacks.indent.disable()
+    else
+      Snacks.indent.enable()
+    end
+  end
+  -- mini.indentscope
+  if package.loaded["mini.indentscope"] then
+    if vim.b.miniindentscope_disable then
+      vim.b.miniindentscope_disable = nil
+    else
+      vim.b.miniindentscope_disable = true
+    end
+  end
+end
+vim.keymap.set("n", "<leader>ut", toggle_indent_lines, { desc = "Toggle Indent Lines" })
+
 highlights.register({
 
   -- Todos
@@ -24,16 +45,7 @@ return {
   },
   {
     "folke/snacks.nvim",
-    keys = {
-      {
-        "<leader>ut",
-        integrations.toggle_indent_lines,
-        mode = "n",
-        desc = "Toggle Snacks.indent",
-      },
-    },
   },
-  -- {
   "echasnovski/mini.indentscope",
   main = "ibl",
   opts = {
