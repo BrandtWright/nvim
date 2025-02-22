@@ -2,11 +2,14 @@ local c = require("bw.config.colors")
 local highlights = require("bw.config.highlights")
 highlights.register({
 
+  -- Todos
   { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
   { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
 
-  { name = "MiniIndentscopeSymbol", fg = c.gold, bg = nil, styles = {} }, --   Animations between squirely braces
+  --   Animations between squirely braces
+  { name = "MiniIndentscopeSymbol", fg = c.gold, bg = nil, styles = {} },
 
+  -- Whichkey
   { name = "WhichKeyFloat", bg = c.terminal },
   { name = "WhichKeyBorder", fg = c.brown },
   { name = "WhichKey", fg = c.white },
@@ -18,8 +21,20 @@ return {
   {
     "folke/todo-comments.nvim",
   },
-  {
-    "echasnovski/mini.indentscope",
+  -- {
+  "echasnovski/mini.indentscope",
+  main = "ibl",
+  opts = {
+    exclude = {
+      filetypes = {
+        "markdown",
+        "dashboard",
+        "snacks_dashboard",
+        "Fm",
+        "terminal",
+        "lazyterm",
+      },
+    },
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -39,22 +54,6 @@ return {
       presets = {
         -- add a border to hover docs and signature help
         lsp_doc_border = "single",
-      },
-    },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      exclude = {
-        filetypes = {
-          "markdown",
-          "dashboard",
-          "snacks_dashboard",
-          "Fm",
-          "terminal",
-          "lazyterm",
-        },
       },
     },
   },
