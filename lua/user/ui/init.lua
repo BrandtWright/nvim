@@ -1,5 +1,6 @@
 local c = require("bw.config.colors")
 local highlights = require("bw.config.highlights")
+local integrations = require("user.ui.integrations")
 highlights.register({
 
   -- Todos
@@ -26,19 +27,7 @@ return {
     keys = {
       {
         "<leader>ut",
-        function()
-          if vim.b.miniindentscope_disable then
-            vim.b.miniindentscope_disable = nil
-          else
-            vim.b.miniindentscope_disable = true
-          end
-
-          if Snacks.indent.enabled then
-            Snacks.indent.disable()
-          else
-            Snacks.indent.enable()
-          end
-        end,
+        integrations.toggle_indent_lines,
         mode = "n",
         desc = "Toggle Snacks.indent",
       },
