@@ -53,6 +53,13 @@ return {
         end,
         desc = "Netrw",
       },
+      {
+        "_",
+        function()
+          vim.cmd("Vifm")
+        end,
+        desc = "Vifm",
+      },
     },
   },
   {
