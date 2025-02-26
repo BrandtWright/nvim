@@ -14,4 +14,6 @@ return {
   { name = "@markup.link.markdown_inline", fg = c.bright_blue, bg = nil, styles = { "u" } },
   { name = "@markup.link.url.markdown_inline", fg = c.bright_blue, bg = nil, styles = { "u" } },
   { name = "@markup.link.label.markdown_inline", fg = c.bright_blue, styles = {} },
+  { name = "@markup.list.checked.markdown", fg = c.gold, styles = {} },
+  { name = "@markup.list.unchecked.markdown", fg = c.gold, styles = {} },
 }

@@ -10,8 +10,7 @@ highlights.register({
   { name = "RenderMarkdownBullet", fg = c.gold, bg = c.terminal },
   { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
   { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
-  { name = "@markup.list.checked.markdown", fg = c.gold, styles = {} },
-  { name = "@markup.list.unchecked.markdown", fg = c.gold, styles = {} },
+  { name = "RenderMarkdownQuote", fg = c.gold, styles = {} },
 })
 
 return {
