@@ -51,7 +51,7 @@ return {
         function()
           vim.cmd("Explore")
         end,
-        desc = "Vifm",
+        desc = "Netrw",
       },
     },
   },
