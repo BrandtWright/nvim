@@ -14,7 +14,7 @@ return {
                 -- ansiblels to attatch to the yaml buffer. Adding the !vault
                 -- scalar to customTags prevents yamlls from complaining about
                 -- variable definitions that use ansible-vault to store
-                -- encrypted strings.
+                -- encrypted strings in Ansible projects.
                 "!vault scalar",
               },
             },
