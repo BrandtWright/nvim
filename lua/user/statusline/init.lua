@@ -1,17 +1,16 @@
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
-highlights.register({
-  { name = "LuaLineDiffAdd", fg = c.green },
-  { name = "LuaLineDiffChange", fg = c.yellow },
-  { name = "LuaLineDiffDelete", fg = c.red },
-})
-
 return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       local theme = require("lualine.themes.gruvbox_dark")
       local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+
+      highlights.register({
+        { name = "LuaLineDiffAdd", fg = c.green },
+        { name = "LuaLineDiffChange", fg = c.yellow },
+        { name = "LuaLineDiffDelete", fg = c.red },
+      })
 
       -- Lualine C Colors
       theme.normal.c.fg = c.white
