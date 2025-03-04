@@ -60,11 +60,17 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
 --------------------------------------------------------------------------------
 -- Buffers
 --------------------------------------------------------------------------------
+
+-- Next / Last
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+
+-- Other
 map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+
+-- Scratch Buffers
 map(
   "n",
   "<leader>bsh",
@@ -83,13 +89,39 @@ map(
   "<cmd>vsplit enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
   { desc = "Open Scratch Buffer (Vertical Split" }
 )
+
+-- Save
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+-- New
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+-- Open Readme
 map("n", "<leader>os", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Scrath Pad" })
+
+-- Other Buffer
 map({ "n" }, "<leader>or", function()
   local proj_root = LazyVim.root.get()
   vim.cmd("edit " .. proj_root .. "/README.md")
 end, { desc = "Readme" })
+
+-- Yank Buffer Name
+map({ "n" }, "<Leader>byn", function()
+  vim.cmd(":let @+ = expand('%:t')")
+  Snacks.notify.info("Buffer name", { title = "Yanked" })
+end, { desc = "Yank Buffer Name" })
+
+-- Yank Buffer Name (Full Path)
+map({ "n" }, "<Leader>byN", function()
+  vim.cmd(":let @+ = expand('%:p')")
+  Snacks.notify.info("Buffer name", { title = "Yanked" })
+end, { desc = "Yank Buffer Name (Full Path)" })
+
+-- Yank Buffer Path
+map({ "n" }, "<Leader>byp", function()
+  vim.cmd(":let @+ = expand('%:h')")
+  Snacks.notify.info("Buffer Path", { title = "Yanked" })
+end, { desc = "Yank Buffer Path" })
 
 --------------------------------------------------------------------------------
 -- Lists
