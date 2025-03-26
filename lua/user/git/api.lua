@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 -- Adds slightly better validation and error hendling on top of telescope.nvim,
--- fugitive, and gitsigns and provides somee utility functions
+-- fugitive, and gitsigns and provides some utility functions
 --------------------------------------------------------------------------------
 
 local Either = require("user.types.either")
