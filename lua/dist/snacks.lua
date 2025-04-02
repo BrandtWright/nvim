@@ -5,3 +5,5 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.b.snacks_indent = false
   end,
 })
+
+return {}
