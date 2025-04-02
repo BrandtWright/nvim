@@ -8,6 +8,9 @@ local set_telescope_highlights = function()
     { name = "TelescopeSelection", fg = c.white, bg = c.gray_10, styles = { "b" } },
     { name = "TelescopeSelectionCaret", fg = c.gold, bg = c.terminal, styles = { "b" } },
     { name = "TelescopeMatching", fg = c.green },
+    { name = "TelescopePreviewBorder", fg = c.win_seperator },
+    { name = "TelescopePromptBorder", fg = c.win_seperator },
+    { name = "TelescopeResultsBorder", fg = c.win_seperator },
   })
 end
 
@@ -22,6 +25,7 @@ return function()
 
   return {
     defaults = {
+      path_display = { "smart" },
       prompt_prefix = "❯ ",
       selection_caret = "❯ ",
       preview = {
@@ -39,19 +43,13 @@ return function()
       qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
       layout_config = {
-        width = 0.95,
-        height = 0.85,
+        width = 0.80,
+        height = 0.80,
         prompt_position = "top",
-      },
-
-      horizontal = {
-        preview_width = function(_, cols, _)
-          if cols > 200 then
-            return math.floor(cols * 0.4)
-          else
-            return math.floor(cols * 0.6)
-          end
-        end,
+        horizontal = {
+          results_width = 0.4,
+          preview_width = 0.6,
+        },
       },
 
       vertical = {
