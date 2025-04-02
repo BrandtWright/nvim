@@ -24,6 +24,9 @@ return {
           },
         },
       },
+      checkbox = {
+        enabled = true,
+      },
     },
   },
 }
