@@ -25,7 +25,7 @@ return function()
 
   return {
     defaults = {
-      path_display = { "smart" },
+      path_display = { "filename_first" },
       prompt_prefix = "❯ ",
       selection_caret = "❯ ",
       preview = {
