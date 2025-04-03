@@ -128,7 +128,6 @@ return {
         { "<leader>h", group = "Harpoon" },
         { "<leader>l", group = "Lazy" },
         { "<leader>lp", group = "Picker" },
-        { "<leader>lpg", group = "Git" },
         { "<leader>o", group = "Open" },
         { "<leader>q", group = "Session" },
         { "<leader>r", group = "Grep" },

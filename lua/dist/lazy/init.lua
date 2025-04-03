@@ -60,13 +60,6 @@ return {
         end,
         desc = "Diagnostics",
       },
-      {
-        "<leader>lpgs",
-        function()
-          require("snacks").picker.git_status()
-        end,
-        desc = "Status",
-      },
     },
   },
 }
