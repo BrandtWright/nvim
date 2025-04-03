@@ -1,26 +1,5 @@
 local M = {}
 
--- Removed from LazyVim
--- del("n", "<leader>gg")
--- del("n", "<leader>gG")
--- del("n", "<leader>gL")
--- del("t", "<C-h>")
--- del("t", "<C-j>")
--- del("t", "<C-k>")
--- del("t", "<C-l>")
-
--- Removed earilier:
--- del("n", "<leader>gb")
--- del("n", "<leader>gB")
--- del("n", "<leader>gf")
--- del("n", "<leader>gl")
--- del("n", "<leader>wd")
--- del("n", "<leader>ww")
--- del("n", "<leader>w-")
--- del("n", "<leader>w|")
--- del("n", "<leader>-")
--- del("n", "<leader>|")
-
 M.disable = function()
   local del = vim.keymap.del
 
