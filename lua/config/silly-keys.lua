@@ -61,6 +61,10 @@ M.disable = function()
   del("n", "<leader>ub") -- Toggle light/dark mode
   del("n", "<leader>uc") -- Toggle conceal
   -- del("n", "<leader>uC") -- Colorscheme with Preview
+
+  -- Lazy
+  del("n", "<leader>l") -- Lazy.nvim Status
+  del("n", "<leader>L") -- LazyVim Log
 end
 
 return M

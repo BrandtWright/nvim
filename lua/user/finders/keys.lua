@@ -167,23 +167,6 @@ return {
     mode = "n",
     desc = "Document Diagnostics",
   },
-  -- LSP Symbols
-  {
-    "<leader>fy",
-    function()
-      tele.lsp_document_symbols()
-    end,
-    mode = "n",
-    desc = "Document Symbols",
-  },
-  {
-    "<leader>fY",
-    function()
-      tele.lsp_workspace_symbols()
-    end,
-    mode = "n",
-    desc = "Workspace Symbols",
-  },
   -----------------------------------------------------------------------------
   -- <leader>s
   -----------------------------------------------------------------------------
@@ -229,11 +212,7 @@ return {
   },
   {
     "<leader>sH",
-    function()
-      tele.highlights()
-    end,
-    mode = "n",
-    desc = "Hilight Groups",
+    false, -- Turn off highlight picker
   },
   {
     "<leader>sk",

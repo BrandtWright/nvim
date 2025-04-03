@@ -26,6 +26,20 @@ return {
         end,
         desc = "Symbols (Document)",
       },
+      {
+        "<leader>sH",
+        function()
+          require("snacks").picker.highlights()
+        end,
+        desc = "Highlights",
+      },
+      {
+        "<leader>fS",
+        function()
+          require("snacks").picker.lsp_config()
+        end,
+        desc = "LSP Config",
+      },
     },
   },
 }

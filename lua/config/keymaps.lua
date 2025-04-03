@@ -202,7 +202,6 @@ end, { desc = "Project Readme File" })
 -- LazyVim Stuff
 --------------------------------------------------------------------------------
 if pcall(require, "lazyvim") then
-  map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
   map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
   map({ "n", "t" }, "<C-_>", function()
     if vim.bo.buftype == "terminal" then
