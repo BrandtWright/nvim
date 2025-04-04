@@ -30,13 +30,13 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    lazy = false,
     config = function()
       vim.opt.diffopt:append("hiddenoff")
       -- TODO: Add highlights
     end,
     cmd = { "Git" },
     keys = {
-      { "<leader>gs", git.fugitive, desc = "Git Status (Fugitive)" },
       { "<leader>gl", git.log, desc = "Git Log" },
       { "<leader>gr", git.resolve_conflicts, desc = "Resolve Merge Conflicts" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },

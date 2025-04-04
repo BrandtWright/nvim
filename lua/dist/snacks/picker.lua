@@ -12,11 +12,6 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
-      -- Disable `gs` as it interferes with fugitive when not disabled explicitly.
-      -- If this keybind is used before a ":Git" command is run fugitive will not be
-      -- loaded and the map will default to snacks.git_status. Disabling the snacks
-      -- keybind explicitly prevents the conflict.
-      { "<leader>gs", false },
       {
         "<leader>sa",
         function()
