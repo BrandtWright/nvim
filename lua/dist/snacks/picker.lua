@@ -12,6 +12,14 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
+      { "<leader>gs", false },
+      {
+        "<leader>sa",
+        function()
+          require("snacks").picker.autocmds()
+        end,
+        desc = "Auto Commands",
+      },
       {
         "<leader>si",
         function()

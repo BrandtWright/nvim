@@ -5,6 +5,7 @@ return {
   ------------------------------------------------------------------------------
   -- Disabled Keys
   ------------------------------------------------------------------------------
+  { "<leader>sa", false }, -- Auto commands are in snacks
   { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
   { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
   { "<leader>sd", false }, -- Document diagnostics are in snacks
@@ -187,14 +188,6 @@ return {
     end,
     mode = "n",
     desc = "Registers",
-  },
-  {
-    "<leader>sa",
-    function()
-      tele.autocommands()
-    end,
-    mode = "n",
-    desc = "Auto Commands",
   },
   {
     "<leader>sc",
