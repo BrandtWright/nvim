@@ -2,8 +2,13 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- Disable the silly stuff
-require("config.silly-keys").disable()
+-- Disable the silly stuff from lazy
+local sillyKeys = require("config.silly-keys")
+for _, key in ipairs(sillyKeys) do
+  for _, mode in ipairs(key.modes) do
+    vim.keymap.del(mode, key.lhs)
+  end
+end
 
 local map = vim.keymap.set
 
@@ -24,6 +29,7 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "<C-n>", "j<C-e>", { desc = "Scroll Up" })
 map("n", "<C-p>", "k<C-y>", { desc = "Scroll Down" })
+
 -- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")

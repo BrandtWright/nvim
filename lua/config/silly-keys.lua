@@ -1,49 +1,49 @@
-local M = {}
+---@class SillyKey
+---@field lhs string
+---@field modes string[]
 
-M.disable = function()
-  local del = vim.keymap.del
+---@class SillyKeysConfig
+---@field keys SillyKey[]
+local sillyKeyConfig = {
+  keys = {
+    -- Window Navigation
+    { lhs = "<C-h>", modes = { "n" } },
+    { lhs = "<C-j>", modes = { "n" } },
+    { lhs = "<C-k>", modes = { "n" } },
+    { lhs = "<C-l>", modes = { "n" } },
 
-  -- Window Navigation
-  del("n", "<C-h>")
-  del("n", "<C-j>")
-  del("n", "<C-k>")
-  del("n", "<C-l>")
+    -- Buffers
+    { lhs = "<leader>`", modes = { "n" } },
+    { lhs = "<leader>bb", modes = { "n" } },
 
-  -- Buffers
-  del("n", "<leader>`")
-  del("n", "<leader>bb")
+    -- Search
+    { lhs = "n", modes = { "n", "x", "o" } },
+    { lhs = "N", modes = { "n", "x", "o" } },
 
-  -- Search
-  del("n", "n")
-  del("x", "n")
-  del("o", "n")
-  del("n", "N")
-  del("x", "N")
-  del("o", "N")
+    -- Floating Terminal
+    { lhs = "<c-_>", modes = { "n" } },
+    { lhs = "<leader>fT", modes = { "n" } },
+    { lhs = "<c-/>", modes = { "n" } },
+    { lhs = "<c-_>", modes = { "t" } },
 
-  -- Floating Terminal
-  del("n", "<c-_>")
-  del("n", "<leader>fT")
-  del("n", "<c-/>")
-  del("t", "<c-_>")
+    -- tabs
+    { lhs = "<leader><tab>l", modes = { "n" } },
+    { lhs = "<leader><tab>f", modes = { "n" } },
+    { lhs = "<leader><tab><tab>", modes = { "n" } },
+    { lhs = "<leader><tab>]", modes = { "n" } },
+    { lhs = "<leader><tab>d", modes = { "n" } },
+    { lhs = "<leader><tab>[", modes = { "n" } },
+    { lhs = "<leader><tab>o", modes = { "n" } },
 
-  -- tabs (Remove)
-  del("n", "<leader><tab>l")
-  del("n", "<leader><tab>f")
-  del("n", "<leader><tab><tab>")
-  del("n", "<leader><tab>]")
-  del("n", "<leader><tab>d")
-  del("n", "<leader><tab>[")
-  del("n", "<leader><tab>o")
+    -- Toggles
+    { lhs = "<leader>ud", modes = { "n" } }, -- diagnostics
+    { lhs = "<leader>ub", modes = { "n" } }, -- light/dark mode
+    { lhs = "<leader>uc", modes = { "n" } }, -- conceal
 
-  del("n", "<leader>ud")
-  del("n", "<leader>ub") -- Toggle light/dark mode
-  del("n", "<leader>uc") -- Toggle conceal
-  -- del("n", "<leader>uC") -- Colorscheme with Preview
+    -- Status
+    { lhs = "<leader>l", modes = { "n" } }, -- lazy status
+    { lhs = "<leader>L", modes = { "n" } }, -- lazy changelog
+  },
+}
 
-  -- Lazy
-  del("n", "<leader>l") -- Lazy.nvim Status
-  del("n", "<leader>L") -- LazyVim Log
-end
-
-return M
+return sillyKeyConfig.keys
