@@ -3,6 +3,16 @@ local tele = require("user.finders.helpers")
 return {
 
   ------------------------------------------------------------------------------
+  -- Disabled Keys
+  ------------------------------------------------------------------------------
+  { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
+  { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
+  { "<leader>sd", false }, -- Document diagnostics are in snacks
+  { "<leader>sD", false }, -- Workspace diagnostics are in snacks
+  { "<leader>sC", false }, -- Commands are in <leader>s:
+  { "<leader>sR", false }, -- Resume is <leader>sr
+
+  ------------------------------------------------------------------------------
   -- Convenience Keys
   ------------------------------------------------------------------------------
   { "<leader>k", tele.find_files, mode = "n", desc = "Find Files" },
@@ -96,7 +106,7 @@ return {
     desc = "Buffer Tags",
   },
   {
-    "<leader>fu",
+    "<leader>sb",
     "<cmd>Telescope current_buffer_fuzzy_find<cr>",
     mode = "n",
     desc = "Fuzzy Find in Buffer",

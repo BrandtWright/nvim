@@ -20,11 +20,32 @@ return {
         desc = "Icons",
       },
       {
-        "<leader>cs",
+        "<leader>sd",
+        function()
+          require("snacks").picker.diagnostics_buffer()
+        end,
+        desc = "Diagnostics (Buffer)",
+      },
+      {
+        "<leader>sD",
+        function()
+          require("snacks").picker.diagnostics()
+        end,
+        desc = "Diagnostics (Workspace)",
+      },
+      {
+        "<leader>ss",
         function()
           require("snacks").picker.lsp_symbols()
         end,
-        desc = "Symbols (Document)",
+        desc = "LSP Symbols (Document)",
+      },
+      {
+        "<leader>sS",
+        function()
+          require("snacks").picker.lsp_workspace_symbols()
+        end,
+        desc = "LSP Symbols (Workspace)",
       },
       {
         "<leader>sH",
@@ -32,13 +53,6 @@ return {
           require("snacks").picker.highlights()
         end,
         desc = "Highlights",
-      },
-      {
-        "<leader>sd",
-        function()
-          require("snacks").picker.diagnostics()
-        end,
-        desc = "Diagnostics",
       },
       {
         "<leader>fS",
