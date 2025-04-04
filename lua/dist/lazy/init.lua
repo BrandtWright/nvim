@@ -3,7 +3,6 @@ return {
   {
     "LazyVim/LazyVim",
     keys = {
-      { "<leader>l", false },
       {
         "<leader>ls",
         function()
@@ -16,7 +15,7 @@ return {
         function()
           LazyVim.news.changelog()
         end,
-        desc = "Lazy.nvim Status",
+        desc = "Lazy Log",
       },
       {
         "<leader>lc",
