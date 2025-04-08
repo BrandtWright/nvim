@@ -2,6 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+local helpers = require("config.helpers")
+
 -- Disable the silly stuff from lazy
 local sillyKeys = require("config.silly-keys")
 for _, key in ipairs(sillyKeys) do
@@ -56,6 +58,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 --------------------------------------------------------------------------------
 map("n", "<leader>ms", "<cmd>split | terminal<cr>", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
 map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>", { desc = "Terminal Buffer (Vertical Split)", silent = true })
+map({ "n", "t" }, "<c-_>", helpers.toggle_terminal, { desc = "Toggle Terminal" })
 
 --------------------------------------------------------------------------------
 -- Lines
@@ -207,33 +210,6 @@ end, { desc = "Project", silent = true })
 map("n", "gM", function()
   require("dist.docs").try_edit_readme()
 end, { desc = "Project Readme File" })
-
---------------------------------------------------------------------------------
--- LazyVim Stuff
---------------------------------------------------------------------------------
-if pcall(require, "lazyvim") then
-  map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-  map({ "n", "t" }, "<C-_>", function()
-    if vim.bo.buftype == "terminal" then
-      vim.cmd("hide")
-    else
-      -- Show/create terminal if we're in normal mode
-      Snacks.terminal.toggle("bash", {
-        cwd = vim.fn.getcwd(),
-        win = {
-          border = "single",
-          style = "terminal",
-          relative = "editor",
-          width = 120,
-          height = 25,
-        },
-      })
-    end
-  end, { desc = "Toggle Centered Terminal" })
-  map("n", "<leader>fC", function()
-    require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-  end, { silent = true, desc = "Plugin Files" })
-end
 
 --------------------------------------------------------------------------------
 -- Neotree Stuff

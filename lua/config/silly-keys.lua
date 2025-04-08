@@ -21,10 +21,8 @@ local sillyKeyConfig = {
     { lhs = "N", modes = { "n", "x", "o" } },
 
     -- Floating Terminal
-    { lhs = "<c-_>", modes = { "n" } },
     { lhs = "<leader>fT", modes = { "n" } },
-    { lhs = "<c-/>", modes = { "n" } },
-    { lhs = "<c-_>", modes = { "t" } },
+    { lhs = "<c-_>", modes = { "n", "t" } },
 
     -- tabs
     { lhs = "<leader><tab>l", modes = { "n" } },

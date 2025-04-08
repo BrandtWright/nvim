@@ -1,8 +1,13 @@
 return {
-
   {
     "LazyVim/LazyVim",
     keys = {
+      {
+        "<esc><esc>",
+        "<c-\\><c-n>",
+        desc = "Enter Normal Mode",
+        mode = { "t" },
+      },
       {
         "<leader>ls",
         function()
