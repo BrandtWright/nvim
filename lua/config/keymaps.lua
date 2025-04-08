@@ -259,8 +259,3 @@ vim.keymap.set("n", "]e", d.diagnostic_goto(true, "ERROR"), { desc = "Next Error
 vim.keymap.set("n", "[e", d.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "]w", d.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 vim.keymap.set("n", "[w", d.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
---------------------------------------------------------------------------------
--- Telescope
---------------------------------------------------------------------------------
--- vim.keymap.del("n", "<leader>gc") -- reassigned in lua/telescope
