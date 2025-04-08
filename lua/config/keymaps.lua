@@ -3,16 +3,15 @@
 -- Add any additional keymaps here
 
 local helpers = require("config.helpers")
+local map = vim.keymap.set
 
--- Disable the silly stuff from lazy
+-- Disable the silly stuff
 local sillyKeys = require("config.silly-keys")
 for _, key in ipairs(sillyKeys) do
   for _, mode in ipairs(key.modes) do
     vim.keymap.del(mode, key.lhs)
   end
 end
-
-local map = vim.keymap.set
 
 --------------------------------------------------------------------------------
 -- Function Keys
@@ -112,11 +111,8 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 -- Open Readme
 map("n", "<leader>os", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Scrath Pad" })
 
--- Other Buffer
-map({ "n" }, "<leader>or", function()
-  local proj_root = LazyVim.root.get()
-  vim.cmd("edit " .. proj_root .. "/README.md")
-end, { desc = "Readme" })
+-- Open Readme
+map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
 -- Yank Buffer Name
 map({ "n" }, "<Leader>byn", function()
@@ -203,7 +199,7 @@ map("n", "<leader>fp", function()
   require("telescope").extensions.project.project()
 end, { desc = "Project", silent = true })
 map("n", "gM", function()
-  require("dist.docs").try_edit_readme()
+  require("config.helpers").try_edit_readme()
 end, { desc = "Project Readme File" })
 
 --------------------------------------------------------------------------------
