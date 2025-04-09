@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    --{ import = "lazyvim.plugins.extras.editor.symbols-outline" },
     { import = "lazyvim.plugins.extras.lang.ansible" },
     { import = "lazyvim.plugins.extras.lang.omnisharp" },
     { import = "lazyvim.plugins.extras.lang.haskell" },
