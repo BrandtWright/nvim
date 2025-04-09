@@ -12,6 +12,7 @@ return {
   { "<leader>sD", false }, -- Workspace diagnostics are in snacks
   { "<leader>sC", false }, -- Commands are in <leader>s:
   { "<leader>sR", false }, -- Resume is <leader>sr
+  { "<leader>sk", false }, -- Resume is <leader>sr
 
   ------------------------------------------------------------------------------
   -- Convenience Keys
@@ -216,14 +217,6 @@ return {
   {
     "<leader>sH",
     false, -- Turn off highlight picker
-  },
-  {
-    "<leader>sk",
-    function()
-      tele.keymaps()
-    end,
-    mode = "n",
-    desc = "Key Maps",
   },
   {
     "<leader>sM",
