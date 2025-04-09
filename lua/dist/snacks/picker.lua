@@ -20,6 +20,13 @@ return {
         desc = "Auto Commands",
       },
       {
+        "<leader>s:",
+        function()
+          require("snacks").picker.commands()
+        end,
+        desc = "Auto Commands",
+      },
+      {
         "<leader>sk",
         function()
           require("snacks").picker.keymaps()

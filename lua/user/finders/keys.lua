@@ -199,14 +199,6 @@ return {
     desc = "Command History",
   },
   {
-    "<leader>s:",
-    function()
-      tele.commands()
-    end,
-    mode = "n",
-    desc = "Commands",
-  },
-  {
     "<leader>sh",
     function()
       tele.help_tags()
