@@ -12,7 +12,8 @@ return {
   { "<leader>sD", false }, -- Workspace diagnostics are in snacks
   { "<leader>sC", false }, -- Commands are in <leader>s:
   { "<leader>sR", false }, -- Resume is <leader>sr
-  { "<leader>sk", false }, -- Resume is <leader>sr
+  { "<leader>sk", false }, -- keymaps are in snacks
+  { '<leader>s"', false }, -- Registers are in snacks
 
   ------------------------------------------------------------------------------
   -- Convenience Keys
@@ -182,14 +183,6 @@ return {
   -----------------------------------------------------------------------------
   -- <leader>s
   -----------------------------------------------------------------------------
-  {
-    '<leader>s"',
-    function()
-      tele.registers()
-    end,
-    mode = "n",
-    desc = "Registers",
-  },
   {
     "<leader>sc",
     function()

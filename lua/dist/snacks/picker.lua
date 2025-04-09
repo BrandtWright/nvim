@@ -20,18 +20,18 @@ return {
         desc = "Auto Commands",
       },
       {
-        "<leader>s:",
+        "<leader>s'",
         function()
-          require("snacks").picker.commands()
+          require("snacks").picker.registers()
         end,
-        desc = "Auto Commands",
+        desc = "Registers",
       },
       {
         "<leader>sk",
         function()
           require("snacks").picker.keymaps()
         end,
-        desc = "Auto Commands",
+        desc = "Key Maps",
       },
       {
         "<leader>si",
