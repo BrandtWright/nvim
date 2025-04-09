@@ -9,4 +9,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-return {}
+return {
+  {
+    "folke/snacks.nvim",
+    opts = {
+      indent = {
+        enabled = false,
+      },
+    },
+  },
+}

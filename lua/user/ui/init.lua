@@ -22,9 +22,6 @@ return {
   {
     "folke/todo-comments.nvim",
   },
-  {
-    "folke/snacks.nvim",
-  },
   "echasnovski/mini.indentscope",
   main = "ibl",
   opts = {
