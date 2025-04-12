@@ -30,7 +30,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "dist.lazy" },
-    { import = "dist.trouble" },
     { import = "dist.snacks.picker" },
     { import = "dist.snacks.indent" },
     { import = "user" },
