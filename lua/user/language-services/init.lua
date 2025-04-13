@@ -5,12 +5,6 @@ highlights.register({
 })
 
 return {
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = function()
-  --     require("lspconfig.ui.windows").default_options.border = "single"
-  --   end,
-  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

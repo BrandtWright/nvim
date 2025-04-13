@@ -1,10 +1,3 @@
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
-highlights.register({
-  { name = "NeoTreeDirectoryIcon", fg = c.blue, bg = nil, styles = {} },
-  { name = "NeoTreeDirectoryName", fg = c.white, bg = nil, styles = {} },
-})
-
 return {
   {
     "christoomey/vim-tmux-navigator",
@@ -16,24 +9,33 @@ return {
   { "tpope/vim-vinegar" },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = {
-        mappings = {
-          ["<space>"] = {
-            "toggle_node",
-            nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+    opts = function(_, opts)
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
+        { name = "NeoTreeDirectoryIcon", fg = c.blue, bg = nil, styles = {} },
+        { name = "NeoTreeDirectoryName", fg = c.white, bg = nil, styles = {} },
+      })
+      local my_opts = {
+        window = {
+          mappings = {
+            ["<space>"] = {
+              "toggle_node",
+              nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+            },
+            ["l"] = "open",
+            ["h"] = "close_node",
           },
-          ["l"] = "open",
-          ["h"] = "close_node",
         },
-      },
-      filesystem = {
-        bind_to_cwd = true,
-        follow_current_file = { enabled = true },
-        use_libuv_file_watcher = true,
-        hijack_netrw_behavior = "disabled",
-      },
-    },
+        filesystem = {
+          bind_to_cwd = true,
+          follow_current_file = { enabled = true },
+          use_libuv_file_watcher = true,
+          hijack_netrw_behavior = "disabled",
+        },
+      }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+    end,
   },
   {
     "is0n/fm-nvim",

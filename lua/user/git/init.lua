@@ -1,15 +1,4 @@
--- Highlights
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
 local git = require("user.git.api")
-
-highlights.register({
-  -- Git (Treesitter)
-  { name = "GitSignsAdd", fg = c.green, bg = c.terminal, styles = {} },
-  { name = "GitSignsChange", fg = c.yellow, bg = c.terminal, styles = {} },
-  { name = "GitSignsDelete", fg = c.red, bg = c.terminal, styles = {} },
-})
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -46,84 +35,91 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     cmd = { "Gitsigns" },
-    opts = {
-      signs = {
-        add = { text = "│" },
-        change = { text = "│" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "│" },
-        untracked = { text = "│" },
-      },
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
+    opts = function(_, opts)
+      -- Highlights
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
 
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
-        end
+      highlights.register({
+        -- Git (Treesitter)
+        { name = "GitSignsAdd", fg = c.green, bg = c.terminal, styles = {} },
+        { name = "GitSignsChange", fg = c.yellow, bg = c.terminal, styles = {} },
+        { name = "GitSignsDelete", fg = c.red, bg = c.terminal, styles = {} },
+      })
 
-        -- stylua: ignore start
+      local my_opts = {
+        signs = {
+          add = { text = "│" },
+          change = { text = "│" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "│" },
+          untracked = { text = "│" },
+        },
+        on_attach = function(buffer)
+          local gs = package.loaded.gitsigns
 
-        -- Navigation
-        map("n", "]h", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "]c", bang = true })
-          else
-            gs.nav_hunk("next")
+          local function map(mode, l, r, desc)
+            vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
           end
-        end, "Next Hunk")
-        map("n", "[h", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "[c", bang = true })
-          else
-            gs.nav_hunk("prev")
-          end
-        end, "Prev Hunk")
-        map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
-        map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 
-        -- Stage, Reset, Undoo
+          -- stylua: ignore start
 
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+          -- Navigation
+          map("n", "]h", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "]c", bang = true })
+            else
+              gs.nav_hunk("next")
+            end
+          end, "Next Hunk")
+          map("n", "[h", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "[c", bang = true })
+            else
+              gs.nav_hunk("prev")
+            end
+          end, "Prev Hunk")
+          map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
+          map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 
-        -- Preview
+          -- Stage, Reset, Undoo
+          map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+          map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+          map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
 
-        map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-        map("n", "<leader>ghP", gs.preview_hunk, "Preview Hunk")
+          -- Preview
+          map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+          map("n", "<leader>ghP", gs.preview_hunk, "Preview Hunk")
 
-        -- Blame
+          -- Blame
+          map("n", "<leader>gml", function() gs.blame_line() end, "Blame Line")
+          map("n", "<leader>gmL", function() gs.blame_line({ full = true }) end, "Blame Line Full")
+          map("n", "<leader>gmb", function() gs.blame() end, "Blame Buffer")
 
-        map("n", "<leader>gml", function() gs.blame_line() end, "Blame Line")
-        map("n", "<leader>gmL", function() gs.blame_line({ full = true }) end, "Blame Line Full")
-        map("n", "<leader>gmb", function() gs.blame() end, "Blame Buffer")
+          -- Diff
+          map("n", "<leader>gdd", gs.diffthis, "Diff This")
+          map("n", "<leader>gdD", function() gs.diffthis("~") end, "Diff This ~")
 
-        -- Diff
+          -- Lists
+          map("n", "<leader>ghq", ":Gitsigns setqflist<CR>", "Send to QuickFix List")
+          map("n", "<leader>ghl", ":Gitsigns setloclist<CR>", "Send to Location List")
 
-        map("n", "<leader>gdd", gs.diffthis, "Diff This")
-        map("n", "<leader>gdD", function() gs.diffthis("~") end, "Diff This ~")
+          -- Buffer
+          map("n", "<leader>gbs", ":Gitsigns stage_buffer<CR>", "Stage Buffer")
+          map("n", "<leader>gbr", ":Gitsigns reset_buffer<CR>", "Reset Buffer")
 
-        -- Lists
-
-        map("n", "<leader>ghq", ":Gitsigns setqflist<CR>", "Send to QuickFix List")
-        map("n", "<leader>ghl", ":Gitsigns setloclist<CR>", "Send to Location List")
-
-        -- Buffer
-
-        map("n", "<leader>gbs", ":Gitsigns stage_buffer<CR>", "Stage Buffer")
-        map("n", "<leader>gbr", ":Gitsigns reset_buffer<CR>", "Reset Buffer")
-
-        -- Toggles
-
-        map("n", "<leader>gts", ":Gitsigns toggle_signs<CR>", "Toggle Signs")
-        map("n", "<leader>gtm", ":Gitsigns toggle_current_line_blame<CR>", "Toggle Current Line Blame")
-        map("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", "Toggle Deleted")
-        map("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>", "Toggle Word Diff")
-        map("n", "<leader>gtl", ":Gitsigns toggle_linehl<CR>", "Toggle Line Highlight")
-        map("n", "<leader>gtn", ":Gitsigns toggle_numhl<CR>", "Toggle Number Highlight")
-      end,
-    },
+          -- Toggles
+          map("n", "<leader>gts", ":Gitsigns toggle_signs<CR>", "Toggle Signs")
+          map("n", "<leader>gtm", ":Gitsigns toggle_current_line_blame<CR>", "Toggle Current Line Blame")
+          map("n", "<leader>gtd", ":Gitsigns toggle_deleted<CR>", "Toggle Deleted")
+          map("n", "<leader>gtw", ":Gitsigns toggle_word_diff<CR>", "Toggle Word Diff")
+          map("n", "<leader>gtl", ":Gitsigns toggle_linehl<CR>", "Toggle Line Highlight")
+          map("n", "<leader>gtn", ":Gitsigns toggle_numhl<CR>", "Toggle Number Highlight")
+        end,
+      }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+    end,
   },
 }

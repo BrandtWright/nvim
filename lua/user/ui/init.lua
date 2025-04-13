@@ -1,40 +1,14 @@
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
-
-highlights.register({
-
-  -- Todos
-  { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
-  { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
-
-  --   Animations between squirely braces
-  { name = "MiniIndentscopeSymbol", fg = c.gold, bg = nil, styles = {} },
-
-  -- Whichkey
-  { name = "WhichKeyFloat", bg = c.terminal },
-  { name = "WhichKeyBorder", fg = c.brown },
-  { name = "WhichKey", fg = c.white },
-  { name = "WhichKeyGroup", fg = c.orange },
-  { name = "WhichKeyDesc", fg = c.gold },
-})
-
 return {
   {
     "folke/todo-comments.nvim",
-  },
-  "echasnovski/mini.indentscope",
-  main = "ibl",
-  opts = {
-    exclude = {
-      filetypes = {
-        "markdown",
-        "dashboard",
-        "snacks_dashboard",
-        "Fm",
-        "terminal",
-        "lazyterm",
-      },
-    },
+    opts = function()
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
+        { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
+        { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
+      })
+    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -60,65 +34,78 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.preset = "clasic"
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
 
-      -- Window
-      opts.win = opts.win or {}
-      opts.win.border = "rounded"
-      opts.win.no_overlap = false
-      opts.win.width = 1000
+        -- Todos
+        { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
+        { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
 
-      -- Icons
-      opts.icons = opts.icons or {}
-      opts.icons.group = ""
-      opts.icons.mappings = false -- Don't use keymap icons in which-key menu
+        -- Whichkey
+        { name = "WhichKeyFloat", bg = c.terminal },
+        { name = "WhichKeyBorder", fg = c.brown },
+        { name = "WhichKey", fg = c.white },
+        { name = "WhichKeyGroup", fg = c.orange },
+        { name = "WhichKeyDesc", fg = c.gold },
+      })
 
-      -- Layout
-      opts.layout = opts.layout or {}
-      opts.layout.align = "center"
-      opts.layout.spacing = 5
+      local my_opts = {
 
-      -- Plugins
-      opts.plugins = opts.plugins or {}
-      opts.plugins.spelling = false
-
-      -- Always group (even when there is only one keymap)
-      opts.expand = 0
-
-      opts.spec = {
-        { "<leader>a", group = "AI" },
-        { "<leader>ac", group = "ChatGPT" },
-        { "<leader>b", group = "Buffer" },
-        { "<leader>by", group = "Yank" },
-        { "<leader>bs", group = "Scratch Buffers" },
-        { "<leader>c", group = "Code" },
-        { "<leader>e", group = "Explore" },
-        { "<leader>f", group = "Find" },
-        { "<leader>fg", group = "Git Objects" },
-        { "<leader>g", group = "Git" },
-        { "<leader>gb", group = "Buffer", mode = { "n", "v" } },
-        { "<leader>gd", group = "Diff" },
-        { "<leader>gh", group = "Hunk" },
-        { "<leader>gm", group = "Blame" },
-        { "<leader>gt", group = "Toggle" },
-        { "<leader>h", group = "Harpoon" },
-        { "<leader>l", group = "Lazy" },
-        { "<leader>lp", group = "Picker" },
-        { "<leader>m", group = "Terminal" },
-        { "<leader>o", group = "Open" },
-        { "<leader>q", group = "Session" },
-        { "<leader>r", group = "Grep" },
-        { "<leader>s", group = "Search" },
-        { "<leader>t", group = "Tabs" },
-        { "<leader>u", group = "UI" },
-        { "<leader>ud", group = "Diagnostics" },
-        { "<leader>uz", group = "Toggle Zen Mode" },
-        { "<leader>w", group = "Window" },
-        { "<leader>x", group = "Lists" },
-        { "<leader>z", group = "Slipbox" },
-        { "g", group = "Goto" },
-        { "gs", group = "Surround" },
+        preset = "clasic",
+        win = {
+          border = "rounded",
+          no_overlap = false,
+          width = 1000,
+        },
+        icons = {
+          group = "",
+          mappings = false, -- Dont use keymap icons in which key menu
+        },
+        layout = {
+          align = "center",
+          spacing = 5,
+        },
+        plugins = {
+          spelling = false,
+        },
+        expand = 0,
+        spec = {
+          { "<leader>a", group = "AI" },
+          { "<leader>ac", group = "ChatGPT" },
+          { "<leader>b", group = "Buffer" },
+          { "<leader>by", group = "Yank" },
+          { "<leader>bs", group = "Scratch Buffers" },
+          { "<leader>c", group = "Code" },
+          { "<leader>e", group = "Explore" },
+          { "<leader>f", group = "Find" },
+          { "<leader>fg", group = "Git Objects" },
+          { "<leader>g", group = "Git" },
+          { "<leader>gb", group = "Buffer", mode = { "n", "v" } },
+          { "<leader>gd", group = "Diff" },
+          { "<leader>gh", group = "Hunk" },
+          { "<leader>gm", group = "Blame" },
+          { "<leader>gt", group = "Toggle" },
+          { "<leader>h", group = "Harpoon" },
+          { "<leader>l", group = "Lazy" },
+          { "<leader>lp", group = "Picker" },
+          { "<leader>m", group = "Terminal" },
+          { "<leader>o", group = "Open" },
+          { "<leader>q", group = "Session" },
+          { "<leader>r", group = "Grep" },
+          { "<leader>s", group = "Search" },
+          { "<leader>t", group = "Tabs" },
+          { "<leader>u", group = "UI" },
+          { "<leader>ud", group = "Diagnostics" },
+          { "<leader>uz", group = "Toggle Zen Mode" },
+          { "<leader>w", group = "Window" },
+          { "<leader>x", group = "Lists" },
+          { "<leader>z", group = "Slipbox" },
+          { "g", group = "Goto" },
+          { "gs", group = "Surround" },
+        },
       }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
   },
 }

@@ -1,20 +1,21 @@
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
-highlights.register({
-  { name = "SnacksDashboardHeader", fg = c.green },
-  { name = "SnacksDashboardDesc", fg = c.white },
-  { name = "SnacksDashboardKey", fg = c.white },
-  { name = "SnacksDashboardFooter", fg = c.white },
-  { name = "SnacksDashboardIcon", fg = c.white },
-})
-
 return {
   {
     "folke/snacks.nvim",
-    opts = {
-      dashboard = {
-        preset = {
-          header = [[
+    opts = function(_, opts)
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
+        { name = "SnacksDashboardHeader", fg = c.green },
+        { name = "SnacksDashboardDesc", fg = c.white },
+        { name = "SnacksDashboardKey", fg = c.white },
+        { name = "SnacksDashboardFooter", fg = c.white },
+        { name = "SnacksDashboardIcon", fg = c.white },
+      })
+
+      local my_opts = {
+        dashboard = {
+          preset = {
+            header = [[
 ⠀⢀⣠⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⡾⠿⠿⠿⠿⢷⣶⣦⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⢰⣿⡟⠛⠛⠛⠻⠿⠿⢿⣶⣶⣦⣤⣤⣀⣀⡀⣀⣴⣾⡿⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⠻⢿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⣀⡀
 ⠀⠻⣿⣦⡀⠀⠉⠓⠶⢦⣄⣀⠉⠉⠛⠛⠻⠿⠟⠋⠁⠀⠀⠀⣤⡀⠀⠀⢠⠀⠀⠀⣠⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠟⠛⠛⢻⣿
@@ -37,8 +38,10 @@ return {
 
  Do or do not.  There is no try.
 ]],
+          },
         },
-      },
-    },
+      }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+    end,
   },
 }

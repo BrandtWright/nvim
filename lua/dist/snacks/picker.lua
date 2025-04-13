@@ -1,16 +1,17 @@
 --------------------------------------------------------------------------------
 -- Picker
 --------------------------------------------------------------------------------
-local c = require("bw.config.colors")
-local highlights = require("bw.config.highlights")
-highlights.register({
-  { name = "SnacksPickerMatch", fg = c.green },
-  { name = "SnacksPickerListCursorline", bg = c.cursorline },
-})
-
 return {
   {
     "folke/snacks.nvim",
+    opts = function(_, opts)
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
+        { name = "SnacksPickerMatch", fg = c.green },
+        { name = "SnacksPickerListCursorline", bg = c.cursorline },
+      })
+    end,
     keys = {
       {
         "<leader>sa",
