@@ -46,6 +46,7 @@ map("n", "<leader>ws", "<cmd>split<cr>", { desc = "Vertical Split", silent = tru
 map("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "Vertical Split", silent = true })
 map("n", "<leader>wd", "<c-w>c", { desc = "Delete Window", silent = true })
 map("n", "<leader>wo", "<c-w>o", { desc = "Close Other Windows", silent = true })
+map("n", "<leader>wc", "<cmd>close<cr>", { desc = "Close Current Window", silent = true })
 map("n", "<leader>w=", "<c-w>=", { desc = "Equalize Windows", silent = true })
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
