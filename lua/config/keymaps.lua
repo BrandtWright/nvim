@@ -23,6 +23,7 @@ end, { desc = "Project", silent = true })
 -- This only seems to work from here. Not sure what is up with fugitive.
 -- Seems to conflict randomly with the snacks.git_status picker
 map("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git Status (Fugitive)" })
+map("n", "<leader>gv", "<cmd>vertical Git<cr>", { desc = "Git Status (Fugitive)" })
 
 --------------------------------------------------------------------------------
 -- Movement
