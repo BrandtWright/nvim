@@ -42,6 +42,16 @@ local apply_default_values = function(opts)
   return Either.right(opts)
 end
 
+local function has_git_changes(opts)
+  local git_command = string.format("git -C %s status --porcelain", opts.cwd)
+  local output = vim.fn.systemlist(git_command)
+  -- If there's any output, then there are uncommitted changes
+  if vim.v.shell_error == 0 and #output > 0 then
+    return Either.right(opts)
+  end
+  return Either.left(opts)
+end
+
 ---@param opts table
 ---@return Either
 local apply_drop_down_theme = function(opts)
@@ -109,7 +119,7 @@ end
 
 --- Fuzzy find uncommited changes in a git repository
 function M.status(opts)
-  local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
+  local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(has_git_changes)
   if result.is_right then
     require("telescope.builtin").git_status(result.value)
   else
