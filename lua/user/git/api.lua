@@ -49,7 +49,7 @@ local function has_git_changes(opts)
   if vim.v.shell_error == 0 and #output > 0 then
     return Either.right(opts)
   end
-  return Either.left("No changes to review")
+  return Either.left(string.format("No uncommitted changes in %s", opts.cwd))
 end
 
 ---@param opts table
