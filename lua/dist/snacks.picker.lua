@@ -4,7 +4,7 @@
 return {
   {
     "folke/snacks.nvim",
-    opts = function(_, opts)
+    opts = function()
       local c = require("bw.config.colors")
       local highlights = require("bw.config.highlights")
       highlights.register({
