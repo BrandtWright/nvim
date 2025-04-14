@@ -57,8 +57,8 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window w
 --------------------------------------------------------------------------------
 -- Terminals
 --------------------------------------------------------------------------------
-map("n", "<leader>ms", "<cmd>split | terminal<cr>", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
-map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>", { desc = "Terminal Buffer (Vertical Split)", silent = true })
+map("n", "<leader>ms", "<cmd>split | terminal<cr>a", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
+map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>a", { desc = "Terminal Buffer (Vertical Split)", silent = true })
 map({ "n", "t" }, "<c-_>", helpers.toggle_terminal, { desc = "Toggle Terminal" })
 
 --------------------------------------------------------------------------------
