@@ -1,6 +1,6 @@
 M = {}
 
-M.opts = {
+local default_opts = {
   float = {
     show_header = true,
     border = "single",
@@ -12,9 +12,14 @@ M.opts = {
   },
 }
 
-M.toggle_virtual_text = function()
+M.get_default_opts = function()
+  return default_opts
+end
+
+M.toggle_virtual_text = function(opts)
+  opts = opts or default_opts
   if not vim.diagnostic.config().virtual_text then
-    vim.diagnostic.config({ virtual_text = M.opts.virtual_text })
+    vim.diagnostic.config({ virtual_text = opts.virtual_text })
     vim.notify("Enabled Virtual Text", vim.log.levels.INFO, { title = "Diagnostics", icon = "🛠" })
   else
     vim.diagnostic.config({ virtual_text = false })
