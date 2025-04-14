@@ -12,14 +12,6 @@ M.opts = {
   },
 }
 
-M.diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-
 M.toggle_virtual_text = function()
   if not vim.diagnostic.config().virtual_text then
     vim.diagnostic.config({ virtual_text = M.opts.virtual_text })
