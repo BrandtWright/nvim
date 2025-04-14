@@ -8,7 +8,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     event = "VeryLazy",
-    keys = require("user.ai.keys"),
+    keys = require("plugins.ai.keys"),
     cmd = {
       "ChatGPT",
       "ChatGPTActAs",

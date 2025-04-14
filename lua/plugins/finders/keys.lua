@@ -1,4 +1,4 @@
-local tele = require("user.finders.helpers")
+local tele = require("plugins.finders.helpers")
 
 return {
 

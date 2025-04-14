@@ -31,7 +31,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "dist" },
     { import = "plugins" },
-    { import = "user" },
     { import = "user.filetypes" },
   },
   defaults = {

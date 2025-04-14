@@ -2,7 +2,8 @@ local M = {}
 
 M.toggle_terminal = function()
   if not pcall(require, "lazyvim") then
-    require("user.notification.api").warn("LazyVim has not been loaded", "", "Lazy Helpers")
+    require("bw.util.notification").warn("LazyVim has not been loaded", "", "Lazy Helpers")
+    return
   end
   if vim.bo.buftype == "terminal" then
     vim.cmd("hide")

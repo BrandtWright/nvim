@@ -6,10 +6,10 @@
 local Either = require("user.types.either")
 
 local icon = ""
-local module_name = "user.git.api"
+local module_name = "plugins.git.api"
 
 local warn = function(msg)
-  local toaster = require("user.notification.api")
+  local toaster = require("bw.util.notification")
   toaster.warn(msg, icon, module_name)
 end
 

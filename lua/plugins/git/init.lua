@@ -1,4 +1,4 @@
-local git = require("user.git.api")
+local git = require("plugins.git.api")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
