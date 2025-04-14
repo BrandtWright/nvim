@@ -3,7 +3,7 @@
 -- fugitive, and gitsigns and provides some utility functions
 --------------------------------------------------------------------------------
 
-local Either = require("user.types.either")
+local Either = require("bw.types.either")
 
 local icon = ""
 local module_name = "plugins.git.api"
