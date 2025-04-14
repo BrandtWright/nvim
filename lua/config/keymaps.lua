@@ -86,8 +86,7 @@ map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Scratch Buffers
 map("n", "<leader>bsh", function()
-  local buf = require("bw.util.scratch-buffer").get_buffer()
-  vim.api.nvim_set_current_buf(buf)
+  require("bw.util.scratch-buffer").open_or_create()
 end, { desc = "Open Scratch Buffer" })
 map("n", "<leader>bss", function()
   vim.cmd.split()
