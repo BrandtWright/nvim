@@ -85,24 +85,18 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Scratch Buffers
-map(
-  "n",
-  "<leader>bsh",
-  "<cmd>enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
-  { desc = "Open Scratch Buffer" }
-)
-map(
-  "n",
-  "<leader>bss",
-  "<cmd>split enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
-  { desc = "Open Scratch Buffer (Horizontal Split" }
-)
-map(
-  "n",
-  "<leader>bsv",
-  "<cmd>vsplit enew<CR>:setlocal buftype=nofile bufhidden=hide noswapfile<cr>:set ft=markdown<cr>:. !cat ~/data/templates/notes/scratchpad.md<cr>G",
-  { desc = "Open Scratch Buffer (Vertical Split" }
-)
+map("n", "<leader>bsh", function()
+  local buf = require("bw.util.scratch-buffer").get_buffer()
+  vim.api.nvim_set_current_buf(buf)
+end, { desc = "Open Scratch Buffer" })
+map("n", "<leader>bss", function()
+  vim.cmd.split()
+  require("bw.util.scratch-buffer").open_or_create()
+end, { desc = "Open Scratch Buffer (Horizontal Split" })
+map("n", "<leader>bsv", function()
+  vim.cmd.vsplit()
+  require("bw.util.scratch-buffer").open_or_create()
+end, { desc = "Open Scratch Buffer (Vertical Split" })
 
 -- Save
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
