@@ -1,2 +1,2 @@
-local d = require("bw.util.diagnostics")
-vim.diagnostic.config(d.opts)
+local opts = require("bw.util.diagnostics").get_default_opts()
+vim.diagnostic.config(opts)
