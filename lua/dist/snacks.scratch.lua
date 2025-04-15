@@ -2,8 +2,18 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
-      -- Disabled Keys
-      { "<leader>S", false }, -- scratch picker is in leader-sp
+      --------------------------------------------------------------------------
+      -- Disabled default keys
+      --------------------------------------------------------------------------
+
+      -- Scratch pad picker -> leader-sp
+      { "<leader>S", false },
+
+      --------------------------------------------------------------------------
+      -- Custom Keymaps
+      --------------------------------------------------------------------------
+
+      -- Scratch pad picker
       {
         "<leader>sp",
         function()
@@ -11,12 +21,14 @@ return {
         end,
         desc = "Scratch Pad Picker (Snacks)",
       },
+
+      -- Contextual Scratch pad
       {
         "<leader>.",
         function()
           Snacks.scratch.open()
         end,
-        desc = "Open Scratch Pad (Snacks)",
+        desc = "Contextual Scratch Pad (Snacks)",
       },
     },
   },
