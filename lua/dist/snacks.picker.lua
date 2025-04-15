@@ -77,7 +77,7 @@ return {
         desc = "Highlights",
       },
       {
-        "<leader>fS",
+        "<leader>sL",
         function()
           require("snacks").picker.lsp_config()
         end,
