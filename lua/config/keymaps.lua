@@ -112,7 +112,12 @@ end, { desc = "Yank Buffer Path" })
 -- Open (leader-o)
 --------------------------------------------------------------------------------
 
--- Scratch Buffer
+-- Contextual Scratch Pad (Snacks)
+map("n", "<leader>sp", function()
+  Snacks.scratch.select()
+end, { desc = "Contextual Scratch Pads (Snacks)" })
+
+-- Transient Scrath Buffer
 map("n", "<leader>osh", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("current_window")
 end, { desc = "Open Scratch Buffer" })
