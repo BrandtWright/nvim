@@ -1,3 +1,4 @@
+---@param mode "split" | "vsplit" | "current_window" | "popup"
 M.open_scratch_buffer = function(mode)
   local scratch_buf_name = "__scratch_markdown__"
   local buf
