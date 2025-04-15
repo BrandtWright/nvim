@@ -15,6 +15,7 @@ return {
         { name = "RenderMarkdownChecked", fg = c.green, styles = {} },
         { name = "RenderMarkdownUnchecked", fg = c.red, styles = {} },
         { name = "RenderMarkdownQuote", fg = c.gold, styles = {} },
+        { name = "RenderMarkdownCode", bg = "#1f1e1b", styles = {} },
       })
 
       local my_opts = {
