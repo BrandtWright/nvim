@@ -2,7 +2,24 @@ local git = require("plugins.git.api")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "git_config", "gitcommit", "git_rebase", "gitignore", "gitattributes" } },
+    opts = function(_, opts)
+      local c = require("bw.config.colors")
+      local highlights = require("bw.config.highlights")
+      highlights.register({
+        { name = "@markup.heading.gitcommit", fg = c.gold, bg = c.terminal },
+      })
+
+      local my_opts = {
+        ensure_installed = {
+          "git_config",
+          "gitcommit",
+          "git_rebase",
+          "gitignore",
+          "gitattributes",
+        },
+      }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
