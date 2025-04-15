@@ -84,31 +84,11 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- Other
 map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
--- Scratch Buffers
-map("n", "<leader>bsh", function()
-  require("bw.util.scratch-buffer").open_scratch_buffer("current_window")
-end, { desc = "Open Scratch Buffer" })
-map("n", "<leader>bss", function()
-  require("bw.util.scratch-buffer").open_scratch_buffer("split")
-end, { desc = "Open Scratch Buffer (Horizontal Split)" })
-map("n", "<leader>bsv", function()
-  require("bw.util.scratch-buffer").open_scratch_buffer("vsplit")
-end, { desc = "Open Scratch Buffer (Vertical Split)" })
-map("n", "<leader>bsp", function()
-  require("bw.util.scratch-buffer").open_scratch_buffer("popup")
-end, { desc = "Open Scratch Buffer (Popup Window)" })
-
 -- Save
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- New
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- Open Readme
-map("n", "<leader>os", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Scrath Pad" })
-
--- Open Readme
-map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
 -- Yank Buffer Name
 map({ "n" }, "<Leader>byn", function()
@@ -127,6 +107,50 @@ map({ "n" }, "<Leader>byp", function()
   vim.cmd(":let @+ = expand('%:h')")
   Snacks.notify.info("Buffer Path", { title = "Yanked" })
 end, { desc = "Yank Buffer Path" })
+
+--------------------------------------------------------------------------------
+-- Open (leader-o)
+--------------------------------------------------------------------------------
+
+-- Scratch Buffer
+map("n", "<leader>osh", function()
+  require("bw.util.scratch-buffer").open_scratch_buffer("current_window")
+end, { desc = "Open Scratch Buffer" })
+map("n", "<leader>oss", function()
+  require("bw.util.scratch-buffer").open_scratch_buffer("split")
+end, { desc = "Open Scratch Buffer (Horizontal Split)" })
+map("n", "<leader>osv", function()
+  require("bw.util.scratch-buffer").open_scratch_buffer("vsplit")
+end, { desc = "Open Scratch Buffer (Vertical Split)" })
+map("n", "<leader>osp", function()
+  require("bw.util.scratch-buffer").open_scratch_buffer("popup")
+end, { desc = "Open Scratch Buffer (Popup Window)" })
+
+-- Scratch Pad (Persistant)
+map("n", "<leader>oSh", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Current Window" })
+map("n", "<leader>oSs", "<cmd>split ~/data/projects/scratch/README.md<cr>", { desc = "Horizontal Split" })
+map("n", "<leader>oSv", "<cmd>vsplit ~/data/projects/scratch/README.md<cr>", { desc = "Vertical Split" })
+map("n", "<leader>oSp", function()
+  Snacks.win.new({
+    file = vim.fn.expand("~/data/projects/scratch/README.md"),
+    width = 0.6,
+    height = 0.6,
+    border = "single",
+    wo = {
+      spell = false,
+      wrap = false,
+      signcolumn = "yes",
+      statuscolumn = " ",
+      conceallevel = 3,
+    },
+    bo = {
+      modifiable = true,
+    },
+  })
+end, { desc = "Popup Window" })
+
+-- Readme
+map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
 --------------------------------------------------------------------------------
 -- Lists

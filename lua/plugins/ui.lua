@@ -91,6 +91,8 @@ return {
           { "<leader>lp", group = "Picker" },
           { "<leader>m", group = "Terminal" },
           { "<leader>o", group = "Open" },
+          { "<leader>os", group = "Scratch Pad" },
+          { "<leader>oS", group = "Persistant Scratch Pad" },
           { "<leader>q", group = "Session" },
           { "<leader>r", group = "Grep" },
           { "<leader>s", group = "Search" },
