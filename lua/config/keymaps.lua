@@ -115,24 +115,24 @@ map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Read
 --------------------------------------------------------------------------------
 
 -- Transient Scrath Buffer
-map("n", "<leader>osh", function()
+map("n", "<leader>oSh", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("current_window")
 end, { desc = "Open Scratch Buffer" })
-map("n", "<leader>oss", function()
+map("n", "<leader>oSs", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("split")
 end, { desc = "Open Scratch Buffer (Horizontal Split)" })
-map("n", "<leader>osv", function()
+map("n", "<leader>oSv", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("vsplit")
 end, { desc = "Open Scratch Buffer (Vertical Split)" })
-map("n", "<leader>osp", function()
+map("n", "<leader>oSp", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("popup")
 end, { desc = "Open Scratch Buffer (Popup Window)" })
 
 -- Persistent Scrath Pad
-map("n", "<leader>oSh", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Current Window" })
-map("n", "<leader>oSs", "<cmd>split ~/data/projects/scratch/README.md<cr>", { desc = "Horizontal Split" })
-map("n", "<leader>oSv", "<cmd>vsplit ~/data/projects/scratch/README.md<cr>", { desc = "Vertical Split" })
-map("n", "<leader>oSp", function()
+map("n", "<leader>osh", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Current Window" })
+map("n", "<leader>oss", "<cmd>split ~/data/projects/scratch/README.md<cr>", { desc = "Horizontal Split" })
+map("n", "<leader>osv", "<cmd>vsplit ~/data/projects/scratch/README.md<cr>", { desc = "Vertical Split" })
+map("n", "<leader>osp", function()
   Snacks.win.new({
     file = vim.fn.expand("~/data/projects/scratch/README.md"),
     width = 0.6,
