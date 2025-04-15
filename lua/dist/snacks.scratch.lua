@@ -2,6 +2,8 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
+      -- Disabled Keys
+      { "<leader>S", false }, -- scratch picker is in leader-sp
       {
         "<leader>sp",
         function()
