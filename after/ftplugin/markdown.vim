@@ -20,8 +20,3 @@ nnoremap <buffer> <leader>mh :call ConvertMarkdownToHTMLAndOpen()<cr>
 
 "Moved to plugins/ui.lua
 lua vim.b.miniindentscope_disable = true
-
-augroup MarkdownFilters
-autocmd BufWritePre *.md silent :ToEmoji
-"autocmd BufEnter *.md :syntax match mkdBullet /\(^\s*\)\@<=[*]/ conceal cchar=●
-augroup END
