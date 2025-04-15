@@ -17,6 +17,3 @@ endfunction
 
 nnoremap <buffer> <leader>mp :w !pandoc -s -f commonmark -t pdf -V colorlinks=true \| zathura - &<cr>
 nnoremap <buffer> <leader>mh :call ConvertMarkdownToHTMLAndOpen()<cr>
-
-"Moved to plugins/ui.lua
-lua vim.b.miniindentscope_disable = true
