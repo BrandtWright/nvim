@@ -108,14 +108,12 @@ map({ "n" }, "<Leader>byp", function()
   Snacks.notify.info("Buffer Path", { title = "Yanked" })
 end, { desc = "Yank Buffer Path" })
 
---------------------------------------------------------------------------------
--- Open (leader-o)
---------------------------------------------------------------------------------
+-- Open README
+map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
--- Contextual Scratch Pad (Snacks)
-map("n", "<leader>sp", function()
-  Snacks.scratch.select()
-end, { desc = "Contextual Scratch Pads (Snacks)" })
+--------------------------------------------------------------------------------
+-- Scratch Pads
+--------------------------------------------------------------------------------
 
 -- Transient Scrath Buffer
 map("n", "<leader>osh", function()
@@ -131,7 +129,7 @@ map("n", "<leader>osp", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("popup")
 end, { desc = "Open Scratch Buffer (Popup Window)" })
 
--- Scratch Pad (Persistant)
+-- Persistent Scrath Pad
 map("n", "<leader>oSh", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Current Window" })
 map("n", "<leader>oSs", "<cmd>split ~/data/projects/scratch/README.md<cr>", { desc = "Horizontal Split" })
 map("n", "<leader>oSv", "<cmd>vsplit ~/data/projects/scratch/README.md<cr>", { desc = "Vertical Split" })
@@ -153,9 +151,6 @@ map("n", "<leader>oSp", function()
     },
   })
 end, { desc = "Popup Window" })
-
--- Readme
-map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
 --------------------------------------------------------------------------------
 -- Lists
