@@ -22,6 +22,17 @@ return {
     lazy = false,
     config = function()
       vim.opt.diffopt:append("hiddenoff")
+
+      -- Set keymaps for fugitive files
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("FugitiveBufLocalKeymaps", { clear = true }),
+        pattern = "fugitive", -- specify your filetype
+        callback = function()
+          -- easy close key
+          vim.keymap.set("n", "q", "<cmd>close<cr>", { desc = "Close", buffer = true })
+        end,
+      })
+
       -- TODO: Add highlights
     end,
     cmd = { "Git" },
