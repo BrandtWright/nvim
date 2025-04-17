@@ -78,7 +78,7 @@ Color.new("panel_background", load_color("screen_glasses.ui.primary_background")
 
 -- Vim Custom
 Group.new("Border", colors.win_seperator)
-Group.new("Panel", colors.panel_foreground, colors.panel_background)
+Group.new("Panel", colors.panel_foreground, colors.panel_background) -- {{{}}}
 Group.new("Understated", colors.brown)
 Group.new("UnderstatedInverse", nil, colors.brown)
 Group.new("Seperator", colors.win_seperator)
@@ -95,6 +95,7 @@ Group.new("TabLineFill", colors.red, colors.panel_background)
 Group.new("Visual", nil, colors.gray_20)
 Group.new("Pmenu", nil, colors.terminal)
 Group.new("PmenuSel", nil, colors.panel_background)
+Group.new("Folded", colors.panel_foreground, colors.panel_background)
 
 -- Standard Colors
 Group.new("Identifier", colors.white)
