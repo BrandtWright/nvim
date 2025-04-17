@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      vim.cmd("hi! link @label.json Property")
+      vim.cmd("hi! link @boolean.lua Boolean")
     end,
   },
 }

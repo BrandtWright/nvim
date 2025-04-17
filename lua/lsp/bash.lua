@@ -2,12 +2,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@punctuation.special.bash", fg = c.gold, styles = { "b" } },
-      })
-
       if type(opts.ensure_installed) == "table" then
         vim.list_extend(opts.ensure_installed, { "bash" })
       end

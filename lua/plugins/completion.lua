@@ -12,15 +12,11 @@ return {
   {
     "saghen/blink.cmp",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "BlinkCmpKind", bg = c.terminal, fg = c.gold },
-        { name = "BlinkCmpDoc", bg = c.terminal },
-        { name = "BlinkCmpDocSeparator", bg = c.terminal, fg = c.gold },
-        { name = "BlinkCmpDocBorder", bg = c.terminal, fg = c.gold },
-        { name = "BlinkCmpMenuBorder", bg = c.terminal, fg = c.gold },
-      })
+      vim.cmd("hi! link BlinkCmpKind Special")
+      vim.cmd("hi! link BlinkCmpDoc Normal")
+      vim.cmd("hi! link BlinkCmpDocSeparator Special")
+      vim.cmd("hi! link BlinkCmpDocBorder Special")
+      vim.cmd("hi! link BlinkCmpMenuBorder Special")
 
       local my_opts = {
         completion = {

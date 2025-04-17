@@ -5,12 +5,8 @@ return {
   {
     "folke/snacks.nvim",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "SnacksPickerMatch", fg = c.green },
-        { name = "SnacksPickerListCursorline", bg = c.cursorline },
-      })
+      vim.cmd("hi! link SnacksPickerMatch Match")
+      vim.cmd("hi! link SnacksPickerListCursorline CursorLine")
     end,
     keys = {
       {

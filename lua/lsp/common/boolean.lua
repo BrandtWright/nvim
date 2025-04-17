@@ -7,6 +7,7 @@ return {
       highlights.register({
         { name = "@boolean", fg = c.cyan, bg = nil, styles = { "i" } },
       })
+      vim.cmd("hi! link @boolean Constant")
     end,
   },
 }

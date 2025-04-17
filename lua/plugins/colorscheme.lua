@@ -2,17 +2,14 @@ require("bw.config.highlights").setup()
 
 return {
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy_load = false,
-    load_priority = 10000,
+    "tjdevries/colorbuddy.nvim",
+    priority = 10000,
+    lazy = false,
   },
   {
     "LazyVim/LazyVim",
-    dependencies = {
-      "ellisonleao/gruvbox.nvim",
-    },
     opts = function(_, opts)
-      opts.colorscheme = "gruvbox"
+      opts.colorscheme = "screen_glasses"
     end,
   },
 }

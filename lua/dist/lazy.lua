@@ -2,13 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "LazyNormal", fg = nil, bg = c.terminal, styles = {} },
-        { name = "LazySpecial", fg = c.gold, bg = c.terminal, styles = {} },
-        { name = "LazyReasonPlugin", fg = c.green, bg = c.terminal, styles = {} },
-      })
+      vim.cmd("hi! link LazyDimmed Comment")
     end,
     keys = {
       {
