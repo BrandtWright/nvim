@@ -1,5 +1,3 @@
-require("bw.config.highlights").setup()
-
 return {
   {
     "tjdevries/colorbuddy.nvim",
