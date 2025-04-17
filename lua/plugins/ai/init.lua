@@ -1,6 +1,7 @@
 return {
   {
 
+    -- jackMort/ChatGPT.nvim uses `FoldColumn` to style the line on the left side of popup windows
     "jackMort/ChatGPT.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
