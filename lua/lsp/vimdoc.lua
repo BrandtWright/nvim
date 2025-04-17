@@ -10,6 +10,7 @@ return {
       vim.cmd("hi! link @keyword.exception.vim Exception")
       vim.cmd("hi! link @string.special.url.vimdoc Repeat")
       vim.cmd("hi! link @markup.link.vimdoc Repeat")
+      vim.cmd("hi! link @string.special.vimdoc Structure")
     end,
   },
 }
