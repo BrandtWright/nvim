@@ -111,10 +111,6 @@ Group.new("HyperLink", colors.bright_blue)
 -- Bright Italics
 Group.new("Boolean", colors.bright_cyan, nil, styles.italic)
 
-while false do
-  print("hello world")
-end
-
 -- Extended Colors
 Group.new("String", colors.orange, nil)
 Group.new("Statement", colors.violet, nil) -- Used to be gold
