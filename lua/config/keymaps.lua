@@ -69,6 +69,8 @@ map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down", silent = true
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up", silent = true })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down", silent = true })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up", silent = true })
+map("n", "<leader>il", "<cmd>call append(line('.'), '')<cr>", { desc = "Line Below", silent = true })
+map("n", "<leader>iL", "<cmd>call append(line('.') - 1, '')<cr>", { desc = "Line Above", silent = true })
 
 --------------------------------------------------------------------------------
 -- Buffers
