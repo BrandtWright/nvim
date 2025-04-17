@@ -2,12 +2,8 @@ return {
   {
     "folke/todo-comments.nvim",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
-        { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
-      })
+      vim.cmd("hi! link Todo Propterty")
+      vim.cmd("hi! link TodoSignTODO Propterty")
     end,
   },
   {
@@ -34,21 +30,11 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-
-        -- Todos
-        { name = "Todo", fg = c.green, bg = c.terminal, styles = {} },
-        { name = "TodoSignTODO", fg = c.green, bg = c.terminal, styles = {} },
-
-        -- Whichkey
-        { name = "WhichKeyFloat", bg = c.terminal },
-        { name = "WhichKeyBorder", fg = c.brown },
-        { name = "WhichKey", fg = c.white },
-        { name = "WhichKeyGroup", fg = c.orange },
-        { name = "WhichKeyDesc", fg = c.gold },
-      })
+      vim.cmd("hi! link WhichKey Normal")
+      vim.cmd("hi! link WhichKeyGroup String")
+      vim.cmd("hi! link WhichKeyDesc Special")
+      vim.cmd("hi! link WhichKeyFloat Normal")
+      vim.cmd("hi! link WhichKeyBorder Border")
 
       local my_opts = {
 
@@ -87,6 +73,7 @@ return {
           { "<leader>gm", group = "Blame" },
           { "<leader>gt", group = "Toggle" },
           { "<leader>h", group = "Harpoon" },
+          { "<leader>i", group = "Insert" },
           { "<leader>l", group = "Lazy" },
           { "<leader>lp", group = "Picker" },
           { "<leader>m", group = "Terminal" },

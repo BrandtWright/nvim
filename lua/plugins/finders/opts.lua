@@ -1,17 +1,13 @@
 local set_telescope_highlights = function()
-  local c = require("bw.config.colors")
-  local highlights = require("bw.config.highlights")
-  highlights.register({
-    -- LineNr in current_buffer_fuzzy_find
-    -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
-    { name = "TelescopeResultsSpecialComment", fg = c.brown, bg = c.terminal, styles = {} },
-    { name = "TelescopeSelection", fg = c.white, bg = c.cursorline, styles = { "b" } },
-    { name = "TelescopeSelectionCaret", fg = c.gold, bg = c.terminal, styles = { "b" } },
-    { name = "TelescopeMatching", fg = c.green },
-    { name = "TelescopePreviewBorder", fg = c.win_seperator },
-    { name = "TelescopePromptBorder", fg = c.win_seperator },
-    { name = "TelescopeResultsBorder", fg = c.win_seperator },
-  })
+  -- TelescopeResultsSpecialComment: LineNr in current_buffer_fuzzy_find
+  -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
+  vim.cmd("hi! link TelescopeResultsSpecialComment Highlight")
+  vim.cmd("hi! link TelescopeSelection Highlight")
+  vim.cmd("hi! link TelescopeSelectionCaret Highlight")
+  vim.cmd("hi! link TelescopeMatching Highlight")
+  vim.cmd("hi! link TelescopePreviewBorder Highlight")
+  vim.cmd("hi! link TelescopePromptBorder Highlight")
+  vim.cmd("hi! link TelescopeResultsBorder Highlight")
 end
 
 return function()

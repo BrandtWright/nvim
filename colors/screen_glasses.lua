@@ -79,7 +79,8 @@ Color.new("panel_background", load_color("screen_glasses.ui.primary_background")
 -- Vim Custom
 Group.new("Border", colors.win_seperator)
 Group.new("Panel", colors.panel_foreground, colors.panel_background)
-Group.new("Understated", colors.brown, colors.terminal)
+Group.new("Understated", colors.brown)
+Group.new("UnderstatedInverse", nil, colors.brown)
 Group.new("Seperator", colors.win_seperator)
 Group.new("Blank", colors.terminal, colors.terminal)
 Group.new("Attention", nil, colors.resolution_blue)
@@ -104,9 +105,11 @@ Group.new("Function", colors.yellow)
 Group.new("Repeat", colors.magenta)
 
 -- Bright Colors
+Group.new("Critical", colors.bright_red)
 Group.new("Constant", colors.bright_cyan)
 Group.new("Structure", colors.bright_green)
 Group.new("HyperLink", colors.bright_blue)
+Group.new("Type", colors.bright_magenta)
 
 -- Bright Italics
 Group.new("Boolean", colors.bright_cyan, nil, styles.italic)
@@ -114,8 +117,10 @@ Group.new("Boolean", colors.bright_cyan, nil, styles.italic)
 -- Extended Colors
 Group.new("String", colors.orange, nil)
 Group.new("Statement", colors.violet, nil) -- Used to be gold
-Group.new("Comment", colors.gray_34, nil)
 Group.new("Special", colors.gold, nil)
+
+-- Wonky Colors
+Group.new("Comment", colors.gray_34, nil, styles.italic)
 
 -- Underlines (Find better names here?)
 Group.new("IdentifierUnderline", colors.white, nil, styles.underline)
@@ -129,6 +134,19 @@ Group.new("StringUnderline", colors.orange, nil, styles.underline)
 Group.new("StatementUnderline", colors.violet, nil, styles.underline) -- Used to be gold
 Group.new("CommentUnderline", colors.gray_34, nil, styles.underline)
 Group.new("SpecialUnderline", colors.gold, nil, styles.underline)
+
+-- Bold
+Group.new("Bold", nil, nil, styles.bold)
+Group.new("HyperlinkBold", colors.bright_blue, nil, styles.bold)
+
+-- Italic
+Group.new("Italicized", nil, nil, styles.italic)
+
+-- Diff
+Group.new("DiffAdd", groups.Property)
+Group.new("DiffChange", groups.Function)
+Group.new("DiffDelete", groups.Exception)
+Group.new("DiffText", groups.String)
 
 -- Lsp
 Group.new("FunctionCall", colors.yellow, nil, styles.italic)
@@ -188,14 +206,6 @@ Group.link("DiagnosticSignOk", groups.Ok)
 Group.link("DiagnosticFloatingOk", groups.Ok)
 Group.link("DiagnosticVirtualTextOk", groups.Ok)
 Group.link("DiagnosticUnderlineOk", groups.PropertyUnderline)
-
--------------------------------------------------------------------------
--- Diff
--------------------------------------------------------------------------
-Group.link("DiffAdd", groups.Identifier)
-Group.link("DiffChange", groups.Function)
-Group.link("DiffDelete", groups.Exception)
-Group.link("DiffText", groups.Keyword)
 
 -------------------------------------------------------------------------
 -- Move

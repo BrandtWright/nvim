@@ -2,15 +2,11 @@ return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "SnacksDashboardHeader", fg = c.green },
-        { name = "SnacksDashboardDesc", fg = c.white },
-        { name = "SnacksDashboardKey", fg = c.white },
-        { name = "SnacksDashboardFooter", fg = c.white },
-        { name = "SnacksDashboardIcon", fg = c.white },
-      })
+      vim.cmd("hi! link SnacksDashboardHeader Property")
+      vim.cmd("hi! link SnacksDashboardDesc Identifier")
+      vim.cmd("hi! link SnacksDashboardKey Identifier")
+      vim.cmd("hi! link SnacksDashboardFooter Identifier")
+      vim.cmd("hi! link SnacksDashboardIcon Identifier")
 
       local my_opts = {
         dashboard = {

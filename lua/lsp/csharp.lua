@@ -2,34 +2,26 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@parameter.c_sharp", fg = nil, bg = nil, styles = { "i" } },
-        { name = "@type.qualifier.c_sharp", fg = c.green, bg = nil, styles = {} },
-        { name = "@exception.c_sharp", fg = c.red, bg = nil, styles = {} },
-        { name = "@variable.member.c_sharp", fg = c.white, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link @parameter.c_sharp Italicized")
+      vim.cmd("hi! link @type.qualifier.c_sharp Propterty")
+      vim.cmd("hi! link @exception.c_sharp Exception")
+      vim.cmd("hi! link @variable.member.c_sharp Identifier")
     end,
   },
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@lsp.type.class.cs", fg = c.green, bg = nil, styles = {} },
-        { name = "@lsp.type.struct.cs", fg = c.bright_cyan, bg = nil, styles = {} },
-        { name = "@lsp.type.property.cs", fg = c.white, bg = nil, styles = {} },
-        { name = "@lsp.type.delegateName.cs", fg = c.dark_violet, bg = nil, styles = {} },
-        { name = "@lsp.type.extensionMethodName.cs", fg = c.green, bg = nil, styles = {} },
-        { name = "@lsp.type.interface.cs", fg = c.gold, bg = nil, styles = {} },
-        { name = "@lsp.type.parameter.cs", fg = nil, bg = nil, styles = { "i" } },
-        { name = "@lsp.type.typeParameter.cs", fg = c.red, bg = nil, styles = {} },
-        { name = "@lsp.mod.static.cs", fg = nil, bg = nil, styles = { "b" } },
-        { name = "@lsp.typemod.constantName.static.cs", fg = c.bright_blue, bg = nil, styles = { "b" } },
-        { name = "@lsp.type.keyword.cs", fg = c.blue, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link @lsp.type.class.cs Property")
+      vim.cmd("hi! link @lsp.type.struct.cs Structure")
+      vim.cmd("hi! link @lsp.type.property.cs Identifier")
+      vim.cmd("hi! link @lsp.type.delegateName.cs Method")
+      vim.cmd("hi! link @lsp.type.extensionMethodName.cs Property")
+      vim.cmd("hi! link @lsp.type.interface.cs Special")
+      vim.cmd("hi! link @lsp.type.parameter.cs Italicized")
+      vim.cmd("hi! link @lsp.type.typeParameter.cs Exception")
+      vim.cmd("hi! link @lsp.mod.static.cs Bold")
+      vim.cmd("hi! link @lsp.typemod.constantName.static.cs HyperlinkBold")
+      vim.cmd("hi! link @lsp.type.keyword.cs Keyword")
     end,
   },
 }

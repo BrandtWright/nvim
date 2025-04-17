@@ -2,12 +2,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@lsp.type.variable", fg = c.white, bg = nil, styles = {} },
-        { name = "@lsp.variable.member", fg = c.green, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link @lsp.type.variable Identifier")
+      vim.cmd("hi! link @lsp.variable.member Property")
     end,
   },
 }

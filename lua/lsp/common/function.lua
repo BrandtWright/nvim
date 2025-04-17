@@ -2,23 +2,16 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@function", fg = c.yellow, bg = nil, styles = {} },
-        { name = "@function.call", fg = c.yellow, bg = nil, styles = { "i" } },
-      })
+      vim.cmd("hi! link @function Function")
+      vim.cmd("hi! link @function.call FunctionCall")
+      vim.cmd("hi! link @function.builtin Special")
     end,
   },
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@lsp.type.function", fg = c.yellow, bg = nil, styles = {} },
-        { name = "@lsp.typemod.function.", fg = c.yellow, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link @lsp.type.function Function")
+      vim.cmd("hi! link @lsp.typemod.function Function")
     end,
   },
 }

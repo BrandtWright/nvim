@@ -17,12 +17,8 @@ return {
       "ChatGPTRun",
     },
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "ChatGPTTotalTokens", fg = nil, bg = c.brown, styles = {} },
-        { name = "ChatGPTTotalTokensBorder", fg = c.brown, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link ChatGPTTotalTokens UnderstatedInverse")
+      vim.cmd("hi! link ChatGPTTotalTokensBorder Understated")
 
       local my_opts = {
         api_key_cmd = "pass show ai/openai/apikey",

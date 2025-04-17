@@ -3,11 +3,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "@markup.heading.gitcommit", fg = c.gold, bg = c.terminal },
-      })
+      vim.cmd("hi! link @markup.heading.gitcommit Special")
 
       local my_opts = {
         ensure_installed = {
@@ -64,16 +60,9 @@ return {
     "lewis6991/gitsigns.nvim",
     cmd = { "Gitsigns" },
     opts = function(_, opts)
-      -- Highlights
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-
-      highlights.register({
-        -- Git (Treesitter)
-        { name = "GitSignsAdd", fg = c.green, bg = c.terminal, styles = {} },
-        { name = "GitSignsChange", fg = c.yellow, bg = c.terminal, styles = {} },
-        { name = "GitSignsDelete", fg = c.red, bg = c.terminal, styles = {} },
-      })
+      vim.cmd("hi! link GitSignAdd DiffAdd")
+      vim.cmd("hi! link GitSignsChange DiffChange")
+      vim.cmd("hi! link GitSignsDelete DiffDelete")
 
       local my_opts = {
         signs = {

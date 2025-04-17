@@ -10,12 +10,9 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, opts)
-      local c = require("bw.config.colors")
-      local highlights = require("bw.config.highlights")
-      highlights.register({
-        { name = "NeoTreeDirectoryIcon", fg = c.blue, bg = nil, styles = {} },
-        { name = "NeoTreeDirectoryName", fg = c.white, bg = nil, styles = {} },
-      })
+      vim.cmd("hi! link NeoTreeDirectoryIcon Keyword")
+      vim.cmd("hi! link NeoTreeDirectoryName Normal")
+
       local my_opts = {
         window = {
           mappings = {

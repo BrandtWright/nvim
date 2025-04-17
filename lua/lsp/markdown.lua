@@ -5,7 +5,6 @@ return {
       vim.cmd("hi! link @text.literal.markdown_inline Function")
       vim.cmd("hi! link @markup.quote.markdown Special")
       vim.cmd("hi! link @punctuation.special.markdown Understated") -- Lsp hover floating window uses this?
-      vim.cmd("hi! link @punctuation.special Special")
       vim.cmd("hi! link @markup.raw.markdown_inline String")
       vim.cmd("hi! link @markup.heading.1.markdown MarkdownHeading1")
       vim.cmd("hi! link @markup.heading.2.markdown MarkdownHeading2")
