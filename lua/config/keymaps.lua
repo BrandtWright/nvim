@@ -136,6 +136,7 @@ map("n", "<leader>osp", function()
   Snacks.win.new({
     file = vim.fn.expand("~/data/projects/scratch/README.md"),
     width = 0.6,
+    max_width = 90,
     height = 0.6,
     border = "single",
     wo = {
