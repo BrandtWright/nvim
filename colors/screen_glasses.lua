@@ -221,28 +221,28 @@ Group.new("FunctionCall", colors.yellow, nil, styles.italic)
 -- Diagnostics
 -------------------------------------------------------------------------
 
-Group.link("Error", groups.Exception)
+Group.link("Error", groups.Red)
 Group.link("DiagnosticError", groups.Error)
 Group.link("DiagnosticSignError", groups.Error)
 Group.link("DiagnosticFloatingError", groups.Error)
 Group.link("DiagnosticVirtualTextError", groups.Error)
 Group.link("DiagnosticUnderlineError", groups.RedUndercurl)
 
-Group.link("Warn", groups.Function)
+Group.link("Warn", groups.Yellow)
 Group.link("DiagnosticWarn", groups.Warn)
 Group.link("DiagnosticSignWarn", groups.Warn)
 Group.link("DiagnosticFloatingWarn", groups.Warn)
 Group.link("DiagnosticVirtualTextWarn", groups.Warn)
 Group.link("DiagnosticUnderlineWarn", groups.YellowUndercurl)
 
-Group.link("Info", groups.Keyword)
+Group.link("Info", groups.Blue)
 Group.link("DiagnosticInfo", groups.Info)
 Group.link("DiagnosticSignInfo", groups.Info)
 Group.link("DiagnosticFloatingInfo", groups.Info)
 Group.link("DiagnosticVirtualTextInfo", groups.Info)
 Group.link("DiagnosticUnderlineInfo", groups.BlueUndercurl)
 
-Group.link("Hint", groups.Conditional)
+Group.link("Hint", groups.Magenta)
 Group.link("DiagnosticHint", groups.Hint)
 Group.link("DiagnosticSignHint", groups.Hint)
 Group.link("DiagnosticFloatingHint", groups.Hint)
