@@ -114,7 +114,7 @@ Group.new("DarkPanel", colors.dark_panel_foreground, colors.dark_panel_backgroun
 -- Shades
 Group.new("DarkGray", colors.gray_10)
 Group.new("Gray", colors.gray_34)
-Group.new("LightGray", colors.gray_50)
+Group.new("BrightGray", colors.gray_50)
 
 -- Italicized
 Group.new("Italicized", nil, nil, styles.italic)
@@ -128,10 +128,6 @@ Group.new("BlueUndercurl", colors.blue, nil, styles.underline) -- info
 Group.new("MagentaUndercurl", colors.magenta, nil, styles.undercurl) -- hint
 Group.new("GreenUndercurl", colors.green, nil, styles.undercurl) -- ok
 
--- Bold
-Group.new("Bold", nil, nil, styles.bold)
-Group.new("BrightBlueBold", colors.bright_blue, nil, styles.bold)
-
 -- Bright Italics
 Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, False
 
@@ -140,7 +136,7 @@ Group.new("Border", colors.panel_background)
 Group.new("Understated", colors.brown)
 Group.new("UnderstatedInverse", nil, colors.brown)
 Group.new("Seperator", colors.panel_background)
-Group.new("Match", colors.green)
+Group.link("Match", groups.Green)
 Group.new("Critical", colors.bright_red)
 Group.new("HyperLink", colors.bright_blue)
 
@@ -162,13 +158,12 @@ Group.link("FloatTitle", groups.Normal)
 -- Pmenu
 Group.new("Pmenu", nil, groups.Background)
 Group.new("PmenuSel", nil, colors.dark_panel_background)
-Group.link("Comment", groups.GrayItalicized)
 
 -- Search
-Group.new("Search", nil, groups.DarkBlue)
+Group.new("Search", nil, colors.dark_blue) -- No inverse-blue implemented yet
 Group.link("CurSearch", groups.Search)
 Group.link("IncSearch", groups.Search)
-Group.new("Visual", nil, groups.LightGray)
+Group.new("Visual", nil, colors.gray_50)
 
 -- Gutter
 Group.link("LineNr", groups.Understated)
@@ -188,24 +183,22 @@ Group.link("Keyword", groups.Blue) -- generickeyword
 Group.link("Function", groups.Yellow) -- function name
 Group.link("Label", groups.Cyan) -- case, default, etc.
 Group.link("Repeat", groups.Magenta) -- for, do, while, etc.
-
 -- Bright (missing: red, yellow)
 Group.link("PreProc", groups.BrightBlue) -- Generic preprocessor
 Group.link("Structure", groups.BrightGreen) -- struct, union, emum, etc.
 Group.link("Constant", groups.BrightCyan) -- generic constant
 Group.link("Statement", groups.BrightMagenta) -- flow control, return, etc.
-
 -- Extended (missing: brown, rose, dark_violet, bright_violet)
 Group.link("String", groups.Orange) -- string constant
 Group.link("Special", groups.Gold) -- generic special
 Group.link("Conditional", groups.Violet) -- if, then, else, endif, swicth, etc.
-
+-- Styles
+Group.link("Comment", groups.GrayItalicized)
 -- Dupes
 Group.link("Character", groups.Constant) -- Character constant: 'c', '/n'
 Group.link("Number", groups.Constant) -- Number constant: 234, 0xff
 Group.link("Float", groups.Constant) -- Floating point constant: 2.3e10
 Group.link("Operator", groups.Normal) -- sizeof, "+", "*", etc.
-
 Group.link("Include", groups.PreProc) -- Preprocessor #include
 Group.link("Define", groups.PreProc) -- Preprocessor #define
 Group.link("Macro", groups.PreProc) -- Same as Define

@@ -19,8 +19,6 @@ return {
       vim.cmd("hi! link @lsp.type.interface.cs Special")
       vim.cmd("hi! link @lsp.type.parameter.cs Italicized")
       vim.cmd("hi! link @lsp.type.typeParameter.cs Exception")
-      vim.cmd("hi! link @lsp.mod.static.cs Bold")
-      vim.cmd("hi! link @lsp.typemod.constantName.static.cs BrightBlueBold")
       vim.cmd("hi! link @lsp.type.keyword.cs Keyword")
     end,
   },
