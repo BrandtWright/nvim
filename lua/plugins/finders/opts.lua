@@ -1,8 +1,7 @@
-local set_telescope_highlights = function()
+return function()
   -- TelescopeResultsSpecialComment: LineNr in current_buffer_fuzzy_find
   -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
-  -- vim.cmd("hi! link TelescopeResultsSpecialComment Brown")
-  -- vim.cmd("hi! link TelescopeSelection Cursorline")
+  vim.cmd("hi! link TelescopeResultsSpecialComment Understated")
   vim.cmd("hi! link TelescopeSelectionCaret Red")
   vim.cmd("hi! link TelescopeMatching Match")
   -- This appears to be broken and doesn't acually highlight anything.
@@ -11,16 +10,6 @@ local set_telescope_highlights = function()
   vim.cmd("hi! link TelescopePreviewBorder Border")
   vim.cmd("hi! link TelescopePromptBorder Border")
   vim.cmd("hi! link TelescopeResultsBorder Border")
-end
-
-return function()
-  -- Some colorschemes set Telescope highlights. So, reapply telescope highlights
-  -- when the colorscheme changes so that tele highlights are consistent.
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    group = vim.api.nvim_create_augroup("TelescopeColorSchemeChangedHandler", { clear = true }),
-    callback = set_telescope_highlights,
-  })
-  set_telescope_highlights()
 
   return {
     defaults = {
