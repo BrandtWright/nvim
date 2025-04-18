@@ -148,7 +148,7 @@ Group.new("TabLine", colors.bright_black, colors.dark_panel_background)
 Group.new("TabLineSel", groups.Foreground, colors.dark_panel_background)
 Group.new("TabLineFill", colors.red, colors.dark_panel_background)
 
--- Floating Window
+-- Float
 Group.link("FloatBorder", groups.Border)
 Group.link("FloatTitle", groups.Normal)
 
@@ -195,6 +195,7 @@ Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, Fa
 
 -- Dupes
 Group.link("Character", groups.Constant) -- Character constant: 'c', '/n'
+Group.link("SpecialChar", groups.Gold) -- Character constant: 'c', '/n'
 Group.link("Number", groups.Constant) -- Number constant: 234, 0xff
 Group.link("Float", groups.Constant) -- Floating point constant: 2.3e10
 Group.link("Operator", groups.Normal) -- sizeof, "+", "*", etc.
@@ -215,10 +216,6 @@ Group.new("DiffText", groups.String)
 
 -- Lsp
 Group.new("FunctionCall", colors.yellow, nil, styles.italic)
-
--------------------------------------------------------------------------
--- Highlight Group Links
--------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
 -- Diagnostics
