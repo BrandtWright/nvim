@@ -128,9 +128,6 @@ Group.new("BlueUndercurl", colors.blue, nil, styles.underline) -- info
 Group.new("MagentaUndercurl", colors.magenta, nil, styles.undercurl) -- hint
 Group.new("GreenUndercurl", colors.green, nil, styles.undercurl) -- ok
 
--- Bright Italics
-Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, False
-
 -- TODO: Clean up Custom Highlights
 Group.new("Border", colors.panel_background)
 Group.new("Understated", colors.brown)
@@ -194,6 +191,8 @@ Group.link("Special", groups.Gold) -- generic special
 Group.link("Conditional", groups.Violet) -- if, then, else, endif, swicth, etc.
 -- Styles
 Group.link("Comment", groups.GrayItalicized)
+Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, False
+
 -- Dupes
 Group.link("Character", groups.Constant) -- Character constant: 'c', '/n'
 Group.link("Number", groups.Constant) -- Number constant: 234, 0xff
