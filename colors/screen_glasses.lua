@@ -98,7 +98,7 @@ Group.new("BrightYellow", colors.bright_yellow)
 Group.new("BrightCyan", colors.bright_cyan)
 Group.new("BrightMagenta", colors.bright_magenta)
 
--- Extended Colors
+-- Extended Colors (check for unused highlights)
 Group.new("Orange", colors.orange)
 Group.new("Brown", colors.brown)
 Group.new("Gold", colors.gold)
@@ -129,7 +129,7 @@ Group.new("MagentaUndercurl", colors.magenta, nil, styles.undercurl) -- hint
 Group.new("GreenUndercurl", colors.green, nil, styles.undercurl) -- ok
 
 -- TODO: Clean up Custom Highlights
-Group.new("Border", colors.panel_background)
+Group.new("Border", colors.gray_34, colors.terminal)
 Group.new("Understated", colors.brown)
 Group.new("UnderstatedInverse", nil, colors.brown)
 Group.new("Seperator", colors.panel_background)

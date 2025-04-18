@@ -1,13 +1,16 @@
 local set_telescope_highlights = function()
   -- TelescopeResultsSpecialComment: LineNr in current_buffer_fuzzy_find
   -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
-  vim.cmd("hi! link TelescopeResultsSpecialComment Highlight")
-  vim.cmd("hi! link TelescopeSelection Highlight")
-  vim.cmd("hi! link TelescopeSelectionCaret Highlight")
-  vim.cmd("hi! link TelescopeMatching Highlight")
-  vim.cmd("hi! link TelescopePreviewBorder Highlight")
-  vim.cmd("hi! link TelescopePromptBorder Highlight")
-  vim.cmd("hi! link TelescopeResultsBorder Highlight")
+  -- vim.cmd("hi! link TelescopeResultsSpecialComment Brown")
+  -- vim.cmd("hi! link TelescopeSelection Cursorline")
+  vim.cmd("hi! link TelescopeSelectionCaret Red")
+  vim.cmd("hi! link TelescopeMatching Match")
+  -- This appears to be broken and doesn't acually highlight anything.
+  -- Watch: https://github.com/nvim-telescope/telescope.nvim/issues/3441
+  vim.cmd("hi! link TelescopePreviewMatch Match")
+  vim.cmd("hi! link TelescopePreviewBorder Border")
+  vim.cmd("hi! link TelescopePromptBorder Border")
+  vim.cmd("hi! link TelescopeResultsBorder Border")
 end
 
 return function()
