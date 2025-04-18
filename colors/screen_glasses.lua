@@ -40,34 +40,24 @@ Color.new("bright_blue", load_color("color12") or "#77b3fc")
 Color.new("bright_yellow", load_color("color11") or "#fcfca4")
 Color.new("bright_cyan", load_color("color14") or "#a7cacc")
 Color.new("bright_magenta", load_color("color13") or "#c99fd6")
--- Tertiary Colors
-Color.new("rose", load_color("screen_glasses.ui.rose") or "#c08081") -- Not implemented
-Color.new("orange", load_color("screen_glasses.ui.orange") or "#ce9178") -- String, WhichKeyGroup
-Color.new("dark_violet", load_color("screen_glasses.ui.dark_violet") or "#8a7989") -- @lsp.type.delegateName.cs
-Color.new("violet", load_color("screen_glasses.ui.violet") or "#8a7b9e") -- Conditional, Hint
-Color.new("bright_violet", load_color("screen_glasses.ui.bright_violet") or "#eebaff") -- Repeat
--- puctuation.special.markdown, float border, CursorLnNumber, LineNumber, ChatGPT, LspInfoBorder, WhichKeyBorder
+-- Extended Colors
+Color.new("rose", load_color("screen_glasses.ui.rose") or "#c08081")
+Color.new("orange", load_color("screen_glasses.ui.orange") or "#ce9178")
+Color.new("violet", load_color("screen_glasses.ui.violet") or "#8a7b9e")
+Color.new("bright_violet", load_color("screen_glasses.ui.bright_violet") or "#eebaff")
 Color.new("brown", load_color("screen_glasses.ui.brown") or "#473d37")
--- Statement, Statement Special, function.builtin, constant.builtin, lsp.typemod.function, constructor,
--- lsp.tyoe,interface, markup.heading.gitcommit, LazySpecial, markup.list.markdown, FoldColumn,
--- markup.heading.1.vimdoc, RenderMarkdownBullet, TelescopeSelectionCaret, NoiceCmdlinePopupBorder, NoicecmdlineIcon,
--- NoiceCmdlinePopupTitle, MiniIndestscopeSymbol, WhichKeyDesc
-Color.new("gold", load_color("screen_glasses.ui.gold") or "#a38e5d") -- Lots of LSP stuff
--- Terminal (Normal Background)
-Color.new("terminal", load_color("background") or "#191816")
--- ColorColumn, TelescopeSelection
+Color.new("gold", load_color("screen_glasses.ui.gold") or "#a38e5d")
 Color.new("gray_10", load_color("screen_glasses.ui.gray_10") or "#1a1a1a")
--- Comment, @Comment, @lsp.type.comment
 Color.new("gray_34", load_color("screen_glasses.ui.gray_34") or "#575757")
--- Visual
 Color.new("gray_50", load_color("screen_glasses.ui.gray_50") or "#333333")
--- Search, CurrentSearch, IncSearch
 Color.new("dark_blue", load_color("screen_glasses.ui.resolution_blue") or "#202080")
+-- UI
 Color.new("cursorline", load_color("screen_glasses.ui.cursor_line_background") or "#1f1d1b")
 Color.new("panel_background", load_color("screen_glasses.ui.secondary_background") or "#504945")
 Color.new("light_panel_background", load_color("screen_glasses.ui.tertiary_background") or "#a89984")
 Color.new("dark_panel_foreground", load_color("screen_glasses.ui.primary_foreground") or "#a6977c")
 Color.new("dark_panel_background", load_color("screen_glasses.ui.primary_background") or "#2C2826")
+Color.new("terminal", load_color("background") or "#191816")
 
 -------------------------------------------------------------------------
 -- Color Pallette
@@ -98,7 +88,7 @@ Group.new("BrightYellow", colors.bright_yellow)
 Group.new("BrightCyan", colors.bright_cyan)
 Group.new("BrightMagenta", colors.bright_magenta)
 
--- Extended Colors (check for unused highlights)
+-- Extended Colors
 Group.new("Orange", colors.orange)
 Group.new("Brown", colors.brown)
 Group.new("Gold", colors.gold)
@@ -107,6 +97,8 @@ Group.new("Rose", colors.rose)
 Group.new("Violet", colors.violet)
 Group.new("DarkViolet", colors.dark_violet)
 Group.new("BrightViolet", colors.bright_violet)
+
+-- Panels
 Group.new("LightPanel", groups.Background, colors.light_panel_background)
 Group.new("Panel", colors.light_panel_background, colors.panel_background)
 Group.new("DarkPanel", colors.dark_panel_foreground, colors.dark_panel_background)
@@ -180,15 +172,18 @@ Group.link("Keyword", groups.Blue) -- generickeyword
 Group.link("Function", groups.Yellow) -- function name
 Group.link("Label", groups.Cyan) -- case, default, etc.
 Group.link("Repeat", groups.Magenta) -- for, do, while, etc.
+
 -- Bright (missing: red, yellow)
 Group.link("PreProc", groups.BrightBlue) -- Generic preprocessor
 Group.link("Structure", groups.BrightGreen) -- struct, union, emum, etc.
 Group.link("Constant", groups.BrightCyan) -- generic constant
 Group.link("Statement", groups.BrightMagenta) -- flow control, return, etc.
+
 -- Extended (missing: brown, rose, dark_violet, bright_violet)
 Group.link("String", groups.Orange) -- string constant
 Group.link("Special", groups.Gold) -- generic special
 Group.link("Conditional", groups.Violet) -- if, then, else, endif, swicth, etc.
+
 -- Styles
 Group.link("Comment", groups.GrayItalicized)
 Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, False
