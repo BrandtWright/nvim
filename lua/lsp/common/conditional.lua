@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      vim.cmd("hi! link @conditional Statement")
+      vim.cmd("hi! link @conditional Conditional")
     end,
   },
 }

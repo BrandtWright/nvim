@@ -11,16 +11,16 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      vim.cmd("hi! link @lsp.type.class.cs Property")
+      vim.cmd("hi! link @lsp.type.class.cs Type")
       vim.cmd("hi! link @lsp.type.struct.cs Structure")
       vim.cmd("hi! link @lsp.type.property.cs Identifier")
       vim.cmd("hi! link @lsp.type.delegateName.cs Method")
-      vim.cmd("hi! link @lsp.type.extensionMethodName.cs Property")
+      vim.cmd("hi! link @lsp.type.extensionMethodName.cs Type")
       vim.cmd("hi! link @lsp.type.interface.cs Special")
       vim.cmd("hi! link @lsp.type.parameter.cs Italicized")
       vim.cmd("hi! link @lsp.type.typeParameter.cs Exception")
       vim.cmd("hi! link @lsp.mod.static.cs Bold")
-      vim.cmd("hi! link @lsp.typemod.constantName.static.cs HyperlinkBold")
+      vim.cmd("hi! link @lsp.typemod.constantName.static.cs BrightBlueBold")
       vim.cmd("hi! link @lsp.type.keyword.cs Keyword")
     end,
   },

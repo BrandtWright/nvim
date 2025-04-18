@@ -104,3 +104,9 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
+
+opt.guicursor = table.concat({
+  "n-v-c-sm:block-Cursor", -- normal, visual, command, select: block with Cursor highlight
+  "i-ci-ve:ver25-Cursor", -- insert, insert command, visual exclusive: vertical bar
+  "r-cr-o:hor20-Cursor", -- replace, confirm, operator-pending: horizontal bar
+}, ",")

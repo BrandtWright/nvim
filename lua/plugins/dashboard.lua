@@ -2,7 +2,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
-      vim.cmd("hi! link SnacksDashboardHeader Property")
+      vim.cmd("hi! link SnacksDashboardHeader Type")
       vim.cmd("hi! link SnacksDashboardDesc Identifier")
       vim.cmd("hi! link SnacksDashboardKey Identifier")
       vim.cmd("hi! link SnacksDashboardFooter Identifier")

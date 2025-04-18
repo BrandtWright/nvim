@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function()
-      vim.cmd("hi! link @operator Normal")
+      vim.cmd("hi! link @operator Operator")
     end,
   },
 }

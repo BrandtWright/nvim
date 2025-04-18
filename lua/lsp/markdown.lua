@@ -15,7 +15,7 @@ return {
       vim.cmd("hi! link @markup.link.markdown_inline HyperLink")
       vim.cmd("hi! link @markup.link.url.markdown_inline HyperLink")
       vim.cmd("hi! link @markup.link.label.markdown_inline HyperLink")
-      vim.cmd("hi! link @markup.list.checked.markdown Property")
+      vim.cmd("hi! link @markup.list.checked.markdown Type")
       vim.cmd("hi! link @markup.list.unchecked.markdown Exception")
     end,
   },
@@ -29,7 +29,7 @@ return {
       vim.cmd("hi! link RenderMarkdownH5Bg MarkdownHeading5")
       vim.cmd("hi! link RenderMarkdownH6Bg MarkdownHeading6")
       vim.cmd("hi! link RenderMarkdownBullet Special")
-      vim.cmd("hi! link RenderMarkdownChecked Property")
+      vim.cmd("hi! link RenderMarkdownChecked Type")
       vim.cmd("hi! link RenderMarkdownUnchecked Exception")
       vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
 
