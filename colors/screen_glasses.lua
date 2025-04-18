@@ -112,6 +112,7 @@ Group.new("BrightGray", colors.gray_50)
 Group.new("Italicized", nil, nil, styles.italic)
 Group.new("GrayItalicized", colors.gray_34, nil, styles.italic)
 Group.new("BrightCyanItalicized", colors.bright_cyan, nil, styles.italic)
+Group.new("YellowItalicized", colors.yellow, nil, styles.italic)
 
 -- Undercurls
 Group.new("RedUndercurl", colors.red, nil, styles.undercurl) -- error
@@ -187,6 +188,7 @@ Group.link("Conditional", groups.Violet) -- if, then, else, endif, swicth, etc.
 -- Styles
 Group.link("Comment", groups.GrayItalicized)
 Group.link("Boolean", groups.BrightCyanItalicized) -- Boolean constant: TRUE, False
+Group.link("FunctionCall", groups.YellowItalicized)
 
 -- Dupes
 Group.link("Character", groups.Constant) -- Character constant: 'c', '/n'
@@ -208,9 +210,6 @@ Group.new("DiffAdd", groups.Green)
 Group.new("DiffChange", groups.Function)
 Group.new("DiffDelete", groups.Exception)
 Group.new("DiffText", groups.String)
-
--- Lsp
-Group.new("FunctionCall", colors.yellow, nil, styles.italic)
 
 -------------------------------------------------------------------------
 -- Diagnostics
