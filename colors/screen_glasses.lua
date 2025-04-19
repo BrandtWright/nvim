@@ -73,35 +73,36 @@ local ui = {
 --- UI Palette }}}
 
 --- Highlihgts {{{
+local highlight = vim.api.nvim_set_hl
 
 -- Set up color palette
 for k, v in pairs(cp) do
-  vim.api.nvim_set_hl(0, k, { fg = v })
-  vim.api.nvim_set_hl(0, string.format("%s_inverse", k), { bg = v })
-  vim.api.nvim_set_hl(0, string.format("%s_italic", k), { fg = v, italic = true })
-  vim.api.nvim_set_hl(0, string.format("%s_underline", k), { fg = v, underline = true })
-  vim.api.nvim_set_hl(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
+  highlight(0, k, { fg = v })
+  highlight(0, string.format("%s_inverse", k), { bg = v })
+  highlight(0, string.format("%s_italic", k), { fg = v, italic = true })
+  highlight(0, string.format("%s_underline", k), { fg = v, underline = true })
+  highlight(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
 end
 
 -- Set up UI
-vim.api.nvim_set_hl(0, "Normal", { fg = ui.foreground, bg = ui.background })
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = ui.panel_background })
-vim.api.nvim_set_hl(0, "EndOfBUffer", { fg = ui.background })
-vim.api.nvim_set_hl(0, "Tabline", { fg = cp.bright_black, bg = cp.dark_panel_background })
-vim.api.nvim_set_hl(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background })
-vim.api.nvim_set_hl(0, "TabLineFill", { fg = cp.Red, bg = ui.dark_panel_background })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = ui.cursor_line_background })
+highlight(0, "Normal", { fg = ui.foreground, bg = ui.background })
+highlight(0, "WinSeparator", { fg = ui.panel_background })
+highlight(0, "EndOfBUffer", { fg = ui.background })
+highlight(0, "Tabline", { fg = cp.bright_black, bg = cp.dark_panel_background })
+highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background })
+highlight(0, "TabLineFill", { fg = cp.Red, bg = ui.dark_panel_background })
+highlight(0, "CursorLine", { bg = ui.cursor_line_background })
 vim.cmd("hi! link ColorColumn CursorLine")
 vim.cmd("hi! link NonText brown")
 
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
-vim.api.nvim_set_hl(0, "border", { fg = ui.panel_background })
-vim.api.nvim_set_hl(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_background })
-vim.api.nvim_set_hl(0, "panel", { fg = ui.panel_foreground, bg = ui.panel_background })
-vim.api.nvim_set_hl(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_panel_background })
-vim.api.nvim_set_hl(0, "visual_muted", { bg = ui.dark_panel_background })
+highlight(0, "border", { fg = ui.panel_background })
+highlight(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_background })
+highlight(0, "panel", { fg = ui.panel_foreground, bg = ui.panel_background })
+highlight(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_panel_background })
+highlight(0, "visual_muted", { bg = ui.dark_panel_background })
 
 vim.api.nvim_set_hl(0, "bold", { bold = true })
 
