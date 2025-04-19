@@ -14,9 +14,9 @@ return {
     opts = function(_, opts)
       vim.cmd("hi! link BlinkCmpKind Special")
       vim.cmd("hi! link BlinkCmpDoc Normal")
-      vim.cmd("hi! link BlinkCmpDocSeparator Special")
-      vim.cmd("hi! link BlinkCmpDocBorder Special")
-      vim.cmd("hi! link BlinkCmpMenuBorder Special")
+      vim.cmd("hi! link BlinkCmpDocSeparator Border")
+      vim.cmd("hi! link BlinkCmpDocBorder Border")
+      vim.cmd("hi! link BlinkCmpMenuBorder Border")
 
       local my_opts = {
         completion = {
