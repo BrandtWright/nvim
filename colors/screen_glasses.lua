@@ -329,9 +329,14 @@ vim.cmd("hi! link PreCondit PreProc") -- Preprocessor #if, #else, #endif, etc.
 -- Diff
 --------------------------------------------------------------------------------
 
-vim.cmd("hi! link DiffAdd green")
+vim.cmd("hi! link Add green")
+vim.cmd("hi! link Added green")
+vim.cmd("hi! link DiffAdd Added")
+vim.cmd("hi! link DiffAdded Added")
 vim.cmd("hi! link DiffChange yellow")
+vim.cmd("hi! link DiffChanged yellow")
 vim.cmd("hi! link DiffDelete red")
+vim.cmd("hi! link DiffRemoved red")
 vim.cmd("hi! link DiffText orange")
 
 -------------------------------------------------------------------------

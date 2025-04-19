@@ -3,6 +3,7 @@ return function()
   -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
   vim.cmd("hi! link TelescopeResultsSpecialComment NonText")
   vim.cmd("hi! link TelescopeSelectionCaret Red")
+  vim.cmd("hi! link TelescopeSelection Cursorline")
   vim.cmd("hi! link TelescopeMatching Match")
   -- This appears to be broken and doesn't acually highlight anything.
   -- Watch: https://github.com/nvim-telescope/telescope.nvim/issues/3441
