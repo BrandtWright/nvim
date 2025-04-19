@@ -271,6 +271,8 @@ vim.cmd("hi! link FloatTitle Normal")
 -- popup menu
 vim.cmd("hi! link Pmenu Nommal")
 vim.cmd("hi! link PmenuSel panel")
+vim.cmd("hi! link PmenuSbar panel")
+vim.cmd("hi! link PmenuThumb panel")
 
 -- Search
 vim.cmd("hi! link Search dark_blue_inverse")
