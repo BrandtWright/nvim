@@ -17,8 +17,8 @@ return {
       "ChatGPTRun",
     },
     opts = function(_, opts)
-      vim.cmd("hi! link ChatGPTTotalTokens UnderstatedInverse")
-      vim.cmd("hi! link ChatGPTTotalTokensBorder Understated")
+      vim.cmd("hi! link ChatGPTTotalTokens brown_inverse")
+      vim.cmd("hi! link ChatGPTTotalTokensBorder brown")
 
       local my_opts = {
         api_key_cmd = "pass show ai/openai/apikey",
