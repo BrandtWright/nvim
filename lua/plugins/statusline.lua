@@ -2,10 +2,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      vim.cmd("hi! link LuaLineDiffAdd DiffAdd")
-      vim.cmd("hi! link LuaLineDiffChange DiffChange")
-      vim.cmd("hi! link LuaLineDiffDelete DiffDelete")
-
       -- TODO: Use highlights instead
       local theme = require("lualine.themes.gruvbox_dark")
       local c = require("bw.config.colors")

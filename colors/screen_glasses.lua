@@ -1,12 +1,8 @@
---- Initialization {{{
-
 vim.api.nvim_command("set termguicolors")
 vim.api.nvim_command("let g:colors_name='screen_glasses'")
 vim.api.nvim_command("set background=dark")
 
---- Initialization }}}
-
---- Helper Functions {{{
+local highlight = vim.api.nvim_set_hl
 
 --- Gets a color from the xresource database
 ---@param key string
@@ -19,10 +15,7 @@ local load = function(key)
   return color
 end
 
---- Helper Functions }}}
-
--- Color Palette {{{
-
+---@class ColorPalette table<string, string>
 local cp = {
   ["white"] = load("color7") or "#ebdbb2",
   ["black"] = load("color0") or "#575757",
@@ -54,10 +47,6 @@ local cp = {
   ["dark_blue"] = load("screen_glasses.ui.resolution_blue") or "#202080",
 }
 
---- Color Palette }}}
-
---- UI Palette {{{
-
 local ui = {
   ["panel_foreground"] = load("not_implemented") or "#a89984",
   ["panel_background"] = load("screen_glasses.ui.secondary_background") or "#504945",
@@ -70,15 +59,11 @@ local ui = {
   ["foreground"] = load("foreground") or "#ebdbb2",
 }
 
---- UI Palette }}}
-
---- Highlihgts {{{
-local highlight = vim.api.nvim_set_hl
-
 -- Set up color palette
 for k, v in pairs(cp) do
   highlight(0, k, { fg = v })
-  highlight(0, string.format("%s_inverse", k), { bg = v })
+  highlight(0, string.format("%s_background", k), { bg = v })
+  highlight(0, string.format("%s_inverse", k), { fg = ui.background, bg = v })
   highlight(0, string.format("%s_italic", k), { fg = v, italic = true })
   highlight(0, string.format("%s_underline", k), { fg = v, underline = true })
   highlight(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
@@ -86,11 +71,12 @@ end
 
 -- Set up UI
 highlight(0, "Normal", { fg = ui.foreground, bg = ui.background })
+highlight(0, "Ignore", { fg = ui.background, bg = ui.background })
 highlight(0, "WinSeparator", { fg = ui.panel_background })
 highlight(0, "EndOfBUffer", { fg = ui.background })
-highlight(0, "Tabline", { fg = cp.bright_black, bg = cp.dark_panel_background })
+highlight(0, "Tabline", { fg = cp.bright_black, bg = ui.dark_panel_background })
 highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background })
-highlight(0, "TabLineFill", { fg = cp.Red, bg = ui.dark_panel_background })
+highlight(0, "TabLineFill", { fg = cp.red, bg = ui.dark_panel_background })
 highlight(0, "CursorLine", { bg = ui.cursor_line_background })
 vim.cmd("hi! link ColorColumn CursorLine")
 vim.cmd("hi! link NonText black")
@@ -121,14 +107,14 @@ vim.cmd("hi! link PmenuSbar panel")
 vim.cmd("hi! link PmenuThumb panel")
 
 -- Search
-vim.cmd("hi! link Search dark_blue_inverse")
+vim.cmd("hi! link Search dark_blue_background")
 vim.cmd("hi! link CurSearch Search")
 vim.cmd("hi! link IncSearch Search")
-vim.cmd("hi! link Visual bright_gray_inverse")
+vim.cmd("hi! link Visual bright_gray_background")
 
 -- Gutter
 vim.cmd("hi! link LineNr black")
-vim.cmd("hi! link CursorLineNr NonText")
+vim.cmd("hi! link CursorLineNr bright_black")
 vim.cmd("hi! link SignColumn Normal")
 vim.cmd("hi! link Folded dark_panel")
 vim.cmd("hi! link FoldColumn Normal")
@@ -138,10 +124,10 @@ vim.cmd("hi! link FoldColumn Normal")
 --------------------------------------------------------------------------------
 
 -- Standard Colors (missing: none)
--- Bright (missing: yellow, black, white)
+-- Bright (missing: yellow, white)
 -- Extended (missing: brown)
 
-vim.cmd("hi! link Comment NonText") -- any comment
+vim.cmd("hi! link Comment bright_black") -- any comment
 
 vim.cmd("hi! link Constant bright_cyan") -- any constant
 vim.cmd("hi! link String orange") -- string constant
@@ -180,21 +166,29 @@ vim.cmd("hi! link Delimiter Normal") -- special punctuaation: '(', '[', '{', ';'
 vim.cmd("hi! link SpecialComment Special") -- special character in a constant
 vim.cmd("hi! link Debug violet") -- debugging statements
 
--- Dupes
+vim.cmd("hi! link Todo blue") -- debugging statements
 
 --------------------------------------------------------------------------------
 -- Diff
 --------------------------------------------------------------------------------
 
-vim.cmd("hi! link Add green")
-vim.cmd("hi! link Added green")
-vim.cmd("hi! link DiffAdd Added")
-vim.cmd("hi! link DiffAdded Added")
-vim.cmd("hi! link DiffChange yellow")
-vim.cmd("hi! link DiffChanged yellow")
-vim.cmd("hi! link DiffDelete red")
-vim.cmd("hi! link DiffRemoved red")
-vim.cmd("hi! link DiffText orange")
+vim.cmd("hi! link Add green") -- defined in runtime/syntax/diff.vim, not a core group
+
+-- group-name (Normal)
+vim.cmd("hi! link Added green") -- added line in a diff
+vim.cmd("hi! link Changed yellow") -- changed line in a diff
+vim.cmd("hi! link Removed red") -- removed line in a diff
+
+-- Some colorschemes and plugins  use these (Normal)
+vim.cmd("hi! link DiffAdded Added") -- added line in a diff
+vim.cmd("hi! link DiffChanged Changed") -- debugging statements
+vim.cmd("hi! link DiffRemoved Removed") -- debugging statements
+
+-- highlight-groups (Inverse)
+vim.cmd("hi! link DiffAdd green_inverse") -- Diff mode: Added line.
+vim.cmd("hi! link DiffChange yellow_inverse") -- Diff mode: Changed line.
+vim.cmd("hi! link DiffDelete red_inverse") -- Diff mode: Deleted line.
+vim.cmd("hi! link DiffText blue_inverse") -- Diffmode: Changed line
 
 -------------------------------------------------------------------------
 -- Diagnostics
@@ -252,5 +246,3 @@ vim.api.nvim_set_hl(0, "MarkdownHeading4", { fg = "#73644e", bg = "#191816", bol
 vim.api.nvim_set_hl(0, "MarkdownHeading5", { fg = "#665945", bg = "#191816", bold = true })
 vim.api.nvim_set_hl(0, "MarkdownHeading6", { fg = "#594e3d", bg = "#191816", bold = true })
 vim.api.nvim_set_hl(0, "MarkdownCode", { bg = "#1f1e1b" })
-
---- Hihglights }}}

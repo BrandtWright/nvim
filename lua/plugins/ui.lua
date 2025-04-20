@@ -1,12 +1,5 @@
 return {
   {
-    "folke/todo-comments.nvim",
-    opts = function()
-      vim.cmd("hi! link Todo Propterty")
-      vim.cmd("hi! link TodoSignTODO Propterty")
-    end,
-  },
-  {
     "norcalli/nvim-colorizer.lua",
   },
   {

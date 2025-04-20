@@ -60,9 +60,9 @@ return {
     "lewis6991/gitsigns.nvim",
     cmd = { "Gitsigns" },
     opts = function(_, opts)
-      vim.cmd("hi! link GitSignAdd DiffAdd")
-      vim.cmd("hi! link GitSignsChange DiffChange")
-      vim.cmd("hi! link GitSignsDelete DiffDelete")
+      -- vim.cmd("hi! link GitSignAdd DiffAdd")
+      -- vim.cmd("hi! link GitSignsChange DiffChange")
+      -- vim.cmd("hi! link GitSignsDelete DiffDelete")
 
       local my_opts = {
         signs = {
