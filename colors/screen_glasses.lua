@@ -137,8 +137,8 @@ vim.cmd("hi! link FoldColumn Normal")
 -- Syntax Highlighting
 --------------------------------------------------------------------------------
 
--- Standard Colors (missing: black)
--- Bright (missing: yellow, black)
+-- Standard Colors (missing: none)
+-- Bright (missing: yellow, black, white)
 -- Extended (missing: brown)
 
 vim.cmd("hi! link Comment NonText") -- any comment
@@ -152,6 +152,7 @@ vim.cmd("hi! link Float Constant") -- Floating point constant: 2.3e10
 
 vim.cmd("hi! link Identifier white") -- variable name
 vim.cmd("hi! link Function yellow") -- function name (also: methods for classes)
+vim.cmd("hi! link FunctionCall yellow_italic") -- Custom: differentiate function names from calls
 
 vim.cmd("hi! link Statement bright_magenta") -- flow control, return, etc.
 vim.cmd("hi! link Conditional Statement") -- if, them else, endif switch, etc.
@@ -162,8 +163,8 @@ vim.cmd("hi! link Keyword blue") -- generic keyword
 vim.cmd("hi! link Exception red") -- try,catch, throw, etc.
 
 vim.cmd("hi! link PreProc bright_blue") -- generic preprocessor
-vim.cmd("hi! link Include black") -- preprocessor #include
-vim.cmd("hi! link Define bright_black") -- preprocessor #define
+vim.cmd("hi! link Include PreProc") -- preprocessor #include
+vim.cmd("hi! link Define PreProc") -- preprocessor #define
 vim.cmd("hi! link Macro PreProc") -- same as Define
 vim.cmd("hi! link PreCondit PreProc") -- preprocessor #if, #else, #endif, etc.
 
@@ -174,13 +175,10 @@ vim.cmd("hi! link Typedef magenta") -- a typedef
 
 vim.cmd("hi! link Special gold") -- generic special
 vim.cmd("hi! link SpecialChar Special") -- special character in a constant
-vim.cmd("hi! link Tag bright_violet") -- special character in a constant
-vim.cmd("hi! link Delimiter rose") -- special character in a constant
+vim.cmd("hi! link Tag bright_violet") -- you can use `CTRL-]`
+vim.cmd("hi! link Delimiter Normal") -- special punctuaation: '(', '[', '{', ';', ':', '.', ',', etc.
 vim.cmd("hi! link SpecialComment Special") -- special character in a constant
-vim.cmd("hi! link Debug violet") -- special character in a constant
-
--- Custom:  Styles
-vim.cmd("hi! link FunctionCall yellow_italic") -- function call (also: method calls for classes)
+vim.cmd("hi! link Debug violet") -- debugging statements
 
 -- Dupes
 
