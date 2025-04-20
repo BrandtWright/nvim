@@ -59,7 +59,7 @@ local ui = {
   ["foreground"] = load("foreground") or "#ebdbb2",
 }
 
--- Set up color palette
+-- Generate the color palette
 for k, v in pairs(cp) do
   highlight(0, k, { fg = v })
   highlight(0, string.format("%s_background", k), { bg = v })
@@ -171,24 +171,24 @@ vim.cmd("hi! link Todo blue")                   -- debugging statements
 --------------------------------------------------------------------------------
 -- Diff
 --------------------------------------------------------------------------------
-
-vim.cmd("hi! link Add green") -- defined in runtime/syntax/diff.vim, not a core group
+-- defined in runtime/syntax/diff.vim, not a core group highlight/syntax group
+vim.cmd("hi! link Add green")                   -- generic addd
 
 -- group-name (Normal)
-vim.cmd("hi! link Added green") -- added line in a diff
-vim.cmd("hi! link Changed yellow") -- changed line in a diff
-vim.cmd("hi! link Removed red") -- removed line in a diff
+vim.cmd("hi! link Added green")                 -- added line in a diff
+vim.cmd("hi! link Changed yellow")              -- changed line in a diff
+vim.cmd("hi! link Removed red")                 -- removed line in a diff
 
 -- Some colorschemes and plugins  use these (Normal)
-vim.cmd("hi! link DiffAdded Added") -- added line in a diff
-vim.cmd("hi! link DiffChanged Changed") -- debugging statements
-vim.cmd("hi! link DiffRemoved Removed") -- debugging statements
+vim.cmd("hi! link DiffAdded Added")             -- added line in a diff
+vim.cmd("hi! link DiffChanged Changed")         -- debugging statements
+vim.cmd("hi! link DiffRemoved Removed")         -- debugging statements
 
 -- highlight-groups (Inverse)
-vim.cmd("hi! link DiffAdd green_inverse") -- Diff mode: Added line.
-vim.cmd("hi! link DiffChange yellow_inverse") -- Diff mode: Changed line.
-vim.cmd("hi! link DiffDelete red_inverse") -- Diff mode: Deleted line.
-vim.cmd("hi! link DiffText blue_inverse") -- Diffmode: Changed line
+vim.cmd("hi! link DiffAdd green_inverse")       -- Diff mode: Added line.
+vim.cmd("hi! link DiffChange yellow_inverse")   -- Diff mode: Changed line.
+vim.cmd("hi! link DiffDelete red_inverse")      -- Diff mode: Deleted line.
+vim.cmd("hi! link DiffText blue_inverse")       -- Diffmode: Changed line
 
 -------------------------------------------------------------------------
 -- Diagnostics
