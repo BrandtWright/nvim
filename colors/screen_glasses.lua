@@ -6,7 +6,6 @@ vim.api.nvim_command("set termguicolors")
 vim.api.nvim_command("let g:colors_name='screen_glasses'")
 vim.api.nvim_command("set background=dark")
 
-
 -------------------------------------------------------------------------
 -- Helper Functions
 -------------------------------------------------------------------------
@@ -154,68 +153,73 @@ vim.cmd("hi! link FoldColumn Normal")
 -- Bright (missing: yellow, white)
 -- Extended (missing: brown)
 
-vim.cmd("hi! link Comment bright_black")        -- any comment
+-- stylua: ignore start
+vim.cmd("hi! link Comment bright_black")          -- any comment
 
-vim.cmd("hi! link Constant bright_cyan")        -- any constant
-vim.cmd("hi! link String orange")               -- string constant
-vim.cmd("hi! link Character Constant")          -- Character constant: 'c', '/n'
-vim.cmd("hi! link Number Constant")             -- Number constant: 234, 0xff
-vim.cmd("hi! link Boolean bright_cyan_italic")  -- a boolean constant: TRUE, false
-vim.cmd("hi! link Float Constant")              -- Floating point constant: 2.3e10
+vim.cmd("hi! link Constant bright_cyan")          -- any constant
+vim.cmd("hi! link String orange")                 -- string constant
+vim.cmd("hi! link Character Constant")            -- Character constant: 'c', '/n'
+vim.cmd("hi! link Number Constant")               -- Number constant: 234, 0xff
+vim.cmd("hi! link Boolean bright_cyan_italic")    -- a boolean constant: TRUE, false
+vim.cmd("hi! link Float Constant")                -- Floating point constant: 2.3e10
 
-vim.cmd("hi! link Identifier white")            -- variable name
-vim.cmd("hi! link Function yellow")             -- function name (also: methods for classes)
-vim.cmd("hi! link FunctionCall yellow_italic")  -- Custom: differentiate function names from calls
+vim.cmd("hi! link Identifier white")              -- variable name
+vim.cmd("hi! link Function yellow")               -- function name (also: methods for classes)
+vim.cmd("hi! link FunctionCall yellow_italic")    -- Custom: differentiate function names from calls
 
-vim.cmd("hi! link Statement bright_magenta")    -- flow control, return, etc.
-vim.cmd("hi! link Conditional Statement")       -- if, them else, endif switch, etc.
-vim.cmd("hi! link Repeat Statement")            -- for, do, while, etc.
-vim.cmd("hi! link Label cyan")                  -- case, default, etc.
-vim.cmd("hi! link Operator Normal")             -- sizeof, "+", "*", etc.
-vim.cmd("hi! link Keyword blue")                -- generic keyword
-vim.cmd("hi! link Exception red")               -- try,catch, throw, etc.
+vim.cmd("hi! link Statement bright_magenta")      -- flow control, return, etc.
+vim.cmd("hi! link Conditional Statement")         -- if, them else, endif switch, etc.
+vim.cmd("hi! link Repeat Statement")              -- for, do, while, etc.
+vim.cmd("hi! link Label cyan")                    -- case, default, etc.
+vim.cmd("hi! link Operator Normal")               -- sizeof, "+", "*", etc.
+vim.cmd("hi! link Keyword blue")                  -- generic keyword
+vim.cmd("hi! link Exception red")                 -- try,catch, throw, etc.
 
-vim.cmd("hi! link PreProc bright_blue")         -- generic preprocessor
-vim.cmd("hi! link Include PreProc")             -- preprocessor #include
-vim.cmd("hi! link Define PreProc")              -- preprocessor #define
-vim.cmd("hi! link Macro PreProc")               -- same as Define
-vim.cmd("hi! link PreCondit PreProc")           -- preprocessor #if, #else, #endif, etc.
+vim.cmd("hi! link PreProc bright_blue")           -- generic preprocessor
+vim.cmd("hi! link Include PreProc")               -- preprocessor #include
+vim.cmd("hi! link Define PreProc")                -- preprocessor #define
+vim.cmd("hi! link Macro PreProc")                 -- same as Define
+vim.cmd("hi! link PreCondit PreProc")             -- preprocessor #if, #else, #endif, etc.
 
-vim.cmd("hi! link Type green")                  -- int long char etc
-vim.cmd("hi! link StorageClass bright_red")     -- static, register, volitile, etc.
-vim.cmd("hi! link Structure bright_green")      -- struct, union, enum, etc
-vim.cmd("hi! link Typedef magenta")             -- a typedef
+vim.cmd("hi! link Type green")                    -- int long char etc
+vim.cmd("hi! link StorageClass bright_red")       -- static, register, volitile, etc.
+vim.cmd("hi! link Structure bright_green")        -- struct, union, enum, etc
+vim.cmd("hi! link Typedef magenta")               -- a typedef
 
-vim.cmd("hi! link Special gold")                -- generic special
-vim.cmd("hi! link SpecialChar Special")         -- special character in a constant
-vim.cmd("hi! link Tag bright_violet")           -- you can use `CTRL-]`
-vim.cmd("hi! link Delimiter Normal")            -- special punctuaation: '(', '[', '{', ';', ':', '.', ',', etc.
-vim.cmd("hi! link SpecialComment Special")      -- special character in a constant
-vim.cmd("hi! link Debug violet")                -- debugging statements
+vim.cmd("hi! link Special gold")                  -- generic special
+vim.cmd("hi! link SpecialChar Special")           -- special character in a constant
+vim.cmd("hi! link Tag bright_violet")             -- you can use `CTRL-]`
+vim.cmd("hi! link Delimiter Normal")              -- special punctuaation: (, [, {, ;, :, ., ,, etc.
+vim.cmd("hi! link SpecialComment Special")        -- special character in a constant
+vim.cmd("hi! link Debug violet")                  -- debugging statements
 
-vim.cmd("hi! link Todo blue")                   -- debugging statements
+vim.cmd("hi! link Todo blue")                     -- debugging statements
+--stylua: ignore end
 
 --------------------------------------------------------------------------------
 -- Diff
 --------------------------------------------------------------------------------
+
+-- stylua: ignore start
 -- defined in runtime/syntax/diff.vim, not a core group highlight/syntax group
-vim.cmd("hi! link Add green")                   -- generic addd
+vim.cmd("hi! link Add green") -- generic addd
 
 -- group-name (Normal)
-vim.cmd("hi! link Added green")                 -- added line in a diff
-vim.cmd("hi! link Changed yellow")              -- changed line in a diff
-vim.cmd("hi! link Removed red")                 -- removed line in a diff
+vim.cmd("hi! link Added green")               -- added line in a diff
+vim.cmd("hi! link Changed yellow")            -- changed line in a diff
+vim.cmd("hi! link Removed red")               -- removed line in a diff
 
--- Some colorschemes and plugins  use these (Normal)
-vim.cmd("hi! link DiffAdded Added")             -- added line in a diff
-vim.cmd("hi! link DiffChanged Changed")         -- debugging statements
-vim.cmd("hi! link DiffRemoved Removed")         -- debugging statements
+-- Some colorschemes and plugins use these (Normal)
+vim.cmd("hi! link DiffAdded Added")           -- added line in a diff
+vim.cmd("hi! link DiffChanged Changed")       -- debugging statements
+vim.cmd("hi! link DiffRemoved Removed")       -- debugging statements
 
 -- highlight-groups (Inverse)
-vim.cmd("hi! link DiffAdd green_inverse")       -- Diff mode: Added line.
-vim.cmd("hi! link DiffChange yellow_inverse")   -- Diff mode: Changed line.
-vim.cmd("hi! link DiffDelete red_inverse")      -- Diff mode: Deleted line.
-vim.cmd("hi! link DiffText blue_inverse")       -- Diffmode: Changed line
+vim.cmd("hi! link DiffAdd green_inverse")     -- Diff mode: Added line.
+vim.cmd("hi! link DiffChange yellow_inverse") -- Diff mode: Changed line.
+vim.cmd("hi! link DiffDelete red_inverse")    -- Diff mode: Deleted line.
+vim.cmd("hi! link DiffText blue_inverse")     -- Diffmode: Changed line
+-- stylua: ignore end
 
 -------------------------------------------------------------------------
 -- Diagnostics
