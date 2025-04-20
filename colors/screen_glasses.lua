@@ -1,6 +1,15 @@
+-------------------------------------------------------------------------
+-- Configure Colorscheme
+-------------------------------------------------------------------------
+
 vim.api.nvim_command("set termguicolors")
 vim.api.nvim_command("let g:colors_name='screen_glasses'")
 vim.api.nvim_command("set background=dark")
+
+
+-------------------------------------------------------------------------
+-- Helper Functions
+-------------------------------------------------------------------------
 
 local highlight = vim.api.nvim_set_hl
 
@@ -14,6 +23,10 @@ local load = function(key)
   end
   return color
 end
+
+-------------------------------------------------------------------------
+-- Color Palette
+-------------------------------------------------------------------------
 
 ---@class ColorPalette table<string, string>
 local cp = {
@@ -59,7 +72,10 @@ local ui = {
   ["foreground"] = load("foreground") or "#ebdbb2",
 }
 
--- Generate the color palette
+--------------------------------------------------------------------------------
+-- Color Groups and Styles
+--------------------------------------------------------------------------------
+
 for k, v in pairs(cp) do
   highlight(0, k, { fg = v })
   highlight(0, string.format("%s_background", k), { bg = v })
@@ -68,10 +84,14 @@ for k, v in pairs(cp) do
   highlight(0, string.format("%s_underline", k), { fg = v, underline = true })
   highlight(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
 end
+highlight(0, "Underlined", { underline = true })
+highlight(0, "Italicized", { italic = true })
+highlight(0, "Undercurled", { undercurl = true })
 
 --------------------------------------------------------------------------------
--- Common UI eiements and Styles
+-- Custom UI
 --------------------------------------------------------------------------------
+
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
@@ -81,9 +101,6 @@ highlight(0, "panel", { fg = ui.panel_foreground, bg = ui.panel_background })
 highlight(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_panel_background })
 highlight(0, "visual_muted", { bg = ui.dark_panel_background })
 highlight(0, "bold", { bold = true })
-highlight(0, "Underlined", { underline = true })
-highlight(0, "Italicized", { italic = true })
-highlight(0, "Undercurled", { undercurl = true })
 
 --------------------------------------------------------------------------------
 -- Neovim UI
