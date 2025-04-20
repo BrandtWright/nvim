@@ -69,19 +69,9 @@ for k, v in pairs(cp) do
   highlight(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
 end
 
--- Set up UI
-highlight(0, "Normal", { fg = ui.foreground, bg = ui.background })
-highlight(0, "Ignore", { fg = ui.background, bg = ui.background })
-highlight(0, "WinSeparator", { fg = ui.panel_background })
-highlight(0, "EndOfBUffer", { fg = ui.background })
-highlight(0, "Tabline", { fg = cp.bright_black, bg = ui.dark_panel_background })
-highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background })
-highlight(0, "TabLineFill", { fg = cp.red, bg = ui.dark_panel_background })
-highlight(0, "CursorLine", { bg = ui.cursor_line_background })
-vim.cmd("hi! link ColorColumn CursorLine")
-vim.cmd("hi! link NonText black")
-
--- Define some extra groups for common ui elements and styles
+--------------------------------------------------------------------------------
+-- Common UI eiements and Styles
+--------------------------------------------------------------------------------
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
@@ -95,12 +85,32 @@ highlight(0, "Underlined", { underline = true })
 highlight(0, "Italicized", { italic = true })
 highlight(0, "Undercurled", { undercurl = true })
 
+--------------------------------------------------------------------------------
+-- Neovim UI
+--------------------------------------------------------------------------------
+
+-- Main Window
+highlight(0, "Normal", { fg = ui.foreground, bg = ui.background })
+highlight(0, "Ignore", { fg = ui.background, bg = ui.background })
+highlight(0, "WinSeparator", { fg = ui.panel_background })
+highlight(0, "EndOfBUffer", { fg = ui.background })
+
+-- Tabline
+highlight(0, "Tabline", { fg = cp.bright_black, bg = ui.dark_panel_background })
+highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background })
+highlight(0, "TabLineFill", { fg = cp.red, bg = ui.dark_panel_background })
+
+-- Cursorline
+highlight(0, "CursorLine", { bg = ui.cursor_line_background })
+vim.cmd("hi! link ColorColumn CursorLine")
+vim.cmd("hi! link NonText black")
+
 -- Float
 vim.cmd("hi! link NormalFloat Normal")
 vim.cmd("hi! link FloatBorder Border")
 vim.cmd("hi! link FloatTitle Normal")
 
--- popup menu
+-- Poopup Menu
 vim.cmd("hi! link Pmenu Nommal")
 vim.cmd("hi! link PmenuSel panel")
 vim.cmd("hi! link PmenuSbar panel")
