@@ -93,7 +93,7 @@ highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background }
 highlight(0, "TabLineFill", { fg = cp.Red, bg = ui.dark_panel_background })
 highlight(0, "CursorLine", { bg = ui.cursor_line_background })
 vim.cmd("hi! link ColorColumn CursorLine")
-vim.cmd("hi! link NonText brown")
+vim.cmd("hi! link NonText black")
 
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
@@ -105,6 +105,9 @@ highlight(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_p
 highlight(0, "visual_muted", { bg = ui.dark_panel_background })
 
 vim.api.nvim_set_hl(0, "bold", { bold = true })
+vim.api.nvim_set_hl(0, "Underlined", { underline = true })
+vim.api.nvim_set_hl(0, "Italicized", { italic = true })
+vim.api.nvim_set_hl(0, "Undercurled", { undercurl = true })
 
 -- Float
 vim.cmd("hi! link NormalFloat Normal")
@@ -124,7 +127,7 @@ vim.cmd("hi! link IncSearch Search")
 vim.cmd("hi! link Visual bright_gray_inverse")
 
 -- Gutter
-vim.cmd("hi! link LineNr NonText")
+vim.cmd("hi! link LineNr black")
 vim.cmd("hi! link CursorLineNr NonText")
 vim.cmd("hi! link SignColumn Normal")
 vim.cmd("hi! link Folded dark_panel")
@@ -135,40 +138,51 @@ vim.cmd("hi! link FoldColumn Normal")
 --------------------------------------------------------------------------------
 
 -- Standard Colors (missing: black)
-vim.cmd("hi! link Identifier white") -- variable name
-vim.cmd("hi! link Exception red") -- try,catch, throw, etc.
-vim.cmd("hi! link Type green") -- generic type
-vim.cmd("hi! link Keyword blue") -- generic keyword
-vim.cmd("hi! link Function yellow") -- function name
-vim.cmd("hi! link Label cyan") -- case, default, etc.
-vim.cmd("hi! link Repeat magenta") -- for, do, while, etc.
+-- Bright (missing: yellow, black)
+-- Extended (missing: brown)
 
--- Bright (missing: red, yellow)
-vim.cmd("hi! link PreProc bright_blue") -- generic preprocessor
-vim.cmd("hi! link Structure bright_green") -- struct, union, enum, ect.
-vim.cmd("hi! link Constant bright_cyan") -- generic constant
-vim.cmd("hi! link Statement bright_magenta") -- flow control, return, etc.
+vim.cmd("hi! link Comment NonText") -- any comment
 
--- Extended (missing: brown, rose, dark_violet, bright_violet)
+vim.cmd("hi! link Constant bright_cyan") -- any constant
 vim.cmd("hi! link String orange") -- string constant
-vim.cmd("hi! link Special gold") -- generic special
-vim.cmd("hi! link Condition violet") -- if, them else, endif switch, etc.
+vim.cmd("hi! link Character Constant") -- Character constant: 'c', '/n'
+vim.cmd("hi! link Number Constant") -- Number constant: 234, 0xff
+vim.cmd("hi! link Boolean bright_cyan_italic") -- a boolean constant: TRUE, false
+vim.cmd("hi! link Float Constant") -- Floating point constant: 2.3e10
 
--- Styles
-vim.cmd("hi! link Comment gray_italic") -- if, them else, endif switch, etc.
-vim.cmd("hi! link Boolean bright_cyan_italic") -- if, them else, endif switch, etc.
-vim.cmd("hi! link FunctionCall yellow_italic") -- if, them else, endif switch, etc.
+vim.cmd("hi! link Identifier white") -- variable name
+vim.cmd("hi! link Function yellow") -- function name (also: methods for classes)
+
+vim.cmd("hi! link Statement bright_magenta") -- flow control, return, etc.
+vim.cmd("hi! link Conditional Statement") -- if, them else, endif switch, etc.
+vim.cmd("hi! link Repeat Statement") -- for, do, while, etc.
+vim.cmd("hi! link Label cyan") -- case, default, etc.
+vim.cmd("hi! link Operator Normal") -- sizeof, "+", "*", etc.
+vim.cmd("hi! link Keyword blue") -- generic keyword
+vim.cmd("hi! link Exception red") -- try,catch, throw, etc.
+
+vim.cmd("hi! link PreProc bright_blue") -- generic preprocessor
+vim.cmd("hi! link Include black") -- preprocessor #include
+vim.cmd("hi! link Define bright_black") -- preprocessor #define
+vim.cmd("hi! link Macro PreProc") -- same as Define
+vim.cmd("hi! link PreCondit PreProc") -- preprocessor #if, #else, #endif, etc.
+
+vim.cmd("hi! link Type green") -- int long char etc
+vim.cmd("hi! link StorageClass bright_red") -- static, register, volitile, etc.
+vim.cmd("hi! link Structure bright_green") -- struct, union, enum, etc
+vim.cmd("hi! link Typedef magenta") -- a typedef
+
+vim.cmd("hi! link Special gold") -- generic special
+vim.cmd("hi! link SpecialChar Special") -- special character in a constant
+vim.cmd("hi! link Tag bright_violet") -- special character in a constant
+vim.cmd("hi! link Delimiter rose") -- special character in a constant
+vim.cmd("hi! link SpecialComment Special") -- special character in a constant
+vim.cmd("hi! link Debug violet") -- special character in a constant
+
+-- Custom:  Styles
+vim.cmd("hi! link FunctionCall yellow_italic") -- function call (also: method calls for classes)
 
 -- Dupes
-vim.cmd("hi! link Character Constant") -- Character constant: 'c', '/n'
-vim.cmd("hi! link SpecialChar gold") -- Character constant: 'c', '/n'
-vim.cmd("hi! link Number Constant") -- Number constant: 234, 0xff
-vim.cmd("hi! link Float Constant") -- Floating point constant: 2.3e10
-vim.cmd("hi! link Operator Normal") -- sizeof, "+", "*", etc.
-vim.cmd("hi! link Include PreProc") -- Preprocessor #include
-vim.cmd("hi! link Define PreProc") -- Preprocessor #define
-vim.cmd("hi! link Macro PreProc") -- Same as Define
-vim.cmd("hi! link PreCondit PreProc") -- Preprocessor #if, #else, #endif, etc.
 
 --------------------------------------------------------------------------------
 -- Diff
