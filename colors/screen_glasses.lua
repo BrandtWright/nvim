@@ -242,6 +242,7 @@ vim.cmd("hi! link DiagnosticUnderlineOk green_undercurl")
 -------------------------------------------------------------------------
 -- LSP
 -------------------------------------------------------------------------
+
 vim.cmd("hi! link LspReferenceRead bold")
 vim.cmd("hi! link LspReferenceText visual_muted")
 
