@@ -81,6 +81,7 @@ highlight(0, "CursorLine", { bg = ui.cursor_line_background })
 vim.cmd("hi! link ColorColumn CursorLine")
 vim.cmd("hi! link NonText black")
 
+-- Define some extra groups for common ui elements and styles
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
@@ -89,11 +90,10 @@ highlight(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_b
 highlight(0, "panel", { fg = ui.panel_foreground, bg = ui.panel_background })
 highlight(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_panel_background })
 highlight(0, "visual_muted", { bg = ui.dark_panel_background })
-
-vim.api.nvim_set_hl(0, "bold", { bold = true })
-vim.api.nvim_set_hl(0, "Underlined", { underline = true })
-vim.api.nvim_set_hl(0, "Italicized", { italic = true })
-vim.api.nvim_set_hl(0, "Undercurled", { undercurl = true })
+highlight(0, "bold", { bold = true })
+highlight(0, "Underlined", { underline = true })
+highlight(0, "Italicized", { italic = true })
+highlight(0, "Undercurled", { undercurl = true })
 
 -- Float
 vim.cmd("hi! link NormalFloat Normal")
