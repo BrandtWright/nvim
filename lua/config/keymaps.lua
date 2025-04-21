@@ -63,7 +63,7 @@ map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move to the Left" })
 --------------------------------------------------------------------------------
 map("n", "<leader>ms", "<cmd>split | terminal<cr>a", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
 map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>a", { desc = "Terminal Buffer (Vertical Split)", silent = true })
-map({ "n", "t" }, "<c-m>", helpers.toggle_terminal, { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<c-_>", helpers.toggle_terminal, { desc = "Toggle Terminal" })
 
 --------------------------------------------------------------------------------
 -- Lines
