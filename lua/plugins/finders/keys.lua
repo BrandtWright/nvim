@@ -193,11 +193,7 @@ return {
   },
   {
     "<leader>sh",
-    function()
-      tele.help_tags()
-    end,
-    mode = "n",
-    desc = "Help Pages",
+    false,
   },
   {
     "<leader>sH",

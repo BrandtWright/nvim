@@ -66,6 +66,13 @@ return {
         desc = "LSP Symbols (Workspace)",
       },
       {
+        "<leader>sh",
+        function()
+          require("snacks").picker.help()
+        end,
+        desc = "Help Pages",
+      },
+      {
         "<leader>sH",
         function()
           require("snacks").picker.highlights()
