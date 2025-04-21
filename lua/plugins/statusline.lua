@@ -2,11 +2,20 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      -- TODO: Build up theme from screen_glasses, not gruvbox...
-      local get_color = require("bw.util.highlights").get_color
-      local raisin_black = get_color("dark_panel", "bg")
-      local white = get_color("white", "fg")
-      local theme = require("lualine.themes.gruvbox_dark")
+      -- TODO: Remove dependency on gruvbox
+      local highlights = require("bw.util.highlights")
+      local raisin_black = highlights.get_color("dark_panel", "bg")
+      local white = highlights.get_color("white", "fg")
+      local gruvbox_theme = require("lualine.themes.gruvbox_dark")
+      local screen_glasses_theme = {
+        normal = { c = { fg = white, bg = raisin_black } },
+        insert = { c = { fg = white, bg = raisin_black } },
+        visual = { c = { fg = white, bg = raisin_black } },
+        replace = { c = { fg = white, bg = raisin_black } },
+        command = { c = { fg = white, bg = raisin_black } },
+        inactive = { c = { fg = white, bg = raisin_black } },
+      }
+      local theme = vim.tbl_deep_extend("force", gruvbox_theme, screen_glasses_theme)
       theme.normal.c.fg = white
       theme.normal.c.bg = raisin_black
       theme.insert.c.fg = white
