@@ -6,7 +6,7 @@ return {
     "folke/snacks.nvim",
     opts = function()
       vim.cmd("hi! link SnacksPickerMatch Match")
-      vim.cmd("hi! link SnacksPickerListCursorline CursorLine")
+      vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
     end,
     keys = {
       {

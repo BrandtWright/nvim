@@ -50,15 +50,15 @@ local cp = {
 }
 
 local ui = {
+  ["foreground"] = load("foreground") or "#ebdbb2",
+  ["background"] = load("background") or "#191816",
+  ["cursor_line"] = load("screen_glasses.ui.cursor_line_background") or "#1f1d1b",
   ["panel_foreground"] = load("not_implemented") or "#a89984",
   ["panel_background"] = load("screen_glasses.ui.secondary_background") or "#504945",
   ["bright_panel_foreground"] = load("not_implemented") or "#191816",
   ["bright_panel_background"] = load("screen_glasses.ui.tertiary_background") or "#a89984",
   ["dark_panel_foreground"] = load("screen_glasses.ui.primary_foreground") or "#a6977c",
   ["dark_panel_background"] = load("screen_glasses.ui.primary_background") or "#2C2826",
-  ["cursor_line_background"] = load("screen_glasses.ui.cursor_line_background") or "#1f1d1b",
-  ["background"] = load("background") or "#191816",
-  ["foreground"] = load("foreground") or "#ebdbb2",
 }
 
 --------------------------------------------------------------------------------
@@ -72,10 +72,12 @@ for k, v in pairs(cp) do
   highlight(0, string.format("%s_italic", k), { fg = v, italic = true })
   highlight(0, string.format("%s_underline", k), { fg = v, underline = true })
   highlight(0, string.format("%s_undercurl", k), { fg = v, undercurl = true })
+  highlight(0, string.format("%s_bold", k), { fg = v, bold = true })
 end
 highlight(0, "Underlined", { underline = true })
 highlight(0, "Italicized", { italic = true })
 highlight(0, "Undercurled", { undercurl = true })
+highlight(0, "Bold", { bold = true })
 
 --------------------------------------------------------------------------------
 -- Custom UI
@@ -103,11 +105,14 @@ highlight(0, "bold", { bold = true })
 -- Builtin Highlighting Groups: UI
 --------------------------------------------------------------------------------
 
--- Main Window
+-- General
 highlight(0, "Normal", { fg = ui.foreground, bg = ui.background })
+highlight(0, "normal_bold", { fg = ui.foreground, bg = ui.background, bold = true })
 highlight(0, "Ignore", { fg = ui.background, bg = ui.background })
 highlight(0, "WinSeparator", { fg = ui.panel_background })
 highlight(0, "EndOfBUffer", { fg = ui.background })
+vim.cmd("hi! link NonText black")
+vim.cmd("hi! link Visual bright_gray_background")
 
 -- Tabline
 highlight(0, "Tabline", { fg = cp.bright_black, bg = ui.dark_panel_background })
@@ -115,9 +120,8 @@ highlight(0, "TabLineSel", { fg = ui.foreground, bg = ui.dark_panel_background }
 highlight(0, "TabLineFill", { fg = cp.red, bg = ui.dark_panel_background })
 
 -- Cursorline
-highlight(0, "CursorLine", { bg = ui.cursor_line_background })
+highlight(0, "CursorLine", { bg = ui.cursor_line })
 vim.cmd("hi! link ColorColumn CursorLine")
-vim.cmd("hi! link NonText black")
 
 -- Floats
 vim.cmd("hi! link FloatBorder bright_black")
@@ -128,15 +132,14 @@ vim.cmd("hi! link FloatFooter FloatBrder")
 
 -- Poopup Menu
 vim.cmd("hi! link Pmenu Nommal")
-vim.cmd("hi! link PmenuSel panel")
-vim.cmd("hi! link PmenuSbar panel")
-vim.cmd("hi! link PmenuThumb panel")
+highlight(0, "PmenuSel", { bg = ui.panel_background, bold = true })
+vim.cmd("hi! link PmenuSbar PmenuSel")
+vim.cmd("hi! link PmenuThumb PmenuSel")
 
 -- Search
 vim.cmd("hi! link Search dark_blue_background")
 vim.cmd("hi! link CurSearch Search")
 vim.cmd("hi! link IncSearch Search")
-vim.cmd("hi! link Visual bright_gray_background")
 
 -- Gutter
 vim.cmd("hi! link LineNr black")
@@ -152,8 +155,9 @@ vim.cmd("hi! link FoldColumn Normal")
 --------------------------------------------------------------------------------
 
 --stylua: ignore start
-vim.cmd("hi! link Directory blue")                -- directory names and special names in lists
-vim.cmd("hi! link Conceal black")                 -- see `:conceallevel`
+vim.cmd("hi! link Directory blue")     -- directory names and special names in lists
+vim.cmd("hi! link Conceal black")      -- see `:conceallevel`
+vim.cmd("hi! link Title normal_bold")  -- Titles for output from ":set all", ":autocmd" etc.
 --stylua: ignore end
 
 --------------------------------------------------------------------------------

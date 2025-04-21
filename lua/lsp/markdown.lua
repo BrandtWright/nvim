@@ -14,8 +14,8 @@ return {
       vim.cmd("hi! link @markup.link.markdown_inline HyperLink")
       vim.cmd("hi! link @markup.link.url.markdown_inline HyperLink")
       vim.cmd("hi! link @markup.link.label.markdown_inline HyperLink")
-      vim.cmd("hi! link @markup.list.checked.markdown Type")
-      vim.cmd("hi! link @markup.list.unchecked.markdown Exception")
+      vim.cmd("hi! link @markup.list.checked.markdown green")
+      vim.cmd("hi! link @markup.list.unchecked.markdown red")
     end,
   },
   {
@@ -31,6 +31,8 @@ return {
       vim.cmd("hi! link RenderMarkdownChecked Type")
       vim.cmd("hi! link RenderMarkdownUnchecked Exception")
       vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
+      vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
+      vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
 
       local my_opts = {
         link = {
