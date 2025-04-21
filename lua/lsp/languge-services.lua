@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      vim.cmd("hi! link LspInfoBorder Border")
+      vim.cmd("hi! link LspInfoBorder FloatBorder")
     end,
   },
   {

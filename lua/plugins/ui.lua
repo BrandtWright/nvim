@@ -27,7 +27,7 @@ return {
       vim.cmd("hi! link WhichKeyGroup String")
       vim.cmd("hi! link WhichKeyDesc Special")
       vim.cmd("hi! link WhichKeyFloat Normal")
-      vim.cmd("hi! link WhichKeyBorder Border")
+      vim.cmd("hi! link WhichKeyBorder FloatBorder")
 
       local my_opts = {
 

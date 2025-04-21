@@ -8,9 +8,9 @@ return function()
   -- This appears to be broken and doesn't acually highlight anything.
   -- Watch: https://github.com/nvim-telescope/telescope.nvim/issues/3441
   vim.cmd("hi! link TelescopePreviewMatch Match")
-  vim.cmd("hi! link TelescopePreviewBorder Border")
-  vim.cmd("hi! link TelescopePromptBorder Border")
-  vim.cmd("hi! link TelescopeResultsBorder Border")
+  vim.cmd("hi! link TelescopePreviewBorder FloatBorder")
+  vim.cmd("hi! link TelescopePromptBorder FloatBorder")
+  vim.cmd("hi! link TelescopeResultsBorder FloatBorder")
 
   return {
     defaults = {

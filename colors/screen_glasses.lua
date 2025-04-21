@@ -84,15 +84,23 @@ highlight(0, "Undercurled", { undercurl = true })
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
-highlight(0, "border", { fg = cp.bright_black })
 highlight(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_background })
+highlight(0, "dark_panel_inverse", { fg = ui.dark_panel_background, bg = ui.dark_panel_foreground })
+highlight(0, "dark_panel_ignore", { fg = ui.dark_panel_background, bg = ui.dark_panel_background })
+highlight(0, "dark_panel_normal_background", { fg = ui.dark_panel_background, bg = ui.background })
 highlight(0, "panel", { fg = ui.panel_foreground, bg = ui.panel_background })
+highlight(0, "panel_inverse", { fg = ui.panel_background, bg = ui.panel_foreground })
+highlight(0, "panel_ignore", { fg = ui.panel_background, bg = ui.panel_background })
+highlight(0, "panel_normal_background", { fg = ui.panel_background, bg = ui.background })
 highlight(0, "bright_panel", { fg = ui.bright_panel_foreground, bg = ui.bright_panel_background })
+highlight(0, "bright_panel_inverse", { fg = ui.bright_panel_background, bg = ui.bright_panel_foreground })
+highlight(0, "bright_panel_ignore", { fg = ui.bright_panel_background, bg = ui.bright_panel_background })
+highlight(0, "bright_panel_normal_background", { fg = ui.bright_panel_foreground, bg = ui.background })
 highlight(0, "visual_muted", { bg = ui.dark_panel_background })
 highlight(0, "bold", { bold = true })
 
 --------------------------------------------------------------------------------
--- Neovim UI
+-- Builtin Highlighting Groups: UI
 --------------------------------------------------------------------------------
 
 -- Main Window
@@ -111,10 +119,12 @@ highlight(0, "CursorLine", { bg = ui.cursor_line_background })
 vim.cmd("hi! link ColorColumn CursorLine")
 vim.cmd("hi! link NonText black")
 
--- Float
+-- Floats
+vim.cmd("hi! link FloatBorder bright_black")
+vim.cmd("hi! link FloatBorderInverse bright_black_inverse")
 vim.cmd("hi! link NormalFloat Normal")
-vim.cmd("hi! link FloatBorder Border")
-vim.cmd("hi! link FloatTitle Normal")
+vim.cmd("hi! link FloatTitle FloatBorder")
+vim.cmd("hi! link FloatFooter FloatBrder")
 
 -- Poopup Menu
 vim.cmd("hi! link Pmenu Nommal")
@@ -132,8 +142,19 @@ vim.cmd("hi! link Visual bright_gray_background")
 vim.cmd("hi! link LineNr black")
 vim.cmd("hi! link CursorLineNr bright_black")
 vim.cmd("hi! link SignColumn Normal")
+
+-- Folds
 vim.cmd("hi! link Folded dark_panel")
 vim.cmd("hi! link FoldColumn Normal")
+
+--------------------------------------------------------------------------------
+-- Builtin Highlighting Groups: General
+--------------------------------------------------------------------------------
+
+--stylua: ignore start
+vim.cmd("hi! link Directory blue")                -- directory names and special names in lists
+vim.cmd("hi! link Conceal black")                 -- see `:conceallevel`
+--stylua: ignore end
 
 --------------------------------------------------------------------------------
 -- Syntax Highlighting
@@ -187,7 +208,7 @@ vim.cmd("hi! link Todo blue")                     -- debugging statements
 --stylua: ignore end
 
 --------------------------------------------------------------------------------
--- Diff
+-- Builtin Highlighting Groups::Diff
 --------------------------------------------------------------------------------
 
 -- stylua: ignore start
