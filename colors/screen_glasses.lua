@@ -18,46 +18,46 @@ local load = require("bw.util.xresources").load
 -------------------------------------------------------------------------
 
 local cp = {
-  ["white"] = load("color7") or "#ebdbb2",
-  ["black"] = load("color0") or "#575757",
-  ["red"] = load("color1") or "#bd7671",
-  ["green"] = load("color2") or "#769482",
-  ["blue"] = load("color4") or "#5692db",
-  ["yellow"] = load("color3") or "#c2c27c",
-  ["cyan"] = load("color6") or "#7b919e",
-  ["magenta"] = load("color5") or "#8f7099",
+  white = load("color7") or "#ebdbb2",
+  black = load("color0") or "#575757",
+  red = load("color1") or "#bd7671",
+  green = load("color2") or "#769482",
+  blue = load("color4") or "#5692db",
+  yellow = load("color3") or "#c2c27c",
+  cyan = load("color6") or "#7b919e",
+  magenta = load("color5") or "#8f7099",
   -- Bright
-  ["bright_white"] = load("color15") or "#fff2d1",
-  ["bright_black"] = load("color8") or "#737373",
-  ["bright_red"] = load("color9") or "#ffa099",
-  ["bright_green"] = load("color10") or "#b9d9b8",
-  ["bright_blue"] = load("color12") or "#77b3fc",
-  ["bright_yellow"] = load("color11") or "#fcfca4",
-  ["bright_cyan"] = load("color14") or "#a7cacc",
-  ["bright_magenta"] = load("color13") or "#c99fd6",
-  -- Extended Colors
-  ["rose"] = load("screen_glasses.ui.rose") or "#c08081",
-  ["orange"] = load("screen_glasses.ui.orange") or "#ce9178",
-  ["violet"] = load("screen_glasses.ui.violet") or "#8a7b9e",
-  ["bright_violet"] = load("screen_glasses.ui.bright_violet") or "#eebaff",
-  ["brown"] = load("screen_glasses.ui.brown") or "#473d37",
-  ["gold"] = load("screen_glasses.ui.gold") or "#a38e5d",
-  ["dark_gray"] = load("screen_glasses.ui.gray_10") or "#1a1a1a",
-  ["gray"] = load("screen_glasses.ui.gray_34") or "#575757",
-  ["bright_gray"] = load("screen_glasses.ui.gray_50") or "#333333",
-  ["dark_blue"] = load("screen_glasses.ui.resolution_blue") or "#202080",
+  bright_white = load("color15") or "#fff2d1",
+  bright_black = load("color8") or "#737373",
+  bright_red = load("color9") or "#ffa099",
+  bright_green = load("color10") or "#b9d9b8",
+  bright_blue = load("color12") or "#77b3fc",
+  bright_yellow = load("color11") or "#fcfca4",
+  bright_cyan = load("color14") or "#a7cacc",
+  bright_magenta = load("color13") or "#c99fd6",
+  --  Extended Colors
+  rose = load("screen_glasses.ui.rose") or "#c08081",
+  orange = load("screen_glasses.ui.orange") or "#ce9178",
+  violet = load("screen_glasses.ui.violet") or "#8a7b9e",
+  bright_violet = load("screen_glasses.ui.bright_violet") or "#eebaff",
+  brown = load("screen_glasses.ui.brown") or "#473d37",
+  gold = load("screen_glasses.ui.gold") or "#a38e5d",
+  dark_gray = load("screen_glasses.ui.gray_10") or "#1a1a1a",
+  gray = load("screen_glasses.ui.gray_34") or "#575757",
+  bright_gray = load("screen_glasses.ui.gray_50") or "#333333",
+  dark_blue = load("screen_glasses.ui.resolution_blue") or "#202080",
 }
 
 local ui = {
-  ["foreground"] = load("foreground") or "#ebdbb2",
-  ["background"] = load("background") or "#191816",
-  ["cursor_line"] = load("screen_glasses.ui.cursor_line_background") or "#1f1d1b",
-  ["panel_foreground"] = load("not_implemented") or "#a89984",
-  ["panel_background"] = load("screen_glasses.ui.secondary_background") or "#504945",
-  ["bright_panel_foreground"] = load("not_implemented") or "#191816",
-  ["bright_panel_background"] = load("screen_glasses.ui.tertiary_background") or "#a89984",
-  ["dark_panel_foreground"] = load("screen_glasses.ui.primary_foreground") or "#a6977c",
-  ["dark_panel_background"] = load("screen_glasses.ui.primary_background") or "#2C2826",
+  foreground = load("foreground") or "#ebdbb2",
+  background = load("background") or "#191816",
+  cursor_line = load("screen_glasses.ui.cursor_line_background") or "#1f1d1b",
+  panel_foreground = load("not_implemented") or "#a89984",
+  panel_background = load("screen_glasses.ui.secondary_background") or "#504945",
+  bright_panel_foreground = load("not_implemented") or "#191816",
+  bright_panel_background = load("screen_glasses.ui.tertiary_background") or "#a89984",
+  dark_panel_foreground = load("screen_glasses.ui.primary_foreground") or "#a6977c",
+  dark_panel_background = load("screen_glasses.ui.primary_background") or "#2C2826",
 }
 
 --------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ highlight(0, "Bold", { bold = true })
 vim.cmd("hi link match green")
 vim.cmd("hi link critical bright_red")
 vim.cmd("hi link hyperlink bright_blue")
-highlight(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_background })
+highlight(0, "dark_panel", { fg = ui.dark_panel_foreground, bg = ui.dark_panel_background, default = true })
 highlight(0, "dark_panel_inverse", { fg = ui.dark_panel_background, bg = ui.dark_panel_foreground })
 highlight(0, "dark_panel_ignore", { fg = ui.dark_panel_background, bg = ui.dark_panel_background })
 highlight(0, "dark_panel_normal_background", { fg = ui.dark_panel_background, bg = ui.background })
