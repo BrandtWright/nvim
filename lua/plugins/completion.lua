@@ -12,7 +12,7 @@ return {
   {
     "saghen/blink.cmp",
     opts = function(_, opts)
-      vim.cmd("hi! link BlinkCmpKind Special")
+      vim.cmd("hi! link BlinkCmpKind bright_cyan")
       vim.cmd("hi! link BlinkCmpDoc Normal")
       vim.cmd("hi! link BlinkCmpDocSeparator WinSeparator")
       vim.cmd("hi! link BlinkCmpDocBorder FloatBorder")

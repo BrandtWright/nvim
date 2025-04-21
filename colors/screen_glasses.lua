@@ -17,7 +17,6 @@ local load = require("bw.util.xresources").load
 -- Color Palette
 -------------------------------------------------------------------------
 
----@class ColorPalette table<string, string>
 local cp = {
   ["white"] = load("color7") or "#ebdbb2",
   ["black"] = load("color0") or "#575757",
@@ -111,6 +110,7 @@ highlight(0, "normal_bold", { fg = ui.foreground, bg = ui.background, bold = tru
 highlight(0, "Ignore", { fg = ui.background, bg = ui.background })
 highlight(0, "WinSeparator", { fg = ui.panel_background })
 highlight(0, "EndOfBUffer", { fg = ui.background })
+highlight(0, "MatchParen", { fg = ui.foreground, bg = cp.bright_black, bold = true })
 vim.cmd("hi! link NonText black")
 vim.cmd("hi! link Visual bright_gray_background")
 
@@ -132,7 +132,7 @@ vim.cmd("hi! link FloatFooter FloatBrder")
 
 -- Poopup Menu
 vim.cmd("hi! link Pmenu Nommal")
-highlight(0, "PmenuSel", { bg = ui.panel_background, bold = true })
+vim.cmd("hi! link PmenuSel bright_gray_background")
 vim.cmd("hi! link PmenuSbar PmenuSel")
 vim.cmd("hi! link PmenuThumb PmenuSel")
 
