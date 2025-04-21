@@ -2,21 +2,10 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      --- Utility to get color values
-      ---@param group string
-      ---@param attr string
-      local function get_color(group, attr)
-        local hl = vim.api.nvim_get_hl(0, { name = group })
-        if hl and hl[attr] then
-          return string.format("#%06x", hl[attr])
-        end
-      end
-
+      -- TODO: Build up theme from screen_glasses, not gruvbox...
+      local get_color = require("bw.util.highlights").get_color
       local raisin_black = get_color("dark_panel", "bg")
       local white = get_color("white", "fg")
-
-      -- TODO: Build up theme from screen_glasses, not gruvbox...
-
       local theme = require("lualine.themes.gruvbox_dark")
       theme.normal.c.fg = white
       theme.normal.c.bg = raisin_black

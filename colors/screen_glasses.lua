@@ -11,17 +11,7 @@ vim.api.nvim_command("set background=dark")
 -------------------------------------------------------------------------
 
 local highlight = vim.api.nvim_set_hl
-
---- Gets a color from the xresource database
----@param key string
----@return string|nil
-local load = function(key)
-  local color = vim.fn.system({ "xrdb", "-get", key }):gsub("\n", "")
-  if not color or color == "" or not color:match("#%x%x%x%x%x%x") then
-    return nil
-  end
-  return color
-end
+local load = require("bw.util.xresources").load
 
 -------------------------------------------------------------------------
 -- Color Palette
