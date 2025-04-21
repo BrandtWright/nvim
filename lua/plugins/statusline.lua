@@ -2,7 +2,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      local hl = require("bw.util.highlights").get_color
+      local hl = require("bw.util.highlights").get_attribute
       local screen_glasses_theme = {
         normal = {
           a = { fg = hl("Normal", "bg"), bg = hl("bright_panel", "bg") },
