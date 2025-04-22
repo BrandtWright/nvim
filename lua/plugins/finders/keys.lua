@@ -14,12 +14,12 @@ return {
   { "<leader>sR", false }, -- Resume is <leader>sr
   { "<leader>sk", false }, -- keymaps are in snacks
   { '<leader>s"', false }, -- Registers are in snacks
+  { "<leader>/", false, mode = "n", desc = "Ripgrep" }, -- grep is in <leader>rr
 
   ------------------------------------------------------------------------------
   -- Convenience Keys
   ------------------------------------------------------------------------------
   { "<leader>k", tele.find_files, mode = "n", desc = "Find Files" },
-  { "<leader>/", tele.rg, mode = "n", desc = "Ripgrep" },
 
   ------------------------------------------------------------------------------
   -- Notification Keys

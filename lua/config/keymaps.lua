@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local helpers = require("config.helpers")
 local map = vim.keymap.set
 
 -- Disable the silly stuff
@@ -61,9 +60,8 @@ map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move to the Left" })
 --------------------------------------------------------------------------------
 -- Terminals
 --------------------------------------------------------------------------------
-map("n", "<leader>ms", "<cmd>split | terminal<cr>a", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
-map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>a", { desc = "Terminal Buffer (Vertical Split)", silent = true })
-map({ "n", "t" }, "<c-_>", helpers.toggle_terminal, { desc = "Toggle Terminal" })
+map("n", "<leader>Ms", "<cmd>split | terminal<cr>a", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
+map("n", "<leader>Mv", "<cmd>vsplit | terminal<cr>a", { desc = "Terminal Buffer (Vertical Split)", silent = true })
 
 --------------------------------------------------------------------------------
 -- Lines
