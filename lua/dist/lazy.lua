@@ -35,15 +35,7 @@ return {
       {
         "<leader>or",
         function()
-          local proj_root = LazyVim.root.get()
-          if not proj_root or proj_root == "" then
-            vim.notify("Could not determine project root directory", vim.log.levels.ERROR)
-            return
-          end
-          local is_windows = vim.uv.os_uname().version:match("Windows")
-          local path_separator = is_windows and "\\" or "/"
-          local readme_path = proj_root .. path_separator .. "README.md"
-          vim.cmd("edit " .. readme_path)
+          vim.cmd("edit " .. LazyVim.root() .. require("bw.util.os").path_seperator() .. "README.md")
         end,
         desc = "Readme File",
       },
