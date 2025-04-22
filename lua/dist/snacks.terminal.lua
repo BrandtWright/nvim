@@ -27,6 +27,13 @@ return {
         desc = "Toggle Floating Terminal",
         mode = { "n", "t" },
       },
+      {
+        "<c-_>",
+        function()
+          Snacks.terminal.toggle("bash")
+        end,
+        desc = "Toggle Floating Terminal",
+      },
     },
   },
 }

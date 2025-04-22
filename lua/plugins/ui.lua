@@ -69,7 +69,7 @@ return {
           { "<leader>i", group = "Insert" },
           { "<leader>l", group = "Lazy" },
           { "<leader>lp", group = "Picker" },
-          { "<leader>M", group = "Terminal" },
+          { "<leader>m", group = "Terminal" },
           { "<leader>o", group = "Open" },
           { "<leader>os", group = "Scratch Pad" },
           { "<leader>oS", group = "Persistant Scratch Pad" },
