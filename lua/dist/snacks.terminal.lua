@@ -1,7 +1,6 @@
 --------------------------------------------------------------------------------
 -- Indent
 --------------------------------------------------------------------------------
-local helpers = require("config.helpers")
 return {
   {
     "folke/snacks.nvim",
@@ -19,14 +18,6 @@ return {
       },
     },
     keys = {
-      {
-        "<leader>m",
-        function()
-          Snacks.terminal.toggle("bash")
-        end,
-        desc = "Toggle Floating Terminal",
-        mode = { "n", "t" },
-      },
       {
         "<c-_>",
         function()

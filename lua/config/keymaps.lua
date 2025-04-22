@@ -113,7 +113,7 @@ map({ "n" }, "<Leader>byp", function()
 end, { desc = "Yank Buffer Path" })
 
 -- Open README
-map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
+-- map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
 
 --------------------------------------------------------------------------------
 -- Scratch Pads
@@ -223,9 +223,6 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 map("n", "<leader>fp", function()
   require("telescope").extensions.project.project()
 end, { desc = "Project", silent = true })
-map("n", "gM", function()
-  require("config.helpers").try_edit_readme()
-end, { desc = "Project Readme File" })
 
 --------------------------------------------------------------------------------
 -- Neotree Stuff
