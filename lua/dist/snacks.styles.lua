@@ -6,9 +6,9 @@ return {
     "folke/snacks.nvim",
     opts = {
       styles = {
-        float = {
-          -- disable backdrop on floating windows
-          backdrop = 100,
+        news = {
+          backdrop = false,
+          border = "single",
         },
       },
     },
