@@ -14,7 +14,6 @@ return {
   { "<leader>sR", false }, -- Resume is <leader>sr
   { "<leader>sk", false }, -- keymaps are in snacks
   { '<leader>s"', false }, -- Registers are in snacks
-  -- { "<leader>/", false }, -- grep is in <leader>rr
 
   ------------------------------------------------------------------------------
   -- Convenience Keys
@@ -113,38 +112,6 @@ return {
     "<cmd>Telescope current_buffer_fuzzy_find<cr>",
     mode = "n",
     desc = "Fuzzy Find in Buffer",
-  },
-  {
-    "<leader>rp",
-    function()
-      tele.grep_string({ shorten_path = true, search = vim.fn.input("Grep String: ") })
-    end,
-    mode = "n",
-    desc = "Grep from Location",
-  },
-  {
-    "<leader>rt",
-    function()
-      tele.grep_file_type()
-    end,
-    mode = "n",
-    desc = "Grep File Type",
-  },
-  {
-    "<leader>rs",
-    function()
-      tele.grep_string()
-    end,
-    mode = "n",
-    desc = "Grep String",
-  },
-  {
-    "<leader>rR",
-    function()
-      tele.rg_location_prompt()
-    end,
-    mode = "n",
-    desc = "Rg from Location",
   },
   -- Dotfiles
   {
