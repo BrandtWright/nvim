@@ -8,8 +8,8 @@ return {
           local cwd = vim.fn.input("Directory: ", "", "dir")
           if cwd and cwd ~= "" then
             local opts = {
+              cwd = "/home/brandt/repos/Rigel/",
               vimgrep_arguments = {
-                cwd = cwd,
                 "rg",
                 "--color=never",
                 "--no-heading",
@@ -17,7 +17,6 @@ return {
                 "--line-number",
                 "--column",
                 "--smart-case",
-                vim.fn.input("Type: "),
               },
             }
             require("telescope.builtin").live_grep(opts)
