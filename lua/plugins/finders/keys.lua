@@ -14,7 +14,7 @@ return {
   { "<leader>sR", false }, -- Resume is <leader>sr
   { "<leader>sk", false }, -- keymaps are in snacks
   { '<leader>s"', false }, -- Registers are in snacks
-  { "<leader>/", false }, -- grep is in <leader>rr
+  -- { "<leader>/", false }, -- grep is in <leader>rr
 
   ------------------------------------------------------------------------------
   -- Convenience Keys
@@ -137,14 +137,6 @@ return {
     end,
     mode = "n",
     desc = "Grep String",
-  },
-  {
-    "<leader>rr",
-    function()
-      tele.rg()
-    end,
-    mode = "n",
-    desc = "Ripgrep",
   },
   {
     "<leader>rR",

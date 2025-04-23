@@ -49,24 +49,6 @@ function M.grep_file_type(opts)
   require("telescope.builtin").live_grep(opts)
 end
 
-function M.rg(opts)
-  opts = opts or {}
-  local defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-    },
-    prompt_title = "Ripgrep",
-  }
-  opts = vim.tbl_deep_extend("force", defaults, opts)
-  require("telescope.builtin").live_grep(opts)
-end
-
 function M.rg_location_prompt(opts)
   opts = opts or {}
   local defaults = {

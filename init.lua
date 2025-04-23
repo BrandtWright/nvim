@@ -31,6 +31,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "dist" },
     { import = "plugins" },
+    { import = "plugins/pickers" },
     { import = "lsp" },
     { import = "lsp/common" },
   },
