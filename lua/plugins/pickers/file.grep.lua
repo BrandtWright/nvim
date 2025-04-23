@@ -1,5 +1,6 @@
 return {
   {
+    -- Group names
     {
       "folke/which-key.nvim",
       opts = {
@@ -8,6 +9,8 @@ return {
         },
       },
     },
+
+    -- Standard grep
     "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>/", false }, -- grep is in <leader>rr
