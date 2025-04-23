@@ -10,7 +10,7 @@ return {
             search = vim.fn.input("Grep String: "),
           })
         end,
-        desc = "Other Strint",
+        desc = "Other String",
       },
     },
   },
