@@ -61,16 +61,6 @@ function M.local_bin(opts)
     })
     :find()
 end
--------------------------------------------------------------------------------
---  Diagnostics
--------------------------------------------------------------------------------
-function M.document_diagnostics()
-  vim.cmd("Telescope diagnostics bufnr=0")
-end
-
-function M.workspace_diagnostics()
-  vim.cmd("Telescope diagnostics bufnr=0")
-end
 
 -------------------------------------------------------------------------------
 --  Extensions
