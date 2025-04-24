@@ -5,7 +5,7 @@ return {
       {
         "<leader>ff",
         require("telescope.builtin").find_files,
-        desc = "Find Files (CWD)",
+        desc = "Files (CWD)",
       },
       {
         "<leader>fF",
@@ -14,7 +14,7 @@ return {
             hidden = true,
           })
         end,
-        desc = "Find All Files (CWD)",
+        desc = "All Files (CWD)",
       },
     },
   },

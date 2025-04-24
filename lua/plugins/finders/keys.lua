@@ -49,20 +49,6 @@ return {
     desc = "Recent Files",
   },
   {
-    "<leader>ft",
-    function()
-      tele.current_buffer_tags()
-    end,
-    mode = "n",
-    desc = "Buffer Tags",
-  },
-  {
-    "<leader>sb",
-    "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-    mode = "n",
-    desc = "Fuzzy Find in Buffer",
-  },
-  {
     "<leader>fd",
     function()
       tele.document_diagnostics()
