@@ -63,15 +63,6 @@ return {
     desc = "Fuzzy Find in Buffer",
   },
   {
-    "<leader>fs",
-    function()
-      tele.local_bin()
-    end,
-    mode = "n",
-    desc = "Scripts",
-  },
-  -- Diagnostics
-  {
     "<leader>fd",
     function()
       tele.document_diagnostics()

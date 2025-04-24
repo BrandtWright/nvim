@@ -17,7 +17,7 @@ return {
             })
             :find()
         end,
-        desc = "Files (Home Directory)",
+        desc = "Dotfiles",
       },
     },
   },
