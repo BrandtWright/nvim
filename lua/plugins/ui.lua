@@ -25,7 +25,7 @@ return {
     opts = function(_, opts)
       vim.cmd("hi! link WhichKey Normal")
       vim.cmd("hi! link WhichKeyGroup String")
-      vim.cmd("hi! link WhichKeyDesc Special")
+      vim.cmd("hi! link WhichKeyDesc identifier")
       vim.cmd("hi! link WhichKeyFloat Normal")
       vim.cmd("hi! link WhichKeyBorder FloatBorder")
 
