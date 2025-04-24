@@ -32,6 +32,7 @@ require("lazy").setup({
     { import = "dist" },
     { import = "plugins" },
     { import = "plugins/pickers" },
+    { import = "plugins/toggles" },
     { import = "lsp" },
     { import = "lsp/common" },
   },

@@ -267,7 +267,4 @@ end, { silent = true, desc = "Toggle Zen Mode" })
 --------------------------------------------------------------------------------
 -- Diagnostics
 --------------------------------------------------------------------------------
-local d = require("bw.util.diagnostics")
-vim.keymap.set("n", "<leader>uda", d.toggle_diagnostics, { desc = "Toggle Diagnostics" })
-vim.keymap.set("n", "<leader>udv", d.toggle_virtual_text, { desc = "Virtual Text" })
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })

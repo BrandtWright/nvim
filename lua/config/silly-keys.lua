@@ -33,9 +33,9 @@ local sillyKeyConfig = {
     { lhs = "<leader><tab>o", modes = { "n" } },
 
     -- Toggles
-    { lhs = "<leader>ud", modes = { "n" } }, -- diagnostics
     { lhs = "<leader>ub", modes = { "n" } }, -- light/dark mode
     { lhs = "<leader>uc", modes = { "n" } }, -- conceal
+    { lhs = "<leader>ud", modes = { "n" } }, -- toggle diagnostics is in leader.
 
     -- Finders
     { lhs = "<leader>fr", modes = { "n" } }, -- Recent Files (Root)
