@@ -57,7 +57,6 @@ return {
           { "<leader>bs", group = "Scratch Buffers" },
           { "<leader>c", group = "Code" },
           { "<leader>e", group = "Explore" },
-          { "<leader>f", group = "Find" },
           { "<leader>fg", group = "Git Objects" },
           { "<leader>g", group = "Git" },
           { "<leader>gb", group = "Buffer", mode = { "n", "v" } },
