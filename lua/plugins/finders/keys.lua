@@ -57,27 +57,6 @@ return {
     desc = "Bitpit Playbooks (All Files)",
   },
   {
-    "<leader>fl",
-    function()
-      tele.find_files({
-        cwd = vim.fn.input("Directory: "),
-      })
-    end,
-    mode = "n",
-    desc = "From Location",
-  },
-  {
-    "<leader>fL",
-    function()
-      tele.find_files({
-        cwd = vim.fn.input("Directory: "),
-        hidden = true,
-      })
-    end,
-    mode = "n",
-    desc = "From Location (All Files)",
-  },
-  {
     "<leader>fo",
     function()
       tele.oldfiles()
