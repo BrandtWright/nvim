@@ -24,7 +24,6 @@ return {
   -- Files
   ------------------------------------------------------------------------------
 
-  { "<leader>ff", tele.find_files, mode = "n", desc = "Files" },
   {
     "<leader>fh",
     function()

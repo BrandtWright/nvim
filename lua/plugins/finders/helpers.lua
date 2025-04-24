@@ -3,20 +3,6 @@ local M = {}
 -------------------------------------------------------------------------------
 --  Standard
 -------------------------------------------------------------------------------
-function M.find_files(opts)
-  opts = opts or {}
-  opts.cwd = opts.cwd or vim.uv.cwd()
-  require("telescope.builtin").find_files(opts)
-end
-
-function M.ivy(opts)
-  local themes = require("telescope.themes")
-  opts = opts or {}
-  local defaults = themes.get_ivy({ hidden = false })
-  opts = vim.tbl_deep_extend("force", defaults, opts)
-  require("telescope.builtin").find_files(opts)
-end
-
 function M.current_buffer_fuzzy_find() end
 
 -------------------------------------------------------------------------------
