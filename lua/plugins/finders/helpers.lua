@@ -1,11 +1,6 @@
 local M = {}
 
 -------------------------------------------------------------------------------
---  Standard
--------------------------------------------------------------------------------
-function M.current_buffer_fuzzy_find() end
-
--------------------------------------------------------------------------------
 --  Notification
 -------------------------------------------------------------------------------
 function M.notifications(opts)
@@ -27,39 +22,6 @@ function M.spell_suggest()
     },
   })
   require("telescope.builtin").spell_suggest(opts)
-end
-
--------------------------------------------------------------------------------
---  Dotfiles
--------------------------------------------------------------------------------
-function M.find_dotfiles(opts)
-  local pickers = require("telescope.pickers")
-  local conf = require("telescope.config").values
-  opts = opts or {}
-  local locs = vim.fn.systemlist("/home/brandt/.local/bin/dotfiles")
-  pickers
-    .new({}, {
-      prompt_title = "Find Files (Dotfiles)",
-      finder = require("telescope.finders").new_table(locs),
-      sorter = conf.file_sorter(opts),
-      previewer = conf.file_previewer(opts),
-    })
-    :find()
-end
-
-function M.local_bin(opts)
-  local pickers = require("telescope.pickers")
-  local conf = require("telescope.config").values
-  opts = opts or {}
-  local locs = vim.fn.systemlist("/home/brandt/.local/bin/scripts")
-  pickers
-    .new({}, {
-      prompt_title = "Find Files ($HOME/.local/bin)",
-      finder = require("telescope.finders").new_table(locs),
-      sorter = conf.file_sorter(opts),
-      previewer = conf.file_previewer(opts),
-    })
-    :find()
 end
 
 -------------------------------------------------------------------------------
