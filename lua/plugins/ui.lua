@@ -56,6 +56,8 @@ return {
           { "<leader>by", group = "Yank" },
           { "<leader>bs", group = "Scratch Buffers" },
           { "<leader>c", group = "Code" },
+          { "<leader>d", group = "Debug" },
+          { "<leader>dp", group = "Profiler" },
           { "<leader>e", group = "Explore" },
           { "<leader>fg", group = "Git Objects" },
           { "<leader>g", group = "Git" },
