@@ -46,14 +46,6 @@ return {
     mode = "n",
     desc = "Recent Files",
   },
-  {
-    "<leader>fd",
-    function()
-      tele.document_diagnostics()
-    end,
-    mode = "n",
-    desc = "Document Diagnostics",
-  },
   -----------------------------------------------------------------------------
   -- <leader>s
   -----------------------------------------------------------------------------
