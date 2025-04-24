@@ -38,14 +38,17 @@ return {
           width = 1000,
         },
         icons = {
+          -- Don't use icon/prefix for which-key groups
           group = "",
-          mappings = false, -- Dont use keymap icons in which key menu
+          -- Don't use keymap icons in which key menu
+          mappings = false,
         },
         layout = {
           align = "center",
           spacing = 5,
         },
         plugins = {
+          -- Donn't use which-key for spelling suggestions
           spelling = false,
         },
         expand = 0,
