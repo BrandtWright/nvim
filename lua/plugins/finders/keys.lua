@@ -62,15 +62,6 @@ return {
     mode = "n",
     desc = "Fuzzy Find in Buffer",
   },
-  -- Dotfiles
-  {
-    "<leader>f.",
-    function()
-      tele.find_dotfiles()
-    end,
-    mode = "n",
-    desc = "Dotfiles",
-  },
   {
     "<leader>fs",
     function()
