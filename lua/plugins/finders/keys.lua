@@ -5,8 +5,6 @@ return {
   ------------------------------------------------------------------------------
   -- Silly Keys
   ------------------------------------------------------------------------------
-  { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
-  { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
   { "<leader>sR", false }, -- Resume is <leader>sr
 
   ------------------------------------------------------------------------------
