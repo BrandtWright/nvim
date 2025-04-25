@@ -47,15 +47,6 @@ return {
     mode = "n",
     desc = "Resume Telescope",
   },
-  -- Jumps
-  {
-    "<leader>sj",
-    function()
-      tele.jumplist()
-    end,
-    mode = "n",
-    desc = "Jumps",
-  },
   -- QuickFix List
   {
     "<leader>sq",
