@@ -245,7 +245,7 @@ end
 --------------------------------------------------------------------------------
 -- Zen Mode
 --------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>uz", function()
+vim.keymap.set("n", "<leader>ux", function()
   local tmux = os.getenv("TMUX")
   if vim.g.zen_mode then -- restore status bars
     vim.opt.laststatus = vim.g.zen_mode_last_status
@@ -262,7 +262,7 @@ vim.keymap.set("n", "<leader>uz", function()
     end
     vim.g.zen_mode = true
   end
-end, { silent = true, desc = "Toggle Zen Mode" })
+end, { silent = true, desc = "Toggle TMUX Zen Mode" })
 
 --------------------------------------------------------------------------------
 -- Diagnostics

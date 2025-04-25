@@ -84,7 +84,6 @@ return {
           { "<leader>t", group = "Tabs" },
           { "<leader>u", group = "UI" },
           { "<leader>ud", group = "Diagnostics" },
-          { "<leader>uz", group = "Toggle Zen Mode" },
           { "<leader>w", group = "Window" },
           { "<leader>x", group = "Lists" },
           { "<leader>z", group = "Slipbox" },

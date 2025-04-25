@@ -36,6 +36,7 @@ local sillyKeyConfig = {
     { lhs = "<leader>ub", modes = { "n" } }, -- light/dark mode
     { lhs = "<leader>uc", modes = { "n" } }, -- conceal
     { lhs = "<leader>ud", modes = { "n" } }, -- toggle diagnostics is in leader.
+    { lhs = "<leader>uZ", modes = { "n" } }, -- leader_w_m is convenient enough.
 
     -- Finders
     { lhs = "<leader>fr", modes = { "n" } }, -- Recent Files (Root)
