@@ -3,7 +3,7 @@ local tele = require("plugins.finders.helpers")
 return {
 
   ------------------------------------------------------------------------------
-  -- Disabled Keys
+  -- Silly Keys
   ------------------------------------------------------------------------------
   { "<leader>sa", false }, -- Auto commands are in snacks
   { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
