@@ -32,14 +32,6 @@ return {
   -- <leader>s
   -----------------------------------------------------------------------------
   {
-    "<leader>sm",
-    function()
-      tele.marks()
-    end,
-    mode = "n",
-    desc = "Marks",
-  },
-  {
     "<leader>so",
     function()
       tele.vim_options()
