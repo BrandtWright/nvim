@@ -32,14 +32,6 @@ return {
   -- <leader>s
   -----------------------------------------------------------------------------
   {
-    "<leader>so",
-    function()
-      tele.vim_options()
-    end,
-    mode = "n",
-    desc = "Options",
-  },
-  {
     "<leader>sr",
     function()
       tele.resume()
