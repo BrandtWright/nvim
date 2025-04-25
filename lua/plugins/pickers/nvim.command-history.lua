@@ -1,3 +1,7 @@
+-------------------------------------------------------------------------------
+-- Fuzzy find over command history
+-- key map: `<leader>:`
+-------------------------------------------------------------------------------
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -11,9 +15,7 @@ return {
     keys = {
       {
         "<leader>:",
-        function()
-          Snacks.picker.command_history()
-        end,
+        Snacks.picker.command_history,
         desc = "Command History",
       },
     },
