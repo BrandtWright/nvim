@@ -32,14 +32,6 @@ return {
   -- <leader>s
   -----------------------------------------------------------------------------
   {
-    "<leader>sM",
-    function()
-      tele.man_pages()
-    end,
-    mode = "n",
-    desc = "Man Pages",
-  },
-  {
     "<leader>sm",
     function()
       tele.marks()
