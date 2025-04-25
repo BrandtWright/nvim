@@ -1,14 +1,7 @@
 -------------------------------------------------------------------------------
--- Fuzzy find over highlight groups
+-- Fuzzy find over icons
 -------------------------------------------------------------------------------
 return {
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      -- silly key: highlight groups  are handled by snacks
-      { "<leader>sH", false },
-    },
-  },
   {
     "folke/snacks.nvim",
     keys = {
