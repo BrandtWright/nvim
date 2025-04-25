@@ -1,13 +1,12 @@
 -------------------------------------------------------------------------------
--- Fuzzy find over command history
--- key map: `<leader>:`
+-- Fuzzy find over autocommands
 -------------------------------------------------------------------------------
 return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
       -- silly key: autocommands are handled by snacks
-      { "<leader>sa", false }, -- Auto commands are in snacks
+      { "<leader>sa", false },
     },
   },
   {

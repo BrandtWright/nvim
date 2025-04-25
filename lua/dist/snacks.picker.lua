@@ -10,8 +10,6 @@ return {
       vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
     end,
     keys = {
-      { "<leader>s'", picker.registers, desc = "Registers" },
-      { "<leader>sk", picker.keymaps, desc = "Key Maps" },
       { "<leader>sd", picker.diagnostics_buffer, desc = "Diagnostics (Buffer)" },
       { "<leader>sD", picker.diagnostics, desc = "Diagnostics (Workspace)" },
       { "<leader>ss", picker.lsp_symbols, desc = "LSP Symbols (Document)" },

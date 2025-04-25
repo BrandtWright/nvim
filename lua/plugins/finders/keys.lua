@@ -8,8 +8,6 @@ return {
   { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
   { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
   { "<leader>sR", false }, -- Resume is <leader>sr
-  { "<leader>sk", false }, -- keymaps are in snacks
-  { '<leader>s"', false }, -- Registers are in snacks
 
   ------------------------------------------------------------------------------
   -- Notification Keys

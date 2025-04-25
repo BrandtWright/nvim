@@ -1,22 +1,18 @@
 -------------------------------------------------------------------------------
--- Fuzzy find over commands
+-- Fuzzy find over key maps
 -------------------------------------------------------------------------------
 return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- silly key: commands are handled by snacks
-      { "<leader>sC", false },
+      -- silly key: key maps are handled by snacks
+      { "<leader>sk", false },
     },
   },
   {
     "folke/snacks.nvim",
     keys = {
-      {
-        "<leader>sc",
-        Snacks.picker.commands,
-        desc = "Commands",
-      },
+      { "<leader>sk", Snacks.picker.keymaps, desc = "Key Maps" },
     },
   },
 }
