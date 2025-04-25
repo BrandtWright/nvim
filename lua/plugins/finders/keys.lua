@@ -39,15 +39,6 @@ return {
     mode = "n",
     desc = "Resume Telescope",
   },
-  -- QuickFix List
-  {
-    "<leader>sq",
-    function()
-      tele.quickfix()
-    end,
-    mode = "n",
-    desc = "QuickFix List",
-  },
   -- Location List
   {
     "<leader>sl",
