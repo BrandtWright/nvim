@@ -27,14 +27,7 @@ return {
     mode = "n",
     desc = "Bitpit Playbooks (All Files)",
   },
-  {
-    "<leader>fo",
-    function()
-      tele.oldfiles()
-    end,
-    mode = "n",
-    desc = "Recent Files",
-  },
+
   -----------------------------------------------------------------------------
   -- <leader>s
   -----------------------------------------------------------------------------
