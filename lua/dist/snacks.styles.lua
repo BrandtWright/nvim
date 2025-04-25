@@ -10,6 +10,9 @@ return {
           backdrop = false,
           border = "single",
         },
+        float = {
+          backdrop = false,
+        },
       },
     },
   },
