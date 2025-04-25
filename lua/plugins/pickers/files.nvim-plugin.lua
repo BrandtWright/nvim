@@ -1,11 +1,17 @@
 -------------------------------------------------------------------------------
--- Fuzzy find over workspace symbols
+-- Fuzzy find over neovim plugin files
 -------------------------------------------------------------------------------
 return {
   {
     "folke/snacks.nvim",
     keys = {
-      { "<leader>sS", Snacks.picker.lsp_workspace_symbols, desc = "Workspace Symbold" },
+      {
+        "<leader>sgp",
+        function()
+          Snacks.picker.files({ cwd = vim.fn.stdpath("data") })
+        end,
+        desc = "Neovim Plugin File",
+      },
     },
   },
 }
