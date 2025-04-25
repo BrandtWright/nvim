@@ -186,7 +186,7 @@ vim.cmd("hi! link Statement bright_magenta")      -- flow control, return, etc.
 vim.cmd("hi! link Conditional Statement")         -- if, them else, endif switch, etc.
 vim.cmd("hi! link Repeat Statement")              -- for, do, while, etc.
 vim.cmd("hi! link Label cyan")                    -- case, default, etc.
-vim.cmd("hi! link Operator Normal")               -- sizeof, "+", "*", etc.
+highlight(0, "Operator", { fg = ui.foreground })  -- sizeof, "+", "*", etc.
 vim.cmd("hi! link Keyword blue")                  -- generic keyword
 vim.cmd("hi! link Exception red")                 -- try,catch, throw, etc.
 
@@ -204,7 +204,7 @@ vim.cmd("hi! link Typedef magenta")               -- a typedef
 vim.cmd("hi! link Special gold")                  -- generic special
 vim.cmd("hi! link SpecialChar Special")           -- special character in a constant
 vim.cmd("hi! link Tag bright_violet")             -- you can use `CTRL-]`
-vim.cmd("hi! link Delimiter Normal")              -- special punctuaation: (, [, {, ;, :, ., ,, etc.
+highlight(0, "Delimiter", { fg = ui.foreground }) -- special punctuaation: (, [, {, ;, :, ., ,, etc.
 vim.cmd("hi! link SpecialComment Special")        -- special character in a constant
 vim.cmd("hi! link Debug violet")                  -- debugging statements
 
