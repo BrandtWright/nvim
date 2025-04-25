@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
 -- Picker
 --------------------------------------------------------------------------------
+local picker = require("snacks").picker
 return {
   {
     "folke/snacks.nvim",
@@ -9,110 +10,26 @@ return {
       vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
     end,
     keys = {
-      {
-        "<leader>sa",
-        function()
-          require("snacks").picker.autocmds()
-        end,
-        desc = "Auto Commands",
-      },
-      {
-        "<leader>s'",
-        function()
-          require("snacks").picker.registers()
-        end,
-        desc = "Registers",
-      },
-      {
-        "<leader>sk",
-        function()
-          require("snacks").picker.keymaps()
-        end,
-        desc = "Key Maps",
-      },
+      { "<leader>sa", picker.autocmds, desc = "Auto Commands" },
+      { "<leader>s'", picker.registers, desc = "Registers" },
+      { "<leader>sk", picker.keymaps, desc = "Key Maps" },
+      { "<leader>sd", picker.diagnostics_buffer, desc = "Diagnostics (Buffer)" },
+      { "<leader>sD", picker.diagnostics, desc = "Diagnostics (Workspace)" },
+      { "<leader>ss", picker.lsp_symbols, desc = "LSP Symbols (Document)" },
+      { "<leader>sS", picker.lsp_workspace_symbols, desc = "LSP Symbols (Workspace)" },
+      { "<leader>sh", picker.help, desc = "Help Pages" },
+      { "<leader>sH", picker.highlights, desc = "Highlights" },
+      { "<leader>sL", picker.lsp_config, desc = "LSP Config" },
+      { "<leader>lpa", picker.picker_actions, desc = "Actions" },
+      { "<leader>lpf", picker.picker_format, desc = "Format" },
+      { "<leader>lpl", picker.picker_layouts, desc = "Layouts" },
+      { "<leader>lpp", picker.picker_preview, desc = "Preview" },
       {
         "<leader>si",
         function()
           require("snacks").picker.icons({ layout = { preview = false, preset = "dropdown" } })
         end,
         desc = "Icons",
-      },
-      {
-        "<leader>sd",
-        function()
-          require("snacks").picker.diagnostics_buffer()
-        end,
-        desc = "Diagnostics (Buffer)",
-      },
-      {
-        "<leader>sD",
-        function()
-          require("snacks").picker.diagnostics()
-        end,
-        desc = "Diagnostics (Workspace)",
-      },
-      {
-        "<leader>ss",
-        function()
-          require("snacks").picker.lsp_symbols()
-        end,
-        desc = "LSP Symbols (Document)",
-      },
-      {
-        "<leader>sS",
-        function()
-          require("snacks").picker.lsp_workspace_symbols()
-        end,
-        desc = "LSP Symbols (Workspace)",
-      },
-      {
-        "<leader>sh",
-        function()
-          require("snacks").picker.help()
-        end,
-        desc = "Help Pages",
-      },
-      {
-        "<leader>sH",
-        function()
-          require("snacks").picker.highlights()
-        end,
-        desc = "Highlights",
-      },
-      {
-        "<leader>sL",
-        function()
-          require("snacks").picker.lsp_config()
-        end,
-        desc = "LSP Config",
-      },
-      {
-        "<leader>lpa",
-        function()
-          require("snacks").picker.picker_actions()
-        end,
-        desc = "Actions",
-      },
-      {
-        "<leader>lpf",
-        function()
-          require("snacks").picker.picker_format()
-        end,
-        desc = "Format",
-      },
-      {
-        "<leader>lpl",
-        function()
-          require("snacks").picker.picker_layouts()
-        end,
-        desc = "Layouts",
-      },
-      {
-        "<leader>lpp",
-        function()
-          require("snacks").picker.picker_preview()
-        end,
-        desc = "Preview",
       },
     },
   },
