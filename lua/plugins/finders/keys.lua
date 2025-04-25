@@ -32,14 +32,6 @@ return {
   -- <leader>s
   -----------------------------------------------------------------------------
   {
-    "<leader>sc",
-    function()
-      tele.command_history()
-    end,
-    mode = "n",
-    desc = "Command History",
-  },
-  {
     "<leader>sM",
     function()
       tele.man_pages()
