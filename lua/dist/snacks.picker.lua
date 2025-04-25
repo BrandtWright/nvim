@@ -19,13 +19,6 @@ return {
       { "<leader>lpf", picker.picker_format, desc = "Format" },
       { "<leader>lpl", picker.picker_layouts, desc = "Layouts" },
       { "<leader>lpp", picker.picker_preview, desc = "Preview" },
-      {
-        "<leader>si",
-        function()
-          require("snacks").picker.icons({ layout = { preview = false, preset = "dropdown" } })
-        end,
-        desc = "Icons",
-      },
     },
   },
 }
