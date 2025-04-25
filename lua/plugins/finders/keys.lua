@@ -8,7 +8,6 @@ return {
   { "<leader>sa", false }, -- Auto commands are in snacks
   { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
   { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
-  { "<leader>sC", false }, -- Commands are in <leader>s:
   { "<leader>sR", false }, -- Resume is <leader>sr
   { "<leader>sk", false }, -- keymaps are in snacks
   { '<leader>s"', false }, -- Registers are in snacks

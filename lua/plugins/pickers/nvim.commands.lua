@@ -6,19 +6,17 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- silly key: command history is handled by snacks
-      { "<leader>:", false },
-      -- silly key: command history is handled by snacks
-      { "<leader>sc", false },
+      -- silly key: commands are handled by snacks
+      { "<leader>sC", false },
     },
   },
   {
     "folke/snacks.nvim",
     keys = {
       {
-        "<leader>:",
-        Snacks.picker.command_history,
-        desc = "Command History",
+        "<leader>sc",
+        Snacks.picker.commands,
+        desc = "Command",
       },
     },
   },
