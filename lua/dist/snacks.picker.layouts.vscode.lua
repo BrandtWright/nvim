@@ -13,7 +13,7 @@ return {
         },
         layouts = {
           vscode = {
-            -- preview = false,
+            preview = false,
             layout = {
               backdrop = false,
               row = 1,
