@@ -9,4 +9,4 @@ o.softtabstop = 2
 vim.opt.expandtab = true
 
 -- Custom Surrounds
-vim.keymap.set("v", "<LocalLeader>scl", [[cprint(vim.inspect(<c-r>"))<esc>]], { noremap = false })
+-- vim.keymap.set("v", "<LocalLeader>scl", [[cprint(vim.inspect(<c-r>"))<esc>]], { noremap = false })
