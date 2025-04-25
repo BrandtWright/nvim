@@ -8,6 +8,7 @@ return {
   { "<leader>ss", false }, -- Lsp_ducument_symbols are in snacks
   { "<leader>sS", false }, -- Lsp_workspace_symbols are in snacks
   { "<leader>sR", false }, -- Resume is <leader>sr
+  { "<leader>sH", false }, -- Turn off highlight picker },
 
   ------------------------------------------------------------------------------
   -- Notification Keys
@@ -52,14 +53,6 @@ return {
     end,
     mode = "n",
     desc = "Command History",
-  },
-  {
-    "<leader>sh",
-    false,
-  },
-  {
-    "<leader>sH",
-    false, -- Turn off highlight picker
   },
   {
     "<leader>sM",
