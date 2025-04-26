@@ -63,7 +63,8 @@ return {
     keys = {
       { "<leader>gl", git.log, desc = "Git Log" },
       { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Branches" },
-      { "<leader>gr", git.resolve_conflicts, desc = "Resolve Merge Conflicts" },
+      -- This seems to cause goto-references to fail
+      -- { "<leader>gr", git.resolve_conflicts, desc = "Resolve Merge Conflicts" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
       {
