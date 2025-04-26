@@ -22,14 +22,4 @@ return {
     mode = "n",
     desc = "Bitpit Playbooks (All Files)",
   },
-
-  -- Spell Suggest
-  {
-    "z=",
-    function()
-      tele.spell_suggest()
-    end,
-    mode = "n",
-    desc = "Spelling Suggestions",
-  },
 }

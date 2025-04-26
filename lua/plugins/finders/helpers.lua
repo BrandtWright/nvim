@@ -9,22 +9,6 @@ function M.notifications(opts)
 end
 
 -------------------------------------------------------------------------------
---  Spell
--------------------------------------------------------------------------------
-function M.spell_suggest()
-  local themes = require("telescope.themes")
-  local opts = themes.get_dropdown({
-    winblend = 10,
-    border = true,
-    previewer = false,
-    layout_config = {
-      width = 0.5,
-    },
-  })
-  require("telescope.builtin").spell_suggest(opts)
-end
-
--------------------------------------------------------------------------------
 --  Extensions
 -------------------------------------------------------------------------------
 function M.emoji()
