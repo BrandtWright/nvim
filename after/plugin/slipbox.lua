@@ -50,7 +50,7 @@ local create_literary_slip = function()
 end
 
 local actions = {
-  note = create_temp_slip,
+  note = create_slip,
   temporary = create_temp_slip,
   literary = create_literary_slip,
   reference = create_reference_slip,
