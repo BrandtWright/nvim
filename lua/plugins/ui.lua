@@ -81,6 +81,7 @@ return {
           { "<leader>r", group = "Grep" },
           { "<leader>s", group = "Search" },
           { "<leader>sg", group = "Config" },
+          { "<leader>sr", group = "Resume" },
           { "<leader>t", group = "Tabs" },
           { "<leader>u", group = "UI" },
           { "<leader>ud", group = "Diagnostics" },
