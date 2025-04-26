@@ -39,15 +39,6 @@ return {
     mode = "n",
     desc = "Resume Telescope",
   },
-  -- Location List
-  {
-    "<leader>sl",
-    function()
-      tele.loclist()
-    end,
-    mode = "n",
-    desc = "Location List",
-  },
   -- Emoji
   {
     "<leader>se",
