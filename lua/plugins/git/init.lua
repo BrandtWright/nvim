@@ -1,6 +1,12 @@
 local git = require("plugins.git.api")
 return {
   {
+    "folke/snacks.nvim",
+    keys = {
+      { "<leader>gs", Snacks.picker.git_status, desc = "Man Pages" },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.cmd("hi! link @markup.heading.gitcommit Special")
@@ -19,13 +25,15 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
     keys = {
       { "<leader>ga", git.stash, mode = "n", desc = "Stash" },
       { "<leader>gbc", git.buffer_commits, mode = "n", desc = "Buffer Commits" },
       { "<leader>gc", git.commits, mode = "n", desc = "Commits" },
       { "<leader>gf", git.files, mode = "n", desc = "Files" },
       { "<leader>gF", git.files_with_preview, mode = "n", desc = "Files (With Preview)" },
-      { "<leader>gS", git.status, mode = "n", desc = "Git Status (Tele)" },
       { "<leader>gy", git.branches, mode = "n", desc = "Branches" },
       { "<leader>gbc", git.buffer_commits_range, mode = "v", desc = "Buffer Commits (Range)" },
     },
@@ -51,9 +59,18 @@ return {
     cmd = { "Git" },
     keys = {
       { "<leader>gl", git.log, desc = "Git Log" },
+      { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Branches" },
       { "<leader>gr", git.resolve_conflicts, desc = "Resolve Merge Conflicts" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
+      {
+        "<leader>gS",
+        function()
+          vim.cmd("Git")
+        end,
+        mode = "n",
+        desc = "Git Status (Tele)",
+      },
     },
   },
   {
