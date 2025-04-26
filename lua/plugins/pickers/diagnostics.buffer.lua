@@ -10,13 +10,7 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
-      {
-        "<leader>sd",
-        function()
-          Snacks.picker.diagnostics_buffer()
-        end,
-        desc = "Diagnostics (Buffer)",
-      },
+      { "<leader>sd", Snacks.picker.diagnostics_buffer, desc = "Diagnostics (Buffer)" },
     },
   },
 }
