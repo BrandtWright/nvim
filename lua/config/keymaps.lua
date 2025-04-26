@@ -268,3 +268,10 @@ end, { silent = true, desc = "Toggle TMUX Zen Mode" })
 -- Diagnostics
 --------------------------------------------------------------------------------
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+
+--------------------------------------------------------------------------------
+-- Reference
+--------------------------------------------------------------------------------
+vim.keymap.set("n", "<leader>sw", function()
+  vim.cmd("!dict <cword>")
+end, { desc = "Dictionary" })
