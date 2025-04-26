@@ -11,9 +11,10 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, opts)
       vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
-      vim.cmd("hi! link NeoTreeDirectoryName Normal")
+      vim.cmd("hi! link NeoTreeDirectoryName White")
       vim.cmd("hi! link NeoTreeTitleBar dark_panel")
       vim.cmd("hi! link NeoTreeFloatBorder dark_panel_normal_background")
+      vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
 
       local my_opts = {
         window = {
