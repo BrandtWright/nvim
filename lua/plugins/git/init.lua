@@ -29,6 +29,9 @@ return {
       "tpope/vim-fugitive",
     },
     keys = {
+      -- silly key: git status picker is handled with snacks
+      { "<leader>gs", false },
+
       { "<leader>ga", git.stash, mode = "n", desc = "Stash" },
       { "<leader>gbc", git.buffer_commits, mode = "n", desc = "Buffer Commits" },
       { "<leader>gc", git.commits, mode = "n", desc = "Commits" },
