@@ -23,18 +23,6 @@ return {
     desc = "Bitpit Playbooks (All Files)",
   },
 
-  -----------------------------------------------------------------------------
-  -- <leader>s
-  -----------------------------------------------------------------------------
-  -- Emoji
-  {
-    "<leader>se",
-    function()
-      tele.emoji()
-    end,
-    mode = "n",
-    desc = "Emoji",
-  },
   -- Spell Suggest
   {
     "z=",
