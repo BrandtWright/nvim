@@ -157,8 +157,8 @@ end, { desc = "Popup Window" })
 --------------------------------------------------------------------------------
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "[q", "<cmd>cnext<cr>", { desc = "Previous quickfix" })
-map("n", "]q", "<cmd>cprev<cr>", { desc = "Next quickfix" })
+map("n", "]q", "<cmd>cnext<cr>", { desc = "Previous quickfix" })
+map("n", "[q", "<cmd>cprev<cr>", { desc = "Next quickfix" })
 map("n", "<leader>xj", "<cmd>jumps<cr>", { desc = "Jump List" })
 map("n", "<leader>xc", "<cmd>jumps<cr>", { desc = "Jump List" })
 
