@@ -3,6 +3,7 @@ return {
     "LazyVim/LazyVim",
     opts = function()
       vim.cmd("hi! link LazyDimmed Comment")
+      vim.cmd("hi! link LazyProp Label")
     end,
     keys = {
       {
