@@ -76,7 +76,7 @@ return {
         desc = "Git Status (Tele)",
       },
       { "<leader>gp", "<cmd>Git pull<cr>", mode = "n", desc = "Pull", ft = "fugitive" },
-      { "<leader>gP", "<cmd>Git push<cr>", mode = "n", desc = "Pull", ft = "fugitive" },
+      { "<leader>gP", "<cmd>Git push<cr>", mode = "n", desc = "Push", ft = "fugitive" },
     },
   },
   {
