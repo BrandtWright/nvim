@@ -1,26 +1,38 @@
 local M = {}
 
 function M.setup()
-  vim.api.nvim_create_user_command("Snote", function(args)
-    -- New Note
-    if args.args == "new" then
-      local slip_id = vim.fn.trim(vim.fn.system({ "snote", "-n" }))
-      vim.cmd("enew")
-      local bufnr = vim.api.nvim_get_current_buf()
-      vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
-      vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
-      vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
-      vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
-      vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
-    else
-      vim.notify("Invalid option.")
-    end
+  -- New Slip
+  vim.api.nvim_create_user_command("SlipNew", function()
+    vim.notify("Fired")
+    local slip_id = vim.fn.trim(vim.fn.system({ "snote", "-n" }))
+    vim.cmd("enew")
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
+    vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
+    vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
+    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
+    vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
   end, {
-    nargs = 1,
-    desc = "Get the next slip id",
+    nargs = 0,
+    desc = "Create a new slip",
   })
 
-  -- autocmd for save
+  -- Edit Slip
+  vim.api.nvim_create_user_command("SlipEdit", function(args)
+    local slip_id = args.args
+    vim.cmd("edit ~/data/base/slipbox/" .. slip_id .. "/README.md")
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
+    vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
+    vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
+    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
+    vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
+  end, {
+    nargs = 1,
+    desc = "Create a new slip",
+  })
+
+  -- Save Slip
   vim.api.nvim_create_autocmd("BufWriteCmd", {
     pattern = "service://slipbox/*",
     callback = function(args)
@@ -35,14 +47,12 @@ function M.setup()
             stdin = content,
           })
           :wait()
-
         if vim.v.shell_error ~= 0 then
           vim.notify("Failed to save file: " .. result, vim.log.levels.ERROR)
         end
-
         vim.api.nvim_set_option_value("modified", false, { buf = bufnr })
       else
-        vim.notify("Invalid service buffer name", vim.log.levels.ERROR)
+        vim.notify("Invalid slipbox service name", vim.log.levels.ERROR)
       end
     end,
   })
