@@ -3,7 +3,6 @@ local M = {}
 function M.setup(opts)
   -- New Slip
   vim.api.nvim_create_user_command("SlipNew", function()
-    vim.notify("Fired")
     local slip_id = vim.fn.trim(vim.fn.system({ "snote", "-n" }))
     vim.cmd("enew")
     local bufnr = vim.api.nvim_get_current_buf()
@@ -33,7 +32,9 @@ function M.setup(opts)
   })
 
   -- Save Slip
+  local group = vim.api.nvim_create_augroup("SlipWrite", { clear = true })
   vim.api.nvim_create_autocmd("BufWriteCmd", {
+    group = group,
     pattern = "service://slipbox/*",
     callback = function(args)
       local bufnr = args.buf
