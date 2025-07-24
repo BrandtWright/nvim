@@ -29,7 +29,7 @@ function M.setup()
     vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
   end, {
     nargs = 1,
-    desc = "Create a new slip",
+    desc = "Edit slip with ID",
   })
 
   -- Save Slip
