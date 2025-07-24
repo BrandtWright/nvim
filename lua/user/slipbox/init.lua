@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.setup(opts)
   -- New Slip
   vim.api.nvim_create_user_command("SlipNew", function()
     vim.notify("Fired")
@@ -20,7 +20,7 @@ function M.setup()
   -- Edit Slip
   vim.api.nvim_create_user_command("SlipEdit", function(args)
     local slip_id = args.args
-    vim.cmd("edit ~/data/base/slipbox/" .. slip_id .. "/README.md")
+    vim.cmd("edit " .. opts.slipbox_dir .. "/" .. slip_id .. "/README.md")
     local bufnr = vim.api.nvim_get_current_buf()
     vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
     vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
