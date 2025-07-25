@@ -57,6 +57,54 @@ function M.setup(opts)
       end
     end,
   })
+
+  -- Find Slip
+  vim.api.nvim_create_user_command("SlipFind", function()
+    local items = {}
+    local function split(str, sep)
+      local fields = {}
+      for field in string.gmatch(str, "([^" .. sep .. "]+)") do
+        table.insert(fields, field)
+      end
+      return fields
+    end
+
+    local slips = vim.fn.systemlist("snote -l")
+    for _, v in ipairs(slips) do
+      local fields = split(v, "\t")
+      local slip_id = fields[1]
+      local title = fields[2]
+      local tags = fields[3] or ""
+
+      table.insert(items, {
+        text = title .. " " .. tags,
+        name = slip_id,
+        file = opts.slipbox_dir .. "/" .. slip_id .. "/README.md",
+        filetype = "markdown",
+        action = function()
+          vim.cmd("SlipEdit " .. slip_id)
+        end,
+      })
+    end
+
+    Snacks.picker({
+      items = items,
+      source = "Slipbox", -- Optional source name
+      format = function(item)
+        return { { item.text } }
+      end,
+      confirm = function(picker, item)
+        -- Code to execute when an item is confirmed (selected)
+        picker:close()
+        if item.action then
+          item.action()
+        end
+      end,
+    })
+  end, {
+    nargs = 0,
+    desc = "Find Slips",
+  })
 end
 
 return M
