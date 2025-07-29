@@ -1,6 +1,7 @@
 return {
   {
     dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
+    lazy = false,
     dependencies = {
       "folke/snacks.nvim",
     },
