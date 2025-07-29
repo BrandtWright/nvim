@@ -90,6 +90,9 @@ function M.setup(opts)
     Snacks.picker({
       items = items,
       source = "Slipbox", -- Optional source name
+      layout = {
+        fullscreen = true,
+      },
       format = function(item)
         return { { item.text } }
       end,

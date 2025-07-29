@@ -85,28 +85,28 @@ local command_handler = function(opts)
   )
 end
 
-vim.api.nvim_create_user_command("Slipbox", command_handler, command_opts)
+-- vim.api.nvim_create_user_command("Slipbox", command_handler, command_opts)
 
-map_keys("<leader>fz", function()
-  find_slip()
-end, "Find Slip")
-
-map_keys("<leader>zk", function()
-  link_slip()
-end, "Link Slip")
-
-map_keys("<leader>zn", function()
-  create_slip()
-end, "Create Slip")
-
-map_keys("<leader>zt", function()
-  create_temp_slip()
-end, "Create Temporary Slip")
-
-map_keys("<leader>zr", function()
-  create_reference_slip()
-end, "Create Reference Slip")
-
-map_keys("<leader>zl", function()
-  create_literary_slip()
-end, "Create Literature Slip")
+-- map_keys("<leader>fz", function()
+--   find_slip()
+-- end, "Find Slip")
+--
+-- map_keys("<leader>zk", function()
+--   link_slip()
+-- end, "Link Slip")
+--
+-- map_keys("<leader>zn", function()
+--   create_slip()
+-- end, "Create Slip")
+--
+-- map_keys("<leader>zt", function()
+--   create_temp_slip()
+-- end, "Create Temporary Slip")
+--
+-- map_keys("<leader>zr", function()
+--   create_reference_slip()
+-- end, "Create Reference Slip")
+--
+-- map_keys("<leader>zl", function()
+--   create_literary_slip()
+-- end, "Create Literature Slip")

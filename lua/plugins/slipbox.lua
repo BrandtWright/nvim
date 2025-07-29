@@ -8,11 +8,18 @@ return {
     name = "slipbox", -- Optional: helps with module resolution
     keys = {
       {
-        "<leader>sz",
+        "<leader>zf",
         function()
           vim.cmd("SlipFind")
         end,
         desc = "Find slip",
+      },
+      {
+        "<leader>zn",
+        function()
+          vim.cmd("SlipNew")
+        end,
+        desc = "New Slip",
       },
     },
     config = function()
