@@ -29,7 +29,7 @@ return {
             vim.cmd("SlipEdit " .. input)
           end
         end,
-        desc = "New Slip",
+        desc = "Edit Slip by ID",
       },
     },
     config = function()
