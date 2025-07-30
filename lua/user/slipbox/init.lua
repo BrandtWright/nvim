@@ -35,7 +35,6 @@ function M.setup(opts)
   local group = vim.api.nvim_create_augroup("SlipWrite", { clear = true })
   vim.api.nvim_create_autocmd("BufWriteCmd", {
     group = group,
-    -- pattern = "service://slipbox/*",
     pattern = opts.slipbox_dir .. "/*/README.md",
     callback = function(args)
       local bufnr = args.buf
@@ -54,12 +53,12 @@ function M.setup(opts)
             stdin = content,
           })
           :wait()
-        if vim.v.shell_error ~= 0 then
-          vim.notify("Failed to save file: " .. result, vim.log.levels.ERROR)
+        if result.code ~= 0 then
+          vim.notify("Failed to save file: " .. result.stderr, vim.log.levels.ERROR)
         end
         vim.api.nvim_set_option_value("modified", false, { buf = bufnr })
       else
-        vim.notify("Invalid slipbox service name", vim.log.levels.ERROR)
+        vim.notify("Invalid slipbox file path.", vim.log.levels.ERROR)
       end
     end,
   })
