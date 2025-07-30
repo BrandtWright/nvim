@@ -1,7 +1,7 @@
 return {
   {
     dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
-    lazy = false,
+    cmd = { "SlipFind", "SlipNew", "SlipEdit" },
     dependencies = {
       "folke/snacks.nvim",
     },
@@ -18,6 +18,18 @@ return {
         "<leader>zn",
         function()
           vim.cmd("SlipNew")
+        end,
+        desc = "New Slip",
+      },
+      {
+        "<leader>ze",
+        function()
+          local input = vim.fn.input({ prompt = "Enter note title: " })
+          if input == "" then
+            vim.notify("No input provided.")
+          else
+            vim.cmd("SlipEdit " .. input)
+          end
         end,
         desc = "New Slip",
       },
