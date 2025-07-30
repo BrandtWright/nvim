@@ -8,21 +8,21 @@ return {
     name = "slipbox", -- Optional: helps with module resolution
     keys = {
       {
-        "<leader>zf",
+        "<leader>sn",
         function()
           vim.cmd("SlipFind")
         end,
         desc = "Find slip",
       },
       {
-        "<leader>zn",
+        "<leader>on",
         function()
           vim.cmd("SlipNew")
         end,
         desc = "New Slip",
       },
       {
-        "<leader>ze",
+        "<leader>oN",
         function()
           local input = vim.fn.input({ prompt = "Enter note title: " })
           if input ~= "" then

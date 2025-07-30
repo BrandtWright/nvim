@@ -19,6 +19,47 @@ return {
         lsp_doc_border = "single",
       },
     },
+    keys = {
+      -- silly key: man pages are handled by snacks
+      { "<leader>sna", false },
+      { "<leader>snd", false },
+      { "<leader>snh", false },
+      { "<leader>snl", false },
+      { "<leader>snt", false },
+
+      -- Real Keys:
+      {
+        "<leader>sNn",
+        function()
+          Snacks.picker.notifications()
+        end,
+        desc = "Notifications",
+      },
+      {
+        "<leader>sNa",
+        "<cmd>NoiceAll<cr>",
+        desc = "All",
+        mode = "n",
+      },
+      {
+        "<leader>sNd",
+        "<cmd>NoiceDismiss<cr>",
+        desc = "Dismiss All",
+        mode = "n",
+      },
+      {
+        "<leader>sNh",
+        "<cmd>NoiceHistory<cr>",
+        desc = "History",
+        mode = "n",
+      },
+      {
+        "<leader>sNl",
+        "<cmd>NoiceLast<cr>",
+        desc = "Last",
+        mode = "n",
+      },
+    },
   },
   {
     "folke/which-key.nvim",
@@ -81,6 +122,7 @@ return {
           { "<leader>r", group = "Grep" },
           { "<leader>s", group = "Search" },
           { "<leader>sg", group = "Config" },
+          { "<leader>sN", group = "Noice" },
           { "<leader>sr", group = "Resume" },
           { "<leader>t", group = "Tabs" },
           { "<leader>u", group = "UI" },
