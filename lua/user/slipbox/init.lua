@@ -49,28 +49,31 @@ function M.setup(opts)
       local bufname = vim.api.nvim_buf_get_name(bufnr)
       local relative = bufname:gsub("^" .. opts.slipbox_dir .. "/", "")
       local slip_id = relative:match("^([%w%-]+)/README%.md$")
-      if slip_id then
-        local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-        local content = table.concat(lines, "\n")
-        -- Preserve trailing newline if the buffer has 'eol' set
-        -- Failing to do this will cause newline chars at the end
-        -- of a markdown file to be sripped, one at a time, on
-        -- each successive save.
-        if vim.bo[bufnr].eol then
-          content = content .. "\n"
-        end
-        local result = vim
-          .system({ "snote", "-s", slip_id }, {
-            stdin = content,
-          })
-          :wait()
-        if result.code ~= 0 then
-          vim.notify("Failed to save file: " .. result.stderr, vim.log.levels.ERROR)
-        end
-        vim.api.nvim_set_option_value("modified", false, { buf = bufnr })
-      else
+      if not slip_id then
         vim.notify("Invalid slipbox file path.", vim.log.levels.ERROR)
+        return
       end
+
+      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+      local content = table.concat(lines, "\n")
+      if vim.bo[bufnr].eol then
+        content = content .. "\n"
+      end
+
+      local result = vim.system({ "snote", "-s", slip_id }, { stdin = content }):wait()
+      if result.code ~= 0 then
+        vim.notify("Failed to save file: " .. result.stderr, vim.log.levels.ERROR)
+        return
+      end
+
+      vim.api.nvim_set_option_value("modified", false, { buf = bufnr })
+
+      -- Fire BufWritePost for plugins that need to know layout
+      -- writes taking place
+      vim.api.nvim_exec_autocmds("BufWritePost", {
+        buffer = bufnr,
+        modeline = false,
+      })
     end,
   })
 
