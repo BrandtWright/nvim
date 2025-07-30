@@ -45,6 +45,9 @@ function M.setup(opts)
         local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
         local content = table.concat(lines, "\n")
         -- Preserve trailing newline if the buffer has 'eol' set
+        -- Failing to do this will cause newline chars at the end
+        -- of a markdown file to be sripped, one at a time, on
+        -- each successive save.
         if vim.bo[bufnr].eol then
           content = content .. "\n"
         end
