@@ -1,6 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
+    enabled = not vim.env.NO_LUALINE,
     opts = function(_, opts)
       local hl = require("bw.util.highlights").get_attribute
       local screen_glasses_theme = {
