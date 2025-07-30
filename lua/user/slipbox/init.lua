@@ -19,9 +19,7 @@ function M.setup(opts)
   -- Edit Slip
   vim.api.nvim_create_user_command("SlipEdit", function(args)
     local slip_id = args.args
-
     local slip_path = opts.slipbox_dir .. "/" .. slip_id .. "/README.md"
-
     if vim.fn.filereadable(slip_path) == 1 then
       vim.cmd("edit " .. slip_path)
       local bufnr = vim.api.nvim_get_current_buf()
