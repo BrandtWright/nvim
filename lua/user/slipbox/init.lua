@@ -6,7 +6,7 @@ function M.setup(opts)
     local slip_id = vim.fn.trim(vim.fn.system({ "snote", "-n" }))
     vim.cmd("enew")
     local bufnr = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
+    vim.api.nvim_buf_set_name(bufnr, opts.slipbox_dir .. "/" .. slip_id .. "/README.md")
     vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
     vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
     vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
@@ -19,9 +19,9 @@ function M.setup(opts)
   -- Edit Slip
   vim.api.nvim_create_user_command("SlipEdit", function(args)
     local slip_id = args.args
-    vim.cmd("edit " .. opts.slipbox_dir .. "/" .. slip_id .. "/README.md")
+    local slip_path = opts.slipbox_dir .. "/" .. slip_id .. "/README.md"
+    vim.cmd("edit " .. slip_path)
     local bufnr = vim.api.nvim_get_current_buf()
-    vim.api.nvim_buf_set_name(bufnr, "service://slipbox/" .. slip_id)
     vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
     vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
     vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
@@ -35,14 +35,20 @@ function M.setup(opts)
   local group = vim.api.nvim_create_augroup("SlipWrite", { clear = true })
   vim.api.nvim_create_autocmd("BufWriteCmd", {
     group = group,
-    pattern = "service://slipbox/*",
+    -- pattern = "service://slipbox/*",
+    pattern = opts.slipbox_dir .. "/*/README.md",
     callback = function(args)
       local bufnr = args.buf
       local bufname = vim.api.nvim_buf_get_name(bufnr)
-      local slip_id = bufname:match("^service://slipbox/(.+)$")
+      local relative = bufname:gsub("^" .. opts.slipbox_dir .. "/", "")
+      local slip_id = relative:match("^([%w%-]+)/README%.md$")
       if slip_id then
         local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
         local content = table.concat(lines, "\n")
+        -- Preserve trailing newline if the buffer has 'eol' set
+        if vim.bo[bufnr].eol then
+          content = content .. "\n"
+        end
         local result = vim
           .system({ "snote", "-s", slip_id }, {
             stdin = content,

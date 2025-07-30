@@ -24,7 +24,7 @@ return {
     },
     config = function()
       require("user.slipbox").setup({
-        slipbox_dir = "~/data/base/slipbox",
+        slipbox_dir = vim.fn.expand("~/data/base/slipbox"),
       })
     end,
   },
