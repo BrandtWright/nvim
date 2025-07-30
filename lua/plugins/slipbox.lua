@@ -25,9 +25,7 @@ return {
         "<leader>ze",
         function()
           local input = vim.fn.input({ prompt = "Enter note title: " })
-          if input == "" then
-            vim.notify("No input provided.")
-          else
+          if input ~= "" then
             vim.cmd("SlipEdit " .. input)
           end
         end,

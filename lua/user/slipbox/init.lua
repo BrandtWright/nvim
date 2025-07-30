@@ -19,13 +19,23 @@ function M.setup(opts)
   -- Edit Slip
   vim.api.nvim_create_user_command("SlipEdit", function(args)
     local slip_id = args.args
+
     local slip_path = opts.slipbox_dir .. "/" .. slip_id .. "/README.md"
-    vim.cmd("edit " .. slip_path)
-    local bufnr = vim.api.nvim_get_current_buf()
-    vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
-    vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
-    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
-    vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
+
+    if vim.fn.filereadable(slip_path) == 1 then
+      vim.cmd("edit " .. slip_path)
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
+      vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
+      vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
+      vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
+    else
+      vim.notify(
+        "Slip with ID '" .. slip_id .. "' does not exist.",
+        vim.log.levels.ERROR,
+        { title = "Slipbox", icon = "" }
+      )
+    end
   end, {
     nargs = 1,
     desc = "Edit slip with ID",
