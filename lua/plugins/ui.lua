@@ -20,12 +20,13 @@ return {
       },
     },
     keys = {
-      -- silly key: man pages are handled by snacks
+      -- silly keys
       { "<leader>sna", false },
       { "<leader>snd", false },
       { "<leader>snh", false },
       { "<leader>snl", false },
       { "<leader>snt", false },
+      { "<leader>sn", false },
 
       -- Real Keys:
       {

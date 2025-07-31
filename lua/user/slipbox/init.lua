@@ -14,7 +14,7 @@ local function configure_opts(opts)
   }, opts or {})
 end
 
-local function convert_slip_id_to_slip_path(slip_id)
+M.get_slip_path = function(slip_id)
   return state.config.slipbox_dir .. "/" .. slip_id .. "/README.md"
 end
 
@@ -33,7 +33,7 @@ end
 
 M.new_slip = function()
   local slip_id = M.get_next_slip_id()
-  local slip_path = convert_slip_id_to_slip_path(slip_id)
+  local slip_path = M.get_slip_path(slip_id)
   vim.cmd("enew")
   local bufnr = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_set_name(bufnr, slip_path)
@@ -54,7 +54,7 @@ M.edit_slip = function(slip_id)
     vim.notify("Invalid argument: slip_id expected to be a string", vim.log.levels.ERROR, { title = "Slipbox" })
   end
 
-  local slip_path = convert_slip_id_to_slip_path(slip_id)
+  local slip_path = M.get_slip_path(slip_id)
   if vim.fn.filereadable(slip_path) == 1 then
     vim.cmd("edit " .. slip_path)
     local bufnr = vim.api.nvim_get_current_buf()
@@ -134,61 +134,6 @@ function M.setup(opts)
         modeline = false,
       })
     end,
-  })
-
-  -- Find Slip
-  vim.api.nvim_create_user_command("SlipFind", function()
-    -- Field Parser
-    local function split(str, sep)
-      local fields = {}
-      for field in string.gmatch(str, "([^" .. sep .. "]+)") do
-        table.insert(fields, field)
-      end
-      return fields
-    end
-
-    -- Slip List
-    local slips = M.list_slips()
-
-    -- Picker Config
-    local items = {}
-    for _, v in ipairs(slips) do
-      local fields = split(v, "\t")
-      local slip_id = fields[1]
-      local title = fields[2]
-      local tags = fields[3] or ""
-      table.insert(items, {
-        text = title .. " " .. tags,
-        name = slip_id,
-        file = convert_slip_id_to_slip_path(slip_id),
-        filetype = "markdown",
-        action = function()
-          vim.cmd("edit " .. convert_slip_id_to_slip_path(slip_id))
-        end,
-      })
-    end
-
-    -- Picker Action
-    Snacks.picker({
-      items = items,
-      source = "Slipbox", -- Optional source name
-      -- layout = {
-      --   fullscreen = true,
-      -- },
-      format = function(item)
-        return { { item.text } }
-      end,
-      -- confirm = function(picker, item)
-      --   -- Code to execute when an item is confirmed (selected)
-      --   picker:close()
-      --   if item.action then
-      --     item.action()
-      --   end
-      -- end,
-    })
-  end, {
-    nargs = 0,
-    desc = "Find Slips",
   })
 
   state.loaded = true
