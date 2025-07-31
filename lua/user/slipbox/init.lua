@@ -96,7 +96,7 @@ function M.setup(opts)
   -- Edit Slip
   vim.api.nvim_create_user_command("SlipEdit", function(args)
     M.edit_slip(args.args)
-  end, { nargs = 1, desc = "Edit slip with ID" })
+  end, { nargs = 1, desc = "Edit slip by ID" })
 
   -- Save Slip
   local group = vim.api.nvim_create_augroup("SlipWrite", { clear = true })
