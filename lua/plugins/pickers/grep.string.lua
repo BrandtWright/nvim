@@ -1,17 +1,8 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
-      {
-        "<leader>ro",
-        function()
-          require("telescope.builtin").grep_string({
-            shorten_path = true,
-            search = vim.fn.input("Grep String: "),
-          })
-        end,
-        desc = "Other String",
-      },
+      { "<leader>rs", Snacks.picker.grep_word, desc = "String" },
     },
   },
 }

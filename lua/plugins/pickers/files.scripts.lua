@@ -1,12 +1,12 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>fs",
         function()
-          require("telescope.builtin").find_files({
-            cwd = vim.fn.expand("~/.local/bin"),
+          Snacks.picker.files({
+            dirs = { vim.fn.expand("~/.local/bin") },
           })
         end,
         desc = "Scripts",

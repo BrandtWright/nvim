@@ -7,7 +7,7 @@ return {
     keys = {
       {
         "<leader>fo",
-        require("telescope.builtin").oldfiles,
+        Snacks.picker.recent,
         mode = "n",
         desc = "Recent Files",
       },

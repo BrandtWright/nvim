@@ -1,12 +1,13 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>oa",
         function()
-          require("telescope.builtin").git_files({
-            cwd = vim.fn.expand("~/repos/bitpit-host-bootstrapper/"),
+          Snacks.picker.files({
+            dirs = { vim.fn.expand("~/repos/bitpit-host-bootstrapper/") },
+            hidden = true,
           })
         end,
         desc = "Bitbit Playbooks",

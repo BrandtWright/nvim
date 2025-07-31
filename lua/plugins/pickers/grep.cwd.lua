@@ -1,30 +1,25 @@
 return {
   {
-    "LazyVim/LazyVim",
+    "nvim-telescope/telescope.nvim",
     keys = {
       -- silly key: disable default mapping for live_grep
       { "<leader>/", false },
     },
   },
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>rr",
         function()
-          local opts = {
-            vimgrep_arguments = {
-              "rg",
-              "--color=never",
-              "--no-heading",
-              "--with-filename",
-              "--line-number",
-              "--column",
-              "--smart-case",
-            },
-            prompt_title = "Ripgrep",
-          }
-          require("telescope.builtin").live_grep(opts)
+          Snacks.picker.grep()
+        end,
+        desc = "From CWD",
+      },
+      {
+        "<leader>/",
+        function()
+          Snacks.picker.grep()
         end,
         desc = "From CWD",
       },

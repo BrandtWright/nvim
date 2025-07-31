@@ -104,6 +104,7 @@ return {
           { "<leader>d", group = "Debug" },
           { "<leader>dp", group = "Profiler" },
           { "<leader>e", group = "Explore" },
+          { "<leader>f", group = "Find" },
           { "<leader>fg", group = "Git Objects" },
           { "<leader>g", group = "Git" },
           { "<leader>gb", group = "Buffer", mode = { "n", "v" } },

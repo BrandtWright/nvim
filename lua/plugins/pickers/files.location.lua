@@ -1,14 +1,14 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>fl",
         function()
-          local cwd = vim.fn.input("Directory", "", "dir")
-          if cwd and cwd ~= "" then
-            require("telescope.builtin").find_files({
-              cwd = cwd,
+          local dir = vim.fn.input("Directory", "", "dir")
+          if dir and dir ~= "" then
+            Snacks.picker.files({
+              dirs = { dir },
             })
           end
         end,
@@ -17,10 +17,10 @@ return {
       {
         "<leader>fL",
         function()
-          local cwd = vim.fn.input("Directory", "", "dir")
-          if cwd and cwd ~= "" then
-            require("telescope.builtin").find_files({
-              cwd = cwd,
+          local dir = vim.fn.input("Directory", "", "dir")
+          if dir and dir ~= "" then
+            Snacks.picker.files({
+              dirs = { dir },
               hidden = true,
             })
           end

@@ -1,24 +1,16 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>rt",
         function()
-          local opts = {
-            vimgrep_arguments = {
-              "rg",
-              "--color=never",
-              "--no-heading",
-              "--with-filename",
-              "--line-number",
-              "--column",
-              "--smart-case",
-              "--type",
-              vim.fn.input("Type: "),
-            },
-          }
-          require("telescope.builtin").live_grep(opts)
+          local file_type = vim.fn.input("Type: ")
+          if file_type and file_type ~= "" then
+            Snacks.picker.grep({
+              file_type = file_type,
+            })
+          end
         end,
         desc = "File Type",
       },

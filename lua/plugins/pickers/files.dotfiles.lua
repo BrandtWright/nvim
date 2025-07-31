@@ -1,23 +1,25 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>f.",
         function()
-          local pickers = require("telescope.pickers")
-          local conf = require("telescope.config").values
-          local locs = vim.fn.systemlist("/home/brandt/.local/bin/dotfiles")
-          pickers
-            .new({}, {
-              prompt_title = "Find Files (Dotfiles)",
-              finder = require("telescope.finders").new_table(locs),
-              sorter = conf.file_sorter({}),
-              previewer = conf.file_previewer({}),
-            })
-            :find()
+          Snacks.picker.files({
+            finder = function()
+              local dotfiles = vim.fn.systemlist("dotfiles")
+              local items = {}
+              for _, v in ipairs(dotfiles) do
+                table.insert(items, {
+                  file = v,
+                  text = v,
+                })
+              end
+              return items
+            end,
+          })
         end,
-        desc = "Dotfiles",
+        desc = "Fuzzy Find in Buffer",
       },
     },
   },
