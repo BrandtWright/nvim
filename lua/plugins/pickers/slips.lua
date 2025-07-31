@@ -57,6 +57,13 @@ return {
               return { { item.text } }
             end,
 
+            -- Action to perform when an item is selected.
+            -- `picker` is the picker instance, `item` is the selected item.
+            -- confirm = function(picker, item)
+            --   print("Selected: " .. item)
+            --   picker:close() -- Close the picker after selection
+            -- end,
+
             -- Optional parameter title: string (override the source name as title)
             title = "Slipbox",
 
@@ -73,7 +80,7 @@ return {
       {
         "<leader>sn",
         function()
-          require("snacks.picker").pick({ source = "slipbox" })
+          Snacks.picker.pick({ source = "slipbox" })
         end,
         desc = "Find Slip",
       },
