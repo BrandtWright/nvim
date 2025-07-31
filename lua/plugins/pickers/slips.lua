@@ -10,8 +10,9 @@ return {
     },
     opts = {
       picker = {
+        enabled = true,
         sources = {
-          ["slipbox"] = { -- This is the name displayed in the picker
+          slipbox = { -- This is the name displayed in the picker
 
             -- Logic to find and return the items.
             -- This function should return an iterable (e.g., a table) of items.
@@ -65,7 +66,6 @@ return {
             -- layout: string (e.g., "select", "vscode")
             -- live: boolean (for live filtering)
             -- supports_live: boolean (if the finder supports live updates)
-            -- layout: string (e.g., "select", "vscode")
           },
         },
       },
