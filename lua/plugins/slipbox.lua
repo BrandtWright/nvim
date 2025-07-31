@@ -1,10 +1,10 @@
 return {
   {
     dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
-    cmd = { "SlipFind", "SlipNew", "SlipEdit" },
     dependencies = {
       "folke/snacks.nvim",
     },
+    cmd = { "SlipFind", "SlipNew", "SlipEdit" },
     name = "slipbox", -- Optional: helps with module resolution
     keys = {
       {

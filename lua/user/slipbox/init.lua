@@ -163,7 +163,7 @@ function M.setup(opts)
         file = convert_slip_id_to_slip_path(slip_id),
         filetype = "markdown",
         action = function()
-          vim.cmd("SlipEdit " .. slip_id)
+          vim.cmd("edit " .. convert_slip_id_to_slip_path(slip_id))
         end,
       })
     end
@@ -178,13 +178,13 @@ function M.setup(opts)
       format = function(item)
         return { { item.text } }
       end,
-      confirm = function(picker, item)
-        -- Code to execute when an item is confirmed (selected)
-        picker:close()
-        if item.action then
-          item.action()
-        end
-      end,
+      -- confirm = function(picker, item)
+      --   -- Code to execute when an item is confirmed (selected)
+      --   picker:close()
+      --   if item.action then
+      --     item.action()
+      --   end
+      -- end,
     })
   end, {
     nargs = 0,
