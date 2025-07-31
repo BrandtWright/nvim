@@ -17,6 +17,7 @@ return {
             -- This function should return an iterable (e.g., a table) of items.
             -- Each item can be a string or a table with a 'text' field.
             finder = function(opts, ctx)
+              -- Slip list field parser (splits ID<tab>TITLE<tab>TAGS)
               local function split(str, sep)
                 local fields = {}
                 for field in string.gmatch(str, "([^" .. sep .. "]+)") do
@@ -56,13 +57,6 @@ return {
             format = function(item)
               return { { item.text } }
             end,
-
-            -- Action to perform when an item is selected.
-            -- `picker` is the picker instance, `item` is the selected item.
-            -- confirm = function(picker, item)
-            --   print("Selected: " .. item)
-            --   picker:close() -- Close the picker after selection
-            -- end,
 
             -- Optional parameter title: string (override the source name as title)
             title = "Slipbox",
