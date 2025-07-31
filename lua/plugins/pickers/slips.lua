@@ -16,7 +16,7 @@ return {
             -- Logic to find and return the items.
             -- This function should return an iterable (e.g., a table) of items.
             -- Each item can be a string or a table with a 'text' field.
-            finder = function(opts, ctx)
+            finder = function()
               -- Slip list field parser (splits ID<tab>TITLE<tab>TAGS)
               local function split(str, sep)
                 local fields = {}
