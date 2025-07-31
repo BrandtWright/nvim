@@ -1,5 +1,13 @@
 return {
   {
+    "LazyVim/LazyVim",
+    keys = {
+      -- Silly keys
+      { "<leader>ff", false },
+      { "<leader>fF", false },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     keys = {
       -- Silly keys
