@@ -16,43 +16,80 @@
 -- - ~/.config/nvim/after/syntax/
 -------------------------------------------------------------------------------
 
-local load = require("bw.util.xresources").load
-local cp = {
-  -- Dark
-  -- Normal
-  white = load("color7") or "#ebdbb2",
-  black = load("color0") or "#575757",
-  red = load("color1") or "#bd7671",
-  green = load("color2") or "#769482",
-  blue = load("color4") or "#5692db",
-  yellow = load("color3") or "#c2c27c",
-  cyan = load("color6") or "#7b919e",
-  magenta = load("color5") or "#8f7099",
-  -- Bright
-  bright_white = load("color15") or "#fff2d1",
-  bright_black = load("color8") or "#737373",
-  bright_red = load("color9") or "#ffa099",
-  bright_green = load("color10") or "#b9d9b8",
-  bright_blue = load("color12") or "#77b3fc",
-  bright_yellow = load("color11") or "#fcfca4",
-  bright_cyan = load("color14") or "#a7cacc",
-  bright_magenta = load("color13") or "#c99fd6",
-  --  Extended Colors
-  rose = load("screen_glasses.ui.rose") or "#c08081",
-  orange = load("screen_glasses.ui.orange") or "#ce9178",
-  violet = load("screen_glasses.ui.violet") or "#8a7b9e",
-  bright_violet = load("screen_glasses.ui.bright_violet") or "#eebaff",
-  brown = load("screen_glasses.ui.brown") or "#473d37",
-  gold = load("screen_glasses.ui.gold") or "#a38e5d",
-  dark_gray = load("screen_glasses.ui.gray_10") or "#1a1a1a",
-  gray = load("screen_glasses.ui.gray_34") or "#575757",
-  bright_gray = load("screen_glasses.ui.gray_50") or "#333333",
-  dark_blue = load("screen_glasses.ui.resolution_blue") or "#202080",
-}
+-------------------------------------------------------------------------------
+-- Colors
+-------------------------------------------------------------------------------
+-- Base
+local foreground = "#ebdbb2"
+local background = "#191816"
+local cursor_line = "#1f1d1b"
+
+local red_dark = "#b25f57"
+local red = "#bd7671"
+local red_bright = "#e7a3a4"
+local orange_dark = "#a1633f"
+local orange = "#d28445"
+local orange_bright = "#f2b27b"
+local yellow_dark = "#b9b237"
+local yellow = "#e5dc6c"
+local yellow_bright = "#f6f0a4"
+local chartreuse_dark = "#758e57"
+local chartreuse = "#91b76b"
+local chartreuse_bright = "#cfeaa0"
+local green_dark = "#4b6550"
+local green = "#709d81"
+local green_bright = "#b0d4b2"
+local spring_dark = "#4f766e"
+local spring = "#6da89e"
+local spring_bright = "#a9d5c8"
+local cyan_dark = "#536a71"
+local cyan = "#6c97a7"
+local cyan_bright = "#94bfc8"
+local azure_dark = "#45667e"
+local azure = "#5f87a6"
+local azure_bright = "#a2c5e4"
+local blue_dark = "#3f6999"
+local blue = "#5692db"
+local blue_bright = "#7aaadd"
+local violet_dark = "#59497c"
+local violet = "#8c70b6"
+local violet_bright = "#c5afe4"
+local magenta_dark = "#5f4469"
+local magenta = "#a474b0"
+local magenta_bright = "#d6a3e0"
+local rose_dark = "#94586b"
+local rose = "#c97e95"
+local rose_bright = "#e8a9bb"
+local black_dark = "#2a2a2a"
+local black = "#3c3c3c"
+local black_bright = "#666666"
+local white_dark = "#a89f91"
+local white = "#ebdbb2"
+local white_bright = "#fff2d1"
+
+-------------------------------------------------------------------------------
+-- Highlights
+-------------------------------------------------------------------------------
+
+-- diff
+-- plugins
+-- applications (git, )
+-- languages
+-- file typpes
+
+-- lsp_semantic_highlights
+-- treesitter_highlights
+
+-- Syntax Groups
+-- Builtin Highlight Groups
+-- Semantic Tokens
+-- Extmarks and Virtual Text
 
 local highlights = {
   builtins = {
-    gruoup_names = {},
+    gruoup_names = {
+      ["String"] = { fg = red, bg = "#0000ff" },
+    },
     highlight_groups = {},
     diagnostic_highlights = {},
     lsp_highlights = {},
@@ -65,11 +102,6 @@ local highlights = {
   languages = {},
 }
 
-local temp = {
-  lsp_semantic_highlights = {},
-  treesitter_highlights = {},
-}
-
 local function apply_highlights(table)
   for name, value in pairs(table) do
     if value.fg or value.link then
@@ -80,24 +112,8 @@ local function apply_highlights(table)
   end
 end
 
--- diff
--- plugins
--- applications (git, )
--- languages
--- file typpes
-
--------------------------------------------------------------------------------
--- Colors
--------------------------------------------------------------------------------
-
 -------------------------------------------------------------------------------
 -- Highlights
 -------------------------------------------------------------------------------
 
--- Syntax Groups
-
--- Builtin Highlight Groups
-
--- Semantic Tokens
-
--- Extmarks and Virtual Text
+apply_highlights(highlights)
