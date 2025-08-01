@@ -1,15 +1,10 @@
 -------------------------------------------------------------------------
--- Configure Colorscheme
+-- Screen Glasses
 -------------------------------------------------------------------------
-
-vim.api.nvim_command("set termguicolors")
-vim.api.nvim_command("let g:colors_name='screen_glasses'")
-vim.api.nvim_command("set background=dark")
 
 -------------------------------------------------------------------------
 -- Helper Functions
 -------------------------------------------------------------------------
-
 local highlight = vim.api.nvim_set_hl
 local load = require("bw.util.xresources").load
 

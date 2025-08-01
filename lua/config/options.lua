@@ -4,6 +4,10 @@
 
 vim.g.mapleader = " "
 
+-- Color and Brightness Options
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+
 -- Disable the trouble symbols in lualine (method/function names and symbols)
 vim.g.trouble_lualine = false
 
