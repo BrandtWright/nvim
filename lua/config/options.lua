@@ -69,9 +69,45 @@ opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
-opt.foldmethod = "marker"
-opt.foldlevel = 0
-opt.modelines = 1
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldcolumn = "1"
+vim.opt.fillchars = {
+  fold = " ", -- remove trailing filler dots
+  foldopen = "", -- ▼
+  foldclose = "", -- ▶
+  foldsep = " ",
+  eob = " ",
+}
+
+function _G.TreesitterFoldText()
+  local start_line = vim.fn.getline(vim.v.foldstart)
+  local count = vim.v.foldend - vim.v.foldstart + 1
+  local suffix = string.format("  … [%d lines]", count)
+  local prefix = "  "
+  local max_width = vim.api.nvim_win_get_width(0) - 2 -- allow for fold column
+  local line = vim.trim(start_line)
+  local content_width = max_width - vim.fn.strdisplaywidth(prefix .. suffix)
+
+  -- truncate if needed
+  if vim.fn.strdisplaywidth(line) > content_width then
+    line = vim.fn.strcharpart(line, 0, content_width - 1) .. "…"
+  end
+
+  -- left-justified + padded manually
+  local foldtext = prefix .. line .. suffix
+  local total_padding = max_width - vim.fn.strdisplaywidth(foldtext)
+  if total_padding > 0 then
+    foldtext = foldtext .. string.rep(" ", total_padding)
+  end
+
+  return foldtext
+end
+
+vim.opt.foldtext = "v:lua.TreesitterFoldText()"
 
 opt.belloff = "all" -- Just turn the dang bell off
 
