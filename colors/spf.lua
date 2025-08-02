@@ -95,7 +95,105 @@ local ui_tertiary_background = "#a89984"
 
 local highlights = {
   builtins = {
-    gruoup_names = {
+
+    -- {{{ Group Names
+
+    group_names = {
+
+      -- any comment
+      Comment = {},
+
+      -- any constant
+      Constant = {},
+      -- a string constant: "this is a string"
+      String = {},
+      -- a character constant: 'c', '\n'
+      Character = {},
+      -- a number constant: 234, 0xff
+      Number = {},
+      -- a boolean constant: TRUE, false
+      Boolean = {},
+      -- a floating point constant: 2.3e10
+      Float = {},
+
+      -- any variable name
+      Identifier = {},
+      -- function name (also: methods for classes)
+      Function = {},
+
+      -- any statement
+      Statement = {},
+      -- if, then, else, endif, switch, etc.
+      Conditional = {},
+      -- for, do, while, etc.
+      Repeat = {},
+      -- case, default, etc.
+      Label = {},
+      -- "sizeof", "+", "*", etc.
+      Operator = {},
+      -- any other keyword
+      Keyword = {},
+      -- try, catch, throw
+      Exception = {},
+
+      -- generic Preprocessor
+      PreProc = {},
+      -- preprocessor #include
+      Include = {},
+      -- preprocessor #define
+      Define = {},
+      -- same as Define
+      Macro = {},
+      -- preprocessor #if, #else, #endif, etc.
+      PreCondit = {},
+
+      -- int, long, char, etc.
+      Type = {},
+      -- static, register, volatile, etc.
+      StorageClass = {},
+      -- struct, union, enum, etc.
+      Structure = {},
+      -- a typedef
+      Typedef = {},
+
+      -- any special symbol
+      Special = {},
+      -- special character in a constant
+      SpecialChar = {},
+      -- you can use CTRL-] on this
+      Tag = {},
+      -- character that needs attention
+      Delimiter = {},
+      -- special things inside a comment
+      SpecialComment = {},
+      -- debugging statements
+      Debug = {},
+
+      -- text that stands out, HTML links
+      Underlined = {},
+
+      -- left blank, hidden  |hl-Ignore|
+      Ignore = {},
+
+      -- any erroneous construct
+      Error = {},
+
+      -- anything that needs extra attention; mostly the
+      -- keywords TODO FIXME and XXX
+      Todo = {},
+
+      -- added line in a diff
+      Added = {},
+      -- changed line in a diff
+      Changed = {},
+      -- removed line in a diff
+      Removed = {},
+    },
+
+    -- }}} Group Names
+
+    -- {{{ Highlight Groups
+    highlight_groups = {
       ["EndOfBUffer"] = { fg = background, bg = background },
 
       -- hl-ColorColumn
@@ -424,7 +522,8 @@ local highlights = {
       -- Window bar of not-current windows.
       ["WinBarNC"] = {},
     },
-    highlight_groups = {},
+    -- }}} Highlight Groups
+
     diagnostic_highlights = {},
     lsp_highlights = {},
     lsp_semantic_highlights = {},
