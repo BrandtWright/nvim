@@ -96,6 +96,12 @@ local ui_tertiary_background = "#a89984"
 local highlights = {
 
   builtins = {
+
+    -- group-name
+    -- A syntax group name is to be used for syntax items that match the same
+    -- kind of thing.  These are then linked to a highlight group that specifies
+    -- the color. A syntax group name doesn't specify any color or attributes
+    -- itself.
     group_names = {
 
       -- any comment
@@ -187,6 +193,11 @@ local highlights = {
       -- removed line in a diff
       Removed = {},
     },
+
+    -- highlight-groups highlight-default
+    -- These are the builtin highlighting groups.  Note that the highlighting
+    -- depends on the value of 'background'.  You can see the current settings
+    -- with the ":highlight" command.
     highlight_groups = {
       ["EndOfBUffer"] = { fg = background, bg = background },
 
@@ -265,7 +276,7 @@ local highlights = {
 
       -- hl-Folded
       -- Line used for closed folds.
-      ["Folded"] = { fg = white_dark, italic = true },
+      ["Folded"] = { fg = black_bright, bg = black_dark, italic = true },
 
       -- hl-FoldColumn
       -- 'foldcolumn'
@@ -516,6 +527,7 @@ local highlights = {
       -- Window bar of not-current windows.
       ["WinBarNC"] = {},
     },
+
     diagnostic_highlights = {
       -- hl-DiagnosticError
       -- Used as the base highlight group.
@@ -651,6 +663,7 @@ local highlights = {
       -- Used for unnecessary or unused code.
       ["DiagnosticUnnecessary"] = {},
     },
+
     lsp_highlights = {
       -- used for highlighting "text" references
       ["LspReferenceText"] = {},
@@ -667,6 +680,7 @@ local highlights = {
       -- used for highlighting inlay hints
       ["LspInlayHint"] = {},
     },
+
     lsp_semantic_highlights = {
       -- Identifiers that declare or reference a class type
       ["@lsp.type.class"] = {},
@@ -768,10 +782,23 @@ local highlights = {
       ["@lsp.mod.static"] = {},
     },
   },
+
   common = {
-    git = {},
+    git = {
+      add = {
+        diff = {},
+      },
+      remove = {
+        diff = {},
+      },
+      delete = {
+        diff = {},
+      },
+    },
   },
+
   plugins = {},
+
   languages = {},
 }
 

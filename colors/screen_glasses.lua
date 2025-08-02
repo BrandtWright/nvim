@@ -147,7 +147,7 @@ vim.cmd("hi! link CursorLineNr bright_black")
 vim.cmd("hi! link SignColumn Normal")
 
 -- Folds
-vim.cmd("hi! link Folded Normal")
+vim.api.nvim_set_hl(0, "Folded", { fg = cp.bright_black, bg = ui.dark_panel_background, italic = true })
 vim.cmd("hi! link FoldColumn Normal")
 
 --------------------------------------------------------------------------------
@@ -286,8 +286,8 @@ vim.cmd("hi! link LspReferenceText visual_muted")
 -- Markdown
 -------------------------------------------------------------------------
 
-vim.api.nvim_set_hl(0, "Folded", { fg = "#888888", bg = "NONE", italic = true })
-vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#ff0000", bg = "NONE" })
+-- vim.api.nvim_set_hl(0, "Folded", { fg = "#888888", bg = "NONE", italic = true })
+-- vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#ff0000", bg = "NONE" })
 
 -- vim.api.nvim_set_hl(0, "MarkdownHeading1", { fg = "#998568", bg = "#191816", bold = true })
 -- vim.api.nvim_set_hl(0, "MarkdownHeading2", { fg = "#8c7a5f", bg = "#191816", bold = true })

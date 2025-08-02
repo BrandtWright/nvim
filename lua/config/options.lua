@@ -87,7 +87,7 @@ function _G.TreesitterFoldText()
   local start_line = vim.fn.getline(vim.v.foldstart)
   local count = vim.v.foldend - vim.v.foldstart + 1
   local suffix = string.format("  … [%d lines]", count)
-  local prefix = "  "
+  local prefix = " "
   local max_width = vim.api.nvim_win_get_width(0) - 2 -- allow for fold column
   local line = vim.trim(start_line)
   local content_width = max_width - vim.fn.strdisplaywidth(prefix .. suffix)
