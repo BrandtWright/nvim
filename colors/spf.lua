@@ -95,18 +95,16 @@ local ui_tertiary_background = "#a89984"
 
 local highlights = {
 
-  -- {{{ Builtins
   builtins = {
-    -- {{{ Group Names
     group_names = {
 
       -- any comment
-      Comment = {},
+      Comment = { fg = black_bright, bg = "NONE", italic = true },
 
       -- any constant
       Constant = {},
       -- a string constant: "this is a string"
-      String = {},
+      String = { fg = orange },
       -- a character constant: 'c', '\n'
       Character = {},
       -- a number constant: 234, 0xff
@@ -189,8 +187,6 @@ local highlights = {
       -- removed line in a diff
       Removed = {},
     },
-    -- }}} Group Names
-    -- {{{ Highlight Groups
     highlight_groups = {
       ["EndOfBUffer"] = { fg = background, bg = background },
 
@@ -269,7 +265,7 @@ local highlights = {
 
       -- hl-Folded
       -- Line used for closed folds.
-      ["Folded"] = {},
+      ["Folded"] = { fg = white_dark, italic = true },
 
       -- hl-FoldColumn
       -- 'foldcolumn'
@@ -520,8 +516,6 @@ local highlights = {
       -- Window bar of not-current windows.
       ["WinBarNC"] = {},
     },
-    -- }}} Highlight Groups
-    -- {{{ Diagnostic Highlights
     diagnostic_highlights = {
       -- hl-DiagnosticError
       -- Used as the base highlight group.
@@ -657,8 +651,6 @@ local highlights = {
       -- Used for unnecessary or unused code.
       ["DiagnosticUnnecessary"] = {},
     },
-    -- }}} Diagnostic Highlights
-    -- {{{ LSP Highlights
     lsp_highlights = {
       -- used for highlighting "text" references
       ["LspReferenceText"] = {},
@@ -675,8 +667,6 @@ local highlights = {
       -- used for highlighting inlay hints
       ["LspInlayHint"] = {},
     },
-    -- }}} LSP Highlights
-    -- {{{ LSP Semantic Highlights
     lsp_semantic_highlights = {
       -- Identifiers that declare or reference a class type
       ["@lsp.type.class"] = {},
@@ -777,10 +767,7 @@ local highlights = {
       -- Class members (static members)
       ["@lsp.mod.static"] = {},
     },
-    -- }}} LSP Semantic Highlights
   },
-  -- }}} Builtins
-
   common = {
     git = {},
   },
@@ -798,4 +785,7 @@ local function apply_highlights(table)
   end
 end
 
+vim.api.nvim_command("highlight clear")
+vim.api.nvim_command("syntax reset")
+vim.g.colors_name = "spf"
 apply_highlights(highlights)
