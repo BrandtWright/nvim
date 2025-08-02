@@ -94,10 +94,10 @@ local ui_tertiary_background = "#a89984"
 -- Extmarks and Virtual Text
 
 local highlights = {
+
+  -- {{{ Builtins
   builtins = {
-
     -- {{{ Group Names
-
     group_names = {
 
       -- any comment
@@ -189,9 +189,7 @@ local highlights = {
       -- removed line in a diff
       Removed = {},
     },
-
     -- }}} Group Names
-
     -- {{{ Highlight Groups
     highlight_groups = {
       ["EndOfBUffer"] = { fg = background, bg = background },
@@ -523,11 +521,266 @@ local highlights = {
       ["WinBarNC"] = {},
     },
     -- }}} Highlight Groups
+    -- {{{ Diagnostic Highlights
+    diagnostic_highlights = {
+      -- hl-DiagnosticError
+      -- Used as the base highlight group.
+      -- Other Diagnostic highlights link to this by default (except Underline)
+      ["DiagnosticError"] = {},
 
-    diagnostic_highlights = {},
-    lsp_highlights = {},
-    lsp_semantic_highlights = {},
+      -- hl-DiagnosticWarn
+      -- Used as the base highlight group.
+      -- Other Diagnostic highlights link to this by default (except Underline)
+      ["DiagnosticWarn"] = {},
+
+      -- hl-DiagnosticInfo
+      -- Used as the base highlight group.
+      -- Other Diagnostic highlights link to this by default (except Underline)
+      ["DiagnosticInfo"] = {},
+
+      -- hl-DiagnosticHint
+      -- Used as the base highlight group.
+      -- Other Diagnostic highlights link to this by default (except Underline)
+      ["DiagnosticHint"] = {},
+
+      -- hl-DiagnosticOk
+      -- Used as the base highlight group.
+      -- Other Diagnostic highlights link to this by default (except Underline)
+      ["DiagnosticOk"] = {},
+
+      -- hl-DiagnosticVirtualTextError
+      -- Used for "Error" diagnostic virtual text.
+      ["DiagnosticVirtualTextError"] = {},
+
+      -- hl-DiagnosticVirtualTextWarn
+      -- Used for "Warn" diagnostic virtual text.
+      ["DiagnosticVirtualTextWarn"] = {},
+
+      -- hl-DiagnosticVirtualTextInfo
+      -- Used for "Info" diagnostic virtual text.
+      ["DiagnosticVirtualTextInfo"] = {},
+
+      -- hl-DiagnosticVirtualTextHint
+      -- Used for "Hint" diagnostic virtual text.
+      ["DiagnosticVirtualTextHint"] = {},
+
+      -- hl-DiagnosticVirtualTextOk
+      -- Used for "Ok" diagnostic virtual text.
+      ["DiagnosticVirtualTextOk"] = {},
+
+      -- hl-DiagnosticVirtualLinesError
+      -- Used for "Error" diagnostic virtual lines.
+      ["DiagnosticVirtualLinesError"] = {},
+
+      -- hl-DiagnosticVirtualLinesWarn
+      -- Used for "Warn" diagnostic virtual lines.
+      ["DiagnosticVirtualLinesWarn"] = {},
+
+      -- hl-DiagnosticVirtualLinesInfo
+      -- Used for "Info" diagnostic virtual lines.
+      ["DiagnosticVirtualLinesInfo"] = {},
+
+      -- hl-DiagnosticVirtualLinesHint
+      -- Used for "Hint" diagnostic virtual lines.
+      ["DiagnosticVirtualLinesHint"] = {},
+
+      -- hl-DiagnosticVirtualLinesOk
+      -- Used for "Ok" diagnostic virtual lines.
+      ["DiagnosticVirtualLinesOk"] = {},
+
+      -- hl-DiagnosticUnderlineError
+      -- Used to underline "Error" diagnostics.
+      ["DiagnosticUnderlineError"] = {},
+
+      -- hl-DiagnosticUnderlineWarn
+      -- Used to underline "Warn" diagnostics.
+      ["DiagnosticUnderlineWarn"] = {},
+
+      -- hl-DiagnosticUnderlineInfo
+      -- Used to underline "Info" diagnostics.
+      ["DiagnosticUnderlineInfo"] = {},
+
+      -- hl-DiagnosticUnderlineHint
+      -- Used to underline "Hint" diagnostics.
+      ["DiagnosticUnderlineHint"] = {},
+
+      -- hl-DiagnosticUnderlineOk
+      -- Used to underline "Ok" diagnostics.
+      ["DiagnosticUnderlineOk"] = {},
+
+      -- hl-DiagnosticFloatingError
+      -- Used to color "Error" diagnostic messages in diagnostics float.
+      -- See vim.diagnostic.open_float()
+      ["DiagnosticFloatingError"] = {},
+
+      -- hl-DiagnosticFloatingWarn
+      -- Used to color "Warn" diagnostic messages in diagnostics float.
+      ["DiagnosticFloatingWarn"] = {},
+
+      -- hl-DiagnosticFloatingInfo
+      -- Used to color "Info" diagnostic messages in diagnostics float.
+      ["DiagnosticFloatingInfo"] = {},
+
+      -- hl-DiagnosticFloatingHint
+      -- Used to color "Hint" diagnostic messages in diagnostics float.
+      ["DiagnosticFloatingHint"] = {},
+
+      -- hl-DiagnosticFloatingOk
+      -- Used to color "Ok" diagnostic messages in diagnostics float.
+      ["DiagnosticFloatingOk"] = {},
+
+      -- hl-DiagnosticSignError
+      -- Used for "Error" signs in sign column.
+      ["DiagnosticSignError"] = {},
+
+      -- hl-DiagnosticSignWarn
+      -- Used for "Warn" signs in sign column.
+      ["DiagnosticSignWarn"] = {},
+
+      -- hl-DiagnosticSignInfo
+      -- Used for "Info" signs in sign column.
+      ["DiagnosticSignInfo"] = {},
+
+      -- hl-DiagnosticSignHint
+      -- Used for "Hint" signs in sign column.
+      ["DiagnosticSignHint"] = {},
+
+      -- hl-DiagnosticSignOk
+      -- Used for "Ok" signs in sign column.
+      ["DiagnosticSignOk"] = {},
+
+      -- hl-DiagnosticDeprecated
+      -- Used for deprecated or obsolete code.
+      ["DiagnosticDeprecated"] = {},
+
+      -- hl-DiagnosticUnnecessary
+      -- Used for unnecessary or unused code.
+      ["DiagnosticUnnecessary"] = {},
+    },
+    -- }}} Diagnostic Highlights
+    -- {{{ LSP Highlights
+    lsp_highlights = {
+      -- used for highlighting "text" references
+      ["LspReferenceText"] = {},
+
+      -- used for highlighting "read" references
+      ["LspReferenceRead"] = {},
+
+      -- used for highlighting "write" references
+      ["LspReferenceWrite"] = {},
+
+      -- used for highlighting reference targets (e.g. in a hover range)
+      ["LspReferenceTarget"] = {},
+
+      -- used for highlighting inlay hints
+      ["LspInlayHint"] = {},
+    },
+    -- }}} LSP Highlights
+    -- {{{ LSP Semantic Highlights
+    lsp_semantic_highlights = {
+      -- Identifiers that declare or reference a class type
+      ["@lsp.type.class"] = {},
+
+      -- Tokens that represent a comment
+      ["@lsp.type.comment"] = {},
+
+      -- Identifiers that declare or reference decorators and annotations
+      ["@lsp.type.decorator"] = {},
+
+      -- Identifiers that declare or reference an enumeration type
+      ["@lsp.type.enum"] = {},
+
+      -- Identifiers that declare or reference an enumeration property, constant, or member
+      ["@lsp.type.enumMember"] = {},
+
+      -- Identifiers that declare an event property
+      ["@lsp.type.event"] = {},
+
+      -- Identifiers that declare a function
+      ["@lsp.type.function"] = {},
+
+      -- Identifiers that declare or reference an interface type
+      ["@lsp.type.interface"] = {},
+
+      -- Tokens that represent a language keyword
+      ["@lsp.type.keyword"] = {},
+
+      -- Identifiers that declare a macro
+      ["@lsp.type.macro"] = {},
+
+      -- Identifiers that declare a member function or method
+      ["@lsp.type.method"] = {},
+
+      -- Tokens that represent a modifier
+      ["@lsp.type.modifier"] = {},
+
+      -- Identifiers that declare or reference a namespace, module, or package
+      ["@lsp.type.namespace"] = {},
+
+      -- Tokens that represent a number literal
+      ["@lsp.type.number"] = {},
+
+      -- Tokens that represent an operator
+      ["@lsp.type.operator"] = {},
+
+      -- Identifiers that declare or reference a function or method parameters
+      ["@lsp.type.parameter"] = {},
+
+      -- Identifiers that declare or reference a member property, member field, or member variable
+      ["@lsp.type.property"] = {},
+
+      -- Tokens that represent a regular expression literal
+      ["@lsp.type.regexp"] = {},
+
+      -- Tokens that represent a string literal
+      ["@lsp.type.string"] = {},
+
+      -- Identifiers that declare or reference a struct type
+      ["@lsp.type.struct"] = {},
+
+      -- Identifiers that declare or reference a type that is not covered above
+      ["@lsp.type.type"] = {},
+
+      -- Identifiers that declare or reference a type parameter
+      ["@lsp.type.typeParameter"] = {},
+
+      -- Identifiers that declare or reference a local or global variable
+      ["@lsp.type.variable"] = {},
+
+      -- Types and member functions that are abstract
+      ["@lsp.mod.abstract"] = {},
+
+      -- Functions that are marked async
+      ["@lsp.mod.async"] = {},
+
+      -- Declarations of symbols
+      ["@lsp.mod.declaration"] = {},
+
+      -- Symbols that are part of the standard library
+      ["@lsp.mod.defaultLibrary"] = {},
+
+      -- Definitions of symbols, for example, in header files
+      ["@lsp.mod.definition"] = {},
+
+      -- Symbols that should no longer be used
+      ["@lsp.mod.deprecated"] = {},
+
+      -- Occurrences of symbols in documentation
+      ["@lsp.mod.documentation"] = {},
+
+      -- Variable references where the variable is assigned to
+      ["@lsp.mod.modification"] = {},
+
+      -- Readonly variables and member fields (constants)
+      ["@lsp.mod.readonly"] = {},
+
+      -- Class members (static members)
+      ["@lsp.mod.static"] = {},
+    },
+    -- }}} LSP Semantic Highlights
   },
+  -- }}} Builtins
+
   common = {
     git = {},
   },
