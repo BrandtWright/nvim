@@ -55,6 +55,11 @@ local ui = {
   dark_panel_background = load("screen_glasses.ui.primary_background") or "#2C2826",
 }
 
+--- Clear all highlights and initialize the color scheme name
+vim.cmd("highlight clear")
+vim.api.nvim_command("syntax reset")
+vim.g.colors_name = "screen_glasses"
+
 --------------------------------------------------------------------------------
 -- Color Groups and Styles
 --------------------------------------------------------------------------------
@@ -281,10 +286,13 @@ vim.cmd("hi! link LspReferenceText visual_muted")
 -- Markdown
 -------------------------------------------------------------------------
 
-vim.api.nvim_set_hl(0, "MarkdownHeading1", { fg = "#998568", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownHeading2", { fg = "#8c7a5f", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownHeading3", { fg = "#806f57", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownHeading4", { fg = "#73644e", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownHeading5", { fg = "#665945", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownHeading6", { fg = "#594e3d", bg = "#191816", bold = true })
-vim.api.nvim_set_hl(0, "MarkdownCode", { bg = "#1f1e1b" })
+vim.api.nvim_set_hl(0, "Folded", { fg = "#888888", bg = "NONE", italic = true })
+vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#ff0000", bg = "NONE" })
+
+-- vim.api.nvim_set_hl(0, "MarkdownHeading1", { fg = "#998568", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownHeading2", { fg = "#8c7a5f", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownHeading3", { fg = "#806f57", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownHeading4", { fg = "#73644e", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownHeading5", { fg = "#665945", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownHeading6", { fg = "#594e3d", bg = "#191816", bold = true })
+-- vim.api.nvim_set_hl(0, "MarkdownCode", { bg = "#1f1e1b" })
