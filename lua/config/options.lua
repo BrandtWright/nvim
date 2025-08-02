@@ -13,12 +13,6 @@ vim.g.trouble_lualine = false
 
 local opt = vim.opt
 
--- TODO: set opt.statuscolumn to something better so that gitsigns are not hanging out in nomans land
-
--- opt.numberwidth = 3
--- opt.statuscolumn = "%@SignCb@%s%=%T%@NumCb@%r│%T"
--- opt.statuscolumn = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%s"
-
 opt.laststatus = 3
 
 -- Ignore compiled files
@@ -140,7 +134,7 @@ opt.formatoptions = opt.formatoptions
   - "2" -- I'm not in gradeschool anymore
 
 -- set joinspaces
-opt.joinspaces = false -- Two spaces and grade school, we're done
+opt.joinspaces = false -- one space betwen sentences.
 
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
