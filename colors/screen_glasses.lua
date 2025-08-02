@@ -142,7 +142,7 @@ vim.cmd("hi! link CursorLineNr bright_black")
 vim.cmd("hi! link SignColumn Normal")
 
 -- Folds
-vim.cmd("hi! link Folded dark_panel")
+vim.cmd("hi! link Folded Normal")
 vim.cmd("hi! link FoldColumn Normal")
 
 --------------------------------------------------------------------------------
