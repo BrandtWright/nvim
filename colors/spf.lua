@@ -225,7 +225,7 @@ local highlights = {
         -- hl-CursorLine
         -- Screen-line at the cursor, when 'cursorline' is set.
         -- Low-priority if foreground (ctermfg OR guifg) is not set.
-        ["CursorLine"] = {},
+        ["CursorLine"] = { fg = "", bg = colors.cursor_line },
 
         -- hl-CursorLineNr
         -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
@@ -363,19 +363,19 @@ local highlights = {
 
         -- hl-DiffAdd
         -- Diff mode: Added line. |diff.txt|
-        ["DiffAdd"] = {},
+        ["DiffAdd"] = { fg = "", bg = colors.green_dark },
 
         -- hl-DiffChange
         -- Diff mode: Changed line. |diff.txt|
-        ["DiffChange"] = {},
+        ["DiffChange"] = { fg = "", bg = colors.yellow_dark },
 
         -- hl-DiffDelete
         -- Diff mode: Deleted line. |diff.txt|
-        ["DiffDelete"] = {},
+        ["DiffDelete"] = { fg = "", bg = colors.red_dark },
 
         -- hl-DiffText
         -- Diff mode: Changed text within a changed line. |diff.txt|
-        ["DiffText"] = {},
+        ["DiffText"] = { fg = "", bg = colors.blue_dark },
       },
 
       spell = {
@@ -802,11 +802,25 @@ local highlights = {
   },
 
   common = {
-    git = {},
+
+    git = {
+      -- Some plugins use these instead of the standard |group-name|s
+      ["DiffAdded"] = { link = "Added" },
+      ["DiffChanged"] = { link = "Changed" },
+      ["DiffRemoved"] = { link = "Removed" },
+    },
   },
 
   file_types = {
-    markdown = {},
+
+    markdown = {
+      vim.api.nvim_set_hl(0, "MarkdownHeading1", { link = "Title" }),
+      vim.api.nvim_set_hl(0, "MarkdownHeading2", { link = "Special" }),
+      vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
+      vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
+      vim.api.nvim_set_hl(0, "MarkdownHeading5", { link = "Special" }),
+      vim.api.nvim_set_hl(0, "MarkdownHeading6", { link = "Special" }),
+    },
   },
 }
 
