@@ -2,533 +2,547 @@
 -- SPF
 --
 -- This file is part of the SPF color scheme for Neovim.
---
--- See :help
---    - group-name
---    - highlight-groups
---    - diagnostic-highlights
---    - lsp-highlight
---    - lsp-semantic-highlight
---    - treesitter-highlight-groups
---    - extmark
--- See syntax config::
--- - /usr/share/nvim/runtime/syntax/
--- - ~/.config/nvim/after/syntax/
 -------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------
--- Colors
--------------------------------------------------------------------------------
+local colors = {
+  foreground = "#ebdbb2",
+  background = "#191816",
+  cursor_line = "#1f1d1b",
 
--- Base
-local foreground = "#ebdbb2"
-local background = "#191816"
-local cursor_line = "#1f1d1b"
+  red_dark = "#b25f57",
+  red = "#bd7671",
+  red_bright = "#e7a3a4",
 
--- Color Palette
-local red_dark = "#b25f57"
-local red = "#bd7671"
-local red_bright = "#e7a3a4"
-local orange_dark = "#a1633f"
-local orange = "#d28445"
-local orange_bright = "#f2b27b"
-local yellow_dark = "#b9b237"
-local yellow = "#e5dc6c"
-local yellow_bright = "#f6f0a4"
-local chartreuse_dark = "#758e57"
-local chartreuse = "#91b76b"
-local chartreuse_bright = "#cfeaa0"
-local green_dark = "#4b6550"
-local green = "#709d81"
-local green_bright = "#b0d4b2"
-local spring_dark = "#4f766e"
-local spring = "#6da89e"
-local spring_bright = "#a9d5c8"
-local cyan_dark = "#536a71"
-local cyan = "#6c97a7"
-local cyan_bright = "#94bfc8"
-local azure_dark = "#45667e"
-local azure = "#5f87a6"
-local azure_bright = "#a2c5e4"
-local blue_dark = "#3f6999"
-local blue = "#5692db"
-local blue_bright = "#7aaadd"
-local violet_dark = "#59497c"
-local violet = "#8c70b6"
-local violet_bright = "#c5afe4"
-local magenta_dark = "#5f4469"
-local magenta = "#a474b0"
-local magenta_bright = "#d6a3e0"
-local rose_dark = "#94586b"
-local rose = "#c97e95"
-local rose_bright = "#e8a9bb"
-local black_dark = "#2a2a2a"
-local black = "#3c3c3c"
-local black_bright = "#666666"
-local white_dark = "#a89f91"
-local white = "#ebdbb2"
-local white_bright = "#fff2d1"
+  orange_dark = "#a1633f",
+  orange = "#d28445",
+  orange_bright = "#f2b27b",
 
--- UI
-local ui_primary_foreground = "#a6977c"
-local ui_primary_background = "#2c2826"
-local ui_secondary_background = "#504945"
-local ui_tertiary_background = "#a89984"
+  yellow_dark = "#b9b237",
+  yellow = "#e5dc6c",
+  yellow_bright = "#f6f0a4",
 
--------------------------------------------------------------------------------
--- Highlights
--------------------------------------------------------------------------------
+  chartreuse_dark = "#758e57",
+  chartreuse = "#91b76b",
+  chartreuse_bright = "#cfeaa0",
 
--- diff
--- plugins
--- applications (git, )
--- languages
--- file typpes
+  green_dark = "#4b6550",
+  green = "#709d81",
+  green_bright = "#b0d4b2",
 
--- lsp_semantic_highlights
--- treesitter_highlights
+  spring_dark = "#4f766e",
+  spring = "#6da89e",
+  spring_bright = "#a9d5c8",
 
--- Syntax Groups
--- Builtin Highlight Groups
--- Semantic Tokens
--- Extmarks and Virtual Text
+  cyan_dark = "#536a71",
+  cyan = "#6c97a7",
+  cyan_bright = "#94bfc8",
+
+  azure_dark = "#45667e",
+  azure = "#5f87a6",
+  azure_bright = "#a2c5e4",
+
+  blue_dark = "#3f6999",
+  blue = "#5692db",
+  blue_bright = "#7aaadd",
+
+  violet_dark = "#59497c",
+  violet = "#8c70b6",
+  violet_bright = "#c5afe4",
+
+  magenta_dark = "#5f4469",
+  magenta = "#a474b0",
+  magenta_bright = "#d6a3e0",
+
+  rose_dark = "#94586b",
+  rose = "#c97e95",
+  rose_bright = "#e8a9bb",
+
+  black_dark = "#2a2a2a",
+  black = "#3c3c3c",
+  black_bright = "#666666",
+
+  white_dark = "#a89f91",
+  white = "#ebdbb2",
+  white_bright = "#fff2d1",
+
+  ui_primary_foreground = "#a6977c",
+  ui_primary_background = "#2c2826",
+  ui_secondary_background = "#504945",
+  ui_tertiary_background = "#a89984",
+}
 
 local highlights = {
 
   builtins = {
 
-    -- group-name
-    -- A syntax group name is to be used for syntax items that match the same
-    -- kind of thing.  These are then linked to a highlight group that specifies
-    -- the color. A syntax group name doesn't specify any color or attributes
-    -- itself.
+    -- |group-name|
     group_names = {
 
       -- any comment
-      Comment = { fg = black_bright, bg = "NONE", italic = true },
+      Comment = { fg = colors.black_bright, bg = "bg", italic = true },
 
       -- any constant
-      Constant = {},
+      Constant = { fg = colors.cyan_bright, bg = "bg" },
       -- a string constant: "this is a string"
-      String = { fg = orange },
+      String = { fg = colors.orange, bg = "" },
       -- a character constant: 'c', '\n'
-      Character = {},
+      Character = { link = "Constant" },
       -- a number constant: 234, 0xff
-      Number = {},
+      Number = { link = "Constant" },
       -- a boolean constant: TRUE, false
-      Boolean = {},
+      Boolean = { link = "Constant" },
       -- a floating point constant: 2.3e10
-      Float = {},
+      Float = { link = "Constant" },
 
       -- any variable name
-      Identifier = {},
+      Identifier = { link = "Normal" },
       -- function name (also: methods for classes)
-      Function = {},
-
-      -- any statement
-      Statement = {},
+      Function = { fg = colors.yellow, bg = "bg" },
+      -- any statement (flow control, return, etc.)
+      Statement = { fg = colors.magenta_bright, bg = "bg" },
       -- if, then, else, endif, switch, etc.
-      Conditional = {},
+      Conditional = { link = "Statement" },
       -- for, do, while, etc.
-      Repeat = {},
+      Repeat = { link = "Statement" },
       -- case, default, etc.
-      Label = {},
+      Label = { fg = colors.cyan, bg = "bg" },
       -- "sizeof", "+", "*", etc.
-      Operator = {},
+      Operator = { fg = colors.white },
       -- any other keyword
-      Keyword = {},
+      Keyword = { fg = colors.blue, bg = "bg" },
       -- try, catch, throw
-      Exception = {},
-
+      Exception = { fg = colors.red, bg = "bg" },
       -- generic Preprocessor
-      PreProc = {},
+
+      PreProc = { fg = colors.blue_bright, bg = "bg" },
       -- preprocessor #include
-      Include = {},
+      Include = { link = "PreProc" },
       -- preprocessor #define
-      Define = {},
+      Define = { link = "PreProc" },
       -- same as Define
-      Macro = {},
+      Macro = { link = "PreProc" },
       -- preprocessor #if, #else, #endif, etc.
-      PreCondit = {},
+      PreCondit = { link = "PreProc" },
 
       -- int, long, char, etc.
-      Type = {},
+      Type = { fg = colors.green, bg = "bg" },
       -- static, register, volatile, etc.
-      StorageClass = {},
+      StorageClass = { fg = colors.red_bright, bg = "bg" },
       -- struct, union, enum, etc.
-      Structure = {},
+      Structure = { fg = colors.green_bright, bg = "bg" },
       -- a typedef
-      Typedef = {},
+      Typedef = { fg = colors.magenta, bg = "bg" },
 
       -- any special symbol
-      Special = {},
+      Special = { fg = colors.yellow_dark, bg = "bg" },
       -- special character in a constant
-      SpecialChar = {},
+      SpecialChar = { link = "Special" },
       -- you can use CTRL-] on this
-      Tag = {},
-      -- character that needs attention
-      Delimiter = {},
-      -- special things inside a comment
-      SpecialComment = {},
+      SpecialComment = { link = "Special" },
       -- debugging statements
-      Debug = {},
+      Tag = { fg = colors.violet_bright, bg = "bg" },
+      -- character that needs attention
+      Delimiter = { fg = colors.foreground, bg = "bg" },
+      -- special things inside a comment
+      Debug = { fg = colors.violet, bg = "bg" },
 
       -- text that stands out, HTML links
-      Underlined = {},
+      Underlined = { fg = "fg", bg = "bg", underline = true },
 
       -- left blank, hidden  |hl-Ignore|
-      Ignore = {},
+      Ignore = { fg = "fg", bg = "bg" },
 
       -- any erroneous construct
-      Error = {},
+      Error = { fg = colors.red, bg = "bg" },
 
       -- anything that needs extra attention; mostly the
       -- keywords TODO FIXME and XXX
-      Todo = {},
+      Todo = { fg = colors.blue, bg = "bg" },
 
       -- added line in a diff
-      Added = {},
+      Added = { fg = colors.green, bg = "bg" },
       -- changed line in a diff
-      Changed = {},
+      Changed = { fg = colors.yellow, bg = "bg" },
       -- removed line in a diff
-      Removed = {},
+      Removed = { fg = colors.red, bg = "bg" },
     },
 
-    -- highlight-groups highlight-default
-    -- These are the builtin highlighting groups.  Note that the highlighting
-    -- depends on the value of 'background'.  You can see the current settings
-    -- with the ":highlight" command.
+    -- |highlight-groups| |highlight-default|
     highlight_groups = {
-      ["EndOfBUffer"] = { fg = background, bg = background },
-
-      -- hl-ColorColumn
-      -- Used for the columns set with 'colorcolumn'.
-      ["ColorColumn"] = {},
-
-      -- hl-Conceal
-      -- Placeholder characters substituted for concealed
-      ["Conceal"] = {},
-
-      -- hl-CurSearch
-      -- Current match for the last search pattern (see 'hlsearch').
-      --    Note: This is correct after a search, but may get outdated if
-      --    changes are made or the screen is redrawn.
-      ["CurSearch"] = { link = "Search" },
-
-      -- hl-Cursor
-      -- Character under the cursor.
-      ["Cursor"] = {},
-
-      -- hl-lCursor
-      -- Character under the cursor when |language-mapping|
-      -- is used (see 'guicursor').
-      ["lCursor"] = {},
-
-      -- hl-CursorIM
-      -- Like Cursor, but used when in IME mode. *CursorIM*
-      ["CursorIM"] = {},
-
-      -- hl-CursorColumn
-      -- Screen-column at the cursor, when 'cursorcolumn' is set.
-      ["CursorColumn"] = {},
-
-      -- hl-CursorLine
-      -- Screen-line at the cursor, when 'cursorline' is set.
-      -- Low-priority if foreground (ctermfg OR guifg) is not set.
-      ["CursorLine"] = {},
-
-      -- hl-Directory
-      -- Directory names (and other special names in listings).
-      ["Directory"] = {},
-
-      -- hl-DiffAdd
-      -- Diff mode: Added line. |diff.txt|
-      ["DiffAdd"] = {},
-
-      -- hl-DiffChange
-      -- Diff mode: Changed line. |diff.txt|
-      ["DiffChange"] = {},
-
-      -- hl-DiffDelete
-      -- Diff mode: Deleted line. |diff.txt|
-      ["DiffDelete"] = {},
-
-      -- hl-DiffText
-      -- Diff mode: Changed text within a changed line. |diff.txt|
-      ["DiffText"] = {},
-
-      -- hl-EndOfBuffer
-      -- Filler lines (~) after the end of the buffer.
-      -- By default, this is highlighted like |hl-NonText|.
-      ["EndOfBuffer"] = {},
-
-      -- hl-TermCursor
-      -- Cursor in a focused terminal.
-      ["TermCursor"] = {},
-
-      -- hl-ErrorMsg
-      -- Error messages on the command line.
-      ["ErrorMsg"] = {},
-
-      -- hl-WinSeparator
-      -- Separators between window splits.
-      ["WinSeparator"] = { fg = ui_primary_background, bg = background },
-
-      -- hl-Folded
-      -- Line used for closed folds.
-      ["Folded"] = { fg = black_bright, bg = black_dark, italic = true },
-
-      -- hl-FoldColumn
-      -- 'foldcolumn'
-      ["FoldColumn"] = {},
-
-      -- hl-SignColumn
-      -- Column where |signs| are displayed.
-      ["SignColumn"] = {},
-
-      -- hl-IncSearch
-      -- 'incsearch' highlighting; also used for the text replaced with
-      -- ":s///c".
-      ["IncSearch"] = { link = "Search" },
-
-      -- hl-Substitute
-      -- |:substitute| replacement text highlighting.
-      ["Substitute"] = {},
-
-      -- hl-LineNr
-      -- Line number for ":number" and ":#" commands, and when 'number'
-      -- or 'relativenumber' option is set.
-      ["LineNr"] = {},
-
-      -- hl-LineNrAbove
-      -- Line number for when the 'relativenumber'
-      -- option is set, above the cursor line.
-      ["LineNrAbove"] = {},
-
-      -- hl-LineNrBelow
-      -- Line number for when the 'relativenumber'
-      -- option is set, below the cursor line.
-      ["LineNrBelow"] = {},
-
-      -- hl-CursorLineNr
-      -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
-      -- contains "number" or is "both", for the cursor line.
-      ["CursorLineNr"] = {},
-
-      -- hl-CursorLineFold
-      -- Like FoldColumn when 'cursorline' is set for the cursor line.
-      ["CursorLineFold"] = {},
-
-      -- hl-CursorLineSign
-      -- Like SignColumn when 'cursorline' is set for the cursor line.
-      ["CursorLineSign"] = {},
-
-      -- hl-MatchParen
-      -- Character under the cursor or just before it, if it
-      -- is a paired bracket, and its match. |pi_paren.txt|
-      ["MatchParen"] = {},
-
-      -- hl-ModeMsg
-      -- 'showmode' message (e.g., "-- INSERT --").
-      ["ModeMsg"] = {},
-
-      -- hl-MsgArea
-      -- Area for messages and command-line, see also 'cmdheight'.
-      ["MsgArea"] = {},
-
-      -- hl-MsgSeparator
-      -- Separator for scrolled messages |msgsep|.
-      ["MsgSeparator"] = {},
-
-      -- hl-MoreMsg
-      -- |more-prompt|
-      ["MoreMsg"] = {},
-
-      -- hl-NonText
-      -- and other characters that do not really exist in the text
-      -- (e.g., ">" displayed when a double-wide character doesn't
-      -- fit at the end of the line). See also |hl-EndOfBuffer|.
-      -- '@' at the end of the window, characters from 'showbreak'
-      ["NonText"] = {},
-
-      -- hl-Normal
-      -- Normal text.
-      ["Normal"] = { fg = foreground, bg = background },
-
-      -- hl-NormalFloat
-      -- Normal text in floating windows.
-      ["NormalFloat"] = { fg = foreground, bg = background },
-
-      -- hl-FloatBorder
-      -- Border of floating windows.
-      ["FloatBorder"] = { fg = black_bright, bg = background },
-
-      -- hl-FloatTitle
-      -- Title of floating windows.
-      ["FloatTitle"] = { fg = black_bright, bg = background, bold = true },
-
-      -- hl-FloatFooter
-      -- Footer of floating windows.
-      ["FloatFooter"] = { fg = black, bg = background },
-
-      -- hl-NormalNC
-      -- Normal text in non-current windows.
-      ["NormalNC"] = {},
-
-      -- hl-Pmenu
-      -- Popup menu: Normal item.
-      ["Pmenu"] = {},
-
-      -- hl-PmenuSel
-      -- Popup menu: Selected item. Combined with |hl-Pmenu|.
-      ["PmenuSel"] = {},
-
-      -- hl-PmenuKind
-      -- Popup menu: Normal item "kind".
-      ["PmenuKind"] = {},
-
-      -- hl-PmenuKindSel
-      -- Popup menu: Selected item "kind".
-      ["PmenuKindSel"] = {},
-
-      -- hl-PmenuExtra
-      -- Popup menu: Normal item "extra text".
-      ["PmenuExtra"] = {},
-
-      -- hl-PmenuExtraSel
-      -- Popup menu: Selected item "extra text".
-      ["PmenuExtraSel"] = {},
-
-      -- hl-PmenuSbar
-      -- Popup menu: Scrollbar.
-      ["PmenuSbar"] = {},
-
-      -- hl-PmenuThumb
-      -- Popup menu: Thumb of the scrollbar.
-      ["PmenuThumb"] = {},
-
-      -- hl-PmenuMatch
-      -- Popup menu: Matched text in normal item. Combined with
-      -- |hl-Pmenu|.
-      ["PmenuMatch"] = {},
-
-      -- hl-PmenuMatchSel
-      -- Popup menu: Matched text in selected item. Combined with
-      -- |hl-PmenuMatch| and |hl-PmenuSel|.
-      ["PmenuMatchSel"] = {},
-
-      -- hl-ComplMatchIns
-      -- Matched text of the currently inserted completion.
-      ["ComplMatchIns"] = {},
-
-      -- hl-Question
-      -- |hit-enter| prompt and yes/no questions.
-      ["Question"] = {},
-
-      -- hl-QuickFixLine
-      -- Current |quickfix| item in the quickfix window. Combined with
-      -- |hl-CursorLine| when the cursor is there.
-      ["QuickFixLine"] = {},
-
-      -- hl-Search
-      -- Last search pattern highlighting (see 'hlsearch').
-      -- Also used for similar items that need to stand out.
-      ["Search"] = { fg = "", bg = black_bright },
-
-      -- hl-SnippetTabstop
-      -- Tabstops in snippets. |vim.snippet|
-      ["SnippetTabstop"] = {},
-
-      -- hl-SpecialKey
-      -- Unprintable characters: Text displayed differently from what
-      -- it really is. But not 'listchars' whitespace. |hl-Whitespace|
-      ["SpecialKey"] = {},
-
-      -- hl-SpellBad
-      -- Word that is not recognized by the spellchecker. |spell|
-      -- Combined with the highlighting used otherwise.
-      ["SpellBad"] = {},
-
-      -- hl-SpellCap
-      -- Word that should start with a capital. |spell|
-      -- Combined with the highlighting used otherwise.
-      ["SpellCap"] = {},
-
-      -- hl-SpellLocal
-      -- Word that is recognized by the spellchecker as one that is
-      -- used in another region. |spell|
-      -- Combined with the highlighting used otherwise.
-      ["SpellLocal"] = {},
-
-      -- hl-SpellRare
-      -- Word that is recognized by the spellchecker as one that is
-      -- hardly ever used. |spell|
-      -- Combined with the highlighting used otherwise.
-      ["SpellRare"] = {},
-
-      -- hl-StatusLine
-      -- Status line of current window.
-      ["StatusLine"] = {},
-
-      -- hl-StatusLineNC
-      -- Status lines of not-current windows.
-      ["StatusLineNC"] = {},
-
-      -- hl-StatusLineTerm
-      -- Status line of |terminal| window.
-      ["StatusLineTerm"] = {},
-
-      -- *hl-StatusLineTermNC
-      -- Status line of non-current |terminal| windows.
-      ["StatusLineTermNC"] = {},
-
-      -- hl-TabLine
-      -- Tab pages line, not active tab page label.
-      ["Tabline"] = { fg = ui_primary_foreground, bg = ui_secondary_background },
-
-      -- hl-TabLineFill
-      -- Tab pages line, where there are no labels.
-      ["TabLineFill"] = { fg = red, bg = ui_primary_background },
-
-      -- hl-TabLineSel
-      -- Tab pages line, active tab page label.
-      ["TabLineSel"] = { fg = background, bg = ui_tertiary_background },
-
-      -- hl-Title
-      -- Titles for output from ":set all", ":autocmd" etc.
-      ["Title"] = {},
-
-      -- hl-Visual
-      -- Visual mode selection.
-      ["Visual"] = {},
-
-      -- hl-VisualNOS
-      -- Visual mode selection when vim is "Not Owning the Selection".
-      ["VisualNOS"] = {},
-
-      -- hl-WarningMsg
-      -- Warning messages.
-      ["WarningMsg"] = {},
-
-      -- hl-Whitespace
-      -- "nbsp", "space", "tab", "multispace", "lead" and "trail"
-      -- in 'listchars'.
-      ["Whitespace"] = {},
-
-      -- hl-WildMenu
-      -- Current match in 'wildmenu' completion.
-      ["WildMenu"] = {},
-
-      -- hl-WinBar
-      -- Window bar of current window.
-      ["WinBar"] = {},
-
-      -- hl-WinBarNC
-      -- Window bar of not-current windows.
-      ["WinBarNC"] = {},
+
+      folds = {
+        -- |hl-Folded|
+        -- Line used for closed folds.
+        ["Folded"] = { fg = colors.black_bright, bg = colors.black_dark, italic = true },
+
+        -- hl-FoldColumn
+        -- 'foldcolumn'
+        ["FoldColumn"] = {},
+      },
+
+      search = {
+
+        -- hl-CurSearch
+        -- Current match for the last search pattern (see 'hlsearch').
+        --    Note: This is correct after a search, but may get outdated if
+        --    changes are made or the screen is redrawn.
+        ["CurSearch"] = { link = "Search" },
+
+        -- hl-IncSearch
+        -- 'incsearch' highlighting; also used for the text replaced with
+        -- ":s///c".
+        ["IncSearch"] = { link = "Search" },
+
+        -- hl-Search
+        -- Last search pattern highlighting (see 'hlsearch').
+        -- Also used for similar items that need to stand out.
+        ["Search"] = { fg = "", bg = colors.black_bright },
+      },
+
+      cursor = {
+
+        -- hl-ColorColumn
+        -- Used for the columns set with 'colorcolumn'.
+        ["ColorColumn"] = {},
+
+        -- hl-Cursor
+        -- Character under the cursor.
+        ["Cursor"] = {},
+
+        -- hl-lCursor
+        -- Character under the cursor when |language-mapping|
+        -- is used (see 'guicursor').
+        ["lCursor"] = {},
+
+        -- hl-CursorIM
+        -- Like Cursor, but used when in IME mode. *CursorIM*
+        ["CursorIM"] = {},
+
+        -- hl-CursorColumn
+        -- Screen-column at the cursor, when 'cursorcolumn' is set.
+        ["CursorColumn"] = {},
+
+        -- hl-CursorLine
+        -- Screen-line at the cursor, when 'cursorline' is set.
+        -- Low-priority if foreground (ctermfg OR guifg) is not set.
+        ["CursorLine"] = {},
+
+        -- hl-CursorLineNr
+        -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
+        -- contains "number" or is "both", for the cursor line.
+        ["CursorLineNr"] = {},
+
+        -- hl-CursorLineFold
+        -- Like FoldColumn when 'cursorline' is set for the cursor line.
+        ["CursorLineFold"] = {},
+
+        -- hl-CursorLineSign
+        -- Like SignColumn when 'cursorline' is set for the cursor line.
+        ["CursorLineSign"] = {},
+
+        -- hl-TermCursor
+        -- Cursor in a focused terminal.
+        ["TermCursor"] = {},
+      },
+
+      pmenu = {
+
+        -- hl-Pmenu
+        -- Popup menu: Normal item.
+        ["Pmenu"] = {},
+
+        -- hl-PmenuSel
+        -- Popup menu: Selected item. Combined with |hl-Pmenu|.
+        ["PmenuSel"] = {},
+
+        -- hl-PmenuKind
+        -- Popup menu: Normal item "kind".
+        ["PmenuKind"] = {},
+
+        -- hl-PmenuKindSel
+        -- Popup menu: Selected item "kind".
+        ["PmenuKindSel"] = {},
+
+        -- hl-PmenuExtra
+        -- Popup menu: Normal item "extra text".
+        ["PmenuExtra"] = {},
+
+        -- hl-PmenuExtraSel
+        -- Popup menu: Selected item "extra text".
+        ["PmenuExtraSel"] = {},
+
+        -- hl-PmenuSbar
+        -- Popup menu: Scrollbar.
+        ["PmenuSbar"] = {},
+
+        -- hl-PmenuThumb
+        -- Popup menu: Thumb of the scrollbar.
+        ["PmenuThumb"] = {},
+
+        -- hl-PmenuMatch
+        -- Popup menu: Matched text in normal item. Combined with
+        -- |hl-Pmenu|.
+        ["PmenuMatch"] = {},
+
+        -- hl-PmenuMatchSel
+        -- Popup menu: Matched text in selected item. Combined with
+        -- |hl-PmenuMatch| and |hl-PmenuSel|.
+        ["PmenuMatchSel"] = {},
+      },
+
+      line_number = {
+
+        -- hl-LineNr
+        -- Line number for ":number" and ":#" commands, and when 'number'
+        -- or 'relativenumber' option is set.
+        ["LineNr"] = {},
+
+        -- hl-LineNrAbove
+        -- Line number for when the 'relativenumber'
+        -- option is set, above the cursor line.
+        ["LineNrAbove"] = {},
+
+        -- hl-LineNrBelow
+        -- Line number for when the 'relativenumber'
+        -- option is set, below the cursor line.
+        ["LineNrBelow"] = {},
+      },
+
+      message = {
+
+        -- hl-ErrorMsg
+        -- Error messages on the command line.
+        ["ErrorMsg"] = {},
+
+        -- hl-ModeMsg
+        -- 'showmode' message (e.g., "-- INSERT --").
+        ["ModeMsg"] = {},
+
+        -- hl-MsgArea
+        -- Area for messages and command-line, see also 'cmdheight'.
+        ["MsgArea"] = {},
+
+        -- hl-MsgSeparator
+        -- Separator for scrolled messages |msgsep|.
+        ["MsgSeparator"] = {},
+
+        -- hl-Question
+        -- |hit-enter| prompt and yes/no questions.
+        ["Question"] = {},
+
+        -- hl-MoreMsg
+        -- |more-prompt|
+        ["MoreMsg"] = {},
+
+        -- hl-WarningMsg
+        -- Warning messages.
+        ["WarningMsg"] = {},
+      },
+
+      floats = {
+
+        -- hl-NormalFloat
+        -- Normal text in floating windows.
+        ["NormalFloat"] = { fg = colors.foreground, bg = colors.background },
+
+        -- hl-FloatBorder
+        -- Border of floating windows.
+        ["FloatBorder"] = { fg = colors.black_bright, bg = colors.background },
+
+        -- hl-FloatTitle
+        -- Title of floating windows.
+        ["FloatTitle"] = { fg = colors.black_bright, bg = colors.background, bold = true },
+
+        -- hl-FloatFooter
+        -- Footer of floating windows.
+        ["FloatFooter"] = { fg = colors.black, bg = colors.background },
+      },
+
+      -- |diff|
+      diff = {
+
+        -- hl-DiffAdd
+        -- Diff mode: Added line. |diff.txt|
+        ["DiffAdd"] = {},
+
+        -- hl-DiffChange
+        -- Diff mode: Changed line. |diff.txt|
+        ["DiffChange"] = {},
+
+        -- hl-DiffDelete
+        -- Diff mode: Deleted line. |diff.txt|
+        ["DiffDelete"] = {},
+
+        -- hl-DiffText
+        -- Diff mode: Changed text within a changed line. |diff.txt|
+        ["DiffText"] = {},
+      },
+
+      spell = {
+
+        -- hl-SpellBad
+        -- Word that is not recognized by the spellchecker. |spell|
+        -- Combined with the highlighting used otherwise.
+        ["SpellBad"] = {},
+
+        -- hl-SpellCap
+        -- Word that should start with a capital. |spell|
+        -- Combined with the highlighting used otherwise.
+        ["SpellCap"] = {},
+
+        -- hl-SpellLocal
+        -- Word that is recognized by the spellchecker as one that is
+        -- used in another region. |spell|
+        -- Combined with the highlighting used otherwise.
+        ["SpellLocal"] = {},
+
+        -- hl-SpellRare
+        -- Word that is recognized by the spellchecker as one that is
+        -- hardly ever used. |spell|
+        -- Combined with the highlighting used otherwise.
+        ["SpellRare"] = {},
+      },
+
+      statusline = {
+
+        -- hl-StatusLine
+        -- Status line of current window.
+        ["StatusLine"] = {},
+
+        -- hl-StatusLineNC
+        -- Status lines of not-current windows.
+        ["StatusLineNC"] = {},
+
+        -- hl-StatusLineTerm
+        -- Status line of |terminal| window.
+        ["StatusLineTerm"] = {},
+
+        -- *hl-StatusLineTermNC
+        -- Status line of non-current |terminal| windows.
+        ["StatusLineTermNC"] = {},
+      },
+
+      tabs = {
+
+        -- hl-TabLine
+        -- Tab pages line, not active tab page label.
+        ["Tabline"] = { fg = colors.ui_primary_foreground, bg = colors.ui_secondary_background },
+
+        -- hl-TabLineFill
+        -- Tab pages line, where there are no labels.
+        ["TabLineFill"] = { fg = colors.red, bg = colors.ui_primary_background },
+
+        -- hl-TabLineSel
+        -- Tab pages line, active tab page label.
+        ["TabLineSel"] = { fg = colors.background, bg = colors.ui_tertiary_background },
+      },
+
+      ui = {
+
+        -- hl-EndOfBuffer
+        -- Filler lines (~) after the end of the buffer.
+        -- By default, this is highlighted like |hl-NonText|.
+        ["EndOfBUffer"] = { fg = colors.background, bg = colors.background },
+
+        -- hl-QuickFixLine
+        -- Current |quickfix| item in the quickfix window. Combined with
+        -- |hl-CursorLine| when the cursor is there.
+        ["QuickFixLine"] = {},
+
+        -- hl-WinSeparator
+        -- Separators between window splits.
+        ["WinSeparator"] = { fg = colors.ui_primary_background, bg = colors.background },
+
+        -- hl-SignColumn
+        -- Column where |signs| are displayed.
+        ["SignColumn"] = {},
+
+        -- hl-WildMenu
+        -- Current match in 'wildmenu' completion.
+        ["WildMenu"] = {},
+
+        -- hl-WinBar
+        -- Window bar of current window.
+        ["WinBar"] = {},
+
+        -- hl-WinBarNC
+        -- Window bar of not-current windows.
+        ["WinBarNC"] = {},
+      },
+
+      completion = {
+
+        -- hl-ComplMatchIns
+        -- Matched text of the currently inserted completion.
+        ["ComplMatchIns"] = {},
+
+        -- hl-SnippetTabstop
+        -- Tabstops in snippets. |vim.snippet|
+        ["SnippetTabstop"] = {},
+      },
+
+      text = {
+
+        -- hl-Conceal
+        -- Placeholder characters substituted for concealed
+        ["Conceal"] = {},
+
+        -- hl-Directory
+        -- Directory names (and other special names in listings).
+        ["Directory"] = {},
+
+        -- hl-Substitute
+        -- |:substitute| replacement text highlighting.
+        ["Substitute"] = {},
+
+        -- hl-MatchParen
+        -- Character under the cursor or just before it, if it
+        -- is a paired bracket, and its match. |pi_paren.txt|
+        ["MatchParen"] = {},
+
+        -- hl-NonText
+        -- '@' at the end of the window, characters from 'showbreak'
+        -- and other characters that do not really exist in the text
+        -- (e.g., ">" displayed when a double-wide character doesn't
+        -- fit at the end of the line). See also |hl-EndOfBuffer|.
+        -- '@' at the end of the window, characters from 'showbreak'
+        ["NonText"] = {},
+
+        -- hl-Normal
+        -- Normal text.
+        ["Normal"] = { fg = colors.foreground, bg = colors.background },
+
+        -- hl-NormalNC
+        -- Normal text in non-current windows.
+        ["NormalNC"] = {},
+
+        -- hl-SpecialKey
+        -- Unprintable characters: Text displayed differently from what
+        -- it really is. But not 'listchars' whitespace. |hl-Whitespace|
+        ["SpecialKey"] = {},
+
+        -- hl-Title
+        -- Titles for output from ":set all", ":autocmd" etc.
+        ["Title"] = {},
+
+        -- hl-Visual
+        -- Visual mode selection.
+        ["Visual"] = {},
+
+        -- hl-VisualNOS
+        -- Visual mode selection when vim is "Not Owning the Selection".
+        ["VisualNOS"] = {},
+
+        -- hl-Whitespace
+        -- "nbsp", "space", "tab", "multispace", "lead" and "trail"
+        -- in 'listchars'.
+        ["Whitespace"] = {},
+      },
     },
 
+    -- |diagnostic-highlights|
     diagnostic_highlights = {
+
       -- hl-DiagnosticError
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
@@ -664,7 +678,9 @@ local highlights = {
       ["DiagnosticUnnecessary"] = {},
     },
 
+    -- |lsp-highlight|
     lsp_highlights = {
+
       -- used for highlighting "text" references
       ["LspReferenceText"] = {},
 
@@ -681,7 +697,9 @@ local highlights = {
       ["LspInlayHint"] = {},
     },
 
+    -- |lsp-semantic-highlight|
     lsp_semantic_highlights = {
+
       -- Identifiers that declare or reference a class type
       ["@lsp.type.class"] = {},
 
@@ -784,25 +802,25 @@ local highlights = {
   },
 
   common = {
-    git = {
-      add = {
-        diff = {},
-      },
-      remove = {
-        diff = {},
-      },
-      delete = {
-        diff = {},
-      },
-    },
+    git = {},
   },
 
-  plugins = {},
-
-  languages = {},
+  file_types = {
+    markdown = {},
+  },
 }
 
 local function apply_highlights(table)
+  -- colors
+  for k, v in pairs(colors) do
+    if v then
+      vim.api.nvim_set_hl(0, k, { fg = v, bg = "bg" })
+    else
+      vim.api.nvim_set_hl(0, k, { fg = "fg", bg = "bg" })
+    end
+  end
+
+  -- highlight groups
   for name, value in pairs(table) do
     if value.fg or value.link then
       vim.api.nvim_set_hl(0, name, value)
@@ -815,4 +833,5 @@ end
 vim.api.nvim_command("highlight clear")
 vim.api.nvim_command("syntax reset")
 vim.g.colors_name = "spf"
+
 apply_highlights(highlights)
