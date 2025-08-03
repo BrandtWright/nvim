@@ -57,7 +57,7 @@ local colors = {
   rose = "#c97e95",
   rose_bright = "#e8a9bb",
 
-  black_dark = "#2a2a2a",
+  black_dark = "#121210",
   black = "#3c3c3c",
   black_bright = "#666666",
 
@@ -546,155 +546,155 @@ local highlights = {
       -- hl-DiagnosticError
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticError"] = {},
+      ["DiagnosticError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticWarn
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticWarn"] = {},
+      ["DiagnosticWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticInfo
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticInfo"] = {},
+      ["DiagnosticInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticHint
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticHint"] = {},
+      ["DiagnosticHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticOk
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticOk"] = {},
+      ["DiagnosticOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextError
       -- Used for "Error" diagnostic virtual text.
-      ["DiagnosticVirtualTextError"] = {},
+      ["DiagnosticVirtualTextError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextWarn
       -- Used for "Warn" diagnostic virtual text.
-      ["DiagnosticVirtualTextWarn"] = {},
+      ["DiagnosticVirtualTextWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextInfo
       -- Used for "Info" diagnostic virtual text.
-      ["DiagnosticVirtualTextInfo"] = {},
+      ["DiagnosticVirtualTextInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextHint
       -- Used for "Hint" diagnostic virtual text.
-      ["DiagnosticVirtualTextHint"] = {},
+      ["DiagnosticVirtualTextHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextOk
       -- Used for "Ok" diagnostic virtual text.
-      ["DiagnosticVirtualTextOk"] = {},
+      ["DiagnosticVirtualTextOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesError
       -- Used for "Error" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesError"] = {},
+      ["DiagnosticVirtualLinesError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesWarn
       -- Used for "Warn" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesWarn"] = {},
+      ["DiagnosticVirtualLinesWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesInfo
       -- Used for "Info" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesInfo"] = {},
+      ["DiagnosticVirtualLinesInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesHint
       -- Used for "Hint" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesHint"] = {},
+      ["DiagnosticVirtualLinesHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesOk
       -- Used for "Ok" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesOk"] = {},
+      ["DiagnosticVirtualLinesOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticUnderlineError
       -- Used to underline "Error" diagnostics.
-      ["DiagnosticUnderlineError"] = {},
+      ["DiagnosticUnderlineError"] = { undercurl = true, sp = colors.red, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineWarn
       -- Used to underline "Warn" diagnostics.
-      ["DiagnosticUnderlineWarn"] = {},
+      ["DiagnosticUnderlineWarn"] = { undercurl = true, sp = colors.yellow, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineInfo
       -- Used to underline "Info" diagnostics.
-      ["DiagnosticUnderlineInfo"] = {},
+      ["DiagnosticUnderlineInfo"] = { undercurl = true, sp = colors.blue, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineHint
       -- Used to underline "Hint" diagnostics.
-      ["DiagnosticUnderlineHint"] = {},
+      ["DiagnosticUnderlineHint"] = { undercurl = true, sp = colors.cyan, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineOk
       -- Used to underline "Ok" diagnostics.
-      ["DiagnosticUnderlineOk"] = {},
-
+      ["DiagnosticUnderlineOk"] = { undercurl = true, sp = colors.green, fg = "fg", bg = "bg" },
+      --
       -- hl-DiagnosticFloatingError
       -- Used to color "Error" diagnostic messages in diagnostics float.
       -- See vim.diagnostic.open_float()
-      ["DiagnosticFloatingError"] = {},
+      ["DiagnosticFloatingError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticFloatingWarn
       -- Used to color "Warn" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingWarn"] = {},
+      ["DiagnosticFloatingWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticFloatingInfo
       -- Used to color "Info" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingInfo"] = {},
+      ["DiagnosticFloatingInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticFloatingHint
       -- Used to color "Hint" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingHint"] = {},
+      ["DiagnosticFloatingHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticFloatingOk
       -- Used to color "Ok" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingOk"] = {},
+      ["DiagnosticFloatingOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticSignError
       -- Used for "Error" signs in sign column.
-      ["DiagnosticSignError"] = {},
+      ["DiagnosticSignError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticSignWarn
       -- Used for "Warn" signs in sign column.
-      ["DiagnosticSignWarn"] = {},
+      ["DiagnosticSignWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticSignInfo
       -- Used for "Info" signs in sign column.
-      ["DiagnosticSignInfo"] = {},
+      ["DiagnosticSignInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticSignHint
       -- Used for "Hint" signs in sign column.
-      ["DiagnosticSignHint"] = {},
+      ["DiagnosticSignHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticSignOk
       -- Used for "Ok" signs in sign column.
-      ["DiagnosticSignOk"] = {},
+      ["DiagnosticSignOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticDeprecated
       -- Used for deprecated or obsolete code.
-      ["DiagnosticDeprecated"] = {},
+      ["DiagnosticDeprecated"] = { strikethrough = true, fg = colors.black_bright, bg = "bg" },
 
       -- hl-DiagnosticUnnecessary
       -- Used for unnecessary or unused code.
-      ["DiagnosticUnnecessary"] = {},
+      ["DiagnosticUnnecessary"] = { italic = true, fg = colors.black_bright, bg = "bg" },
     },
 
     -- |lsp-highlight|
     lsp_highlights = {
 
       -- used for highlighting "text" references
-      ["LspReferenceText"] = {},
+      ["LspReferenceText"] = { fg = "", bg = colors.black_dark },
 
       -- used for highlighting "read" references
-      ["LspReferenceRead"] = {},
+      ["LspReferenceRead"] = { fg = "", bg = colors.green_dark },
 
       -- used for highlighting "write" references
-      ["LspReferenceWrite"] = {},
+      ["LspReferenceWrite"] = { fg = "", bg = colors.yellow_dark },
 
       -- used for highlighting reference targets (e.g. in a hover range)
-      ["LspReferenceTarget"] = {},
+      ["LspReferenceTarget"] = { bold = true, fg = "fg", bg = "bg" },
 
       -- used for highlighting inlay hints
-      ["LspInlayHint"] = {},
+      ["LspInlayHint"] = { fg = colors.black_bright, bg = "bg" },
     },
 
     -- |lsp-semantic-highlight|
@@ -810,16 +810,16 @@ local highlights = {
   },
 }
 
+for k, v in pairs(colors) do
+  if v then
+    vim.api.nvim_set_hl(0, k, { fg = v, bg = "bg" })
+  else
+    vim.api.nvim_set_hl(0, k, { fg = "fg", bg = "bg" })
+  end
+end
+
 local function apply_highlights(table)
   -- colors
-  for k, v in pairs(colors) do
-    if v then
-      vim.api.nvim_set_hl(0, k, { fg = v, bg = "bg" })
-    else
-      vim.api.nvim_set_hl(0, k, { fg = "fg", bg = "bg" })
-    end
-  end
-
   -- highlight groups
   for name, value in pairs(table) do
     if value.fg or value.link then
