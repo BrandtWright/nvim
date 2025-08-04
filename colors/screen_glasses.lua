@@ -279,15 +279,16 @@ vim.cmd("hi! link DiagnosticUnderlineOk green_undercurl")
 -- LSP
 -------------------------------------------------------------------------
 
-vim.cmd("hi! link LspReferenceRead bold")
+vim.cmd("hi! link lspreferenceread bold")
 vim.cmd("hi! link LspReferenceText visual_muted")
 
 -------------------------------------------------------------------------
 -- Markdown
 -------------------------------------------------------------------------
 
-vim.api.nvim_set_hl(0, "MarkdownHeading1", { fg = "#998568", bg = "#191816", bold = true })
-for i = 2, 6 do
-  vim.api.nvim_set_hl(0, "MarkdownHeading" .. i, { link = "MarkdownHeading1" })
+vim.api.nvim_set_hl(0, "MarkdownHeading1", { link = "Title" })
+vim.api.nvim_set_hl(0, "MarkdownHeading2", { fg = "#998568", bg = "#191816", bold = true })
+for i = 3, 6 do
+  vim.api.nvim_set_hl(0, "MarkdownHeading" .. i, { link = "MarkdownHeading2" })
 end
 vim.api.nvim_set_hl(0, "MarkdownCode", { bg = "#1f1e1b" })
