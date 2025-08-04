@@ -103,12 +103,27 @@ local canonical_links = {
   Constant = spf_highlights.cyan_bright,
   -- a string constant: "this is a string"
   String = spf_highlights.orange,
+  -- Normal text.
+  Normal = spf_highlights.cyan_bright,
 }
 
 local derived_links = {
 
+  ------------------------------------------------------------------------------
+  -- Syntax Highlight Groups
+  -- see: :help 'group-name'
+  ------------------------------------------------------------------------------
+
   -- a character constant: 'c', '\n'
   Character = canonical_links.Constant,
+  -- a number constant: 234, 0xff
+  Number = canonical_links.Constant,
+  -- a boolean constant: TRUE, false
+  Boolean = canonical_links.Constant,
+  -- a floating point constant: 2.3e10
+  Float = canonical_links.Constant,
+  -- any variable name
+  Identifier = canonical_links.Normal,
 }
 
 local function reverse_map(tbl)
