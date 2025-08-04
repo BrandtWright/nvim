@@ -88,6 +88,9 @@ local spf_highlights = {
   cyan_bright = { fg = colors.cyan_bright, bg = "bg" },
   black_bright_italic = { fg = colors.black_bright, bg = "bg", italic = true },
   orange = { fg = colors.orange, bg = "bg" },
+
+  -- Normal text.
+  Normal = { fg = colors.foreground, bg = colors.background },
 }
 
 local canonical_links = {
@@ -103,14 +106,6 @@ local canonical_links = {
   Constant = spf_highlights.cyan_bright,
   -- a string constant: "this is a string"
   String = spf_highlights.orange,
-
-  ------------------------------------------------------------------------------
-  -- UI Highlight Groups
-  -- see: :help 'highlight-groups'
-  ------------------------------------------------------------------------------
-
-  -- Normal text.
-  Normal = spf_highlights.cyan_bright,
 }
 
 local derived_links = {
