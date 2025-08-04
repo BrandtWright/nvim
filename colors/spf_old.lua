@@ -96,13 +96,13 @@ local highlights = {
       -- Float = { link = "Constant" },
 
       -- any variable name
-      Identifier = { link = "Normal" },
-      -- function name (also: methods for classes)
-      Function = { fg = colors.yellow, bg = "bg" },
-      -- any statement (flow control, return, etc.)
-      Statement = { fg = colors.magenta_bright, bg = "bg" },
-      -- if, then, else, endif, switch, etc.
-      Conditional = { link = "Statement" },
+      -- Identifier = { link = "Normal" },
+      -- -- function name (also: methods for classes)
+      -- Function = { fg = colors.yellow, bg = "bg" },
+      -- -- any statement (flow control, return, etc.)
+      -- Statement = { fg = colors.magenta_bright, bg = "bg" },
+      -- -- if, then, else, endif, switch, etc.
+      -- Conditional = { link = "Statement" },
       -- for, do, while, etc.
       Repeat = { link = "Statement" },
       -- case, default, etc.

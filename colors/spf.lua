@@ -7,6 +7,7 @@
 
 -- see: :help 'highlight'
 -- see: :edit $VIMRUNTIME/colors/README.txt
+-- see: :edit $VIMRUNTIME/doc/dev_theme.txt
 --
 -- |highlight-groups| (Normal, Comment, etc.)
 -- |group-name| (Keyword, Function, etc.)
@@ -85,19 +86,21 @@ local colors = {
 
 local spf_highlights = {
 
-  cyan_bright = { fg = colors.cyan_bright, bg = "bg" },
-  black_bright_italic = { fg = colors.black_bright, bg = "bg", italic = true },
-  orange = { fg = colors.orange, bg = "bg" },
+  -- UI
+  foreground_on_background = { fg = colors.foreground, bg = colors.background },
 
-  -- Normal text.
-  Normal = { fg = colors.foreground, bg = colors.background },
+  -- Color Palette
+  cyan_bright = { fg = colors.cyan_bright, bg = "" },
+  black_bright_italic = { fg = colors.black_bright, bg = "", italic = true },
+  orange = { fg = colors.orange, bg = "" },
+  yellow = { fg = colors.yellow, bg = "" },
+  magenta_bright = { fg = colors.magenta_bright, bg = "" },
 }
 
 local canonical_links = {
 
   ------------------------------------------------------------------------------
-  -- Syntax Highlight Groups
-  -- see: :help 'group-name'
+  -- Syntax Highlight Groups                             see: :help 'group-name'
   ------------------------------------------------------------------------------
 
   -- any comment
@@ -106,13 +109,23 @@ local canonical_links = {
   Constant = spf_highlights.cyan_bright,
   -- a string constant: "this is a string"
   String = spf_highlights.orange,
+  -- function name (also: methods for classes)
+  Function = spf_highlights.yellow,
+  -- any statement (flow control, return, etc.)
+  Statement = spf_highlights.magenta_bright,
+
+  ------------------------------------------------------------------------------
+  -- UI Highlight Groups                           see: :help 'highlight-groups'
+  ------------------------------------------------------------------------------
+
+  -- Normal text.
+  Normal = spf_highlights.foreground_on_background,
 }
 
 local derived_links = {
 
   ------------------------------------------------------------------------------
-  -- Syntax Highlight Groups
-  -- see: :help 'group-name'
+  -- Syntax Highlight Groups                             see: :help 'group-name'
   ------------------------------------------------------------------------------
 
   -- a character constant: 'c', '\n'
@@ -123,8 +136,14 @@ local derived_links = {
   Boolean = canonical_links.Constant,
   -- a floating point constant: 2.3e10
   Float = canonical_links.Constant,
+  -- if, then, else, endif, switch, etc.
+  Conditional = canonical_links.Statement,
   -- any variable name
   Identifier = canonical_links.Normal,
+
+  ------------------------------------------------------------------------------
+  -- UI Highlight Groups                           see: :help 'highlight-groups'
+  ------------------------------------------------------------------------------
 }
 
 local function reverse_map(tbl)
