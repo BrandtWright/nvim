@@ -122,12 +122,12 @@ local function reverse_table_by_reference(tbl)
   return reversed
 end
 
-local function map_links(lookup_table)
+local function map(lookup_table, tbl)
   local result = {}
-  for link_name, highlight in pairs(links) do
-    local highlight_name = lookup_table[highlight]
-    if highlight_name then
-      result[link_name] = highlight_name
+  for k, v in pairs(tbl) do
+    local foreign_key = lookup_table[v]
+    if foreign_key then
+      result[k] = foreign_key
     end
   end
   return result
@@ -146,8 +146,16 @@ for k, v in pairs(highlights) do
 end
 
 -- Apply links
-local highlight_lookup_table = reverse_table_by_reference(highlights)
-for k, v in pairs(map_links(highlight_lookup_table)) do
+local highlight_keys = reverse_table_by_reference(highlights)
+for k, v in pairs(map(highlight_keys, links)) do
+  if type(v) == "string" then
+    vim.api.nvim_set_hl(0, k, { link = v })
+  end
+end
+
+-- Apply link links
+local link_keys = reverse_table_by_reference(links)
+for k, v in pairs(map(link_keys, child_links)) do
   if type(v) == "string" then
     vim.api.nvim_set_hl(0, k, { link = v })
   end
