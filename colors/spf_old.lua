@@ -79,21 +79,21 @@ local highlights = {
     group_names = {
 
       -- any comment
-      Comment = { fg = colors.black_bright, bg = "bg", italic = true },
+      -- Comment = { fg = colors.black_bright, bg = "bg", italic = true },
 
       -- any constant
-      Constant = { fg = colors.cyan_bright, bg = "bg" },
+      -- Constant = { fg = colors.cyan_bright, bg = "bg" },
 
       -- a string constant: "this is a string"
-      String = { fg = colors.orange, bg = "" },
+      -- String = { fg = colors.orange, bg = "" },
       -- a character constant: 'c', '\n'
-      Character = { link = "Constant" },
+      -- Character = { link = "Constant" },
       -- a number constant: 234, 0xff
-      Number = { link = "Constant" },
+      -- Number = { link = "Constant" },
       -- a boolean constant: TRUE, false
-      Boolean = { link = "Constant" },
+      -- Boolean = { link = "Constant" },
       -- a floating point constant: 2.3e10
-      Float = { link = "Constant" },
+      -- Float = { link = "Constant" },
 
       -- any variable name
       Identifier = { link = "Normal" },
@@ -511,7 +511,7 @@ local highlights = {
 
         -- hl-Normal
         -- Normal text.
-        ["Normal"] = { fg = colors.foreground, bg = colors.background },
+        -- ["Normal"] = { fg = colors.foreground, bg = colors.background },
 
         -- hl-NormalNC
         -- Normal text in non-current windows.

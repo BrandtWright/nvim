@@ -103,6 +103,12 @@ local canonical_links = {
   Constant = spf_highlights.cyan_bright,
   -- a string constant: "this is a string"
   String = spf_highlights.orange,
+
+  ------------------------------------------------------------------------------
+  -- UI Highlight Groups
+  -- see: :help 'highlight-groups'
+  ------------------------------------------------------------------------------
+
   -- Normal text.
   Normal = spf_highlights.cyan_bright,
 }
