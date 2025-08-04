@@ -102,26 +102,30 @@ local links = {
   Constant = highlights.cyan_bright,
   -- a string constant: "this is a string"
   String = highlights.orange,
-  -- a character constant: 'c', '\n'
-  -- Character = { link = "Constant" },
 }
 
-local function map_links()
-  -- Create a reverse lookup: keyset -> highlight name
-  -- Note: each table is enumerated only once for constant-time lookups
-  local reverse_highlights = {}
-  for highlight_name, highlight_value in pairs(highlights) do
-    -- Lua tables use reference equality:
-    -- highlights.red == highlights.red is true
-    -- So, the highlight_value table can be used as a key in reverse_highlights.
-    if type(highlight_value) == "table" and next(highlight_value) ~= nil then
-      reverse_highlights[highlight_value] = highlight_name
+local child_links = {
+
+  -- a character constant: 'c', '\n'
+  Character = links.Constant,
+}
+
+local function reverse_table_by_reference(tbl)
+  -- Lua tables use reference equality:
+  -- v == v is true. So, v can be used as a key in reversed
+  local reversed = {}
+  for k, v in pairs(tbl) do
+    if type(v) == "table" and next(v) ~= nil then
+      reversed[v] = k
     end
   end
+  return reversed
+end
 
+local function map_links(lookup_table)
   local result = {}
   for link_name, highlight in pairs(links) do
-    local highlight_name = reverse_highlights[highlight]
+    local highlight_name = lookup_table[highlight]
     if highlight_name then
       result[link_name] = highlight_name
     end
@@ -142,7 +146,8 @@ for k, v in pairs(highlights) do
 end
 
 -- Apply links
-for k, v in pairs(map_links()) do
+local highlight_lookup_table = reverse_table_by_reference(highlights)
+for k, v in pairs(map_links(highlight_lookup_table)) do
   if type(v) == "string" then
     vim.api.nvim_set_hl(0, k, { link = v })
   end
