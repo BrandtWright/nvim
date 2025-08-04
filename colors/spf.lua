@@ -5,7 +5,7 @@
 --
 -- TODO: implement `g:terminal_color_*` (see: https://tinyurl.com/y78ntvjk)
 
--- see: |highlihgt|
+-- see: :help 'highlight'
 -- see: :edit $VIMRUNTIME/colors/README.txt
 --
 -- |highlight-groups| (Normal, Comment, etc.)
@@ -84,14 +84,26 @@ local colors = {
 }
 
 local highlights = {
-  red = { fg = colors.red, bg = colors.background },
-  yellow = { fg = colors.yellow, bg = colors.background },
+
+  ------------------------------------------------------------------------------
+  -- Syntax Highlight Groups
+  -- see: :help 'group-name'
+  ------------------------------------------------------------------------------
+
+  cyan_bright = { fg = colors.cyan_bright, bg = "bg" },
+  black_bright_italic = { fg = colors.black_bright, bg = "bg", italic = true },
+  orange = { fg = colors.orange, bg = "" },
 }
 
 local links = {
-  Error = highlights.red,
-  Exception = highlights.red,
-  Warning = highlights.yellow,
+  -- any comment
+  Comment = highlights.black_bright_italic,
+  -- any constant
+  Constant = highlights.cyan_bright,
+  -- a string constant: "this is a string"
+  String = highlights.orange,
+  -- a character constant: 'c', '\n'
+  -- Character = { link = "Constant" },
 }
 
 local function map_links()
