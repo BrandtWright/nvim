@@ -83,34 +83,35 @@ local colors = {
   ui_tertiary_background = "#a89984",
 }
 
-local highlights = {
+local spf_highlights = {
+
+  cyan_bright = { fg = colors.cyan_bright, bg = "bg" },
+  black_bright_italic = { fg = colors.black_bright, bg = "bg", italic = true },
+  orange = { fg = colors.orange, bg = "bg" },
+}
+
+local canonical_links = {
 
   ------------------------------------------------------------------------------
   -- Syntax Highlight Groups
   -- see: :help 'group-name'
   ------------------------------------------------------------------------------
 
-  cyan_bright = { fg = colors.cyan_bright, bg = "bg" },
-  black_bright_italic = { fg = colors.black_bright, bg = "bg", italic = true },
-  orange = { fg = colors.orange, bg = "" },
-}
-
-local links = {
   -- any comment
-  Comment = highlights.black_bright_italic,
+  Comment = spf_highlights.black_bright_italic,
   -- any constant
-  Constant = highlights.cyan_bright,
+  Constant = spf_highlights.cyan_bright,
   -- a string constant: "this is a string"
-  String = highlights.orange,
+  String = spf_highlights.orange,
 }
 
-local child_links = {
+local derived_links = {
 
   -- a character constant: 'c', '\n'
-  Character = links.Constant,
+  Character = canonical_links.Constant,
 }
 
-local function reverse_table_by_reference(tbl)
+local function reverse_map(tbl)
   -- Lua tables use reference equality:
   -- v == v is true. So, v can be used as a key in reversed
   local reversed = {}
@@ -122,7 +123,7 @@ local function reverse_table_by_reference(tbl)
   return reversed
 end
 
-local function map(lookup_table, tbl)
+local function lookup_keys(lookup_table, tbl)
   local result = {}
   for k, v in pairs(tbl) do
     local foreign_key = lookup_table[v]
@@ -139,23 +140,23 @@ vim.cmd("syntax reset")
 vim.g.colors_name = "spf"
 
 -- Apply highlights
-for k, v in pairs(highlights) do
+for k, v in pairs(spf_highlights) do
   if type(v) == "table" and next(v) ~= nil then
     vim.api.nvim_set_hl(0, k, v)
   end
 end
 
 -- Apply links
-local highlight_keys = reverse_table_by_reference(highlights)
-for k, v in pairs(map(highlight_keys, links)) do
+local highlight_keys = reverse_map(spf_highlights)
+for k, v in pairs(lookup_keys(highlight_keys, canonical_links)) do
   if type(v) == "string" then
     vim.api.nvim_set_hl(0, k, { link = v })
   end
 end
 
 -- Apply link links
-local link_keys = reverse_table_by_reference(links)
-for k, v in pairs(map(link_keys, child_links)) do
+local link_keys = reverse_map(canonical_links)
+for k, v in pairs(lookup_keys(link_keys, derived_links)) do
   if type(v) == "string" then
     vim.api.nvim_set_hl(0, k, { link = v })
   end
