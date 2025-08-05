@@ -95,6 +95,7 @@ local spf_highlights = {
   orange = { fg = colors.orange, bg = "" },
   yellow = { fg = colors.yellow, bg = "" },
   magenta_bright = { fg = colors.magenta_bright, bg = "" },
+  blue = { fg = colors.blue, bg = "" },
 }
 
 local canonical_links = {
@@ -113,6 +114,8 @@ local canonical_links = {
   Function = spf_highlights.yellow,
   -- any statement (flow control, return, etc.)
   Statement = spf_highlights.magenta_bright,
+  -- any other keyword
+  Keyword = spf_highlights.blue,
 
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'
@@ -128,6 +131,9 @@ local derived_links = {
   -- Syntax Highlight Groups                             see: :help 'group-name'
   ------------------------------------------------------------------------------
 
+  -- any variable name
+  Identifier = canonical_links.Normal,
+
   -- a character constant: 'c', '\n'
   Character = canonical_links.Constant,
   -- a number constant: 234, 0xff
@@ -136,10 +142,11 @@ local derived_links = {
   Boolean = canonical_links.Constant,
   -- a floating point constant: 2.3e10
   Float = canonical_links.Constant,
+
   -- if, then, else, endif, switch, etc.
   Conditional = canonical_links.Statement,
-  -- any variable name
-  Identifier = canonical_links.Normal,
+  -- for, do, while, etc.
+  Repeat = canonical_links.Statement,
 
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'

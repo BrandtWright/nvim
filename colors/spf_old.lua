@@ -104,13 +104,13 @@ local highlights = {
       -- -- if, then, else, endif, switch, etc.
       -- Conditional = { link = "Statement" },
       -- for, do, while, etc.
-      Repeat = { link = "Statement" },
+      -- Repeat = { link = "Statement" },
       -- case, default, etc.
       Label = { fg = colors.cyan, bg = "bg" },
       -- "sizeof", "+", "*", etc.
       Operator = { fg = colors.white },
       -- any other keyword
-      Keyword = { fg = colors.blue, bg = "bg" },
+      -- Keyword = { fg = colors.blue, bg = "bg" },
       -- try, catch, throw
       Exception = { fg = colors.red, bg = "bg" },
       -- generic Preprocessor
