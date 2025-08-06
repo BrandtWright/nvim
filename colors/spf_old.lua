@@ -363,19 +363,19 @@ local highlights = {
 
         -- hl-DiffAdd
         -- Diff mode: Added line. |diff.txt|
-        ["DiffAdd"] = { fg = "", bg = colors.green_dark },
+        -- ["DiffAdd"] = { fg = "", bg = colors.green_dark },
 
         -- hl-DiffChange
         -- Diff mode: Changed line. |diff.txt|
-        ["DiffChange"] = { fg = "", bg = colors.yellow_dark },
+        -- ["DiffChange"] = { fg = "", bg = colors.yellow_dark },
 
         -- hl-DiffDelete
         -- Diff mode: Deleted line. |diff.txt|
-        ["DiffDelete"] = { fg = "", bg = colors.red_dark },
+        -- ["DiffDelete"] = { fg = "", bg = colors.red_dark },
 
         -- hl-DiffText
         -- Diff mode: Changed text within a changed line. |diff.txt|
-        ["DiffText"] = { fg = "", bg = colors.blue_dark },
+        -- ["DiffText"] = { fg = "", bg = colors.blue_dark },
       },
 
       spell = {
