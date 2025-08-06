@@ -22,7 +22,7 @@ local colors = {
   background = "#191816",
   cursor_line = "#1f1d1b",
 
-  red_dark = "#b25f57",
+  red_dark = "#33201f",
   red = "#bd7671",
   red_bright = "#ffa099",
 
@@ -30,7 +30,7 @@ local colors = {
   orange = "#ce9178",
   orange_bright = "#f29950",
 
-  yellow_dark = "#b9b237",
+  yellow_dark = "#33331f",
   yellow = "#c2c27c",
   yellow_bright = "#fcfca4",
 
@@ -38,8 +38,8 @@ local colors = {
   chartreuse = "#91b76b",
   chartreuse_bright = "#cfeaa0",
 
-  green_dark = "#4b6550",
-  green = "#769482",
+  green_dark = "#1f3326",
+  green = "#8fa899",
   green_bright = "#b9d9b8",
 
   spring_dark = "#4f766e",
@@ -54,7 +54,7 @@ local colors = {
   azure = "#5f87a6",
   azure_bright = "#a2c5e4",
 
-  blue_dark = "#3f6999",
+  blue_dark = "#142233",
   blue = "#5692db",
   blue_bright = "#77b3fc",
 
@@ -137,6 +137,11 @@ local spf_highlights = {
   black_bright_italic = { fg = colors.black_bright, bg = "", italic = true },
 
   gold = { fg = colors.gold, bg = "" },
+
+  black_bright_on_dark_red = { fg = colors.black_bright, bg = colors.red_dark },
+  nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
+  nothing_on_dark_green = { fg = "", bg = colors.green_dark },
+  nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
 }
 
 local canonical_links = {
@@ -205,6 +210,22 @@ local canonical_links = {
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
   Search = spf_highlights.white_dark,
+
+  -- hl-DiffAdd
+  -- Diff mode: Added line. |diff.txt|
+  DiffAdd = spf_highlights.nothing_on_dark_green,
+
+  -- hl-DiffChange
+  -- Diff mode: Changed line. |diff.txt|
+  DiffChange = spf_highlights.nothing_on_dark_yellow,
+
+  -- hl-DiffDelete
+  -- Diff mode: Deleted line. |diff.txt|
+  DiffDelete = spf_highlights.black_bright_on_dark_red,
+
+  -- hl-DiffText
+  -- Diff mode: Changed text within a changed line. |diff.txt|
+  DiffText = spf_highlights.nothing_on_dark_blue,
 }
 
 local derived_links = {
