@@ -142,6 +142,8 @@ local spf_highlights = {
   nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
   nothing_on_dark_green = { fg = "", bg = colors.green_dark },
   nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
+
+  primary_accent_on_nothing = { fg = colors.ui_primary_foreground, bg = "" },
 }
 
 local canonical_links = {
@@ -226,6 +228,15 @@ local canonical_links = {
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
   DiffText = spf_highlights.nothing_on_dark_blue,
+
+  -- hl-EndOfBuffer
+  -- Filler lines (~) after the end of the buffer.
+  -- By default, this is highlighted like |hl-NonText|.
+  EndOfBUffer = spf_highlights.background_on_background,
+
+  -- hl-WinSeparator
+  -- Separators between window splits.
+  WinSeparator = spf_highlights.primary_accent_on_nothing,
 }
 
 local derived_links = {

@@ -442,7 +442,7 @@ local highlights = {
         -- hl-EndOfBuffer
         -- Filler lines (~) after the end of the buffer.
         -- By default, this is highlighted like |hl-NonText|.
-        ["EndOfBUffer"] = { fg = colors.background, bg = colors.background },
+        -- ["EndOfBUffer"] = { fg = colors.background, bg = colors.background },
 
         -- hl-QuickFixLine
         -- Current |quickfix| item in the quickfix window. Combined with
@@ -451,7 +451,7 @@ local highlights = {
 
         -- hl-WinSeparator
         -- Separators between window splits.
-        ["WinSeparator"] = { fg = colors.ui_primary_background, bg = colors.background },
+        -- ["WinSeparator"] = { fg = colors.ui_primary_background, bg = colors.background },
 
         -- hl-SignColumn
         -- Column where |signs| are displayed.
