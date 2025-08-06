@@ -82,20 +82,61 @@ local colors = {
   ui_primary_background = "#2c2826",
   ui_secondary_background = "#504945",
   ui_tertiary_background = "#a89984",
+
+  gold = "#a38e5d",
 }
 
 local spf_highlights = {
 
   -- UI
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
+  foreground_on_background_underlined = { fg = "", bg = "", underline = true },
+  background_on_background = { fg = "bg" },
+  Cursor_Line = { fg = "#1f1d1b" },
 
   -- Color Palette
-  cyan_bright = { fg = colors.cyan_bright, bg = "" },
-  black_bright_italic = { fg = colors.black_bright, bg = "", italic = true },
+  red = { fg = colors.red, bg = "" },
+  red_bright = { fg = colors.red_bright, bg = "" },
+  -- red_dark
+
   orange = { fg = colors.orange, bg = "" },
+  -- orange_bright
+  -- orange_dark
+
   yellow = { fg = colors.yellow, bg = "" },
-  magenta_bright = { fg = colors.magenta_bright, bg = "" },
+  -- yellow_bright
+  -- yellow_dark
+
+  green = { fg = colors.green, bg = "" },
+  green_bright = { fg = colors.green_bright, bg = "" },
+  -- green_dark
+
+  cyan = { fg = colors.cyan, bg = "" },
+  cyan_bright = { fg = colors.cyan_bright, bg = "" },
+  -- cyan_dark
+
   blue = { fg = colors.blue, bg = "" },
+  blue_bright = { fg = colors.blue_bright, bg = "" },
+  -- blue_dark
+
+  azure = { fg = colors.azure, bg = "" },
+  -- azure_bright
+  -- azure_dark
+
+  magenta = { fg = colors.magenta, bg = "" },
+  magenta_bright = { fg = colors.magenta_bright, bg = "" },
+  -- magenta_dark
+
+  -- white
+  white_dark = { fg = colors.white_dark, bg = "" },
+  white_bright = { fg = colors.white_bright, bg = "" },
+
+  -- black
+  -- black_bright
+  -- black_dark
+  black_bright_italic = { fg = colors.black_bright, bg = "", italic = true },
+
+  gold = { fg = colors.gold, bg = "" },
 }
 
 local canonical_links = {
@@ -116,6 +157,42 @@ local canonical_links = {
   Statement = spf_highlights.magenta_bright,
   -- any other keyword
   Keyword = spf_highlights.blue,
+  -- case, default, etc.
+  Labal = spf_highlights.cyan,
+  -- "sizeof", "+", "*", etc.
+  Operator = spf_highlights.white_dark,
+  -- any erroneous construct
+  Error = spf_highlights.red,
+  -- int, long, char, etc.
+  Type = spf_highlights.green,
+  -- static, register, volatile, etc.
+  StorageClass = spf_highlights.red_bright,
+  -- struct, union, enum, etc.
+  Structure = spf_highlights.green_bright,
+  -- generic Preprocessor
+  PreProc = spf_highlights.blue_bright,
+  -- any special symbol
+  Special = spf_highlights.gold,
+
+  -- added line in a diff
+  Added = spf_highlights.green,
+  -- changed line in a diff
+  Changed = spf_highlights.yellow,
+  -- removed line in a diff
+  Removed = spf_highlights.red,
+
+  -- text that stands out, HTML links
+  Underlined = spf_highlights.foreground_on_background_underlined,
+  -- character that needs attention
+  Delimiter = spf_highlights.white_bright,
+
+  -- you can use CTRL-] on this
+  Tag = spf_highlights.azure,
+  -- debugging statements
+  Debug = spf_highlights.magenta,
+
+  -- left blank, hidden  |hl-Ignore|
+  Ignore = spf_highlights.background_on_background,
 
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'
@@ -123,6 +200,11 @@ local canonical_links = {
 
   -- Normal text.
   Normal = spf_highlights.foreground_on_background,
+
+  -- hl-Search
+  -- Last search pattern highlighting (see 'hlsearch').
+  -- Also used for similar items that need to stand out.
+  Search = spf_highlights.white_dark,
 }
 
 local derived_links = {
@@ -148,9 +230,42 @@ local derived_links = {
   -- for, do, while, etc.
   Repeat = canonical_links.Statement,
 
+  -- try, catch, throw
+  Exception = canonical_links.Error,
+
+  -- a typedef
+  -- keywords TODO FIXME and XXX
+  Todo = canonical_links.Keyword,
+  Typedef = canonical_links.Keyword,
+
+  -- preprocessor #include
+  Include = canonical_links.PreProc,
+  -- preprocessor #define
+  Define = canonical_links.PreProc,
+  -- same as Define
+  Macro = canonical_links.PreProc,
+  -- preprocessor #if, #else, #endif, etc.
+  PreCondit = canonical_links.PreProc,
+  -- special character in a constant
+
+  SpecialChar = canonical_links.Special,
+  -- special things inside a comment
+  SpecialComment = canonical_links.Special,
+
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'
   ------------------------------------------------------------------------------
+
+  -- hl-CurSearch
+  -- Current match for the last search pattern (see 'hlsearch').
+  --    Note: This is correct after a search, but may get outdated if
+  --    changes are made or the screen is redrawn.
+  CurSearch = canonical_links.Search,
+
+  -- hl-IncSearch
+  -- 'incsearch' highlighting; also used for the text replaced with
+  -- ":s///c".
+  IncSearch = spf_highlights.Search,
 }
 
 local function reverse_map(tbl)

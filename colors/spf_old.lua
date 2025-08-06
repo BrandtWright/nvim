@@ -106,66 +106,65 @@ local highlights = {
       -- for, do, while, etc.
       -- Repeat = { link = "Statement" },
       -- case, default, etc.
-      Label = { fg = colors.cyan, bg = "bg" },
+      -- Label = { fg = colors.cyan, bg = "bg" },
       -- "sizeof", "+", "*", etc.
-      Operator = { fg = colors.white },
+      -- Operator = { fg = colors.white },
       -- any other keyword
       -- Keyword = { fg = colors.blue, bg = "bg" },
       -- try, catch, throw
-      Exception = { fg = colors.red, bg = "bg" },
+      -- Exception = { fg = colors.red, bg = "bg" },
       -- generic Preprocessor
-
-      PreProc = { fg = colors.blue_bright, bg = "bg" },
+      -- PreProc = { fg = colors.blue_bright, bg = "bg" },
       -- preprocessor #include
-      Include = { link = "PreProc" },
-      -- preprocessor #define
-      Define = { link = "PreProc" },
-      -- same as Define
-      Macro = { link = "PreProc" },
-      -- preprocessor #if, #else, #endif, etc.
-      PreCondit = { link = "PreProc" },
+      -- Include = { link = "PreProc" },
+      -- -- preprocessor #define
+      -- Define = { link = "PreProc" },
+      -- -- same as Define
+      -- Macro = { link = "PreProc" },
+      -- -- preprocessor #if, #else, #endif, etc.
+      -- PreCondit = { link = "PreProc" },
 
       -- int, long, char, etc.
-      Type = { fg = colors.green, bg = "bg" },
+      -- Type = { fg = colors.green, bg = "bg" },
       -- static, register, volatile, etc.
-      StorageClass = { fg = colors.red_bright, bg = "bg" },
+      -- StorageClass = { fg = colors.red_bright, bg = "bg" },
       -- struct, union, enum, etc.
-      Structure = { fg = colors.green_bright, bg = "bg" },
+      -- Structure = { fg = colors.green_bright, bg = "bg" },
       -- a typedef
-      Typedef = { fg = colors.magenta, bg = "bg" },
+      -- Typedef = { fg = colors.magenta, bg = "bg" },
 
       -- any special symbol
-      Special = { fg = colors.yellow_dark, bg = "bg" },
+      -- Special = { fg = colors.yellow_dark, bg = "bg" },
       -- special character in a constant
-      SpecialChar = { link = "Special" },
-      -- you can use CTRL-] on this
-      SpecialComment = { link = "Special" },
-      -- debugging statements
-      Tag = { fg = colors.violet_bright, bg = "bg" },
-      -- character that needs attention
-      Delimiter = { fg = colors.foreground, bg = "bg" },
+      -- SpecialChar = { link = "Special" },
       -- special things inside a comment
-      Debug = { fg = colors.violet, bg = "bg" },
+      -- SpecialComment = { link = "Special" },
+      -- you can use CTRL-] on this
+      -- Tag = { fg = colors.violet_bright, bg = "bg" },
+      -- character that needs attention
+      -- Delimiter = { fg = colors.foreground, bg = "bg" },
+      -- debugging statements
+      -- Debug = { fg = colors.violet, bg = "bg" },
 
       -- text that stands out, HTML links
-      Underlined = { fg = "fg", bg = "bg", underline = true },
+      -- Underlined = { fg = "fg", bg = "bg", underline = true },
 
       -- left blank, hidden  |hl-Ignore|
-      Ignore = { fg = "fg", bg = "bg" },
+      -- Ignore = { fg = "fg", bg = "bg" },
 
       -- any erroneous construct
-      Error = { fg = colors.red, bg = "bg" },
+      -- Error = { fg = colors.red, bg = "bg" },
 
       -- anything that needs extra attention; mostly the
       -- keywords TODO FIXME and XXX
-      Todo = { fg = colors.blue, bg = "bg" },
+      -- Todo = { fg = colors.blue, bg = "bg" },
 
       -- added line in a diff
-      Added = { fg = colors.green, bg = "bg" },
+      -- Added = { fg = colors.green, bg = "bg" },
       -- changed line in a diff
-      Changed = { fg = colors.yellow, bg = "bg" },
+      -- Changed = { fg = colors.yellow, bg = "bg" },
       -- removed line in a diff
-      Removed = { fg = colors.red, bg = "bg" },
+      -- Removed = { fg = colors.red, bg = "bg" },
     },
 
     -- |highlight-groups| |highlight-default|
@@ -183,21 +182,21 @@ local highlights = {
 
       search = {
 
-        -- hl-CurSearch
-        -- Current match for the last search pattern (see 'hlsearch').
-        --    Note: This is correct after a search, but may get outdated if
-        --    changes are made or the screen is redrawn.
-        ["CurSearch"] = { link = "Search" },
-
-        -- hl-IncSearch
-        -- 'incsearch' highlighting; also used for the text replaced with
-        -- ":s///c".
-        ["IncSearch"] = { link = "Search" },
-
-        -- hl-Search
-        -- Last search pattern highlighting (see 'hlsearch').
-        -- Also used for similar items that need to stand out.
-        ["Search"] = { fg = "", bg = colors.black_bright },
+        -- -- hl-CurSearch
+        -- -- Current match for the last search pattern (see 'hlsearch').
+        -- --    Note: This is correct after a search, but may get outdated if
+        -- --    changes are made or the screen is redrawn.
+        -- ["CurSearch"] = { link = "Search" },
+        --
+        -- -- hl-IncSearch
+        -- -- 'incsearch' highlighting; also used for the text replaced with
+        -- -- ":s///c".
+        -- ["IncSearch"] = { link = "Search" },
+        --
+        -- -- hl-Search
+        -- -- Last search pattern highlighting (see 'hlsearch').
+        -- -- Also used for similar items that need to stand out.
+        -- ["Search"] = { fg = "", bg = colors.black_bright },
       },
 
       cursor = {
@@ -226,7 +225,7 @@ local highlights = {
         -- hl-CursorLine
         -- Screen-line at the cursor, when 'cursorline' is set.
         -- Low-priority if foreground (ctermfg OR guifg) is not set.
-        ["CursorLine"] = { fg = "", bg = colors.cursor_line },
+        -- ["CursorLine"] = { fg = "", bg = colors.cursor_line },
 
         -- hl-CursorLineNr
         -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
