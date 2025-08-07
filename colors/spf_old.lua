@@ -173,7 +173,7 @@ local highlights = {
       folds = {
         -- |hl-Folded|
         -- Line used for closed folds.
-        ["Folded"] = { fg = colors.black_bright, bg = colors.black_dark, italic = true },
+        -- ["Folded"] = { fg = colors.black_bright, bg = colors.black_dark, italic = true },
 
         -- hl-FoldColumn
         -- 'foldcolumn'
@@ -426,15 +426,15 @@ local highlights = {
 
         -- hl-TabLine
         -- Tab pages line, not active tab page label.
-        ["Tabline"] = { fg = colors.ui_primary_foreground, bg = colors.ui_secondary_background },
+        -- ["Tabline"] = { fg = colors.ui_primary_foreground, bg = colors.ui_secondary_background },
 
         -- hl-TabLineFill
         -- Tab pages line, where there are no labels.
-        ["TabLineFill"] = { fg = colors.red, bg = colors.ui_primary_background },
+        -- ["TabLineFill"] = { fg = colors.red, bg = colors.ui_primary_background },
 
         -- hl-TabLineSel
         -- Tab pages line, active tab page label.
-        ["TabLineSel"] = { fg = colors.background, bg = colors.ui_tertiary_background },
+        -- ["TabLineSel"] = { fg = colors.background, bg = colors.ui_tertiary_background },
       },
 
       ui = {
@@ -682,19 +682,19 @@ local highlights = {
     lsp_highlights = {
 
       -- used for highlighting "text" references
-      ["LspReferenceText"] = { fg = "", bg = colors.black_dark },
+      -- ["LspReferenceText"] = { fg = "", bg = colors.black_dark },
 
       -- used for highlighting "read" references
-      ["LspReferenceRead"] = { fg = "", bg = colors.green_dark },
+      -- ["LspReferenceRead"] = { fg = "", bg = colors.green_dark },
 
       -- used for highlighting "write" references
-      ["LspReferenceWrite"] = { fg = "", bg = colors.yellow_dark },
+      -- ["LspReferenceWrite"] = { fg = "", bg = colors.yellow_dark },
 
       -- used for highlighting reference targets (e.g. in a hover range)
-      ["LspReferenceTarget"] = { bold = true, fg = "fg", bg = "bg" },
+      -- ["LspReferenceTarget"] = { bold = true, fg = "fg", bg = "bg" },
 
       -- used for highlighting inlay hints
-      ["LspInlayHint"] = { fg = colors.black_bright, bg = "bg" },
+      -- ["LspInlayHint"] = { fg = colors.black_bright, bg = "bg" },
     },
 
     -- |lsp-semantic-highlight|

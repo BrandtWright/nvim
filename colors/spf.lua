@@ -20,7 +20,7 @@
 local colors = {
   foreground = "#ebdbb2",
   background = "#191816",
-  cursor_line = "#1f1d1b",
+  cursorline = "#1f1d1b",
 
   red_dark = "#33201f",
   red = "#bd7671",
@@ -89,11 +89,23 @@ local colors = {
 local spf_highlights = {
 
   -- UI
+  bold = { bold = true, fg = "fg", bg = "fg" },
+  underline = { bold = true, fg = "", bg = "" },
+
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
-  -- foregroung_on_nothing = { fg = colors.foreground, bg = "" },
-  foreground_on_background_underlined = { fg = "", bg = "", underline = true },
+  foreground_on_primary_accent_background = {
+    fg = colors.ui_tertiary_background,
+    bg = colors.background,
+  },
+
+  tertiary_accent_background_on_secondary_accent_background = {
+    fg = colors.ui_tertiary_background,
+    bg = colors.ui_secondary_background,
+  },
+
   background_on_background = { fg = "bg" },
-  Cursor_Line = { fg = "#1f1d1b" },
+
+  CursorLine = { fg = "", bg = "#1f1d1b" },
 
   -- Color Palette
   red = { fg = colors.red, bg = "" },
@@ -138,19 +150,26 @@ local spf_highlights = {
   white_bright = { fg = colors.white_bright, bg = "" },
 
   -- black
+  black = { fg = colors.black, bg = "" },
   black_bright = { fg = colors.black_bright, bg = "" },
-  -- black_dark
+  black_bright_on_dark_red = { fg = colors.black_bright, bg = colors.red_dark },
+  black_bright_on_primary_accent_background = {
+    fg = colors.black_bright,
+    bg = colors.ui_primary_background,
+  },
+  black_dark = { fg = colors.black_dark, bg = "" },
   black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
   black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
+  black_bright_on_black_dark = { fg = colors.black_bright, bg = colors.black_dark },
 
-  gold = { fg = colors.gold, bg = "" },
-
-  black_bright_on_dark_red = { fg = colors.black_bright, bg = colors.red_dark },
   nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
   nothing_on_dark_green = { fg = "", bg = colors.green_dark },
   nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
+  nothing_on_black_dark = { fg = "", bg = colors.black_dark },
 
   primary_accent_on_nothing = { fg = colors.ui_primary_foreground, bg = "" },
+
+  gold = { fg = colors.gold, bg = "" },
 }
 
 local canonical_links = {
@@ -196,7 +215,7 @@ local canonical_links = {
   Removed = spf_highlights.red,
 
   -- text that stands out, HTML links
-  Underlined = spf_highlights.foreground_on_background_underlined,
+  Underlined = spf_highlights.underline,
   -- character that needs attention
   Delimiter = spf_highlights.white_bright,
 
@@ -236,6 +255,18 @@ local canonical_links = {
   -- Footer of floating windows.
   FloatFooter = spf_highlights.foreground_on_background,
 
+  -- hl-TabLine
+  -- Tab pages line, not active tab page label.
+  Tabline = spf_highlights.tertiary_accent_background_on_secondary_accent_background,
+
+  -- hl-TabLineFill
+  -- Tab pages line, where there are no labels.
+  TabLineFill = spf_highlights.tertiary_accent_background_on_secondary_accent_background,
+
+  -- hl-TabLineSel
+  -- Tab pages line, active tab page label.
+  TabLineSel = spf_highlights.foreground_on_primary_accent_background,
+
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
   DiffAdd = spf_highlights.nothing_on_dark_green,
@@ -260,6 +291,8 @@ local canonical_links = {
   -- hl-WinSeparator
   -- Separators between window splits.
   WinSeparator = spf_highlights.primary_accent_on_nothing,
+
+  Folded = spf_highlights.black_bright_on_black_dark,
 
   -- hl-DiagnosticError
   -- Used as the base highlight group.
@@ -313,6 +346,25 @@ local canonical_links = {
   -- hl-DiagnosticUnnecessary
   -- Used for unnecessary or unused code.
   DiagnosticUnnecessary = spf_highlights.black_bright_italic,
+
+  ------------------------------------------------------------------------------
+  -- LSP Highlights see:                                   :help 'lsp-highlight'
+  ------------------------------------------------------------------------------
+
+  -- used for highlighting "text" references
+  LspReferenceText = spf_highlights.nothing_on_black_dark,
+
+  -- used for highlighting "read" references
+  LspReferenceRead = spf_highlights.nothing_on_dark_green,
+
+  -- used for highlighting "write" references
+  LspReferenceWrite = spf_highlights.nothing_on_dark_yellow,
+
+  -- used for highlighting reference targets (e.g. in a hover range)
+  LspReferenceTarget = spf_highlights.bold,
+
+  -- used for highlighting inlay hints
+  LspInlayHint = spf_highlights.black_bright,
 }
 
 local derived_links = {
