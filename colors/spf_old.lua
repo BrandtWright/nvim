@@ -805,9 +805,9 @@ local highlights = {
 
     git = {
       -- Some plugins use these instead of the standard |group-name|s
-      ["DiffAdded"] = { link = "Added" },
-      ["DiffChanged"] = { link = "Changed" },
-      ["DiffRemoved"] = { link = "Removed" },
+      -- ["DiffAdded"] = { link = "Added" },
+      -- ["DiffChanged"] = { link = "Changed" },
+      -- ["DiffRemoved"] = { link = "Removed" },
     },
   },
 

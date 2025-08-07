@@ -422,18 +422,14 @@ local derived_links = {
   --    changes are made or the screen is redrawn.
   CurSearch = canonical_links.Search,
 
-  ------------------------------------------------------------------------------
-  -- Other Common Highlights
-  ------------------------------------------------------------------------------
-
-  DiffAdded = { link = "Added" },
-  DiffChanged = { link = "Changed" },
-  DiffRemoved = { link = "Removed" },
-
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
   IncSearch = canonical_links.Search,
+
+  ------------------------------------------------------------------------------
+  -- Diagnostic Highlights
+  ------------------------------------------------------------------------------
 
   -- hl-DiagnosticVirtualTextError
   -- Used for "Error" diagnostic virtual text.
@@ -513,6 +509,15 @@ local derived_links = {
   -- hl-DiagnosticSignOk
   -- Used for "Ok" signs in sign column.
   DiagnosticSignOk = canonical_links.DiagnosticOk,
+
+  ------------------------------------------------------------------------------
+  -- Other Common Highlights
+  ------------------------------------------------------------------------------
+
+  -- Some colorschemes and plugins use these (Normal)
+  DiffAdded = canonical_links.Added,
+  DiffChanged = canonical_links.Changed,
+  DiffRemoved = canonical_links.Removed,
 }
 
 local function reverse_map(tbl)
