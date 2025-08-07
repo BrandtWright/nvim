@@ -138,7 +138,7 @@ local spf_highlights = {
   white_bright = { fg = colors.white_bright, bg = "" },
 
   -- black
-  -- black_bright
+  black_bright = { fg = colors.black_bright, bg = "" },
   -- black_dark
   black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
   black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
@@ -219,6 +219,22 @@ local canonical_links = {
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
   Search = spf_highlights.white_dark,
+
+  -- hl-NormalFloat
+  -- Normal text in floating windows.
+  NormalFloat = spf_highlights.foreground_on_background,
+
+  -- hl-FloatBorder
+  -- Border of floating windows.
+  FloatBorder = spf_highlights.black_bright,
+
+  -- hl-FloatTitle
+  -- Title of floating windows.
+  FloatTitle = spf_highlights.foreground_on_background,
+
+  -- hl-FloatFooter
+  -- Footer of floating windows.
+  FloatFooter = spf_highlights.foreground_on_background,
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|

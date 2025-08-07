@@ -343,19 +343,19 @@ local highlights = {
 
         -- hl-NormalFloat
         -- Normal text in floating windows.
-        ["NormalFloat"] = { fg = colors.foreground, bg = colors.background },
+        -- ["NormalFloat"] = { fg = colors.foreground, bg = colors.background },
 
         -- hl-FloatBorder
         -- Border of floating windows.
-        ["FloatBorder"] = { fg = colors.black_bright, bg = colors.background },
+        -- ["FloatBorder"] = { fg = colors.black_bright, bg = colors.background },
 
         -- hl-FloatTitle
         -- Title of floating windows.
-        ["FloatTitle"] = { fg = colors.black_bright, bg = colors.background, bold = true },
+        -- ["FloatTitle"] = { fg = colors.black_bright, bg = colors.background, bold = true },
 
         -- hl-FloatFooter
         -- Footer of floating windows.
-        ["FloatFooter"] = { fg = colors.black, bg = colors.background },
+        -- ["FloatFooter"] = { fg = colors.black, bg = colors.background },
       },
 
       -- |diff|
