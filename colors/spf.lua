@@ -167,7 +167,7 @@ local spf_highlights = {
   nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
   nothing_on_black_dark = { fg = "", bg = colors.black_dark },
 
-  primary_accent_on_nothing = { fg = colors.ui_primary_background, bg = "" },
+  secondary_accent_on_nothing = { fg = colors.ui_secondary_background, bg = "" },
 
   gold = { fg = colors.gold, bg = "" },
 }
@@ -294,7 +294,7 @@ local canonical_links = {
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = spf_highlights.primary_accent_on_nothing,
+  WinSeparator = spf_highlights.secondary_accent_on_nothing,
 
   Folded = spf_highlights.black_on_primary_accent_background,
 
