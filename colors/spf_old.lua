@@ -546,136 +546,136 @@ local highlights = {
       -- hl-DiagnosticError
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticError"] = { fg = colors.red, bg = "bg" },
+      -- ["DiagnosticError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticWarn
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticWarn"] = { fg = colors.yellow, bg = "bg" },
+      -- ["DiagnosticWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticInfo
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticInfo"] = { fg = colors.blue, bg = "bg" },
+      -- ["DiagnosticInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticHint
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticHint"] = { fg = colors.cyan, bg = "bg" },
+      -- ["DiagnosticHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticOk
       -- Used as the base highlight group.
       -- Other Diagnostic highlights link to this by default (except Underline)
-      ["DiagnosticOk"] = { fg = colors.green, bg = "bg" },
+      -- ["DiagnosticOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextError
       -- Used for "Error" diagnostic virtual text.
-      ["DiagnosticVirtualTextError"] = { fg = colors.red, bg = "bg" },
+      -- ["DiagnosticVirtualTextError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextWarn
       -- Used for "Warn" diagnostic virtual text.
-      ["DiagnosticVirtualTextWarn"] = { fg = colors.yellow, bg = "bg" },
+      -- ["DiagnosticVirtualTextWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextInfo
       -- Used for "Info" diagnostic virtual text.
-      ["DiagnosticVirtualTextInfo"] = { fg = colors.blue, bg = "bg" },
+      -- ["DiagnosticVirtualTextInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextHint
       -- Used for "Hint" diagnostic virtual text.
-      ["DiagnosticVirtualTextHint"] = { fg = colors.cyan, bg = "bg" },
+      -- ["DiagnosticVirtualTextHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticVirtualTextOk
       -- Used for "Ok" diagnostic virtual text.
-      ["DiagnosticVirtualTextOk"] = { fg = colors.green, bg = "bg" },
+      -- ["DiagnosticVirtualTextOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesError
       -- Used for "Error" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesError"] = { fg = colors.red, bg = "bg" },
+      -- ["DiagnosticVirtualLinesError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesWarn
       -- Used for "Warn" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesWarn"] = { fg = colors.yellow, bg = "bg" },
+      -- ["DiagnosticVirtualLinesWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesInfo
       -- Used for "Info" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesInfo"] = { fg = colors.blue, bg = "bg" },
+      -- ["DiagnosticVirtualLinesInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesHint
       -- Used for "Hint" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesHint"] = { fg = colors.cyan, bg = "bg" },
+      -- ["DiagnosticVirtualLinesHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticVirtualLinesOk
       -- Used for "Ok" diagnostic virtual lines.
-      ["DiagnosticVirtualLinesOk"] = { fg = colors.green, bg = "bg" },
+      -- ["DiagnosticVirtualLinesOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticUnderlineError
       -- Used to underline "Error" diagnostics.
-      ["DiagnosticUnderlineError"] = { undercurl = true, sp = colors.red, fg = "fg", bg = "bg" },
+      -- ["DiagnosticUnderlineError"] = { undercurl = true, sp = colors.red, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineWarn
       -- Used to underline "Warn" diagnostics.
-      ["DiagnosticUnderlineWarn"] = { undercurl = true, sp = colors.yellow, fg = "fg", bg = "bg" },
+      -- ["DiagnosticUnderlineWarn"] = { undercurl = true, sp = colors.yellow, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineInfo
       -- Used to underline "Info" diagnostics.
-      ["DiagnosticUnderlineInfo"] = { undercurl = true, sp = colors.blue, fg = "fg", bg = "bg" },
+      -- ["DiagnosticUnderlineInfo"] = { undercurl = true, sp = colors.blue, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineHint
       -- Used to underline "Hint" diagnostics.
-      ["DiagnosticUnderlineHint"] = { undercurl = true, sp = colors.cyan, fg = "fg", bg = "bg" },
+      -- ["DiagnosticUnderlineHint"] = { undercurl = true, sp = colors.cyan, fg = "fg", bg = "bg" },
 
       -- hl-DiagnosticUnderlineOk
       -- Used to underline "Ok" diagnostics.
-      ["DiagnosticUnderlineOk"] = { undercurl = true, sp = colors.green, fg = "fg", bg = "bg" },
+      -- ["DiagnosticUnderlineOk"] = { undercurl = true, sp = colors.green, fg = "fg", bg = "bg" },
       --
       -- hl-DiagnosticFloatingError
       -- Used to color "Error" diagnostic messages in diagnostics float.
       -- See vim.diagnostic.open_float()
-      ["DiagnosticFloatingError"] = { fg = colors.red, bg = "bg" },
+      -- ["DiagnosticFloatingError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticFloatingWarn
       -- Used to color "Warn" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingWarn"] = { fg = colors.yellow, bg = "bg" },
+      -- ["DiagnosticFloatingWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticFloatingInfo
       -- Used to color "Info" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingInfo"] = { fg = colors.blue, bg = "bg" },
+      -- ["DiagnosticFloatingInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticFloatingHint
       -- Used to color "Hint" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingHint"] = { fg = colors.cyan, bg = "bg" },
+      -- ["DiagnosticFloatingHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticFloatingOk
       -- Used to color "Ok" diagnostic messages in diagnostics float.
-      ["DiagnosticFloatingOk"] = { fg = colors.green, bg = "bg" },
+      -- ["DiagnosticFloatingOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticSignError
       -- Used for "Error" signs in sign column.
-      ["DiagnosticSignError"] = { fg = colors.red, bg = "bg" },
+      -- ["DiagnosticSignError"] = { fg = colors.red, bg = "bg" },
 
       -- hl-DiagnosticSignWarn
       -- Used for "Warn" signs in sign column.
-      ["DiagnosticSignWarn"] = { fg = colors.yellow, bg = "bg" },
+      -- ["DiagnosticSignWarn"] = { fg = colors.yellow, bg = "bg" },
 
       -- hl-DiagnosticSignInfo
       -- Used for "Info" signs in sign column.
-      ["DiagnosticSignInfo"] = { fg = colors.blue, bg = "bg" },
+      -- ["DiagnosticSignInfo"] = { fg = colors.blue, bg = "bg" },
 
       -- hl-DiagnosticSignHint
       -- Used for "Hint" signs in sign column.
-      ["DiagnosticSignHint"] = { fg = colors.cyan, bg = "bg" },
+      -- ["DiagnosticSignHint"] = { fg = colors.cyan, bg = "bg" },
 
       -- hl-DiagnosticSignOk
       -- Used for "Ok" signs in sign column.
-      ["DiagnosticSignOk"] = { fg = colors.green, bg = "bg" },
+      -- ["DiagnosticSignOk"] = { fg = colors.green, bg = "bg" },
 
       -- hl-DiagnosticDeprecated
       -- Used for deprecated or obsolete code.
-      ["DiagnosticDeprecated"] = { strikethrough = true, fg = colors.black_bright, bg = "bg" },
+      -- ["DiagnosticDeprecated"] = { strikethrough = true, fg = colors.black_bright, bg = "bg" },
 
       -- hl-DiagnosticUnnecessary
       -- Used for unnecessary or unused code.
-      ["DiagnosticUnnecessary"] = { italic = true, fg = colors.black_bright, bg = "bg" },
+      -- ["DiagnosticUnnecessary"] = { italic = true, fg = colors.black_bright, bg = "bg" },
     },
 
     -- |lsp-highlight|

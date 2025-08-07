@@ -140,7 +140,8 @@ local spf_highlights = {
   -- black
   -- black_bright
   -- black_dark
-  black_bright_italic = { fg = colors.black_bright, bg = "", italic = true },
+  black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
+  black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
 
   gold = { fg = colors.gold, bg = "" },
 
@@ -288,6 +289,14 @@ local canonical_links = {
   -- hl-DiagnosticUnderlineOk
   -- Used to underline "Ok" diagnostics.
   DiagnosticUnderlineOk = spf_highlights.green_on_nothing_underline,
+
+  -- hl-DiagnosticDeprecated
+  -- Used for deprecated or obsolete code.
+  DiagnosticDeprecated = spf_highlights.black_bright_strikethrough,
+
+  -- hl-DiagnosticUnnecessary
+  -- Used for unnecessary or unused code.
+  DiagnosticUnnecessary = spf_highlights.black_bright_italic,
 }
 
 local derived_links = {
