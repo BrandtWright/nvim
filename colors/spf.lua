@@ -349,6 +349,85 @@ local derived_links = {
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
   IncSearch = spf_highlights.Search,
+
+  -- hl-DiagnosticVirtualTextError
+  -- Used for "Error" diagnostic virtual text.
+  DiagnosticVirtualTextError = spf_highlights.red,
+
+  -- hl-DiagnosticVirtualTextWarn
+  -- Used for "Warn" diagnostic virtual text.
+  DiagnosticVirtualTextWarn = spf_highlights.yellow,
+
+  -- hl-DiagnosticVirtualTextInfo
+  -- Used for "Info" diagnostic virtual text.
+  DiagnosticVirtualTextInfo = spf_highlights.blue,
+
+  -- hl-DiagnosticVirtualTextHint
+  -- Used for "Hint" diagnostic virtual text.
+  DiagnosticVirtualTextHint = spf_highlights.magenta,
+
+  -- hl-DiagnosticVirtualTextOk
+  -- Used for "Ok" diagnostic virtual text.
+  DiagnosticVirtualTextOk = spf_highlights.green,
+
+  -- hl-DiagnosticVirtualLinesError
+  -- Used for "Error" diagnostic virtual lines.
+  DiagnosticVirtualLinesError = spf_highlights.red,
+
+  -- hl-DiagnosticVirtualLinesWarn
+  -- Used for "Warn" diagnostic virtual lines.
+  DiagnosticVirtualLinesWarn = spf_highlights.yellow,
+
+  -- hl-DiagnosticVirtualLinesInfo
+  -- Used for "Info" diagnostic virtual lines.
+  DiagnosticVirtualLinesInfo = spf_highlights.blue,
+
+  -- hl-DiagnosticVirtualLinesHint
+  -- Used for "Hint" diagnostic virtual lines.
+  DiagnosticVirtualLinesHint = spf_highlights.magenta,
+
+  -- hl-DiagnosticVirtualLinesOk
+  -- Used for "Ok" diagnostic virtual lines.
+  DiagnosticVirtualLinesOk = spf_highlights.green,
+
+  -- See vim.diagnostic.open_float()
+  DiagnosticFloatingError = spf_highlights.red,
+
+  -- hl-DiagnosticFloatingWarn
+  -- Used to color "Warn" diagnostic messages in diagnostics float.
+  DiagnosticFloatingWarn = spf_highlights.yellow,
+
+  -- hl-DiagnosticFloatingInfo
+  -- Used to color "Info" diagnostic messages in diagnostics float.
+  DiagnosticFloatingInfo = spf_highlights.blue,
+
+  -- hl-DiagnosticFloatingHint
+  -- Used to color "Hint" diagnostic messages in diagnostics float.
+  DiagnosticFloatingHint = spf_highlights.magenta,
+
+  -- hl-DiagnosticFloatingOk
+  -- Used to color "Ok" diagnostic messages in diagnostics float.
+  DiagnosticFloatingOk = spf_highlights.green,
+
+  -- hl-DiagnosticSignError
+  -- Used for "Error" signs in sign column.
+  DiagnosticSignError = spf_highlights.red,
+
+  -- hl-DiagnosticSignWarn
+  -- Used for "Warn" signs in sign column.
+  DiagnosticSignWarn = spf_highlights.yellow,
+
+  -- hl-DiagnosticSignInfo
+  -- Used for "Info" signs in sign column.
+  DiagnosticSignInfo = spf_highlights.blue,
+
+  -- hl-DiagnosticSignHint
+  -- Used for "Hint" signs in sign column.
+  DiagnosticSignHint = spf_highlights.magenta,
+
+  -- hl-DiagnosticSignOk
+  -- Used for "Ok" signs in sign column.
+  DiagnosticSignOk = spf_highlights.green,
 }
 
 local function reverse_map(tbl)
