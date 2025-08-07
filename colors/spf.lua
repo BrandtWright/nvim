@@ -243,6 +243,8 @@ local canonical_links = {
   -- Normal text in floating windows.
   NormalFloat = spf_highlights.foreground_on_background,
 
+  Title = spf_highlights.bold,
+
   -- hl-FloatBorder
   -- Border of floating windows.
   FloatBorder = spf_highlights.black_bright,
@@ -518,6 +520,14 @@ local derived_links = {
   DiffAdded = canonical_links.Added,
   DiffChanged = canonical_links.Changed,
   DiffRemoved = canonical_links.Removed,
+
+  -- markdown
+  MarkdownHeading1 = canonical_links.Title,
+  MarkdownHeading2 = canonical_links.Special,
+  MarkdownHeading3 = canonical_links.Special,
+  MarkdownHeading4 = canonical_links.Special,
+  MarkdownHeading5 = canonical_links.Special,
+  MarkdownHeading6 = canonical_links.Special,
 }
 
 local function reverse_map(tbl)
