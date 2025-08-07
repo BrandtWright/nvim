@@ -203,24 +203,24 @@ local highlights = {
 
         -- hl-ColorColumn
         -- Used for the columns set with 'colorcolumn'.
-        ["ColorColumn"] = {},
+        -- ["ColorColumn"] = {},
 
         -- hl-Cursor
         -- Character under the cursor.
-        ["Cursor"] = {},
+        -- ["Cursor"] = {},
 
         -- hl-lCursor
         -- Character under the cursor when |language-mapping|
         -- is used (see 'guicursor').
-        ["lCursor"] = {},
+        -- ["lCursor"] = {},
 
         -- hl-CursorIM
         -- Like Cursor, but used when in IME mode. *CursorIM*
-        ["CursorIM"] = {},
+        -- ["CursorIM"] = {},
 
         -- hl-CursorColumn
         -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        ["CursorColumn"] = {},
+        -- ["CursorColumn"] = {},
 
         -- hl-CursorLine
         -- Screen-line at the cursor, when 'cursorline' is set.
@@ -230,64 +230,64 @@ local highlights = {
         -- hl-CursorLineNr
         -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
         -- contains "number" or is "both", for the cursor line.
-        ["CursorLineNr"] = {},
+        -- ["CursorLineNr"] = {},
 
         -- hl-CursorLineFold
         -- Like FoldColumn when 'cursorline' is set for the cursor line.
-        ["CursorLineFold"] = {},
+        -- ["CursorLineFold"] = {},
 
         -- hl-CursorLineSign
         -- Like SignColumn when 'cursorline' is set for the cursor line.
-        ["CursorLineSign"] = {},
+        -- ["CursorLineSign"] = {},
 
         -- hl-TermCursor
         -- Cursor in a focused terminal.
-        ["TermCursor"] = {},
+        -- ["TermCursor"] = {},
       },
 
       pmenu = {
 
         -- hl-Pmenu
         -- Popup menu: Normal item.
-        ["Pmenu"] = {},
+        -- ["Pmenu"] = {},
 
         -- hl-PmenuSel
         -- Popup menu: Selected item. Combined with |hl-Pmenu|.
-        ["PmenuSel"] = {},
+        -- ["PmenuSel"] = {},
 
         -- hl-PmenuKind
         -- Popup menu: Normal item "kind".
-        ["PmenuKind"] = {},
+        -- ["PmenuKind"] = {},
 
         -- hl-PmenuKindSel
         -- Popup menu: Selected item "kind".
-        ["PmenuKindSel"] = {},
+        -- ["PmenuKindSel"] = {},
 
         -- hl-PmenuExtra
         -- Popup menu: Normal item "extra text".
-        ["PmenuExtra"] = {},
+        -- ["PmenuExtra"] = {},
 
         -- hl-PmenuExtraSel
         -- Popup menu: Selected item "extra text".
-        ["PmenuExtraSel"] = {},
+        -- ["PmenuExtraSel"] = {},
 
         -- hl-PmenuSbar
         -- Popup menu: Scrollbar.
-        ["PmenuSbar"] = {},
+        -- ["PmenuSbar"] = {},
 
         -- hl-PmenuThumb
         -- Popup menu: Thumb of the scrollbar.
-        ["PmenuThumb"] = {},
+        -- ["PmenuThumb"] = {},
 
         -- hl-PmenuMatch
         -- Popup menu: Matched text in normal item. Combined with
         -- |hl-Pmenu|.
-        ["PmenuMatch"] = {},
+        -- ["PmenuMatch"] = {},
 
         -- hl-PmenuMatchSel
         -- Popup menu: Matched text in selected item. Combined with
         -- |hl-PmenuMatch| and |hl-PmenuSel|.
-        ["PmenuMatchSel"] = {},
+        -- ["PmenuMatchSel"] = {},
       },
 
       line_number = {
@@ -295,48 +295,48 @@ local highlights = {
         -- hl-LineNr
         -- Line number for ":number" and ":#" commands, and when 'number'
         -- or 'relativenumber' option is set.
-        ["LineNr"] = {},
+        -- ["LineNr"] = {},
 
         -- hl-LineNrAbove
         -- Line number for when the 'relativenumber'
         -- option is set, above the cursor line.
-        ["LineNrAbove"] = {},
+        -- ["LineNrAbove"] = {},
 
         -- hl-LineNrBelow
         -- Line number for when the 'relativenumber'
         -- option is set, below the cursor line.
-        ["LineNrBelow"] = {},
+        -- ["LineNrBelow"] = {},
       },
 
       message = {
 
         -- hl-ErrorMsg
         -- Error messages on the command line.
-        ["ErrorMsg"] = {},
+        -- ["ErrorMsg"] = {},
 
         -- hl-ModeMsg
         -- 'showmode' message (e.g., "-- INSERT --").
-        ["ModeMsg"] = {},
+        -- ["ModeMsg"] = {},
 
         -- hl-MsgArea
         -- Area for messages and command-line, see also 'cmdheight'.
-        ["MsgArea"] = {},
+        -- ["MsgArea"] = {},
 
         -- hl-MsgSeparator
         -- Separator for scrolled messages |msgsep|.
-        ["MsgSeparator"] = {},
+        -- ["MsgSeparator"] = {},
 
         -- hl-Question
         -- |hit-enter| prompt and yes/no questions.
-        ["Question"] = {},
+        -- ["Question"] = {},
 
         -- hl-MoreMsg
         -- |more-prompt|
-        ["MoreMsg"] = {},
+        -- ["MoreMsg"] = {},
 
         -- hl-WarningMsg
         -- Warning messages.
-        ["WarningMsg"] = {},
+        -- ["WarningMsg"] = {},
       },
 
       floats = {
@@ -383,43 +383,43 @@ local highlights = {
         -- hl-SpellBad
         -- Word that is not recognized by the spellchecker. |spell|
         -- Combined with the highlighting used otherwise.
-        ["SpellBad"] = {},
+        -- ["SpellBad"] = {},
 
         -- hl-SpellCap
         -- Word that should start with a capital. |spell|
         -- Combined with the highlighting used otherwise.
-        ["SpellCap"] = {},
+        -- ["SpellCap"] = {},
 
         -- hl-SpellLocal
         -- Word that is recognized by the spellchecker as one that is
         -- used in another region. |spell|
         -- Combined with the highlighting used otherwise.
-        ["SpellLocal"] = {},
+        -- ["SpellLocal"] = {},
 
         -- hl-SpellRare
         -- Word that is recognized by the spellchecker as one that is
         -- hardly ever used. |spell|
         -- Combined with the highlighting used otherwise.
-        ["SpellRare"] = {},
+        -- ["SpellRare"] = {},
       },
 
       statusline = {
 
         -- hl-StatusLine
         -- Status line of current window.
-        ["StatusLine"] = {},
+        -- ["StatusLine"] = {},
 
         -- hl-StatusLineNC
         -- Status lines of not-current windows.
-        ["StatusLineNC"] = {},
+        -- ["StatusLineNC"] = {},
 
         -- hl-StatusLineTerm
         -- Status line of |terminal| window.
-        ["StatusLineTerm"] = {},
+        -- ["StatusLineTerm"] = {},
 
         -- *hl-StatusLineTermNC
         -- Status line of non-current |terminal| windows.
-        ["StatusLineTermNC"] = {},
+        -- ["StatusLineTermNC"] = {},
       },
 
       tabs = {
@@ -447,7 +447,7 @@ local highlights = {
         -- hl-QuickFixLine
         -- Current |quickfix| item in the quickfix window. Combined with
         -- |hl-CursorLine| when the cursor is there.
-        ["QuickFixLine"] = {},
+        -- ["QuickFixLine"] = {},
 
         -- hl-WinSeparator
         -- Separators between window splits.
@@ -455,50 +455,50 @@ local highlights = {
 
         -- hl-SignColumn
         -- Column where |signs| are displayed.
-        ["SignColumn"] = {},
+        -- ["SignColumn"] = {},
 
         -- hl-WildMenu
         -- Current match in 'wildmenu' completion.
-        ["WildMenu"] = {},
+        -- ["WildMenu"] = {},
 
         -- hl-WinBar
         -- Window bar of current window.
-        ["WinBar"] = {},
+        -- ["WinBar"] = {},
 
         -- hl-WinBarNC
         -- Window bar of not-current windows.
-        ["WinBarNC"] = {},
+        -- ["WinBarNC"] = {},
       },
 
       completion = {
 
         -- hl-ComplMatchIns
         -- Matched text of the currently inserted completion.
-        ["ComplMatchIns"] = {},
+        -- ["ComplMatchIns"] = {},
 
         -- hl-SnippetTabstop
         -- Tabstops in snippets. |vim.snippet|
-        ["SnippetTabstop"] = {},
+        -- ["SnippetTabstop"] = {},
       },
 
       text = {
 
         -- hl-Conceal
         -- Placeholder characters substituted for concealed
-        ["Conceal"] = {},
+        -- ["Conceal"] = {},
 
         -- hl-Directory
         -- Directory names (and other special names in listings).
-        ["Directory"] = {},
+        -- ["Directory"] = {},
 
         -- hl-Substitute
         -- |:substitute| replacement text highlighting.
-        ["Substitute"] = {},
+        -- [""] = {},
 
         -- hl-MatchParen
         -- Character under the cursor or just before it, if it
         -- is a paired bracket, and its match. |pi_paren.txt|
-        ["MatchParen"] = {},
+        -- ["MatchParen"] = {},
 
         -- hl-NonText
         -- '@' at the end of the window, characters from 'showbreak'
@@ -506,7 +506,7 @@ local highlights = {
         -- (e.g., ">" displayed when a double-wide character doesn't
         -- fit at the end of the line). See also |hl-EndOfBuffer|.
         -- '@' at the end of the window, characters from 'showbreak'
-        ["NonText"] = {},
+        -- ["NonText"] = {},
 
         -- hl-Normal
         -- Normal text.
@@ -514,29 +514,29 @@ local highlights = {
 
         -- hl-NormalNC
         -- Normal text in non-current windows.
-        ["NormalNC"] = {},
+        -- ["NormalNC"] = {},
 
         -- hl-SpecialKey
         -- Unprintable characters: Text displayed differently from what
         -- it really is. But not 'listchars' whitespace. |hl-Whitespace|
-        ["SpecialKey"] = {},
+        -- ["SpecialKey"] = {},
 
         -- hl-Title
         -- Titles for output from ":set all", ":autocmd" etc.
-        ["Title"] = {},
+        -- ["Title"] = {},
 
         -- hl-Visual
         -- Visual mode selection.
-        ["Visual"] = {},
+        -- ["Visual"] = {},
 
         -- hl-VisualNOS
         -- Visual mode selection when vim is "Not Owning the Selection".
-        ["VisualNOS"] = {},
+        -- ["VisualNOS"] = {},
 
         -- hl-Whitespace
         -- "nbsp", "space", "tab", "multispace", "lead" and "trail"
         -- in 'listchars'.
-        ["Whitespace"] = {},
+        -- ["Whitespace"] = {},
       },
     },
 
@@ -701,103 +701,103 @@ local highlights = {
     lsp_semantic_highlights = {
 
       -- Identifiers that declare or reference a class type
-      ["@lsp.type.class"] = {},
+      -- ["@lsp.type.class"] = {},
 
       -- Tokens that represent a comment
-      ["@lsp.type.comment"] = {},
+      -- ["@lsp.type.comment"] = {},
 
       -- Identifiers that declare or reference decorators and annotations
-      ["@lsp.type.decorator"] = {},
+      -- ["@lsp.type.decorator"] = {},
 
       -- Identifiers that declare or reference an enumeration type
-      ["@lsp.type.enum"] = {},
+      -- ["@lsp.type.enum"] = {},
 
       -- Identifiers that declare or reference an enumeration property, constant, or member
-      ["@lsp.type.enumMember"] = {},
+      -- ["@lsp.type.enumMember"] = {},
 
       -- Identifiers that declare an event property
-      ["@lsp.type.event"] = {},
+      -- ["@lsp.type.event"] = {},
 
       -- Identifiers that declare a function
-      ["@lsp.type.function"] = {},
+      -- ["@lsp.type.function"] = {},
 
       -- Identifiers that declare or reference an interface type
-      ["@lsp.type.interface"] = {},
+      -- ["@lsp.type.interface"] = {},
 
       -- Tokens that represent a language keyword
-      ["@lsp.type.keyword"] = {},
+      -- ["@lsp.type.keyword"] = {},
 
       -- Identifiers that declare a macro
-      ["@lsp.type.macro"] = {},
+      -- ["@lsp.type.macro"] = {},
 
       -- Identifiers that declare a member function or method
-      ["@lsp.type.method"] = {},
+      -- ["@lsp.type.method"] = {},
 
       -- Tokens that represent a modifier
-      ["@lsp.type.modifier"] = {},
+      -- ["@lsp.type.modifier"] = {},
 
       -- Identifiers that declare or reference a namespace, module, or package
-      ["@lsp.type.namespace"] = {},
+      -- ["@lsp.type.namespace"] = {},
 
       -- Tokens that represent a number literal
-      ["@lsp.type.number"] = {},
+      -- ["@lsp.type.number"] = {},
 
       -- Tokens that represent an operator
-      ["@lsp.type.operator"] = {},
+      -- ["@lsp.type.operator"] = {},
 
       -- Identifiers that declare or reference a function or method parameters
-      ["@lsp.type.parameter"] = {},
+      -- ["@lsp.type.parameter"] = {},
 
       -- Identifiers that declare or reference a member property, member field, or member variable
-      ["@lsp.type.property"] = {},
+      -- ["@lsp.type.property"] = {},
 
       -- Tokens that represent a regular expression literal
-      ["@lsp.type.regexp"] = {},
+      -- ["@lsp.type.regexp"] = {},
 
       -- Tokens that represent a string literal
-      ["@lsp.type.string"] = {},
+      -- ["@lsp.type.string"] = {},
 
       -- Identifiers that declare or reference a struct type
-      ["@lsp.type.struct"] = {},
+      -- ["@lsp.type.struct"] = {},
 
       -- Identifiers that declare or reference a type that is not covered above
-      ["@lsp.type.type"] = {},
+      -- ["@lsp.type.type"] = {},
 
       -- Identifiers that declare or reference a type parameter
-      ["@lsp.type.typeParameter"] = {},
+      -- ["@lsp.type.typeParameter"] = {},
 
       -- Identifiers that declare or reference a local or global variable
-      ["@lsp.type.variable"] = {},
+      -- ["@lsp.type.variable"] = {},
 
       -- Types and member functions that are abstract
-      ["@lsp.mod.abstract"] = {},
+      -- ["@lsp.mod.abstract"] = {},
 
       -- Functions that are marked async
-      ["@lsp.mod.async"] = {},
+      -- ["@lsp.mod.async"] = {},
 
       -- Declarations of symbols
-      ["@lsp.mod.declaration"] = {},
+      -- ["@lsp.mod.declaration"] = {},
 
       -- Symbols that are part of the standard library
-      ["@lsp.mod.defaultLibrary"] = {},
+      -- ["@lsp.mod.defaultLibrary"] = {},
 
       -- Definitions of symbols, for example, in header files
-      ["@lsp.mod.definition"] = {},
+      -- ["@lsp.mod.definition"] = {},
 
       -- Symbols that should no longer be used
-      ["@lsp.mod.deprecated"] = {},
+      -- ["@lsp.mod.deprecated"] = {},
 
       -- Occurrences of symbols in documentation
-      ["@lsp.mod.documentation"] = {},
+      -- ["@lsp.mod.documentation"] = {},
 
       -- Variable references where the variable is assigned to
-      ["@lsp.mod.modification"] = {},
+      -- ["@lsp.mod.modification"] = {},
 
       -- Readonly variables and member fields (constants)
-      ["@lsp.mod.readonly"] = {},
+      -- ["@lsp.mod.readonly"] = {},
 
       -- Class members (static members)
-      ["@lsp.mod.static"] = {},
+      -- ["@lsp.mod.static"] = {},
     },
   },
 

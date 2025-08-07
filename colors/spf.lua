@@ -243,6 +243,8 @@ local canonical_links = {
   -- Normal text in floating windows.
   NormalFloat = spf_highlights.foreground_on_background,
 
+  -- hl-Title
+  -- Titles for output from ":set all", ":autocmd" etc.
   Title = spf_highlights.bold,
 
   -- hl-FloatBorder
@@ -295,6 +297,255 @@ local canonical_links = {
   WinSeparator = spf_highlights.primary_accent_on_nothing,
 
   Folded = spf_highlights.black_bright_on_black_dark,
+
+  -- hl-ColorColumn
+  -- Used for the columns set with 'colorcolumn'.
+  ["ColorColumn"] = {},
+
+  -- hl-Cursor
+  -- Character under the cursor.
+  ["Cursor"] = {},
+
+  -- hl-lCursor
+  -- Character under the cursor when |language-mapping|
+  -- is used (see 'guicursor').
+  ["lCursor"] = {},
+
+  -- hl-CursorIM
+  -- Like Cursor, but used when in IME mode. *CursorIM*
+  ["CursorIM"] = {},
+
+  -- hl-CursorColumn
+  -- Screen-column at the cursor, when 'cursorcolumn' is set.
+  ["CursorColumn"] = {},
+
+  -- hl-CursorLineNr
+  -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
+  -- contains "number" or is "both", for the cursor line.
+  ["CursorLineNr"] = {},
+
+  -- hl-CursorLineFold
+  -- Like FoldColumn when 'cursorline' is set for the cursor line.
+  ["CursorLineFold"] = {},
+
+  -- hl-CursorLineSign
+  -- Like SignColumn when 'cursorline' is set for the cursor line.
+  ["CursorLineSign"] = {},
+
+  -- hl-TermCursor
+  -- Cursor in a focused terminal.
+  ["TermCursor"] = {},
+
+  -- hl-Pmenu
+  -- Popup menu: Normal item.
+  ["Pmenu"] = {},
+
+  -- hl-PmenuSel
+  -- Popup menu: Selected item. Combined with |hl-Pmenu|.
+  ["PmenuSel"] = {},
+
+  -- hl-PmenuKind
+  -- Popup menu: Normal item "kind".
+  ["PmenuKind"] = {},
+
+  -- hl-PmenuKindSel
+  -- Popup menu: Selected item "kind".
+  ["PmenuKindSel"] = {},
+
+  -- hl-PmenuExtra
+  -- Popup menu: Normal item "extra text".
+  ["PmenuExtra"] = {},
+
+  -- hl-PmenuExtraSel
+  -- Popup menu: Selected item "extra text".
+  ["PmenuExtraSel"] = {},
+
+  -- hl-PmenuSbar
+  -- Popup menu: Scrollbar.
+  ["PmenuSbar"] = {},
+
+  -- hl-PmenuThumb
+  -- Popup menu: Thumb of the scrollbar.
+  ["PmenuThumb"] = {},
+
+  -- hl-PmenuMatch
+  -- Popup menu: Matched text in normal item. Combined with
+  -- |hl-Pmenu|.
+  ["PmenuMatch"] = {},
+
+  -- hl-PmenuMatchSel
+  -- Popup menu: Matched text in selected item. Combined with
+  -- |hl-PmenuMatch| and |hl-PmenuSel|.
+  ["PmenuMatchSel"] = {},
+
+  -- hl-LineNr
+  -- Line number for ":number" and ":#" commands, and when 'number'
+  -- or 'relativenumber' option is set.
+  ["LineNr"] = {},
+
+  -- hl-LineNrAbove
+  -- Line number for when the 'relativenumber'
+  -- option is set, above the cursor line.
+  ["LineNrAbove"] = {},
+
+  -- hl-LineNrBelow
+  -- Line number for when the 'relativenumber'
+  -- option is set, below the cursor line.
+  ["LineNrBelow"] = {},
+
+  -- hl-ErrorMsg
+  -- Error messages on the command line.
+  ["ErrorMsg"] = {},
+
+  -- hl-ModeMsg
+  -- 'showmode' message (e.g., "-- INSERT --").
+  ["ModeMsg"] = {},
+
+  -- hl-MsgArea
+  -- Area for messages and command-line, see also 'cmdheight'.
+  ["MsgArea"] = {},
+
+  -- hl-MsgSeparator
+  -- Separator for scrolled messages |msgsep|.
+  ["MsgSeparator"] = {},
+
+  -- hl-Question
+  -- |hit-enter| prompt and yes/no questions.
+  ["Question"] = {},
+
+  -- hl-MoreMsg
+  -- |more-prompt|
+  ["MoreMsg"] = {},
+
+  -- hl-WarningMsg
+  -- Warning messages.
+  ["WarningMsg"] = {},
+
+  -- hl-SpellBad
+  -- Word that is not recognized by the spellchecker. |spell|
+  -- Combined with the highlighting used otherwise.
+  ["SpellBad"] = {},
+
+  -- hl-SpellCap
+  -- Word that should start with a capital. |spell|
+  -- Combined with the highlighting used otherwise.
+  ["SpellCap"] = {},
+
+  -- hl-SpellLocal
+  -- Word that is recognized by the spellchecker as one that is
+  -- used in another region. |spell|
+  -- Combined with the highlighting used otherwise.
+  ["SpellLocal"] = {},
+
+  -- hl-SpellRare
+  -- Word that is recognized by the spellchecker as one that is
+  -- hardly ever used. |spell|
+  -- Combined with the highlighting used otherwise.
+  ["SpellRare"] = {},
+
+  -- hl-StatusLine
+  -- Status line of current window.
+  ["StatusLine"] = {},
+
+  -- hl-StatusLineNC
+  -- Status lines of not-current windows.
+  ["StatusLineNC"] = {},
+
+  -- hl-StatusLineTerm
+  -- Status line of |terminal| window.
+  ["StatusLineTerm"] = {},
+
+  -- *hl-StatusLineTermNC
+  -- Status line of non-current |terminal| windows.
+  ["StatusLineTermNC"] = {},
+
+  -- hl-QuickFixLine
+  -- Current |quickfix| item in the quickfix window. Combined with
+  -- |hl-CursorLine| when the cursor is there.
+  ["QuickFixLine"] = {},
+
+  -- hl-WinSeparator
+  -- Separators between window splits.
+  -- ["WinSeparator"] = { fg = colors.ui_primary_background, bg = colors.background },
+
+  -- hl-SignColumn
+  -- Column where |signs| are displayed.
+  ["SignColumn"] = {},
+
+  -- hl-WildMenu
+  -- Current match in 'wildmenu' completion.
+  ["WildMenu"] = {},
+
+  -- hl-WinBar
+  -- Window bar of current window.
+  ["WinBar"] = {},
+
+  -- hl-WinBarNC
+  -- Window bar of not-current windows.
+  ["WinBarNC"] = {},
+
+  -- hl-ComplMatchIns
+  -- Matched text of the currently inserted completion.
+  ["ComplMatchIns"] = {},
+
+  -- hl-SnippetTabstop
+  -- Tabstops in snippets. |vim.snippet|
+  ["SnippetTabstop"] = {},
+
+  -- hl-Conceal
+  -- Placeholder characters substituted for concealed
+  ["Conceal"] = {},
+
+  -- hl-Directory
+  -- Directory names (and other special names in listings).
+  ["Directory"] = {},
+
+  -- hl-Substitute
+  -- |:substitute| replacement text highlighting.
+  ["Substitute"] = {},
+
+  -- hl-MatchParen
+  -- Character under the cursor or just before it, if it
+  -- is a paired bracket, and its match. |pi_paren.txt|
+  ["MatchParen"] = {},
+
+  -- hl-NonText
+  -- '@' at the end of the window, characters from 'showbreak'
+  -- and other characters that do not really exist in the text
+  -- (e.g., ">" displayed when a double-wide character doesn't
+  -- fit at the end of the line). See also |hl-EndOfBuffer|.
+  -- '@' at the end of the window, characters from 'showbreak'
+  ["NonText"] = {},
+
+  -- hl-Normal
+  -- Normal text.
+  -- ["Normal"] = { fg = colors.foreground, bg = colors.background },
+
+  -- hl-NormalNC
+  -- Normal text in non-current windows.
+  ["NormalNC"] = {},
+
+  -- hl-SpecialKey
+  -- Unprintable characters: Text displayed differently from what
+  -- it really is. But not 'listchars' whitespace. |hl-Whitespace|
+  ["SpecialKey"] = {},
+
+  -- hl-Visual
+  -- Visual mode selection.
+  ["Visual"] = {},
+
+  -- hl-VisualNOS
+  -- Visual mode selection when vim is "Not Owning the Selection".
+  ["VisualNOS"] = {},
+
+  -- hl-Whitespace
+  -- "nbsp", "space", "tab", "multispace", "lead" and "trail"
+  -- in 'listchars'.
+  ["Whitespace"] = {},
+
+  ------------------------------------------------------------------------------
+  -- Diagnostic Highlights
+  ------------------------------------------------------------------------------
 
   -- hl-DiagnosticError
   -- Used as the base highlight group.
@@ -511,6 +762,109 @@ local derived_links = {
   -- hl-DiagnosticSignOk
   -- Used for "Ok" signs in sign column.
   DiagnosticSignOk = canonical_links.DiagnosticOk,
+
+  ------------------------------------------------------------------------------
+  -- LSP Semantic Highlights                       see: :help 'highlight-groups'
+  ------------------------------------------------------------------------------
+
+  -- Identifiers that declare or reference a class type
+  ["@lsp.type.class"] = {},
+
+  -- Tokens that represent a comment
+  ["@lsp.type.comment"] = {},
+
+  -- Identifiers that declare or reference decorators and annotations
+  ["@lsp.type.decorator"] = {},
+
+  -- Identifiers that declare or reference an enumeration type
+  ["@lsp.type.enum"] = {},
+
+  -- Identifiers that declare or reference an enumeration property, constant, or member
+  ["@lsp.type.enumMember"] = {},
+
+  -- Identifiers that declare an event property
+  ["@lsp.type.event"] = {},
+
+  -- Identifiers that declare a function
+  ["@lsp.type.function"] = {},
+
+  -- Identifiers that declare or reference an interface type
+  ["@lsp.type.interface"] = {},
+
+  -- Tokens that represent a language keyword
+  ["@lsp.type.keyword"] = {},
+
+  -- Identifiers that declare a macro
+  ["@lsp.type.macro"] = {},
+
+  -- Identifiers that declare a member function or method
+  ["@lsp.type.method"] = {},
+
+  -- Tokens that represent a modifier
+  ["@lsp.type.modifier"] = {},
+
+  -- Identifiers that declare or reference a namespace, module, or package
+  ["@lsp.type.namespace"] = {},
+
+  -- Tokens that represent a number literal
+  ["@lsp.type.number"] = {},
+
+  -- Tokens that represent an operator
+  ["@lsp.type.operator"] = {},
+
+  -- Identifiers that declare or reference a function or method parameters
+  ["@lsp.type.parameter"] = {},
+
+  -- Identifiers that declare or reference a member property, member field, or member variable
+  ["@lsp.type.property"] = {},
+
+  -- Tokens that represent a regular expression literal
+  ["@lsp.type.regexp"] = {},
+
+  -- Tokens that represent a string literal
+  ["@lsp.type.string"] = {},
+
+  -- Identifiers that declare or reference a struct type
+  ["@lsp.type.struct"] = {},
+
+  -- Identifiers that declare or reference a type that is not covered above
+  ["@lsp.type.type"] = {},
+
+  -- Identifiers that declare or reference a type parameter
+  ["@lsp.type.typeParameter"] = {},
+
+  -- Identifiers that declare or reference a local or global variable
+  ["@lsp.type.variable"] = {},
+
+  -- Types and member functions that are abstract
+  ["@lsp.mod.abstract"] = {},
+
+  -- Functions that are marked async
+  ["@lsp.mod.async"] = {},
+
+  -- Declarations of symbols
+  ["@lsp.mod.declaration"] = {},
+
+  -- Symbols that are part of the standard library
+  ["@lsp.mod.defaultLibrary"] = {},
+
+  -- Definitions of symbols, for example, in header files
+  ["@lsp.mod.definition"] = {},
+
+  -- Symbols that should no longer be used
+  ["@lsp.mod.deprecated"] = {},
+
+  -- Occurrences of symbols in documentation
+  ["@lsp.mod.documentation"] = {},
+
+  -- Variable references where the variable is assigned to
+  ["@lsp.mod.modification"] = {},
+
+  -- Readonly variables and member fields (constants)
+  ["@lsp.mod.readonly"] = {},
+
+  -- Class members (static members)
+  ["@lsp.mod.static"] = {},
 
   ------------------------------------------------------------------------------
   -- Other Common Highlights
