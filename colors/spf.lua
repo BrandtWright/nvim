@@ -160,14 +160,14 @@ local spf_highlights = {
   black_dark = { fg = colors.black_dark, bg = "" },
   black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
   black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
-  black_bright_on_black_dark = { fg = colors.black_bright, bg = colors.black_dark },
+  black_on_primary_accent_background = { fg = colors.black_bright, bg = colors.ui_primary_background },
 
   nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
   nothing_on_dark_green = { fg = "", bg = colors.green_dark },
   nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
   nothing_on_black_dark = { fg = "", bg = colors.black_dark },
 
-  primary_accent_on_nothing = { fg = colors.ui_primary_foreground, bg = "" },
+  primary_accent_on_nothing = { fg = colors.ui_primary_background, bg = "" },
 
   gold = { fg = colors.gold, bg = "" },
 }
@@ -296,7 +296,7 @@ local canonical_links = {
   -- Separators between window splits.
   WinSeparator = spf_highlights.primary_accent_on_nothing,
 
-  Folded = spf_highlights.black_bright_on_black_dark,
+  Folded = spf_highlights.black_on_primary_accent_background,
 
   -- hl-ColorColumn
   -- Used for the columns set with 'colorcolumn'.
