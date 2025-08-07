@@ -422,89 +422,97 @@ local derived_links = {
   --    changes are made or the screen is redrawn.
   CurSearch = canonical_links.Search,
 
+  ------------------------------------------------------------------------------
+  -- Other Common Highlights
+  ------------------------------------------------------------------------------
+
+  DiffAdded = { link = "Added" },
+  DiffChanged = { link = "Changed" },
+  DiffRemoved = { link = "Removed" },
+
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
-  IncSearch = spf_highlights.Search,
+  IncSearch = canonical_links.Search,
 
   -- hl-DiagnosticVirtualTextError
   -- Used for "Error" diagnostic virtual text.
-  DiagnosticVirtualTextError = spf_highlights.red,
+  DiagnosticVirtualTextError = canonical_links.DiagnosticError,
 
   -- hl-DiagnosticVirtualTextWarn
   -- Used for "Warn" diagnostic virtual text.
-  DiagnosticVirtualTextWarn = spf_highlights.yellow,
+  DiagnosticVirtualTextWarn = canonical_links.DiagnosticWarn,
 
   -- hl-DiagnosticVirtualTextInfo
   -- Used for "Info" diagnostic virtual text.
-  DiagnosticVirtualTextInfo = spf_highlights.blue,
+  DiagnosticVirtualTextInfo = canonical_links.DiagnosticInfo,
 
   -- hl-DiagnosticVirtualTextHint
   -- Used for "Hint" diagnostic virtual text.
-  DiagnosticVirtualTextHint = spf_highlights.magenta,
+  DiagnosticVirtualTextHint = canonical_links.DiagnosticHint,
 
   -- hl-DiagnosticVirtualTextOk
   -- Used for "Ok" diagnostic virtual text.
-  DiagnosticVirtualTextOk = spf_highlights.green,
+  DiagnosticVirtualTextOk = canonical_links.DiagnosticOk,
 
   -- hl-DiagnosticVirtualLinesError
   -- Used for "Error" diagnostic virtual lines.
-  DiagnosticVirtualLinesError = spf_highlights.red,
+  DiagnosticVirtualLinesError = canonical_links.DiagnosticError,
 
   -- hl-DiagnosticVirtualLinesWarn
   -- Used for "Warn" diagnostic virtual lines.
-  DiagnosticVirtualLinesWarn = spf_highlights.yellow,
+  DiagnosticVirtualLinesWarn = canonical_links.DiagnosticWarn,
 
   -- hl-DiagnosticVirtualLinesInfo
   -- Used for "Info" diagnostic virtual lines.
-  DiagnosticVirtualLinesInfo = spf_highlights.blue,
+  DiagnosticVirtualLinesInfo = canonical_links.DiagnosticUnderlineInfo,
 
   -- hl-DiagnosticVirtualLinesHint
   -- Used for "Hint" diagnostic virtual lines.
-  DiagnosticVirtualLinesHint = spf_highlights.magenta,
+  DiagnosticVirtualLinesHint = canonical_links.DiagnosticUnderlineHint,
 
   -- hl-DiagnosticVirtualLinesOk
   -- Used for "Ok" diagnostic virtual lines.
-  DiagnosticVirtualLinesOk = spf_highlights.green,
+  DiagnosticVirtualLinesOk = canonical_links.DiagnosticUnderlineOk,
 
   -- See vim.diagnostic.open_float()
-  DiagnosticFloatingError = spf_highlights.red,
+  DiagnosticFloatingError = canonical_links.DiagnosticError,
 
   -- hl-DiagnosticFloatingWarn
   -- Used to color "Warn" diagnostic messages in diagnostics float.
-  DiagnosticFloatingWarn = spf_highlights.yellow,
+  DiagnosticFloatingWarn = canonical_links.DiagnosticWarn,
 
   -- hl-DiagnosticFloatingInfo
   -- Used to color "Info" diagnostic messages in diagnostics float.
-  DiagnosticFloatingInfo = spf_highlights.blue,
+  DiagnosticFloatingInfo = canonical_links.DiagnosticInfo,
 
   -- hl-DiagnosticFloatingHint
   -- Used to color "Hint" diagnostic messages in diagnostics float.
-  DiagnosticFloatingHint = spf_highlights.magenta,
+  DiagnosticFloatingHint = canonical_links.DiagnosticHint,
 
   -- hl-DiagnosticFloatingOk
   -- Used to color "Ok" diagnostic messages in diagnostics float.
-  DiagnosticFloatingOk = spf_highlights.green,
+  DiagnosticFloatingOk = canonical_links.DiagnosticOk,
 
   -- hl-DiagnosticSignError
   -- Used for "Error" signs in sign column.
-  DiagnosticSignError = spf_highlights.red,
+  DiagnosticSignError = canonical_links.DiagnosticError,
 
   -- hl-DiagnosticSignWarn
   -- Used for "Warn" signs in sign column.
-  DiagnosticSignWarn = spf_highlights.yellow,
+  DiagnosticSignWarn = canonical_links.DiagnosticWarn,
 
   -- hl-DiagnosticSignInfo
   -- Used for "Info" signs in sign column.
-  DiagnosticSignInfo = spf_highlights.blue,
+  DiagnosticSignInfo = canonical_links.DiagnosticInfo,
 
   -- hl-DiagnosticSignHint
   -- Used for "Hint" signs in sign column.
-  DiagnosticSignHint = spf_highlights.magenta,
+  DiagnosticSignHint = canonical_links.DiagnosticHint,
 
   -- hl-DiagnosticSignOk
   -- Used for "Ok" signs in sign column.
-  DiagnosticSignOk = spf_highlights.green,
+  DiagnosticSignOk = canonical_links.DiagnosticOk,
 }
 
 local function reverse_map(tbl)
