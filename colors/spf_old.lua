@@ -177,7 +177,7 @@ local highlights = {
 
         -- hl-FoldColumn
         -- 'foldcolumn'
-        ["FoldColumn"] = {},
+        -- ["FoldColumn"] = {},
       },
 
       search = {

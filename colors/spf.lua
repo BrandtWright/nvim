@@ -298,6 +298,10 @@ local canonical_links = {
 
   Folded = spf_highlights.black_on_primary_accent_background,
 
+  -- hl-FoldColumn
+  -- 'foldcolumn'
+  ["FoldColumn"] = {},
+
   -- hl-ColorColumn
   -- Used for the columns set with 'colorcolumn'.
   ["ColorColumn"] = {},
