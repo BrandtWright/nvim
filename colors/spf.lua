@@ -90,6 +90,7 @@ local spf_highlights = {
 
   -- UI
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
+  -- foregroung_on_nothing = { fg = colors.foreground, bg = "" },
   foreground_on_background_underlined = { fg = "", bg = "", underline = true },
   background_on_background = { fg = "bg" },
   Cursor_Line = { fg = "#1f1d1b" },
@@ -98,6 +99,7 @@ local spf_highlights = {
   red = { fg = colors.red, bg = "" },
   red_bright = { fg = colors.red_bright, bg = "" },
   -- red_dark
+  red_on_nothing_underline = { fg = colors.red, bg = "", underline = true },
 
   orange = { fg = colors.orange, bg = "" },
   -- orange_bright
@@ -106,10 +108,12 @@ local spf_highlights = {
   yellow = { fg = colors.yellow, bg = "" },
   -- yellow_bright
   -- yellow_dark
+  yellow_on_nothing_underline = { undercurl = true, fg = colors.yellow, bg = "" },
 
   green = { fg = colors.green, bg = "" },
   green_bright = { fg = colors.green_bright, bg = "" },
   -- green_dark
+  green_on_nothing_underline = { undercurl = true, fg = colors.green, bg = "" },
 
   cyan = { fg = colors.cyan, bg = "" },
   cyan_bright = { fg = colors.cyan_bright, bg = "" },
@@ -118,6 +122,7 @@ local spf_highlights = {
   blue = { fg = colors.blue, bg = "" },
   blue_bright = { fg = colors.blue_bright, bg = "" },
   -- blue_dark
+  blue_on_nothing_underline = { undercurl = true, fg = colors.blue, bg = "" },
 
   azure = { fg = colors.azure, bg = "" },
   -- azure_bright
@@ -126,6 +131,7 @@ local spf_highlights = {
   magenta = { fg = colors.magenta, bg = "" },
   magenta_bright = { fg = colors.magenta_bright, bg = "" },
   -- magenta_dark
+  magenta_on_nothing_underline = { undercurl = true, fg = colors.magenta, bg = "" },
 
   -- white
   white_dark = { fg = colors.white_dark, bg = "" },
@@ -237,6 +243,51 @@ local canonical_links = {
   -- hl-WinSeparator
   -- Separators between window splits.
   WinSeparator = spf_highlights.primary_accent_on_nothing,
+
+  -- hl-DiagnosticError
+  -- Used as the base highlight group.
+  -- Other Diagnostic highlights link to this by default (except Underline)
+  DiagnosticError = spf_highlights.red,
+
+  -- hl-DiagnosticWarn
+  -- Used as the base highlight group.
+  -- Other Diagnostic highlights link to this by default (except Underline)
+  DiagnosticWarn = spf_highlights.yellow,
+
+  -- hl-DiagnosticInfo
+  -- Used as the base highlight group.
+  -- Other Diagnostic highlights link to this by default (except Underline)
+  DiagnosticInfo = spf_highlights.blue,
+
+  -- hl-DiagnosticHint
+  -- Used as the base highlight group.
+  -- Other Diagnostic highlights link to this by default (except Underline)
+  DiagnosticHint = spf_highlights.magenta,
+
+  -- hl-DiagnosticOk
+  -- Used as the base highlight group.
+  -- Other Diagnostic highlights link to this by default (except Underline)
+  DiagnosticOk = spf_highlights.green,
+
+  -- hl-DiagnosticUnderlineError
+  -- Used to underline "Error" diagnostics.
+  DiagnosticUnderlineError = spf_highlights.red_on_nothing_underline,
+
+  -- hl-DiagnosticUnderlineWarn
+  -- Used to underline "Warn" diagnostics.
+  DiagnosticUnderlineWarn = spf_highlights.yellow_on_nothing_underline,
+
+  -- hl-DiagnosticUnderlineInfo
+  -- Used to underline "Info" diagnostics.
+  DiagnosticUnderlineInfo = spf_highlights.blue_on_nothing_underline,
+
+  -- hl-DiagnosticUnderlineHint
+  -- Used to underline "Hint" diagnostics.
+  DiagnosticUnderlineHint = spf_highlights.magenta_on_nothing_underline,
+
+  -- hl-DiagnosticUnderlineOk
+  -- Used to underline "Ok" diagnostics.
+  DiagnosticUnderlineOk = spf_highlights.green_on_nothing_underline,
 }
 
 local derived_links = {
