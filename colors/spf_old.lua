@@ -814,12 +814,12 @@ local highlights = {
   file_types = {
 
     markdown = {
-      vim.api.nvim_set_hl(0, "MarkdownHeading1", { link = "Title" }),
-      vim.api.nvim_set_hl(0, "MarkdownHeading2", { link = "Special" }),
-      vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
-      vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
-      vim.api.nvim_set_hl(0, "MarkdownHeading5", { link = "Special" }),
-      vim.api.nvim_set_hl(0, "MarkdownHeading6", { link = "Special" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading1", { link = "Title" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading2", { link = "Special" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading4", { link = "Special" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading5", { link = "Special" }),
+      -- vim.api.nvim_set_hl(0, "MarkdownHeading6", { link = "Special" }),
     },
   },
 }
