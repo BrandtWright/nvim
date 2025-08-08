@@ -1163,12 +1163,18 @@ local derived_links = {
 }
 
 local function reverse_map(tbl)
-  -- Lua tables use reference equality:
-  -- v == v is true. So, v can be used as a key in reversed
   local reversed = {}
   for k, v in pairs(tbl) do
-    if type(v) == "table" and next(v) ~= nil then
-      reversed[v] = k
+    if type(v) == "table" then
+      -- Not an ampty table
+      if next(v) ~= nil then
+        -- duplicate key
+        if reversed[v] ~= nil then
+          vim.notify("Duplicate key found: " .. k)
+        else
+          reversed[v] = k
+        end
+      end
     end
   end
   return reversed
