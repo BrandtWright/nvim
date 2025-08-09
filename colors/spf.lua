@@ -1006,7 +1006,7 @@ local function reverse_map(tbl)
     if is_nonempty_table(val) then
       local existing = reversed[val]
       if existing ~= nil then
-        local fmt = "Duplicate table value for keys %s and %s"
+        local fmt = "Fix duplicate table value for keys %s and %s to load SPF."
         local msg = fmt:format(tostring(existing), tostring(key))
         vim.notify(msg, vim.log.levels.ERROR, { title = "SPF" })
         return false, {}
@@ -1017,6 +1017,7 @@ local function reverse_map(tbl)
   return true, reversed
 end
 
+-- Bail out before applying highlights if the reverse map fails
 local ok, highlight_keys = reverse_map(spf_highlights)
 if not ok then
   return
