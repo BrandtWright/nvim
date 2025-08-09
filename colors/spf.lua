@@ -108,7 +108,7 @@ local highlights = {
     bg = colors.ui_secondary_background,
   },
 
-  background_on_background = { fg = "bg" },
+  background_on_background = { fg = colors.background, bg = colors.background },
 
   CursorLine = { fg = "", bg = "#1f1d1b" },
 
