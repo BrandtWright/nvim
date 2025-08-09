@@ -16,7 +16,6 @@
 -- |lsp-semantic-highlight| (@lsp.type.function, @lsp.type.variable.lua, etc)
 -- |lsp-highlight| (LspReferenceText, LspReferenceRead, etc)
 -------------------------------------------------------------------------------
-
 local colors = {
   foreground = "#ebdbb2",
   background = "#191816",
@@ -133,7 +132,8 @@ local highlights = {
   green_on_nothing_underline = { undercurl = true, fg = colors.green, bg = "" },
 
   cyan = { fg = colors.cyan, bg = "" },
-  cyan_bright = { fg = colors.cyan_bright, bg = "" },
+  -- cyan_bright
+  cyan_bright_italic = { italic = true, fg = colors.cyan_bright, bg = "" },
   -- cyan_dark
 
   blue = { fg = colors.blue, bg = "" },
@@ -189,15 +189,15 @@ local links = {
   Identifier = highlights.foreground_on_background,
 
   -- any constant
-  Constant = highlights.cyan_bright,
+  Constant = highlights.cyan_bright_italic,
   -- a character constant: 'c', '\n'
-  Character = highlights.cyan_bright,
+  Character = highlights.cyan_bright_italic,
   -- a number constant: 234, 0xff
-  Number = highlights.cyan_bright,
+  Number = highlights.cyan_bright_italic,
   -- a boolean constant: TRUE, false
-  Boolean = highlights.cyan_bright,
+  Boolean = highlights.cyan_bright_italic,
   -- a floating point constant: 2.3e10
-  Float = highlights.cyan_bright,
+  Float = highlights.cyan_bright_italic,
 
   -- a string constant: "this is a string"
   String = highlights.orange,
