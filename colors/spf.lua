@@ -82,6 +82,7 @@ local colors = {
   ui_secondary_background = "#504945",
   ui_tertiary_background = "#a89984",
 
+  visual = "#333333",
   gold = "#a38e5d",
 }
 
@@ -108,8 +109,6 @@ local highlights = {
   },
 
   background_on_background = { fg = colors.background, bg = colors.background },
-
-  CursorLine = { fg = "", bg = colors.cursorline },
 
   -- Color Palette
   red = { fg = colors.red, bg = "" },
@@ -163,15 +162,20 @@ local highlights = {
     bg = colors.ui_primary_background,
   },
   black_dark = { fg = colors.black_dark, bg = "" },
+  black_bright_bold = { bold = true, fg = colors.black_bright, bg = "" },
   black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
   black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
 
   nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
   nothing_on_dark_green = { fg = "", bg = colors.green_dark },
-  nothing_on_dark_blue = { fg = "", bg = colors.magenta_dark },
+  nothing_on_dark_magenta = { fg = "", bg = colors.magenta_dark },
   nothing_on_black_dark = { fg = "", bg = colors.black_dark },
 
   secondary_accent_on_nothing = { fg = colors.ui_secondary_background, bg = "" },
+
+  nothing_on_visual = { fg = "", bg = colors.visual },
+  nothing_on_cursorline = { fg = "", bg = colors.cursorline },
+  background_on_green = { bold = true, fg = colors.background, bg = colors.green },
 
   gold = { fg = colors.gold, bg = "" },
 }
@@ -283,24 +287,24 @@ local links = {
   -- hl-Search
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
-  Search = highlights.white_dark,
+  Search = highlights.background_on_green,
   -- hl-CurSearch
   -- Current match for the last search pattern (see 'hlsearch').
   -- Note: This is correct after a search, but may get outdated if
   -- changes are made or the screen is redrawn.
-  CurSearch = highlights.white_dark,
+  CurSearch = highlights.background_on_green,
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
-  IncSearch = highlights.white_dark,
-
-  -- hl-NormalFloat
-  -- Normal text in floating windows.
-  NormalFloat = highlights.foreground_on_background,
+  IncSearch = highlights.background_on_green,
 
   -- hl-Title
   -- Titles for output from ":set all", ":autocmd" etc.
   Title = highlights.bold,
+
+  -- hl-NormalFloat
+  -- Normal text in floating windows.
+  NormalFloat = highlights.foreground_on_background,
 
   -- hl-FloatBorder
   -- Border of floating windows.
@@ -340,7 +344,7 @@ local links = {
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = highlights.nothing_on_dark_blue,
+  DiffText = highlights.nothing_on_dark_magenta,
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
@@ -378,12 +382,17 @@ local links = {
 
   -- hl-CursorColumn
   -- Screen-column at the cursor, when 'cursorcolumn' is set.
-  CursorColumn = {},
+  CursorColumn = highlights.nothing_on_cursorline,
+
+  -- hl-CursorLine
+  -- Screen-line at the cursor, when 'cursorline' is set.
+  -- Low-priority if foreground (ctermfg OR guifg) is not set.
+  CursorLine = highlights.nothing_on_cursorline,
 
   -- hl-CursorLineNr
   -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
   -- contains "number" or is "both", for the cursor line.
-  CursorLineNr = {},
+  CursorLineNr = highlights.black_bright_bold,
 
   -- hl-CursorLineFold
   -- Like FoldColumn when 'cursorline' is set for the cursor line.
@@ -399,11 +408,29 @@ local links = {
 
   -- hl-Pmenu
   -- Popup menu: Normal item.
-  Pmenu = {},
+  Pmenu = highlights.foreground_on_background,
 
   -- hl-PmenuSel
   -- Popup menu: Selected item. Combined with |hl-Pmenu|.
-  PmenuSel = {},
+  PmenuSel = highlights.nothing_on_visual,
+
+  -- hl-PmenuSbar
+  -- Popup menu: Scrollbar.
+  PmenuSbar = highlights.nothing_on_visual,
+
+  -- hl-PmenuThumb
+  -- Popup menu: Thumb of the scrollbar.
+  PmenuThumb = highlights.nothing_on_visual,
+
+  -- hl-PmenuMatch
+  -- Popup menu: Matched text in normal item. Combined with
+  -- |hl-Pmenu|.
+  PmenuMatch = {},
+
+  -- hl-PmenuMatchSel
+  -- Popup menu: Matched text in selected item. Combined with
+  -- |hl-PmenuMatch| and |hl-PmenuSel|.
+  PmenuMatchSel = {},
 
   -- hl-PmenuKind
   -- Popup menu: Normal item "kind".
@@ -421,28 +448,10 @@ local links = {
   -- Popup menu: Selected item "extra text".
   PmenuExtraSel = {},
 
-  -- hl-PmenuSbar
-  -- Popup menu: Scrollbar.
-  PmenuSbar = {},
-
-  -- hl-PmenuThumb
-  -- Popup menu: Thumb of the scrollbar.
-  PmenuThumb = {},
-
-  -- hl-PmenuMatch
-  -- Popup menu: Matched text in normal item. Combined with
-  -- |hl-Pmenu|.
-  PmenuMatch = {},
-
-  -- hl-PmenuMatchSel
-  -- Popup menu: Matched text in selected item. Combined with
-  -- |hl-PmenuMatch| and |hl-PmenuSel|.
-  PmenuMatchSel = {},
-
   -- hl-LineNr
   -- Line number for ":number" and ":#" commands, and when 'number'
   -- or 'relativenumber' option is set.
-  LineNr = {},
+  LineNr = highlights.black_bright,
 
   -- hl-LineNrAbove
   -- Line number for when the 'relativenumber'
@@ -527,7 +536,7 @@ local links = {
 
   -- hl-SignColumn
   -- Column where |signs| are displayed.
-  SignColumn = {},
+  SignColumn = highlights.foreground_on_background,
 
   -- hl-WildMenu
   -- Current match in 'wildmenu' completion.
@@ -555,7 +564,7 @@ local links = {
 
   -- hl-Directory
   -- Directory names (and other special names in listings).
-  Directory = {},
+  Directory = highlights.blue,
 
   -- hl-Substitute
   -- |:substitute| replacement text highlighting.
@@ -572,7 +581,7 @@ local links = {
   -- (e.g., ">" displayed when a double-wide character doesn't
   -- fit at the end of the line). See also |hl-EndOfBuffer|.
   -- '@' at the end of the window, characters from 'showbreak'
-  NonText = {},
+  NonText = highlights.black,
 
   -- hl-Normal
   -- Normal text.
@@ -589,7 +598,7 @@ local links = {
 
   -- hl-Visual
   -- Visual mode selection.
-  Visual = {},
+  Visual = highlights.nothing_on_dark_white,
 
   -- hl-VisualNOS
   -- Visual mode selection when vim is "Not Owning the Selection".
@@ -1001,6 +1010,14 @@ local links = {
 
 local function is_nonempty_table(x)
   return type(x) == "table" and next(x) ~= nil
+end
+
+---Check if a highlight group exists.
+---@param name string The highlight group name
+---@return boolean
+local function hl_exists(name)
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+  return ok and next(hl) ~= nil
 end
 
 --- Reverse-map non-empty table values to their keys.
