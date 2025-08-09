@@ -994,23 +994,27 @@ local canonical_links = {
   MarkdownHeading6 = spf_highlights.gold,
 }
 
+local function is_nonempty_table(x)
+  return type(x) == "table" and next(x) ~= nil
+end
+
+--- Reverse-map non-empty table values to their keys.
+--- Returns: ok:boolean, result:table
 local function reverse_map(tbl)
   local reversed = {}
-  for k, v in pairs(tbl) do
-    if type(v) == "table" and next(v) then
-      if reversed[v] then
-        vim.notify("Duplicate key found: " .. k)
+  for key, val in pairs(tbl) do
+    if is_nonempty_table(val) then
+      local existing = reversed[val]
+      if existing ~= nil then
+        local fmt = "Duplicate table value for keys %s and %s"
+        local msg = fmt:format(tostring(existing), tostring(key))
+        vim.notify(msg, vim.log.levels.ERROR, { title = "SPF" })
         return false, {}
-      else
-        reversed[v] = k
       end
+      reversed[val] = key
     end
   end
   return true, reversed
-end
-
-local function is_nonempty_table(x)
-  return type(x) == "table" and next(x) ~= nil
 end
 
 local ok, highlight_keys = reverse_map(spf_highlights)
