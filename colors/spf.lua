@@ -86,7 +86,7 @@ local colors = {
   gold = "#a38e5d",
 }
 
-local spf_highlights = {
+local highlights = {
 
   -- UI
   bold = { bold = true, fg = "fg", bg = "fg" },
@@ -171,184 +171,184 @@ local spf_highlights = {
   gold = { fg = colors.gold, bg = "" },
 }
 
-local canonical_links = {
+local links = {
 
   ------------------------------------------------------------------------------
   -- Syntax Highlight Groups                             see: :help 'group-name'
   ------------------------------------------------------------------------------
 
   -- any comment
-  Comment = spf_highlights.black_bright_italic,
+  Comment = highlights.black_bright_italic,
 
   -- any variable name
-  Identifier = spf_highlights.foreground_on_background,
+  Identifier = highlights.foreground_on_background,
 
   -- any constant
-  Constant = spf_highlights.cyan_bright,
+  Constant = highlights.cyan_bright,
   -- a character constant: 'c', '\n'
-  Character = spf_highlights.cyan_bright,
+  Character = highlights.cyan_bright,
   -- a number constant: 234, 0xff
-  Number = spf_highlights.cyan_bright,
+  Number = highlights.cyan_bright,
   -- a boolean constant: TRUE, false
-  Boolean = spf_highlights.cyan_bright,
+  Boolean = highlights.cyan_bright,
   -- a floating point constant: 2.3e10
-  Float = spf_highlights.cyan_bright,
+  Float = highlights.cyan_bright,
 
   -- a string constant: "this is a string"
-  String = spf_highlights.orange,
+  String = highlights.orange,
   -- function name (also: methods for classes)
-  Function = spf_highlights.yellow,
+  Function = highlights.yellow,
 
   -- any statement (flow control, return, etc.)
-  Statement = spf_highlights.magenta_bright,
+  Statement = highlights.magenta_bright,
   -- if, then, else, endif, switch, etc.
-  Conditional = spf_highlights.magenta_bright,
+  Conditional = highlights.magenta_bright,
   -- for, do, while, etc.
-  Repeat = spf_highlights.magenta_bright,
+  Repeat = highlights.magenta_bright,
 
   -- any other keyword
-  Keyword = spf_highlights.blue,
+  Keyword = highlights.blue,
   -- keywords TODO FIXME and XXX
-  Todo = spf_highlights.blue,
+  Todo = highlights.blue,
   -- a typedef
-  Typedef = spf_highlights.blue,
+  Typedef = highlights.blue,
 
   -- case, default, etc.
-  Labal = spf_highlights.cyan,
+  Labal = highlights.cyan,
   -- "sizeof", "+", "*", etc.
-  Operator = spf_highlights.white_dark,
+  Operator = highlights.white_dark,
 
   -- any erroneous construct
-  Error = spf_highlights.red,
+  Error = highlights.red,
   -- try, catch, throw
-  Exception = spf_highlights.red,
+  Exception = highlights.red,
 
   -- int, long, char, etc.
-  Type = spf_highlights.green,
+  Type = highlights.green,
   -- static, register, volatile, etc.
-  StorageClass = spf_highlights.red_bright,
+  StorageClass = highlights.red_bright,
   -- struct, union, enum, etc.
-  Structure = spf_highlights.green_bright,
+  Structure = highlights.green_bright,
 
   -- generic Preprocessor
-  PreProc = spf_highlights.blue_bright,
+  PreProc = highlights.blue_bright,
   -- preprocessor #include
-  Include = spf_highlights.blue_bright,
+  Include = highlights.blue_bright,
   -- preprocessor #define
-  Define = spf_highlights.blue_bright,
+  Define = highlights.blue_bright,
   -- same as Define
-  Macro = spf_highlights.blue_bright,
+  Macro = highlights.blue_bright,
   -- preprocessor #if, #else, #endif, etc.
-  PreCondit = spf_highlights.blue_bright,
+  PreCondit = highlights.blue_bright,
 
   -- any special symbol
-  Special = spf_highlights.gold,
+  Special = highlights.gold,
   -- special character in a constant
-  SpecialChar = spf_highlights.gold,
+  SpecialChar = highlights.gold,
   -- special things inside a comment
-  SpecialComment = spf_highlights.gold,
+  SpecialComment = highlights.gold,
 
   -- added line in a diff
-  Added = spf_highlights.green,
+  Added = highlights.green,
   -- changed line in a diff
-  Changed = spf_highlights.yellow,
+  Changed = highlights.yellow,
   -- removed line in a diff
-  Removed = spf_highlights.red,
+  Removed = highlights.red,
 
   -- text that stands out, HTML links
-  Underlined = spf_highlights.underline,
+  Underlined = highlights.underline,
   -- character that needs attention
-  Delimiter = spf_highlights.white_bright,
+  Delimiter = highlights.white_bright,
 
   -- you can use CTRL-] on this
-  Tag = spf_highlights.azure,
+  Tag = highlights.azure,
   -- debugging statements
-  Debug = spf_highlights.magenta,
+  Debug = highlights.magenta,
 
   -- left blank, hidden  |hl-Ignore|
-  Ignore = spf_highlights.background_on_background,
+  Ignore = highlights.background_on_background,
 
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'
   ------------------------------------------------------------------------------
 
   -- Normal text.
-  Normal = spf_highlights.foreground_on_background,
+  Normal = highlights.foreground_on_background,
 
   -- hl-Search
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
-  Search = spf_highlights.white_dark,
+  Search = highlights.white_dark,
   -- hl-CurSearch
   -- Current match for the last search pattern (see 'hlsearch').
   -- Note: This is correct after a search, but may get outdated if
   -- changes are made or the screen is redrawn.
-  CurSearch = spf_highlights.white_dark,
+  CurSearch = highlights.white_dark,
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
-  IncSearch = spf_highlights.white_dark,
+  IncSearch = highlights.white_dark,
 
   -- hl-NormalFloat
   -- Normal text in floating windows.
-  NormalFloat = spf_highlights.foreground_on_background,
+  NormalFloat = highlights.foreground_on_background,
 
   -- hl-Title
   -- Titles for output from ":set all", ":autocmd" etc.
-  Title = spf_highlights.bold,
+  Title = highlights.bold,
 
   -- hl-FloatBorder
   -- Border of floating windows.
-  FloatBorder = spf_highlights.black_bright,
+  FloatBorder = highlights.black_bright,
 
   -- hl-FloatTitle
   -- Title of floating windows.
-  FloatTitle = spf_highlights.foreground_on_background,
+  FloatTitle = highlights.foreground_on_background,
 
   -- hl-FloatFooter
   -- Footer of floating windows.
-  FloatFooter = spf_highlights.foreground_on_background,
+  FloatFooter = highlights.foreground_on_background,
 
   -- hl-TabLine
   -- Tab pages line, not active tab page label.
-  Tabline = spf_highlights.tertiary_accent_background_on_secondary_accent_background,
+  Tabline = highlights.tertiary_accent_background_on_secondary_accent_background,
 
   -- hl-TabLineFill
   -- Tab pages line, where there are no labels.
-  TabLineFill = spf_highlights.tertiary_accent_background_on_secondary_accent_background,
+  TabLineFill = highlights.tertiary_accent_background_on_secondary_accent_background,
 
   -- hl-TabLineSel
   -- Tab pages line, active tab page label.
-  TabLineSel = spf_highlights.foreground_on_primary_accent_background,
+  TabLineSel = highlights.foreground_on_primary_accent_background,
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
-  DiffAdd = spf_highlights.nothing_on_dark_green,
+  DiffAdd = highlights.nothing_on_dark_green,
 
   -- hl-DiffChange
   -- Diff mode: Changed line. |diff.txt|
-  DiffChange = spf_highlights.nothing_on_dark_yellow,
+  DiffChange = highlights.nothing_on_dark_yellow,
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = spf_highlights.black_bright_on_dark_red,
+  DiffDelete = highlights.black_bright_on_dark_red,
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = spf_highlights.nothing_on_dark_blue,
+  DiffText = highlights.nothing_on_dark_blue,
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
   -- By default, this is highlighted like |hl-NonText|.
-  EndOfBUffer = spf_highlights.background_on_background,
+  EndOfBUffer = highlights.background_on_background,
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = spf_highlights.secondary_accent_on_nothing,
+  WinSeparator = highlights.secondary_accent_on_nothing,
 
   -- |hl-Folded|
   -- Line used for closed folds.
-  Folded = spf_highlights.black_bright_on_primary_accent_background,
+  Folded = highlights.black_bright_on_primary_accent_background,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
@@ -602,123 +602,123 @@ local canonical_links = {
   -- hl-DiagnosticError
   -- Used as the base highlight group. Other Diagnostic highlights link to this
   -- by default (except Underline)
-  DiagnosticError = spf_highlights.red,
+  DiagnosticError = highlights.red,
   -- hl-DiagnosticVirtualTextError
   -- Used for "Error" diagnostic virtual text.
-  DiagnosticVirtualTextError = spf_highlights.red,
+  DiagnosticVirtualTextError = highlights.red,
   -- hl-DiagnosticVirtualLinesError
   -- Used for "Error" diagnostic virtual lines.
-  DiagnosticVirtualLinesError = spf_highlights.red,
+  DiagnosticVirtualLinesError = highlights.red,
   -- See vim.diagnostic.open_float()
-  DiagnosticFloatingError = spf_highlights.red,
+  DiagnosticFloatingError = highlights.red,
   -- hl-DiagnosticSignError
   -- Used for "Error" signs in sign column.
-  DiagnosticSignError = spf_highlights.red,
+  DiagnosticSignError = highlights.red,
   -- hl-DiagnosticUnderlineError
   -- Used to underline "Error" diagnostics.
-  DiagnosticUnderlineError = spf_highlights.red_on_nothing_underline,
+  DiagnosticUnderlineError = highlights.red_on_nothing_underline,
 
   -- hl-DiagnosticWarn
   -- Used as the base highlight group.
   -- Other Diagnostic highlights link to this by default (except Underline)
-  DiagnosticWarn = spf_highlights.yellow,
+  DiagnosticWarn = highlights.yellow,
   -- hl-DiagnosticVirtualTextWarn
   -- Used for "Warn" diagnostic virtual text.
-  DiagnosticVirtualTextWarn = spf_highlights.yellow,
+  DiagnosticVirtualTextWarn = highlights.yellow,
   -- hl-DiagnosticVirtualLinesWarn
   -- Used for "Warn" diagnostic virtual lines.
-  DiagnosticVirtualLinesWarn = spf_highlights.yellow,
+  DiagnosticVirtualLinesWarn = highlights.yellow,
   -- hl-DiagnosticFloatingWarn
   -- Used to color "Warn" diagnostic messages in diagnostics float.
-  DiagnosticFloatingWarn = spf_highlights.yellow,
+  DiagnosticFloatingWarn = highlights.yellow,
   -- hl-DiagnosticSignWarn
   -- Used for "Warn" signs in sign column.
-  DiagnosticSignWarn = spf_highlights.yellow,
+  DiagnosticSignWarn = highlights.yellow,
   -- hl-DiagnosticUnderlineWarn
   -- Used to underline "Warn" diagnostics.
-  DiagnosticUnderlineWarn = spf_highlights.yellow_on_nothing_underline,
+  DiagnosticUnderlineWarn = highlights.yellow_on_nothing_underline,
 
   -- hl-DiagnosticInfo
   -- Used as the base highlight group.
   -- Other Diagnostic highlights link to this by default (except Underline)
-  DiagnosticInfo = spf_highlights.blue,
+  DiagnosticInfo = highlights.blue,
   -- hl-DiagnosticVirtualTextInfo
   -- Used for "Info" diagnostic virtual text.
-  DiagnosticVirtualTextInfo = spf_highlights.blue,
+  DiagnosticVirtualTextInfo = highlights.blue,
   -- hl-DiagnosticVirtualLinesInfo
   -- Used for "Info" diagnostic virtual lines.
-  DiagnosticVirtualLinesInfo = spf_highlights.blue,
+  DiagnosticVirtualLinesInfo = highlights.blue,
   -- hl-DiagnosticFloatingInfo
   -- Used to color "Info" diagnostic messages in diagnostics float.
-  DiagnosticFloatingInfo = spf_highlights.blue,
+  DiagnosticFloatingInfo = highlights.blue,
   -- hl-DiagnosticSignInfo
   -- Used for "Info" signs in sign column.
-  DiagnosticSignInfo = spf_highlights.blue,
+  DiagnosticSignInfo = highlights.blue,
   -- hl-DiagnosticUnderlineInfo
   -- Used to underline "Info" diagnostics.
-  DiagnosticUnderlineInfo = spf_highlights.blue_on_nothing_underline,
+  DiagnosticUnderlineInfo = highlights.blue_on_nothing_underline,
 
   -- hl-DiagnosticHint
   -- Used as the base highlight group.
   -- Other Diagnostic highlights link to this by default (except Underline)
-  DiagnosticHint = spf_highlights.magenta,
+  DiagnosticHint = highlights.magenta,
   -- hl-DiagnosticVirtualTextHint
   -- Used for "Hint" diagnostic virtual text.
-  DiagnosticVirtualTextHint = spf_highlights.magenta,
+  DiagnosticVirtualTextHint = highlights.magenta,
   -- hl-DiagnosticVirtualLinesHint
   -- Used for "Hint" diagnostic virtual lines.
-  DiagnosticVirtualLinesHint = spf_highlights.magenta,
+  DiagnosticVirtualLinesHint = highlights.magenta,
   -- hl-DiagnosticFloatingHint
   -- Used to color "Hint" diagnostic messages in diagnostics float.
-  DiagnosticFloatingHint = spf_highlights.magenta,
+  DiagnosticFloatingHint = highlights.magenta,
   -- hl-DiagnosticSignHint
   -- Used for "Hint" signs in sign column.
-  DiagnosticSignHint = spf_highlights.magenta,
+  DiagnosticSignHint = highlights.magenta,
   -- hl-DiagnosticUnderlineHint
   -- Used to underline "Hint" diagnostics.
-  DiagnosticUnderlineHint = spf_highlights.magenta_on_nothing_underline,
+  DiagnosticUnderlineHint = highlights.magenta_on_nothing_underline,
 
   -- hl-DiagnosticOk
   -- Used as the base highlight group.
   -- Other Diagnostic highlights link to this by default (except Underline)
-  DiagnosticOk = spf_highlights.green,
+  DiagnosticOk = highlights.green,
   -- hl-DiagnosticVirtualTextOk
   -- Used for "Ok" diagnostic virtual text.
-  DiagnosticVirtualTextOk = spf_highlights.geen,
+  DiagnosticVirtualTextOk = highlights.geen,
   -- hl-DiagnosticVirtualLinesOk
   -- Used for "Ok" diagnostic virtual lines.
-  DiagnosticVirtualLinesOk = spf_highlights.geen,
+  DiagnosticVirtualLinesOk = highlights.geen,
   -- hl-DiagnosticFloatingOk
   -- Used to color "Ok" diagnostic messages in diagnostics float.
-  DiagnosticFloatingOk = spf_highlights.geen,
+  DiagnosticFloatingOk = highlights.geen,
   -- hl-DiagnosticSignOk
   -- Used for "Ok" signs in sign column.
-  DiagnosticSignOk = spf_highlights.geen,
+  DiagnosticSignOk = highlights.geen,
   -- hl-DiagnosticUnderlineOk
   -- Used to underline "Ok" diagnostics.
-  DiagnosticUnderlineOk = spf_highlights.green_on_nothing_underline,
+  DiagnosticUnderlineOk = highlights.green_on_nothing_underline,
 
   -- hl-DiagnosticDeprecated
   -- Used for deprecated or obsolete code.
-  DiagnosticDeprecated = spf_highlights.black_bright_strikethrough,
+  DiagnosticDeprecated = highlights.black_bright_strikethrough,
   -- hl-DiagnosticUnnecessary
   -- Used for unnecessary or unused code.
-  DiagnosticUnnecessary = spf_highlights.black_bright,
+  DiagnosticUnnecessary = highlights.black_bright,
 
   ------------------------------------------------------------------------------
   -- LSP Highlights see:                                   :help 'lsp-highlight'
   ------------------------------------------------------------------------------
 
   -- used for highlighting "text" references
-  LspReferenceText = spf_highlights.nothing_on_black_dark,
+  LspReferenceText = highlights.nothing_on_black_dark,
   -- used for highlighting "read" references
-  LspReferenceRead = spf_highlights.nothing_on_dark_green,
+  LspReferenceRead = highlights.nothing_on_dark_green,
   -- used for highlighting "write" references
-  LspReferenceWrite = spf_highlights.nothing_on_dark_yellow,
+  LspReferenceWrite = highlights.nothing_on_dark_yellow,
   -- used for highlighting reference targets (e.g. in a hover range)
-  LspReferenceTarget = spf_highlights.bold,
+  LspReferenceTarget = highlights.bold,
   -- used for highlighting inlay hints
-  LspInlayHint = spf_highlights.black_bright,
+  LspInlayHint = highlights.black_bright,
 
   ------------------------------------------------------------------------------
   -- LSP Semantic Highlights                       see: :help 'highlight-groups'
@@ -981,17 +981,17 @@ local canonical_links = {
   ------------------------------------------------------------------------------
 
   -- Some colorschemes and plugins use these (Normal)
-  DiffAdded = spf_highlights.green,
-  DiffChanged = spf_highlights.yellow,
-  DiffRemoved = spf_highlights.red,
+  DiffAdded = highlights.green,
+  DiffChanged = highlights.yellow,
+  DiffRemoved = highlights.red,
 
   -- markdown
-  MarkdownHeading1 = spf_highlights.bold,
-  MarkdownHeading2 = spf_highlights.gold,
-  MarkdownHeading3 = spf_highlights.gold,
-  MarkdownHeading4 = spf_highlights.gold,
-  MarkdownHeading5 = spf_highlights.gold,
-  MarkdownHeading6 = spf_highlights.gold,
+  MarkdownHeading1 = highlights.bold,
+  MarkdownHeading2 = highlights.gold,
+  MarkdownHeading3 = highlights.gold,
+  MarkdownHeading4 = highlights.gold,
+  MarkdownHeading5 = highlights.gold,
+  MarkdownHeading6 = highlights.gold,
 }
 
 local function is_nonempty_table(x)
@@ -1018,7 +1018,7 @@ local function reverse_map(tbl)
 end
 
 -- Bail out before applying highlights if the reverse map fails
-local ok, highlight_keys = reverse_map(spf_highlights)
+local ok, highlight_keys = reverse_map(highlights)
 if not ok then
   return
 end
@@ -1031,14 +1031,14 @@ vim.cmd([[
 vim.g.colors_name = "spf"
 
 -- Apply concrete highlight specs
-for group, spec in pairs(spf_highlights) do
+for group, spec in pairs(highlights) do
   if is_nonempty_table(spec) then
     vim.api.nvim_set_hl(0, group, spec)
   end
 end
 
 -- Apply links (link target is looked up via the reverse map)
-for group, target_tbl in pairs(canonical_links) do
+for group, target_tbl in pairs(links) do
   if is_nonempty_table(target_tbl) then
     local target = highlight_keys[target_tbl]
     if target then
