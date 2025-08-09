@@ -110,7 +110,7 @@ local highlights = {
 
   background_on_background = { fg = colors.background, bg = colors.background },
 
-  CursorLine = { fg = "", bg = "#1f1d1b" },
+  CursorLine = { fg = "", bg = colors.cursorline },
 
   -- Color Palette
   red = { fg = colors.red, bg = "" },
