@@ -93,6 +93,11 @@ local highlights = {
   underline = { bold = true, fg = "", bg = "" },
 
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
+  foreground_on_black_bright_bold = {
+    bold = true,
+    fg = colors.foreground,
+    bg = colors.black_bright,
+  },
   foreground_on_primary_accent_background = {
     fg = colors.ui_tertiary_background,
     bg = colors.background,
@@ -559,7 +564,7 @@ local links = {
   -- hl-MatchParen
   -- Character under the cursor or just before it, if it
   -- is a paired bracket, and its match. |pi_paren.txt|
-  MatchParen = {},
+  MatchParen = highlights.foreground_on_black_bright_bold,
 
   -- hl-NonText
   -- '@' at the end of the window, characters from 'showbreak'
