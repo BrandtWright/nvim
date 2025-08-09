@@ -160,7 +160,6 @@ local spf_highlights = {
   black_dark = { fg = colors.black_dark, bg = "" },
   black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
   black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
-  black_on_primary_accent_background = { fg = colors.black_bright, bg = colors.ui_primary_background },
 
   nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
   nothing_on_dark_green = { fg = "", bg = colors.green_dark },
@@ -347,7 +346,9 @@ local canonical_links = {
   -- Separators between window splits.
   WinSeparator = spf_highlights.secondary_accent_on_nothing,
 
-  Folded = spf_highlights.black_on_primary_accent_background,
+  -- |hl-Folded|
+  -- Line used for closed folds.
+  Folded = spf_highlights.black_bright_on_primary_accent_background,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
@@ -997,36 +998,46 @@ local function reverse_map(tbl)
   local reversed = {}
   for k, v in pairs(tbl) do
     if type(v) == "table" and next(v) then
-      if reversed[v] ~= nil then
-        -- duplicate key
+      if reversed[v] then
         vim.notify("Duplicate key found: " .. k)
+        return false, {}
       else
         reversed[v] = k
       end
     end
   end
-  return reversed
+  return true, reversed
 end
 
--- TODO: check error status of reverse_map and report and exit if there were dupes
-local highlight_keys = reverse_map(spf_highlights)
+local function is_nonempty_table(x)
+  return type(x) == "table" and next(x) ~= nil
+end
+
+local ok, highlight_keys = reverse_map(spf_highlights)
+if not ok then
+  return
+end
 
 -- Initialize an empty colorscheme
-vim.cmd("highlight clear")
-vim.cmd("syntax reset")
+vim.cmd([[
+  highlight clear
+  syntax reset
+]])
 vim.g.colors_name = "spf"
 
--- Apply highlights
-for k, v in pairs(spf_highlights) do
-  if type(v) == "table" and next(v) ~= nil then
-    vim.api.nvim_set_hl(0, k, v)
+-- Apply concrete highlight specs
+for group, spec in pairs(spf_highlights) do
+  if is_nonempty_table(spec) then
+    vim.api.nvim_set_hl(0, group, spec)
   end
 end
 
--- Apply link links
-for k, v in pairs(canonical_links) do
-  if type(v) == "table" and next(v) ~= nil then
-    local highlight_name = highlight_keys[v]
-    vim.api.nvim_set_hl(0, k, { link = highlight_name })
+-- Apply links (link target is looked up via the reverse map)
+for group, target_tbl in pairs(canonical_links) do
+  if is_nonempty_table(target_tbl) then
+    local target = highlight_keys[target_tbl]
+    if target then
+      vim.api.nvim_set_hl(0, group, { link = target })
+    end
   end
 end
