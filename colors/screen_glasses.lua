@@ -292,3 +292,35 @@ for i = 3, 6 do
   vim.api.nvim_set_hl(0, "MarkdownHeading" .. i, { link = "MarkdownHeading2" })
 end
 vim.api.nvim_set_hl(0, "MarkdownCode", { bg = "#1f1e1b" })
+
+-------------------------------------------------------------------------
+-- LSP and tree sitter highlighting groups
+-------------------------------------------------------------------------
+
+vim.cmd("hi! link @boolean Constant")
+vim.cmd("hi! link @comment Comment")
+vim.cmd("hi! link @lsp.type.comment Comment")
+vim.cmd("hi! link @conditional Conditional")
+vim.cmd("hi! link @constant.builtin Constant")
+vim.cmd("hi! link @constructor Special")
+vim.cmd("hi! link @function Function")
+vim.cmd("hi! link @function.call FunctionCall")
+vim.cmd("hi! link @function.builtin Special")
+vim.cmd("hi! link @lsp.type.function Function")
+vim.cmd("hi! link @lsp.typemod.function Function")
+vim.cmd("hi! link @keyword.operator red")
+vim.cmd("hi! link @keyword Keyword")
+vim.cmd("hi! link @keyword.function Keyword")
+vim.cmd("hi! link @keyword.repeat Repeat")
+vim.cmd("hi! link @keyword.conditional Conditional")
+vim.cmd("hi! link @repeat Repeat")
+vim.cmd("hi! link @method Function")
+vim.cmd("hi! link @method.call FunctionCall")
+vim.cmd("hi! link @lsp.type.method Function")
+vim.cmd("hi! link @number Normal")
+vim.cmd("hi! link @operator Operator")
+vim.cmd("hi! link @lsp.type.parameter Italicized")
+vim.cmd("hi! link @property Type")
+vim.cmd("hi! link @lsp.type.property Type")
+vim.cmd("hi! link @type Type")
+vim.cmd("hi! link @variable Identifier")
