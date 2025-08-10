@@ -1,11 +1,5 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      vim.cmd("hi! link LspInfoBorder FloatBorder")
-    end,
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       highlight = {
