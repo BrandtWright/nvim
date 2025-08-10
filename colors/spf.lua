@@ -91,8 +91,9 @@ local colors = {
 local highlights = {
 
   -- UI
-  bold = { bold = true, fg = "fg", bg = "fg" },
-  underline = { bold = true, fg = "", bg = "" },
+  bold = { bold = true },
+  underline = { bold = true },
+  italic = { italic = true },
 
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
   foreground_on_black_bright_bold = {
@@ -743,7 +744,7 @@ local links = {
   -- Identifiers that declare or reference a class type
   ["@lsp.type.class"] = {},
   -- Tokens that represent a comment
-  ["@lsp.type.comment"] = {},
+  ["@lsp.type.comment"] = highlights.black_bright_italic,
   -- Identifiers that declare or reference decorators and annotations
   ["@lsp.type.decorator"] = {},
   -- Identifiers that declare or reference an enumeration type
@@ -753,7 +754,7 @@ local links = {
   -- Identifiers that declare an event property
   ["@lsp.type.event"] = {},
   -- Identifiers that declare a function
-  ["@lsp.type.function"] = {},
+  ["@lsp.type.function"] = highlights.yellow,
   -- Identifiers that declare or reference an interface type
   ["@lsp.type.interface"] = {},
   -- Tokens that represent a language keyword
@@ -761,7 +762,7 @@ local links = {
   -- Identifiers that declare a macro
   ["@lsp.type.macro"] = {},
   -- Identifiers that declare a member function or method
-  ["@lsp.type.method"] = {},
+  ["@lsp.type.method"] = highlights.yellow,
   -- Tokens that represent a modifier
   ["@lsp.type.modifier"] = {},
   -- Identifiers that declare or reference a namespace, module, or package
@@ -771,9 +772,9 @@ local links = {
   -- Tokens that represent an operator
   ["@lsp.type.operator"] = {},
   -- Identifiers that declare or reference a function or method parameters
-  ["@lsp.type.parameter"] = {},
+  ["@lsp.type.parameter"] = highlights.italic,
   -- Identifiers that declare or reference a member property, member field, or member variable
-  ["@lsp.type.property"] = {},
+  ["@lsp.type.property"] = highlights.green,
   -- Tokens that represent a regular expression literal
   ["@lsp.type.regexp"] = {},
   -- Tokens that represent a string literal
@@ -812,7 +813,7 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- various variable names
-  ["@variable"] = {},
+  ["@variable"] = highlights.foreground_on_background,
   -- built-in variable names (e.g. `this`, `self`)
   ["@variable.builtin"] = {},
   -- parameters of a function
@@ -822,7 +823,7 @@ local links = {
   -- object and struct fields
   ["@variable.member"] = {},
   -- constant identifiers
-  ["@constant"] = {},
+  ["@constant"] = highlights.cyan_bright_italic,
   -- built-in constant values
   ["@constant.builtin"] = {},
   -- constants defined by the preprocessor
@@ -854,13 +855,13 @@ local links = {
   -- special characters (e.g. wildcards)
   ["@character.special"] = {},
   -- boolean literals
-  ["@boolean"] = {},
+  ["@boolean"] = highlights.cyan_bright_italic,
   -- numeric literals
   ["@number"] = {},
   -- floating-point number literals
   ["@number.float"] = {},
   -- type or class definitions and annotations
-  ["@type"] = {},
+  ["@type"] = highlights.green,
   -- built-in types
   ["@type.builtin"] = {},
   -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
@@ -870,13 +871,13 @@ local links = {
   -- builtin annotations (e.g. `@property` in Python)
   ["@attribute.builtin"] = {},
   -- the key in key/value pairs
-  ["@property"] = {},
+  ["@property"] = highlights.green,
   -- function definitions
-  ["@function"] = {},
+  ["@function"] = highlights.yellow,
   -- built-in functions
-  ["@function.builtin"] = {},
+  ["@function.builtin"] = highlights.gold,
   -- function calls
-  ["@function.call"] = {},
+  ["@function.call"] = highlights.italic,
   -- preprocessor macros
   ["@function.macro"] = {},
   -- method definitions
@@ -884,17 +885,17 @@ local links = {
   -- method calls
   ["@function.method.call"] = {},
   -- constructor calls and definitions
-  ["@constructor"] = {},
+  ["@constructor"] = highlights.gold,
   -- symbolic operators (e.g. `+`, `*`)
-  ["@operator"] = {},
+  ["@operator"] = highlights.white_dark,
   -- keywords not fitting into specific categories
-  ["@keyword"] = {},
+  ["@keyword"] = highlights.blue,
   -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
   ["@keyword.coroutine"] = {},
   -- keywords that define a function (e.g. `func` in Go, `def` in Python)
-  ["@keyword.function"] = {},
+  ["@keyword.function"] = highlights.blue,
   -- operators that are English words (e.g. `and`, `or`)
-  ["@keyword.operator"] = {},
+  ["@keyword.operator"] = highlights.red,
   -- keywords for including or exporting modules (e.g. `import`, `from` in Python)
   ["@keyword.import"] = {},
   -- keywords describing namespaces and composite types (e.g. `struct`, `enum`)
@@ -902,7 +903,7 @@ local links = {
   -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
   ["@keyword.modifier"] = {},
   -- keywords related to loops (e.g. `for`, `while`)
-  ["@keyword.repeat"] = {},
+  ["@keyword.repeat"] = highlights.magenta_bright,
   -- keywords like `return` and `yield`
   ["@keyword.return"] = {},
   -- keywords related to debugging
@@ -910,7 +911,7 @@ local links = {
   -- keywords related to exceptions (e.g. `throw`, `catch`)
   ["@keyword.exception"] = {},
   -- keywords related to conditionals (e.g. `if`, `else`)
-  ["@keyword.conditional"] = {},
+  ["@keyword.conditional"] = highlights.magenta_bright,
   -- ternary operator (e.g. `?`, `:`)
   ["@keyword.conditional.ternary"] = {},
   -- various preprocessor directives and shebangs
@@ -924,7 +925,7 @@ local links = {
   -- special symbols (e.g. `{}` in string interpolation)
   ["@punctuation.special"] = {},
   -- line and block comments
-  ["@comment"] = {},
+  ["@comment"] = highlights.black_bright_italic,
   -- comments documenting code
   ["@comment.documentation"] = {},
   -- error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
@@ -1008,6 +1009,18 @@ local links = {
   MarkdownHeading4 = highlights.gold,
   MarkdownHeading5 = highlights.gold,
   MarkdownHeading6 = highlights.gold,
+
+  ------------------------------------------------------------------------------
+  -- TODO: what are these?
+  ["@method"] = highlights.yellow,
+  ["@method.call"] = highlights.italic,
+  ["@repeat"] = highlights.magenta_bright,
+  ["@lsp.typemod.function"] = highlights.yellow,
+  ["@conditional"] = highlights.magenta_bright,
+  -- Intentionally disabled:
+  -- ["number"] = highlights.foreground_on_background,
+
+  ------------------------------------------------------------------------------
 }
 
 local function is_nonempty_table(x)
@@ -1019,6 +1032,8 @@ end
 ---@return boolean
 local function hl_exists(name)
   local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+  local fmt = "Highlight group '%s' does not exist."
+  vim.notify(string.format(fmt, name), vim.log.levels.DEBUG, { title = "SPF" })
   return ok and next(hl) ~= nil
 end
 
