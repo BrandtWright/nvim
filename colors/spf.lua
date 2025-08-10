@@ -563,7 +563,7 @@ local links = {
 
   -- hl-Conceal
   -- Placeholder characters substituted for concealed
-  Conceal = {},
+  Conceal = highlights.black_bright,
 
   -- hl-Directory
   -- Directory names (and other special names in listings).
@@ -584,7 +584,7 @@ local links = {
   -- (e.g., ">" displayed when a double-wide character doesn't
   -- fit at the end of the line). See also |hl-EndOfBuffer|.
   -- '@' at the end of the window, characters from 'showbreak'
-  NonText = highlights.background_on_background,
+  NonText = highlights.black_bright,
 
   -- hl-Normal
   -- Normal text.
