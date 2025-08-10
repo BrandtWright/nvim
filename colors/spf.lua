@@ -584,7 +584,7 @@ local links = {
   -- (e.g., ">" displayed when a double-wide character doesn't
   -- fit at the end of the line). See also |hl-EndOfBuffer|.
   -- '@' at the end of the window, characters from 'showbreak'
-  NonText = highlights.black,
+  NonText = highlights.background_on_background,
 
   -- hl-Normal
   -- Normal text.
