@@ -844,8 +844,8 @@ local function apply_highlights(table)
   end
 end
 
-vim.api.nvim_command("highlight clear")
-vim.api.nvim_command("syntax reset")
+vim.cmd("highlight clear")
+vim.cmd("syntax reset")
 vim.g.colors_name = "spf"
 
 apply_highlights(highlights)

@@ -57,7 +57,7 @@ local ui = {
 
 --- Clear all highlights and initialize the color scheme name
 vim.cmd("highlight clear")
-vim.api.nvim_command("syntax reset")
+vim.cmd("syntax reset")
 vim.g.colors_name = "screen_glasses"
 
 --------------------------------------------------------------------------------
