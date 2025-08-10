@@ -4,8 +4,10 @@
 -- A colorscheme for Neovim
 --
 -- TODO: implement `g:terminal_color_*` (see: https://tinyurl.com/y78ntvjk)
+--
+-- TODO: Conceal highlight
+-- see: :help highlight
 
--- see: :help 'highlight'
 -- see: :edit $VIMRUNTIME/colors/README.txt
 -- see: :edit $VIMRUNTIME/doc/dev_theme.txt
 --
