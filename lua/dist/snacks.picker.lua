@@ -6,16 +6,20 @@ return {
   {
     "folke/snacks.nvim",
     opts = function()
+      local apply_highlights = function()
+        vim.cmd("hi! link SnacksPickerMatch Match")
+        vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
+      end
+
+      -- apply highlights now
+      apply_highlights()
+
       -- Update hilights when colorscheme changes
-      local grp = vim.api.nvim_create_augroup("SnacksHighlights", { clear = true })
       vim.api.nvim_create_autocmd("ColorScheme", {
-        group = grp,
+        group = vim.api.nvim_create_augroup("SnacksHighlights", { clear = true }),
         pattern = "*",
-        callback = function()
-          vim.cmd("hi! link SnacksPickerMatch Match")
-          vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
-        end,
-        desc = "Reapply MyPlugin highlight groups after colorscheme changes",
+        callback = apply_highlights,
+        desc = "Reapply snacks highlight groups after colorscheme changes",
       })
     end,
     keys = {
