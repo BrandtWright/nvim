@@ -86,6 +86,7 @@ local colors = {
 
   visual = "#333333",
   gold = "#a38e5d",
+  markdown_code_background = "#1f1e1b",
 }
 
 local highlights = {
@@ -181,6 +182,7 @@ local highlights = {
   background_on_green = { bold = true, fg = colors.background, bg = colors.green },
 
   gold = { fg = colors.gold, bg = "" },
+  markdown_code = { fg = "", bg = colors.markdown_code_background },
 }
 
 local links = {
@@ -1009,6 +1011,7 @@ local links = {
   MarkdownHeading4 = highlights.gold,
   MarkdownHeading5 = highlights.gold,
   MarkdownHeading6 = highlights.gold,
+  MarkdownCode = highlights.markdown_code,
 
   ------------------------------------------------------------------------------
   -- TODO: what are these?
