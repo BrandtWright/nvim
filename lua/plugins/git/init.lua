@@ -9,7 +9,17 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      vim.cmd("hi! link @markup.heading.gitcommit Special")
+      local apply_highlights = function()
+        vim.cmd("hi! link @markup.heading.gitcommit Special")
+      end
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("TreesitterGitHighlights", { clear = true }),
+        pattern = "*",
+        callback = apply_highlights,
+        desc = "Reapply nvim-treesitter git highlight groups after colorscheme changes",
+      })
 
       local my_opts = {
         ensure_installed = {

@@ -65,11 +65,21 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      vim.cmd("hi! link WhichKey Normal")
-      vim.cmd("hi! link WhichKeyGroup Orange")
-      vim.cmd("hi! link WhichKeyDesc Normal")
-      vim.cmd("hi! link WhichKeyFloat Normal")
-      vim.cmd("hi! link WhichKeyBorder FloatBorder")
+      local apply_highlights = function()
+        vim.cmd("hi! link WhichKey Normal")
+        vim.cmd("hi! link WhichKeyGroup Orange")
+        vim.cmd("hi! link WhichKeyDesc Normal")
+        vim.cmd("hi! link WhichKeyFloat Normal")
+        vim.cmd("hi! link WhichKeyBorder FloatBorder")
+      end
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("WhichKeyHighlights", { clear = true }),
+        pattern = "*",
+        callback = apply_highlights,
+        desc = "Reapply which-key highlight groups after colorscheme changes",
+      })
 
       local my_opts = {
 

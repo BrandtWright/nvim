@@ -10,19 +10,29 @@ return {
       "nvim-lua/plenary.nvim",
     },
     opts = function()
-      -- TelescopeResultsSpecialComment: LineNr in current_buffer_fuzzy_find
-      -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
-      vim.cmd("hi! link TelescopeResultsSpecialComment NonText")
-      vim.cmd("hi! link TelescopeSelectionCaret Red")
-      vim.cmd("hi! link TelescopeSelection PmenuSel")
-      vim.cmd("hi! link TelescopeMatching Match")
-      -- This appears to be broken and doesn't acually highlight anything.
-      -- Watch: https://github.com/nvim-telescope/telescope.nvim/issues/3441
-      vim.cmd("hi! link TelescopePreviewMatch Match")
-      vim.cmd("hi! link TelescopePreviewBorder FloatBorder")
-      vim.cmd("hi! link TelescopePromptBorder FloatBorder")
-      vim.cmd("hi! link TelescopeResultsBorder FloatBorder")
-      vim.cmd("hi! link TelescopeMultiSelection bright_green")
+      local apply_highlights = function()
+        -- TelescopeResultsSpecialComment: LineNr in current_buffer_fuzzy_find
+        -- See: https://github.com/nvim-telescope/telescope.nvim/blob/master/plugin/telescope.lua
+        vim.cmd("hi! link TelescopeResultsSpecialComment NonText")
+        vim.cmd("hi! link TelescopeSelectionCaret Red")
+        vim.cmd("hi! link TelescopeSelection PmenuSel")
+        vim.cmd("hi! link TelescopeMatching Match")
+        -- This appears to be broken and doesn't acually highlight anything.
+        -- Watch: https://github.com/nvim-telescope/telescope.nvim/issues/3441
+        vim.cmd("hi! link TelescopePreviewMatch Match")
+        vim.cmd("hi! link TelescopePreviewBorder FloatBorder")
+        vim.cmd("hi! link TelescopePromptBorder FloatBorder")
+        vim.cmd("hi! link TelescopeResultsBorder FloatBorder")
+        vim.cmd("hi! link TelescopeMultiSelection bright_green")
+      end
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("TelescopeHighlights", { clear = true }),
+        pattern = "*",
+        callback = apply_highlights,
+        desc = "Reapply telescope highlight groups after colorscheme changes",
+      })
 
       return {
         defaults = {

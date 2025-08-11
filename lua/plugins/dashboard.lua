@@ -2,11 +2,21 @@ return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
-      vim.cmd("hi! link SnacksDashboardHeader Type")
-      vim.cmd("hi! link SnacksDashboardDesc Identifier")
-      vim.cmd("hi! link SnacksDashboardKey Identifier")
-      vim.cmd("hi! link SnacksDashboardFooter Identifier")
-      vim.cmd("hi! link SnacksDashboardIcon Identifier")
+      local apply_highlights = function()
+        vim.cmd("hi! link SnacksDashboardHeader Type")
+        vim.cmd("hi! link SnacksDashboardDesc Identifier")
+        vim.cmd("hi! link SnacksDashboardKey Identifier")
+        vim.cmd("hi! link SnacksDashboardFooter Identifier")
+        vim.cmd("hi! link SnacksDashboardIcon Identifier")
+      end
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("SnacksDashboardHighlights", { clear = true }),
+        pattern = "*",
+        callback = apply_highlights,
+        desc = "Reapply snacks dashboard highlight groups after colorscheme changes",
+      })
 
       local my_opts = {
         dashboard = {

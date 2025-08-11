@@ -17,8 +17,18 @@ return {
       "ChatGPTRun",
     },
     opts = function(_, opts)
-      vim.cmd("hi! link ChatGPTTotalTokens brown_inverse")
-      vim.cmd("hi! link ChatGPTTotalTokensBorder brown")
+      local apply_highlights = function()
+        vim.cmd("hi! link ChatGPTTotalTokens brown_inverse")
+        vim.cmd("hi! link ChatGPTTotalTokensBorder brown")
+      end
+
+      apply_highlights()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("JackMortChatGPTHighlights", { clear = true }),
+        pattern = "*",
+        callback = apply_highlights,
+        desc = "Reapply JackMort/ChatGPT highlight groups after colorscheme changes",
+      })
 
       local my_opts = {
         api_key_cmd = "pass show ai/openai/apikey",
