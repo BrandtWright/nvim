@@ -5,6 +5,7 @@ return {
     opts = function(_, opts)
       local load = require("bw.util.xresources").load
       local prefix = "screen_glasses.ui."
+      local background = load("background") or "#191816"
 
       local dark_highlight = {
         fg = load(prefix .. "primary_foreground") or "#a89984",
@@ -26,24 +27,24 @@ return {
         bg = dark_highlight.bg,
       }
 
-      local insert_highlight = {
-        fg = load("background") or "#191816",
-        bg = load("color2") or "#8fa899",
-      }
-
-      local visual_highlight = {
-        fg = load("background") or "#191816",
-        bg = load("color4") or "#5692db",
-      }
-
       local replace_highlight = {
-        fg = load("background") or "#191816",
+        fg = background,
         bg = load("color1") or "#bd7671",
       }
 
+      local insert_highlight = {
+        fg = background,
+        bg = load("color2") or "#8fa899",
+      }
+
       local command_highlight = {
-        fg = load("background") or "#191816",
+        fg = background,
         bg = load("color3") or "#c2c27c",
+      }
+
+      local visual_highlight = {
+        fg = background,
+        bg = load("color4") or "#5692db",
       }
 
       local screen_glasses_theme = {
