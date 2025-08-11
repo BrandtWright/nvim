@@ -3,37 +3,79 @@ return {
     "nvim-lualine/lualine.nvim",
     enabled = not vim.env.NO_LUALINE,
     opts = function(_, opts)
-      local hl = require("bw.util.highlights").get_attribute
+      local load = require("bw.util.xresources").load
+      local prefix = "screen_glasses.ui."
+
+      local dark_highlight = {
+        fg = load(prefix .. "primary_foreground") or "#a89984",
+        bg = load(prefix .. "primary_background") or "#2c2826",
+      }
+
+      local medium_highlight = {
+        fg = load(prefix .. "sedondary_foreground") or "#a89984",
+        bg = load(prefix .. "secondary_background") or "#504945",
+      }
+
+      local bright_highlight = {
+        fg = load(prefix .. "tertiary_foreground") or "#2c2826",
+        bg = load(prefix .. "tertiary_background") or "#a89984",
+      }
+
+      local inactive_highlight = {
+        fg = dark_highlight.bg,
+        bg = dark_highlight.bg,
+      }
+
+      local insert_highlight = {
+        fg = load("background") or "#191816",
+        bg = load("color2") or "#8fa899",
+      }
+
+      local visual_highlight = {
+        fg = load("background") or "#191816",
+        bg = load("color4") or "#5692db",
+      }
+
+      local replace_highlight = {
+        fg = load("background") or "#191816",
+        bg = load("color1") or "#bd7671",
+      }
+
+      local command_highlight = {
+        fg = load("background") or "#191816",
+        bg = load("color3") or "#c2c27c",
+      }
+
       local screen_glasses_theme = {
         normal = {
-          a = { fg = hl("Normal", "bg"), bg = hl("bright_panel", "bg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = bright_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
         insert = {
-          a = { fg = hl("Normal", "bg"), bg = hl("green", "fg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = insert_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
         visual = {
-          a = { fg = hl("Normal", "bg"), bg = hl("blue", "fg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = visual_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
         replace = {
-          a = { fg = hl("Normal", "bg"), bg = hl("red", "fg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = replace_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
         command = {
-          a = { fg = hl("Normal", "bg"), bg = hl("yellow", "fg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = command_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
         inactive = {
-          a = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
-          b = { fg = hl("panel", "fg"), bg = hl("panel", "bg") },
-          c = { fg = hl("dark_panel", "fg"), bg = hl("dark_panel", "bg") },
+          a = inactive_highlight,
+          b = medium_highlight,
+          c = dark_highlight,
         },
       }
       opts.options.theme = screen_glasses_theme
