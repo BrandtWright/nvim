@@ -18,6 +18,7 @@ return {
         vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
+        vim.cmd("hi! link RenderMarkdownBullet markdownListMarker")
       end
 
       apply_highlights()

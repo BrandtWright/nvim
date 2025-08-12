@@ -106,12 +106,12 @@ local highlights = {
     fg = colors.foreground,
     bg = colors.bright_black,
   },
-  foreground_on_primary_accent_background = {
+  foreground_on_primary_accent_bg = {
     fg = colors.tertiary_accent_bg,
     bg = colors.background,
   },
 
-  tertiary_accent_background_on_secondary_accent_background = {
+  tertiary_accent_bg_on_secondary_accent_bg = {
     fg = colors.tertiary_accent_bg,
     bg = colors.secondary_accent_bg,
   },
@@ -121,6 +121,7 @@ local highlights = {
   -- Color Palette
   red = { fg = colors.red, bg = "" },
   bright_red = { fg = colors.bright_red, bg = "" },
+  bright_red_bold = { bold = true, fg = colors.bright_red, bg = "" },
   -- red_dark
   red_underline = { fg = colors.red, bg = "", underline = true },
 
@@ -131,12 +132,12 @@ local highlights = {
   yellow = { fg = colors.yellow, bg = "" },
   -- bright_yelow
   -- dark_yellow
-  yellow_underline = { undercurl = true, fg = colors.yellow, bg = "" },
+  yellow_undercurl = { undercurl = true, fg = colors.yellow, bg = "" },
 
   green = { fg = colors.green, bg = "" },
   bright_green = { fg = colors.bright_green, bg = "" },
   -- dark_green
-  green_on_nothing_underline = { undercurl = true, fg = colors.green, bg = "" },
+  green_undercurl = { undercurl = true, fg = colors.green, bg = "" },
 
   cyan = { fg = colors.cyan, bg = "" },
   -- bright_cyan
@@ -166,7 +167,7 @@ local highlights = {
   bright_black = { fg = colors.bright_black, bg = "" },
   dark_black = { fg = colors.dark_black, bg = "" },
   bright_black_on_dark_red = { fg = colors.bright_black, bg = colors.dark_red },
-  bright_black_on_primary_accent_background = {
+  bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
     bg = colors.primary_accent_bg,
   },
@@ -179,7 +180,8 @@ local highlights = {
   nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
   nothing_on_dark_black = { fg = "", bg = colors.dark_black },
 
-  secondary_accent = { fg = colors.secondary_accent_bg, bg = "" },
+  primary_accent_bg = { fg = colors.primary_accent_bg, bg = "" },
+  secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
 
   nothing_on_visual = { fg = "", bg = colors.gray_20 },
   nothing_on_cursorline = { fg = "", bg = colors.cursorline },
@@ -198,30 +200,31 @@ local links = {
   Comment = highlights.bright_black_italic,
 
   -- any variable name
-  Identifier = highlights.foreground_on_background,
+  Identifier = highlights.foreground,
 
   -- any constant
   Constant = highlights.bright_cyan_italic,
   -- a character constant: 'c', '\n'
-  Character = highlights.bright_cyan_italic,
+  Character = "Constant",
   -- a number constant: 234, 0xff
-  Number = highlights.bright_cyan_italic,
+  Number = "Constant",
   -- a boolean constant: TRUE, false
-  Boolean = highlights.bright_cyan_italic,
+  Boolean = "Constant",
   -- a floating point constant: 2.3e10
-  Float = highlights.bright_cyan_italic,
+  Float = "Constant",
 
   -- a string constant: "this is a string"
   String = highlights.orange,
+
   -- function name (also: methods for classes)
   Function = highlights.yellow,
 
   -- any statement (flow control, return, etc.)
   Statement = highlights.bright_magenta,
   -- if, then, else, endif, switch, etc.
-  Conditional = highlights.bright_magenta,
+  Conditional = "Statement",
   -- for, do, while, etc.
-  Repeat = highlights.bright_magenta,
+  Repeat = "Statement",
 
   -- any other keyword
   Keyword = highlights.blue,
@@ -232,38 +235,42 @@ local links = {
 
   -- case, default, etc.
   Labal = highlights.cyan,
+
   -- "sizeof", "+", "*", etc.
   Operator = highlights.dark_white,
 
   -- any erroneous construct
   Error = highlights.red,
+
   -- try, catch, throw
-  Exception = highlights.red,
+  Exception = "Error",
 
   -- int, long, char, etc.
   Type = highlights.green,
+
   -- static, register, volatile, etc.
   StorageClass = highlights.bright_red,
+
   -- struct, union, enum, etc.
   Structure = highlights.bright_green,
 
   -- generic Preprocessor
   PreProc = highlights.bright_blue,
   -- preprocessor #include
-  Include = highlights.bright_blue,
+  Include = "PreProc",
   -- preprocessor #define
-  Define = highlights.bright_blue,
+  Define = "PreProc",
   -- same as Define
-  Macro = highlights.bright_blue,
+  Macro = "PreProc",
   -- preprocessor #if, #else, #endif, etc.
-  PreCondit = highlights.bright_blue,
+  PreCondit = "PreProc",
 
   -- any special symbol
   Special = highlights.gold,
   -- special character in a constant
-  SpecialChar = highlights.gold,
+  SpecialChar = "Special",
   -- special things inside a comment
-  SpecialComment = highlights.gold,
+  SpecialComment = "Special",
 
   -- added line in a diff
   Added = highlights.green,
@@ -274,11 +281,13 @@ local links = {
 
   -- text that stands out, HTML links
   Underlined = highlights.underline,
+
   -- character that needs attention
   Delimiter = highlights.bright_white,
 
   -- you can use CTRL-] on this
   Tag = highlights.azure,
+
   -- debugging statements
   Debug = highlights.magenta,
 
@@ -300,11 +309,11 @@ local links = {
   -- Current match for the last search pattern (see 'hlsearch').
   -- Note: This is correct after a search, but may get outdated if
   -- changes are made or the screen is redrawn.
-  CurSearch = highlights.background_on_green,
+  CurSearch = "Search",
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
-  IncSearch = highlights.background_on_green,
+  IncSearch = "Search",
 
   -- hl-Title
   -- Titles for output from ":set all", ":autocmd" etc.
@@ -312,7 +321,7 @@ local links = {
 
   -- hl-NormalFloat
   -- Normal text in floating windows.
-  NormalFloat = highlights.foreground_on_background,
+  NormalFloat = "Normal",
 
   -- hl-FloatBorder
   -- Border of floating windows.
@@ -320,23 +329,23 @@ local links = {
 
   -- hl-FloatTitle
   -- Title of floating windows.
-  FloatTitle = highlights.foreground_on_background,
+  FloatTitle = "Normal",
 
   -- hl-FloatFooter
   -- Footer of floating windows.
-  FloatFooter = highlights.foreground_on_background,
+  FloatFooter = "Normal",
 
   -- hl-TabLine
   -- Tab pages line, not active tab page label.
-  Tabline = highlights.tertiary_accent_background_on_secondary_accent_background,
+  Tabline = highlights.tertiary_accent_bg_on_secondary_accent_bg,
 
   -- hl-TabLineFill
   -- Tab pages line, where there are no labels.
-  TabLineFill = highlights.tertiary_accent_background_on_secondary_accent_background,
+  TabLineFill = highlights.tertiary_accent_bg_on_secondary_accent_bg,
 
   -- hl-TabLineSel
   -- Tab pages line, active tab page label.
-  TabLineSel = highlights.foreground_on_primary_accent_background,
+  TabLineSel = highlights.foreground_on_primary_accent_bg,
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
@@ -357,15 +366,15 @@ local links = {
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
   -- By default, this is highlighted like |hl-NonText|.
-  EndOfBUffer = highlights.background_on_background,
+  EndOfBUffer = "Ignore",
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = highlights.secondary_accent,
+  WinSeparator = highlights.secondary_accent_bg,
 
   -- |hl-Folded|
   -- Line used for closed folds.
-  Folded = highlights.bright_black_on_primary_accent_background,
+  Folded = highlights.bright_black_on_primary_accent_bg,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
@@ -373,7 +382,7 @@ local links = {
 
   -- hl-ColorColumn
   -- Used for the columns set with 'colorcolumn'.
-  ColorColumn = highlights.nothing_on_cursorline,
+  ColorColumn = "CursorLine",
 
   -- hl-Cursor
   -- Character under the cursor.
@@ -390,7 +399,7 @@ local links = {
 
   -- hl-CursorColumn
   -- Screen-column at the cursor, when 'cursorcolumn' is set.
-  CursorColumn = highlights.nothing_on_cursorline,
+  CursorColumn = "CursorLine",
 
   -- hl-CursorLine
   -- Screen-line at the cursor, when 'cursorline' is set.
@@ -416,7 +425,7 @@ local links = {
 
   -- hl-Pmenu
   -- Popup menu: Normal item.
-  Pmenu = highlights.foreground_on_background,
+  Pmenu = highlights.foreground,
 
   -- hl-PmenuSel
   -- Popup menu: Selected item. Combined with |hl-Pmenu|.
@@ -424,11 +433,11 @@ local links = {
 
   -- hl-PmenuSbar
   -- Popup menu: Scrollbar.
-  PmenuSbar = highlights.nothing_on_visual,
+  PmenuSbar = "PmenuSel",
 
   -- hl-PmenuThumb
   -- Popup menu: Thumb of the scrollbar.
-  PmenuThumb = highlights.nothing_on_visual,
+  PmenuThumb = "PmenuSel",
 
   -- hl-PmenuMatch
   -- Popup menu: Matched text in normal item. Combined with
@@ -606,7 +615,7 @@ local links = {
 
   -- hl-Visual
   -- Visual mode selection.
-  Visual = highlights.nothing_on_dark_white,
+  Visual = highlights.nothing_on_visual,
 
   -- hl-VisualNOS
   -- Visual mode selection when vim is "Not Owning the Selection".
@@ -627,15 +636,15 @@ local links = {
   DiagnosticError = highlights.red,
   -- hl-DiagnosticVirtualTextError
   -- Used for "Error" diagnostic virtual text.
-  DiagnosticVirtualTextError = highlights.red,
+  DiagnosticVirtualTextError = "DiagnosticError",
   -- hl-DiagnosticVirtualLinesError
   -- Used for "Error" diagnostic virtual lines.
-  DiagnosticVirtualLinesError = highlights.red,
+  DiagnosticVirtualLinesError = "DiagnosticError",
   -- See vim.diagnostic.open_float()
-  DiagnosticFloatingError = highlights.red,
+  DiagnosticFloatingError = "DiagnosticError",
   -- hl-DiagnosticSignError
   -- Used for "Error" signs in sign column.
-  DiagnosticSignError = highlights.red,
+  DiagnosticSignError = "DiagnosticError",
   -- hl-DiagnosticUnderlineError
   -- Used to underline "Error" diagnostics.
   DiagnosticUnderlineError = highlights.red_underline,
@@ -646,19 +655,19 @@ local links = {
   DiagnosticWarn = highlights.yellow,
   -- hl-DiagnosticVirtualTextWarn
   -- Used for "Warn" diagnostic virtual text.
-  DiagnosticVirtualTextWarn = highlights.yellow,
+  DiagnosticVirtualTextWarn = "DiagnosticWarn",
   -- hl-DiagnosticVirtualLinesWarn
   -- Used for "Warn" diagnostic virtual lines.
-  DiagnosticVirtualLinesWarn = highlights.yellow,
+  DiagnosticVirtualLinesWarn = "DiagnosticWarn",
   -- hl-DiagnosticFloatingWarn
   -- Used to color "Warn" diagnostic messages in diagnostics float.
-  DiagnosticFloatingWarn = highlights.yellow,
+  DiagnosticFloatingWarn = "DiagnosticWarn",
   -- hl-DiagnosticSignWarn
   -- Used for "Warn" signs in sign column.
-  DiagnosticSignWarn = highlights.yellow,
+  DiagnosticSignWarn = "DiagnosticWarn",
   -- hl-DiagnosticUnderlineWarn
   -- Used to underline "Warn" diagnostics.
-  DiagnosticUnderlineWarn = highlights.yellow_underline,
+  DiagnosticUnderlineWarn = highlights.yellow_undercurl,
 
   -- hl-DiagnosticInfo
   -- Used as the base highlight group.
@@ -666,16 +675,16 @@ local links = {
   DiagnosticInfo = highlights.blue,
   -- hl-DiagnosticVirtualTextInfo
   -- Used for "Info" diagnostic virtual text.
-  DiagnosticVirtualTextInfo = highlights.blue,
+  DiagnosticVirtualTextInfo = "DiagnosticInfo",
   -- hl-DiagnosticVirtualLinesInfo
   -- Used for "Info" diagnostic virtual lines.
-  DiagnosticVirtualLinesInfo = highlights.blue,
+  DiagnosticVirtualLinesInfo = "DiagnosticInfo",
   -- hl-DiagnosticFloatingInfo
   -- Used to color "Info" diagnostic messages in diagnostics float.
-  DiagnosticFloatingInfo = highlights.blue,
+  DiagnosticFloatingInfo = "DiagnosticInfo",
   -- hl-DiagnosticSignInfo
   -- Used for "Info" signs in sign column.
-  DiagnosticSignInfo = highlights.blue,
+  DiagnosticSignInfo = "DiagnosticInfo",
   -- hl-DiagnosticUnderlineInfo
   -- Used to underline "Info" diagnostics.
   DiagnosticUnderlineInfo = highlights.blue_undercurl,
@@ -686,16 +695,16 @@ local links = {
   DiagnosticHint = highlights.magenta,
   -- hl-DiagnosticVirtualTextHint
   -- Used for "Hint" diagnostic virtual text.
-  DiagnosticVirtualTextHint = highlights.magenta,
+  DiagnosticVirtualTextHint = "DiagnosticHint",
   -- hl-DiagnosticVirtualLinesHint
   -- Used for "Hint" diagnostic virtual lines.
-  DiagnosticVirtualLinesHint = highlights.magenta,
+  DiagnosticVirtualLinesHint = "DiagnosticHint",
   -- hl-DiagnosticFloatingHint
   -- Used to color "Hint" diagnostic messages in diagnostics float.
-  DiagnosticFloatingHint = highlights.magenta,
+  DiagnosticFloatingHint = "DiagnosticHint",
   -- hl-DiagnosticSignHint
   -- Used for "Hint" signs in sign column.
-  DiagnosticSignHint = highlights.magenta,
+  DiagnosticSignHint = "DiagnosticHint",
   -- hl-DiagnosticUnderlineHint
   -- Used to underline "Hint" diagnostics.
   DiagnosticUnderlineHint = highlights.magenta_undercurl,
@@ -706,19 +715,19 @@ local links = {
   DiagnosticOk = highlights.green,
   -- hl-DiagnosticVirtualTextOk
   -- Used for "Ok" diagnostic virtual text.
-  DiagnosticVirtualTextOk = highlights.geen,
+  DiagnosticVirtualTextOk = "DiagnosticOk",
   -- hl-DiagnosticVirtualLinesOk
   -- Used for "Ok" diagnostic virtual lines.
-  DiagnosticVirtualLinesOk = highlights.geen,
+  DiagnosticVirtualLinesOk = "DiagnosticOk",
   -- hl-DiagnosticFloatingOk
   -- Used to color "Ok" diagnostic messages in diagnostics float.
-  DiagnosticFloatingOk = highlights.geen,
+  DiagnosticFloatingOk = "DiagnosticOk",
   -- hl-DiagnosticSignOk
   -- Used for "Ok" signs in sign column.
-  DiagnosticSignOk = highlights.geen,
+  DiagnosticSignOk = "DiagnosticOk",
   -- hl-DiagnosticUnderlineOk
   -- Used to underline "Ok" diagnostics.
-  DiagnosticUnderlineOk = highlights.green_on_nothing_underline,
+  DiagnosticUnderlineOk = highlights.green_undercurl,
 
   -- hl-DiagnosticDeprecated
   -- Used for deprecated or obsolete code.
@@ -749,7 +758,7 @@ local links = {
   -- Identifiers that declare or reference a class type
   ["@lsp.type.class"] = {},
   -- Tokens that represent a comment
-  ["@lsp.type.comment"] = highlights.bright_black_italic,
+  ["@lsp.type.comment"] = "Comment",
   -- Identifiers that declare or reference decorators and annotations
   ["@lsp.type.decorator"] = {},
   -- Identifiers that declare or reference an enumeration type
@@ -759,7 +768,7 @@ local links = {
   -- Identifiers that declare an event property
   ["@lsp.type.event"] = {},
   -- Identifiers that declare a function
-  ["@lsp.type.function"] = highlights.yellow,
+  ["@lsp.type.function"] = "Function",
   -- Identifiers that declare or reference an interface type
   ["@lsp.type.interface"] = {},
   -- Tokens that represent a language keyword
@@ -767,7 +776,7 @@ local links = {
   -- Identifiers that declare a macro
   ["@lsp.type.macro"] = {},
   -- Identifiers that declare a member function or method
-  ["@lsp.type.method"] = highlights.yellow,
+  ["@lsp.type.method"] = "Function",
   -- Tokens that represent a modifier
   ["@lsp.type.modifier"] = {},
   -- Identifiers that declare or reference a namespace, module, or package
@@ -828,7 +837,7 @@ local links = {
   -- object and struct fields
   ["@variable.member"] = {},
   -- constant identifiers
-  ["@constant"] = highlights.bright_cyan_italic,
+  ["@constant"] = "Constant",
   -- built-in constant values
   ["@constant.builtin"] = {},
   -- constants defined by the preprocessor
@@ -860,13 +869,13 @@ local links = {
   -- special characters (e.g. wildcards)
   ["@character.special"] = {},
   -- boolean literals
-  ["@boolean"] = highlights.bright_cyan_italic,
+  ["@boolean"] = {},
   -- numeric literals
   ["@number"] = {},
   -- floating-point number literals
   ["@number.float"] = {},
   -- type or class definitions and annotations
-  ["@type"] = highlights.green,
+  ["@type"] = {},
   -- built-in types
   ["@type.builtin"] = {},
   -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
@@ -878,9 +887,9 @@ local links = {
   -- the key in key/value pairs
   ["@property"] = highlights.green,
   -- function definitions
-  ["@function"] = highlights.yellow,
+  ["@function"] = {},
   -- built-in functions
-  ["@function.builtin"] = highlights.gold,
+  ["@function.builtin"] = {},
   -- function calls
   ["@function.call"] = highlights.italic,
   -- preprocessor macros
@@ -890,15 +899,15 @@ local links = {
   -- method calls
   ["@function.method.call"] = {},
   -- constructor calls and definitions
-  ["@constructor"] = highlights.gold,
+  ["@constructor"] = {},
   -- symbolic operators (e.g. `+`, `*`)
-  ["@operator"] = highlights.dark_white,
+  ["@operator"] = {},
   -- keywords not fitting into specific categories
-  ["@keyword"] = highlights.blue,
+  ["@keyword"] = {},
   -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
   ["@keyword.coroutine"] = {},
   -- keywords that define a function (e.g. `func` in Go, `def` in Python)
-  ["@keyword.function"] = highlights.blue,
+  ["@keyword.function"] = "Keyword",
   -- operators that are English words (e.g. `and`, `or`)
   ["@keyword.operator"] = highlights.red,
   -- keywords for including or exporting modules (e.g. `import`, `from` in Python)
@@ -930,7 +939,7 @@ local links = {
   -- special symbols (e.g. `{}` in string interpolation)
   ["@punctuation.special"] = {},
   -- line and block comments
-  ["@comment"] = highlights.bright_black_italic,
+  ["@comment"] = {},
   -- comments documenting code
   ["@comment.documentation"] = {},
   -- error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
@@ -952,17 +961,17 @@ local links = {
   -- headings, titles (including markers)
   ["@markup.heading"] = {},
   -- top-level heading
-  -- ["@markup.heading.1"] = highlights.bold,
+  ["@markup.heading.1"] = {},
   -- section heading
-  ["@markup.heading.2"] = highlights.gold,
+  ["@markup.heading.2"] = {},
   -- subsection heading
-  ["@markup.heading.3"] = highlights.gold,
+  ["@markup.heading.3"] = {},
   -- and so on
-  ["@markup.heading.4"] = highlights.gold,
+  ["@markup.heading.4"] = {},
   -- and so forth
-  ["@markup.heading.5"] = highlights.gold,
+  ["@markup.heading.5"] = {},
   -- six levels ought to be enough for anybody
-  ["@markup.heading.6"] = highlights.gold,
+  ["@markup.heading.6"] = {},
   -- block quotes
   ["@markup.quote"] = highlights.italic,
   -- math environments (e.g. `$ ... $` in LaTeX)
@@ -1011,17 +1020,23 @@ local links = {
   diffLine = {},
 
   -- markdown
-  markdownH1 = highlights.bold,
+  markdownH1 = "Title",
   markdownH2 = highlights.gold,
-  markdownH3 = highlights.gold,
-  markdownH4 = highlights.gold,
-  markdownH5 = highlights.gold,
-  markdownH6 = highlights.gold,
+  markdownH3 = "markdownH2",
+  markdownH4 = "markdownH2",
+  markdownH5 = "markdownH2",
+  markdownH6 = "markdownH2",
+  ["@markup.heading.1.markdown"] = "markdownH1",
+  ["@markup.heading.2.markdown"] = "markdownH2",
+  ["@markup.heading.3.markdown"] = "markdownH3",
+  ["@markup.heading.4.markdown"] = "markdownH4",
+  ["@markup.heading.5.markdown"] = "markdownH5",
+  ["@markup.heading.6.markdown"] = "markdownH6",
   markdownCode = highlights.nothing_on_cursorline,
-  markdownCodeBlock = {},
+  markdownCodeBlock = highlights.red,
   markdownCodeDelimiter = {},
   markdownBlockquote = {},
-  markdownListMarker = {},
+  markdownListMarker = highlights.gold,
   markdownOrderedListMarker = {},
   markdownRule = {},
   markdownHeadingRule = {},
@@ -1033,6 +1048,9 @@ local links = {
   markdownUrlTitleDelimiter = {},
   markdownLinkText = {},
   markdownIdDeclaration = {},
+
+  -- Terraform
+  ["@lsp.type.type.terraform"] = "Keyword",
 
   ------------------------------------------------------------------------------
   -- TODO: what are these?
@@ -1050,6 +1068,10 @@ local links = {
 
 local function is_nonempty_table(x)
   return type(x) == "table" and next(x) ~= nil
+end
+
+local function is_nonempty_string(s)
+  return type(s) == "string" and s ~= ""
 end
 
 ---Check if a highlight group exists.
@@ -1081,6 +1103,15 @@ local function reverse_map(tbl)
   return true, reversed
 end
 
+local function resolve_link_name(spec, highlight_names)
+  if is_nonempty_string(spec) then
+    return spec
+  elseif is_nonempty_table(spec) then
+    return highlight_names[spec]
+  end
+  return nil
+end
+
 -- Bail out before applying highlights if the reverse map fails
 local ok, highlight_keys = reverse_map(highlights)
 if not ok then
@@ -1102,11 +1133,9 @@ for group, spec in pairs(highlights) do
 end
 
 -- Apply links (link target is looked up via the reverse map)
-for group, target_tbl in pairs(links) do
-  if is_nonempty_table(target_tbl) then
-    local target = highlight_keys[target_tbl]
-    if target then
-      vim.api.nvim_set_hl(0, group, { link = target })
-    end
+for group, spec in pairs(links) do
+  local target = resolve_link_name(spec, highlight_keys)
+  if type(target) == "string" and target ~= "" then
+    vim.api.nvim_set_hl(0, group, { link = target })
   end
 end
