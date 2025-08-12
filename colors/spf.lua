@@ -93,7 +93,7 @@ local highlights = {
 
   -- UI
   bold = { bold = true },
-  underline = { bold = true },
+  underline = { underline = true },
   italic = { italic = true },
 
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
@@ -949,37 +949,37 @@ local links = {
   -- headings, titles (including markers)
   ["@markup.heading"] = {},
   -- top-level heading
-  ["@markup.heading.1"] = {},
+  -- ["@markup.heading.1"] = highlights.bold,
   -- section heading
-  ["@markup.heading.2"] = {},
+  ["@markup.heading.2"] = highlights.gold,
   -- subsection heading
-  ["@markup.heading.3"] = {},
+  ["@markup.heading.3"] = highlights.gold,
   -- and so on
-  ["@markup.heading.4"] = {},
+  ["@markup.heading.4"] = highlights.gold,
   -- and so forth
-  ["@markup.heading.5"] = {},
+  ["@markup.heading.5"] = highlights.gold,
   -- six levels ought to be enough for anybody
-  ["@markup.heading.6"] = {},
+  ["@markup.heading.6"] = highlights.gold,
   -- block quotes
-  ["@markup.quote"] = {},
+  ["@markup.quote"] = highlights.italic,
   -- math environments (e.g. `$ ... $` in LaTeX)
   ["@markup.math"] = {},
   -- text references, footnotes, citations, etc.
-  ["@markup.link"] = {},
+  ["@markup.link"] = highlights.magenta,
   -- link, reference descriptions
-  ["@markup.link.label"] = {},
+  ["@markup.link.label"] = highlights.blue,
   -- URL-style links
-  ["@markup.link.url"] = {},
+  ["@markup.link.url"] = highlights.magenta,
   -- literal or verbatim text (e.g. inline code)
-  ["@markup.raw"] = {},
+  ["@markup.raw"] = highlights.orange,
   -- literal or verbatim text as a stand-alone block
   ["@markup.raw.block"] = {},
   -- list markers
   ["@markup.list"] = {},
   -- checked todo-style list markers
-  ["@markup.list.checked"] = {},
+  ["@markup.list.checked"] = highlights.green,
   -- unchecked todo-style list markers
-  ["@markup.list.unchecked"] = {},
+  ["@markup.list.unchecked"] = highlights.red,
   -- added text (for diff files)
   ["@diff.plus"] = {},
   -- deleted text (for diff files)
@@ -1000,18 +1000,36 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- Some colorschemes and plugins use these (Normal)
-  DiffAdded = highlights.green,
-  DiffChanged = highlights.yellow,
-  DiffRemoved = highlights.red,
+  diffAdded = highlights.green,
+  diffChanged = highlights.yellow,
+  diffRemoved = highlights.red,
+  diffFile = {},
+  diffNewFile = {},
+  diffLine = {},
 
   -- markdown
-  MarkdownHeading1 = highlights.bold,
-  MarkdownHeading2 = highlights.gold,
-  MarkdownHeading3 = highlights.gold,
-  MarkdownHeading4 = highlights.gold,
-  MarkdownHeading5 = highlights.gold,
-  MarkdownHeading6 = highlights.gold,
-  MarkdownCode = highlights.markdown_code,
+  markdownH1 = highlights.bold,
+  markdownH2 = highlights.gold,
+  markdownH3 = highlights.gold,
+  markdownH4 = highlights.gold,
+  markdownH5 = highlights.gold,
+  markdownH6 = highlights.gold,
+  markdownCode = highlights.markdown_code,
+  markdownCodeBlock = {},
+  markdownCodeDelimiter = {},
+  markdownBlockquote = {},
+  markdownListMarker = {},
+  markdownOrderedListMarker = {},
+  markdownRule = {},
+  markdownHeadingRule = {},
+  markdownUrlDelimiter = {},
+  markdownLinkDelimiter = {},
+  markdownLinkTextDelimiter = {},
+  markdownHeadingDelimiter = {},
+  markdownUrl = {},
+  markdownUrlTitleDelimiter = {},
+  markdownLinkText = {},
+  markdownIdDeclaration = {},
 
   ------------------------------------------------------------------------------
   -- TODO: what are these?
@@ -1020,6 +1038,7 @@ local links = {
   ["@repeat"] = highlights.magenta_bright,
   ["@lsp.typemod.function"] = highlights.yellow,
   ["@conditional"] = highlights.magenta_bright,
+  ["@text.literal.markdown_inline"] = highlights.yellow,
   -- Intentionally disabled:
   -- ["number"] = highlights.foreground_on_background,
 
