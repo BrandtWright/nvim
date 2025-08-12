@@ -23,70 +23,73 @@ local colors = {
   background = "#191816",
   cursorline = "#1f1d1b",
 
-  red_dark = "#33201f",
   red = "#bd7671",
-  red_bright = "#ffa099",
+  bright_red = "#ffa099",
+  dark_red = "#33201f",
 
-  orange_dark = "#a1633f",
   orange = "#ce9178",
-  orange_bright = "#f29950",
+  bright_orange = "#f29950",
+  dark_orange = "#a1633f",
 
-  yellow_dark = "#33331f",
   yellow = "#c2c27c",
-  yellow_bright = "#fcfca4",
+  bright_yellow = "#fcfca4",
+  dark_yellow = "#33331f",
 
-  chartreuse_dark = "#758e57",
   chartreuse = "#91b76b",
-  chartreuse_bright = "#cfeaa0",
+  bright_chartreuse = "#cfeaa0",
+  dark_chartreuse = "#758e57",
 
-  green_dark = "#1f3326",
   green = "#8fa899",
-  green_bright = "#b9d9b8",
+  bright_green = "#b9d9b8",
+  dark_green = "#1f3326",
 
-  spring_dark = "#4f766e",
   spring = "#6da89e",
-  spring_bright = "#a9d5c8",
+  bright_spring = "#a9d5c8",
+  dark_spring = "#4f766e",
 
-  cyan_dark = "#536a71",
   cyan = "#7b919e",
-  cyan_bright = "#a7cacc",
+  bright_cyan = "#a7cacc",
+  dark_cyan = "#536a71",
 
-  azure_dark = "#45667e",
   azure = "#5f87a6",
-  azure_bright = "#a2c5e4",
+  bright_azure = "#a2c5e4",
+  dark_azure = "#45667e",
 
-  blue_dark = "#142233",
   blue = "#5692db",
-  blue_bright = "#77b3fc",
+  bright_blue = "#77b3fc",
+  dark_blue = "#142233",
 
-  violet_dark = "#59497c",
   violet = "#8a7b9e",
-  violet_bright = "#eebaff",
+  bright_violet = "#eebaff",
+  dark_violet = "#59497c",
 
-  magenta_dark = "#5f4469",
   magenta = "#8f7099",
-  magenta_bright = "#c99fd6",
+  bright_magenta = "#c99fd6",
+  dark_magenta = "#5f4469",
 
-  rose_dark = "#94586b",
   rose = "#c08081",
-  rose_bright = "#e084a3",
+  bright_rose = "#e084a3",
+  dark_rose = "#94586b",
 
-  black_dark = "#121210",
   black = "#0e0d0c",
-  black_bright = "#737373",
+  bright_black = "#737373",
+  dark_black = "#121210",
 
-  white_dark = "#a89f91",
   white = "#ebdbb2",
-  white_bright = "#f2e8ce",
+  bright_white = "#f2e8ce",
+  dark_white = "#a89f91",
 
-  ui_primary_foreground = "#a6977c",
-  ui_primary_background = "#2c2826",
-  ui_secondary_background = "#504945",
-  ui_tertiary_background = "#a89984",
+  primary_accent_fg = "#a89984",
+  primary_accent_bg = "#2c2826",
 
-  visual = "#333333",
+  secondary_accent_fg = "#a89984",
+  secondary_accent_bg = "#504945",
+
+  tertiary_accent_fg = "#2c2826",
+  tertiary_accent_bg = "#a89984",
+
+  gray_20 = "#333333",
   gold = "#a38e5d",
-  markdown_code_background = "#1f1e1b",
 }
 
 local highlights = {
@@ -96,93 +99,93 @@ local highlights = {
   underline = { underline = true },
   italic = { italic = true },
 
+  foreground = { fg = colors.foreground, bg = "" },
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
-  foreground_on_black_bright_bold = {
+  foreground_on_bright_black_bold = {
     bold = true,
     fg = colors.foreground,
-    bg = colors.black_bright,
+    bg = colors.bright_black,
   },
   foreground_on_primary_accent_background = {
-    fg = colors.ui_tertiary_background,
+    fg = colors.tertiary_accent_bg,
     bg = colors.background,
   },
 
   tertiary_accent_background_on_secondary_accent_background = {
-    fg = colors.ui_tertiary_background,
-    bg = colors.ui_secondary_background,
+    fg = colors.tertiary_accent_bg,
+    bg = colors.secondary_accent_bg,
   },
 
   background_on_background = { fg = colors.background, bg = colors.background },
 
   -- Color Palette
   red = { fg = colors.red, bg = "" },
-  red_bright = { fg = colors.red_bright, bg = "" },
+  bright_red = { fg = colors.bright_red, bg = "" },
   -- red_dark
-  red_on_nothing_underline = { fg = colors.red, bg = "", underline = true },
+  red_underline = { fg = colors.red, bg = "", underline = true },
 
   orange = { fg = colors.orange, bg = "" },
-  -- orange_bright
-  -- orange_dark
+  -- bright_orange
+  -- dark_orange
 
   yellow = { fg = colors.yellow, bg = "" },
-  -- yellow_bright
-  -- yellow_dark
-  yellow_on_nothing_underline = { undercurl = true, fg = colors.yellow, bg = "" },
+  -- bright_yelow
+  -- dark_yellow
+  yellow_underline = { undercurl = true, fg = colors.yellow, bg = "" },
 
   green = { fg = colors.green, bg = "" },
-  green_bright = { fg = colors.green_bright, bg = "" },
-  -- green_dark
+  bright_green = { fg = colors.bright_green, bg = "" },
+  -- dark_green
   green_on_nothing_underline = { undercurl = true, fg = colors.green, bg = "" },
 
   cyan = { fg = colors.cyan, bg = "" },
-  -- cyan_bright
-  cyan_bright_italic = { italic = true, fg = colors.cyan_bright, bg = "" },
-  -- cyan_dark
+  -- bright_cyan
+  -- dark_cyan
+  bright_cyan_italic = { italic = true, fg = colors.bright_cyan, bg = "" },
 
   blue = { fg = colors.blue, bg = "" },
-  blue_bright = { fg = colors.blue_bright, bg = "" },
-  -- blue_dark
-  blue_on_nothing_underline = { undercurl = true, fg = colors.blue, bg = "" },
+  bright_blue = { fg = colors.bright_blue, bg = "" },
+  -- dark_blue
+  blue_undercurl = { undercurl = true, fg = colors.blue, bg = "" },
 
   azure = { fg = colors.azure, bg = "" },
-  -- azure_bright
-  -- azure_dark
+  -- bright_azure
+  -- dark_azure
 
   magenta = { fg = colors.magenta, bg = "" },
-  magenta_bright = { fg = colors.magenta_bright, bg = "" },
-  -- magenta_dark
-  magenta_on_nothing_underline = { undercurl = true, fg = colors.magenta, bg = "" },
+  bright_magenta = { fg = colors.bright_magenta, bg = "" },
+  -- dark_magenta
+  magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
 
   -- white
-  white_dark = { fg = colors.white_dark, bg = "" },
-  white_bright = { fg = colors.white_bright, bg = "" },
+  bright_white = { fg = colors.bright_white, bg = "" },
+  dark_white = { fg = colors.dark_white, bg = "" },
 
   -- black
   black = { fg = colors.black, bg = "" },
-  black_bright = { fg = colors.black_bright, bg = "" },
-  black_bright_on_dark_red = { fg = colors.black_bright, bg = colors.red_dark },
-  black_bright_on_primary_accent_background = {
-    fg = colors.black_bright,
-    bg = colors.ui_primary_background,
+  bright_black = { fg = colors.bright_black, bg = "" },
+  dark_black = { fg = colors.dark_black, bg = "" },
+  bright_black_on_dark_red = { fg = colors.bright_black, bg = colors.dark_red },
+  bright_black_on_primary_accent_background = {
+    fg = colors.bright_black,
+    bg = colors.primary_accent_bg,
   },
-  black_dark = { fg = colors.black_dark, bg = "" },
-  black_bright_bold = { bold = true, fg = colors.black_bright, bg = "" },
-  black_bright_italic = { italic = true, fg = colors.black_bright, bg = "" },
-  black_bright_strikethrough = { strikethrough = true, fg = colors.black_bright, bg = "" },
+  bright_black_bold = { bold = true, fg = colors.bright_black, bg = "" },
+  bright_black_italic = { italic = true, fg = colors.bright_black, bg = "" },
+  bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black, bg = "" },
 
-  nothing_on_dark_yellow = { fg = "", bg = colors.yellow_dark },
-  nothing_on_dark_green = { fg = "", bg = colors.green_dark },
-  nothing_on_dark_magenta = { fg = "", bg = colors.magenta_dark },
-  nothing_on_black_dark = { fg = "", bg = colors.black_dark },
+  nothing_on_dark_yellow = { fg = "", bg = colors.dark_yellow },
+  nothing_on_dark_green = { fg = "", bg = colors.dark_green },
+  nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
+  nothing_on_dark_black = { fg = "", bg = colors.dark_black },
 
-  secondary_accent_on_nothing = { fg = colors.ui_secondary_background, bg = "" },
+  secondary_accent = { fg = colors.secondary_accent_bg, bg = "" },
 
-  nothing_on_visual = { fg = "", bg = colors.visual },
+  nothing_on_visual = { fg = "", bg = colors.gray_20 },
   nothing_on_cursorline = { fg = "", bg = colors.cursorline },
   background_on_green = { bold = true, fg = colors.background, bg = colors.green },
 
   gold = { fg = colors.gold, bg = "" },
-  markdown_code = { fg = "", bg = colors.markdown_code_background },
 }
 
 local links = {
@@ -192,21 +195,21 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- any comment
-  Comment = highlights.black_bright_italic,
+  Comment = highlights.bright_black_italic,
 
   -- any variable name
   Identifier = highlights.foreground_on_background,
 
   -- any constant
-  Constant = highlights.cyan_bright_italic,
+  Constant = highlights.bright_cyan_italic,
   -- a character constant: 'c', '\n'
-  Character = highlights.cyan_bright_italic,
+  Character = highlights.bright_cyan_italic,
   -- a number constant: 234, 0xff
-  Number = highlights.cyan_bright_italic,
+  Number = highlights.bright_cyan_italic,
   -- a boolean constant: TRUE, false
-  Boolean = highlights.cyan_bright_italic,
+  Boolean = highlights.bright_cyan_italic,
   -- a floating point constant: 2.3e10
-  Float = highlights.cyan_bright_italic,
+  Float = highlights.bright_cyan_italic,
 
   -- a string constant: "this is a string"
   String = highlights.orange,
@@ -214,11 +217,11 @@ local links = {
   Function = highlights.yellow,
 
   -- any statement (flow control, return, etc.)
-  Statement = highlights.magenta_bright,
+  Statement = highlights.bright_magenta,
   -- if, then, else, endif, switch, etc.
-  Conditional = highlights.magenta_bright,
+  Conditional = highlights.bright_magenta,
   -- for, do, while, etc.
-  Repeat = highlights.magenta_bright,
+  Repeat = highlights.bright_magenta,
 
   -- any other keyword
   Keyword = highlights.blue,
@@ -230,7 +233,7 @@ local links = {
   -- case, default, etc.
   Labal = highlights.cyan,
   -- "sizeof", "+", "*", etc.
-  Operator = highlights.white_dark,
+  Operator = highlights.dark_white,
 
   -- any erroneous construct
   Error = highlights.red,
@@ -240,20 +243,20 @@ local links = {
   -- int, long, char, etc.
   Type = highlights.green,
   -- static, register, volatile, etc.
-  StorageClass = highlights.red_bright,
+  StorageClass = highlights.bright_red,
   -- struct, union, enum, etc.
-  Structure = highlights.green_bright,
+  Structure = highlights.bright_green,
 
   -- generic Preprocessor
-  PreProc = highlights.blue_bright,
+  PreProc = highlights.bright_blue,
   -- preprocessor #include
-  Include = highlights.blue_bright,
+  Include = highlights.bright_blue,
   -- preprocessor #define
-  Define = highlights.blue_bright,
+  Define = highlights.bright_blue,
   -- same as Define
-  Macro = highlights.blue_bright,
+  Macro = highlights.bright_blue,
   -- preprocessor #if, #else, #endif, etc.
-  PreCondit = highlights.blue_bright,
+  PreCondit = highlights.bright_blue,
 
   -- any special symbol
   Special = highlights.gold,
@@ -272,7 +275,7 @@ local links = {
   -- text that stands out, HTML links
   Underlined = highlights.underline,
   -- character that needs attention
-  Delimiter = highlights.white_bright,
+  Delimiter = highlights.bright_white,
 
   -- you can use CTRL-] on this
   Tag = highlights.azure,
@@ -313,7 +316,7 @@ local links = {
 
   -- hl-FloatBorder
   -- Border of floating windows.
-  FloatBorder = highlights.black_bright,
+  FloatBorder = highlights.bright_black,
 
   -- hl-FloatTitle
   -- Title of floating windows.
@@ -345,7 +348,7 @@ local links = {
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = highlights.black_bright_on_dark_red,
+  DiffDelete = highlights.bright_black_on_dark_red,
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
@@ -358,11 +361,11 @@ local links = {
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = highlights.secondary_accent_on_nothing,
+  WinSeparator = highlights.secondary_accent,
 
   -- |hl-Folded|
   -- Line used for closed folds.
-  Folded = highlights.black_bright_on_primary_accent_background,
+  Folded = highlights.bright_black_on_primary_accent_background,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
@@ -370,7 +373,7 @@ local links = {
 
   -- hl-ColorColumn
   -- Used for the columns set with 'colorcolumn'.
-  ColorColumn = {},
+  ColorColumn = highlights.nothing_on_cursorline,
 
   -- hl-Cursor
   -- Character under the cursor.
@@ -397,7 +400,7 @@ local links = {
   -- hl-CursorLineNr
   -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
   -- contains "number" or is "both", for the cursor line.
-  CursorLineNr = highlights.black_bright_bold,
+  CursorLineNr = highlights.bright_black_bold,
 
   -- hl-CursorLineFold
   -- Like FoldColumn when 'cursorline' is set for the cursor line.
@@ -456,7 +459,7 @@ local links = {
   -- hl-LineNr
   -- Line number for ":number" and ":#" commands, and when 'number'
   -- or 'relativenumber' option is set.
-  LineNr = highlights.black_bright,
+  LineNr = highlights.bright_black,
 
   -- hl-LineNrAbove
   -- Line number for when the 'relativenumber'
@@ -565,7 +568,7 @@ local links = {
 
   -- hl-Conceal
   -- Placeholder characters substituted for concealed
-  Conceal = highlights.black_bright,
+  Conceal = highlights.bright_black,
 
   -- hl-Directory
   -- Directory names (and other special names in listings).
@@ -578,7 +581,7 @@ local links = {
   -- hl-MatchParen
   -- Character under the cursor or just before it, if it
   -- is a paired bracket, and its match. |pi_paren.txt|
-  MatchParen = highlights.foreground_on_black_bright_bold,
+  MatchParen = highlights.foreground_on_bright_black_bold,
 
   -- hl-NonText
   -- '@' at the end of the window, characters from 'showbreak'
@@ -586,7 +589,7 @@ local links = {
   -- (e.g., ">" displayed when a double-wide character doesn't
   -- fit at the end of the line). See also |hl-EndOfBuffer|.
   -- '@' at the end of the window, characters from 'showbreak'
-  NonText = highlights.black_bright,
+  NonText = highlights.bright_black,
 
   -- hl-Normal
   -- Normal text.
@@ -635,7 +638,7 @@ local links = {
   DiagnosticSignError = highlights.red,
   -- hl-DiagnosticUnderlineError
   -- Used to underline "Error" diagnostics.
-  DiagnosticUnderlineError = highlights.red_on_nothing_underline,
+  DiagnosticUnderlineError = highlights.red_underline,
 
   -- hl-DiagnosticWarn
   -- Used as the base highlight group.
@@ -655,7 +658,7 @@ local links = {
   DiagnosticSignWarn = highlights.yellow,
   -- hl-DiagnosticUnderlineWarn
   -- Used to underline "Warn" diagnostics.
-  DiagnosticUnderlineWarn = highlights.yellow_on_nothing_underline,
+  DiagnosticUnderlineWarn = highlights.yellow_underline,
 
   -- hl-DiagnosticInfo
   -- Used as the base highlight group.
@@ -675,7 +678,7 @@ local links = {
   DiagnosticSignInfo = highlights.blue,
   -- hl-DiagnosticUnderlineInfo
   -- Used to underline "Info" diagnostics.
-  DiagnosticUnderlineInfo = highlights.blue_on_nothing_underline,
+  DiagnosticUnderlineInfo = highlights.blue_undercurl,
 
   -- hl-DiagnosticHint
   -- Used as the base highlight group.
@@ -695,7 +698,7 @@ local links = {
   DiagnosticSignHint = highlights.magenta,
   -- hl-DiagnosticUnderlineHint
   -- Used to underline "Hint" diagnostics.
-  DiagnosticUnderlineHint = highlights.magenta_on_nothing_underline,
+  DiagnosticUnderlineHint = highlights.magenta_undercurl,
 
   -- hl-DiagnosticOk
   -- Used as the base highlight group.
@@ -719,17 +722,17 @@ local links = {
 
   -- hl-DiagnosticDeprecated
   -- Used for deprecated or obsolete code.
-  DiagnosticDeprecated = highlights.black_bright_strikethrough,
+  DiagnosticDeprecated = highlights.bright_black_strikethrough,
   -- hl-DiagnosticUnnecessary
   -- Used for unnecessary or unused code.
-  DiagnosticUnnecessary = highlights.black_bright,
+  DiagnosticUnnecessary = highlights.bright_black,
 
   ------------------------------------------------------------------------------
   -- LSP Highlights see:                                   :help 'lsp-highlight'
   ------------------------------------------------------------------------------
 
   -- used for highlighting "text" references
-  LspReferenceText = highlights.nothing_on_black_dark,
+  LspReferenceText = highlights.nothing_on_dark_yellow,
   -- used for highlighting "read" references
   LspReferenceRead = highlights.nothing_on_dark_green,
   -- used for highlighting "write" references
@@ -737,7 +740,7 @@ local links = {
   -- used for highlighting reference targets (e.g. in a hover range)
   LspReferenceTarget = highlights.bold,
   -- used for highlighting inlay hints
-  LspInlayHint = highlights.black_bright,
+  LspInlayHint = highlights.bright_black,
 
   ------------------------------------------------------------------------------
   -- LSP Semantic Highlights                       see: :help 'highlight-groups'
@@ -746,7 +749,7 @@ local links = {
   -- Identifiers that declare or reference a class type
   ["@lsp.type.class"] = {},
   -- Tokens that represent a comment
-  ["@lsp.type.comment"] = highlights.black_bright_italic,
+  ["@lsp.type.comment"] = highlights.bright_black_italic,
   -- Identifiers that declare or reference decorators and annotations
   ["@lsp.type.decorator"] = {},
   -- Identifiers that declare or reference an enumeration type
@@ -815,7 +818,7 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- various variable names
-  ["@variable"] = highlights.foreground_on_background,
+  ["@variable"] = highlights.foreground,
   -- built-in variable names (e.g. `this`, `self`)
   ["@variable.builtin"] = {},
   -- parameters of a function
@@ -825,7 +828,7 @@ local links = {
   -- object and struct fields
   ["@variable.member"] = {},
   -- constant identifiers
-  ["@constant"] = highlights.cyan_bright_italic,
+  ["@constant"] = highlights.bright_cyan_italic,
   -- built-in constant values
   ["@constant.builtin"] = {},
   -- constants defined by the preprocessor
@@ -857,7 +860,7 @@ local links = {
   -- special characters (e.g. wildcards)
   ["@character.special"] = {},
   -- boolean literals
-  ["@boolean"] = highlights.cyan_bright_italic,
+  ["@boolean"] = highlights.bright_cyan_italic,
   -- numeric literals
   ["@number"] = {},
   -- floating-point number literals
@@ -889,7 +892,7 @@ local links = {
   -- constructor calls and definitions
   ["@constructor"] = highlights.gold,
   -- symbolic operators (e.g. `+`, `*`)
-  ["@operator"] = highlights.white_dark,
+  ["@operator"] = highlights.dark_white,
   -- keywords not fitting into specific categories
   ["@keyword"] = highlights.blue,
   -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
@@ -905,7 +908,7 @@ local links = {
   -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
   ["@keyword.modifier"] = {},
   -- keywords related to loops (e.g. `for`, `while`)
-  ["@keyword.repeat"] = highlights.magenta_bright,
+  ["@keyword.repeat"] = highlights.bright_magenta,
   -- keywords like `return` and `yield`
   ["@keyword.return"] = {},
   -- keywords related to debugging
@@ -913,7 +916,7 @@ local links = {
   -- keywords related to exceptions (e.g. `throw`, `catch`)
   ["@keyword.exception"] = {},
   -- keywords related to conditionals (e.g. `if`, `else`)
-  ["@keyword.conditional"] = highlights.magenta_bright,
+  ["@keyword.conditional"] = highlights.bright_magenta,
   -- ternary operator (e.g. `?`, `:`)
   ["@keyword.conditional.ternary"] = {},
   -- various preprocessor directives and shebangs
@@ -927,7 +930,7 @@ local links = {
   -- special symbols (e.g. `{}` in string interpolation)
   ["@punctuation.special"] = {},
   -- line and block comments
-  ["@comment"] = highlights.black_bright_italic,
+  ["@comment"] = highlights.bright_black_italic,
   -- comments documenting code
   ["@comment.documentation"] = {},
   -- error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
@@ -1014,7 +1017,7 @@ local links = {
   markdownH4 = highlights.gold,
   markdownH5 = highlights.gold,
   markdownH6 = highlights.gold,
-  markdownCode = highlights.markdown_code,
+  markdownCode = highlights.nothing_on_cursorline,
   markdownCodeBlock = {},
   markdownCodeDelimiter = {},
   markdownBlockquote = {},
@@ -1035,9 +1038,9 @@ local links = {
   -- TODO: what are these?
   ["@method"] = highlights.yellow,
   ["@method.call"] = highlights.italic,
-  ["@repeat"] = highlights.magenta_bright,
+  ["@repeat"] = highlights.bright_magenta,
   ["@lsp.typemod.function"] = highlights.yellow,
-  ["@conditional"] = highlights.magenta_bright,
+  ["@conditional"] = highlights.bright_magenta,
   ["@text.literal.markdown_inline"] = highlights.yellow,
   -- Intentionally disabled:
   -- ["number"] = highlights.foreground_on_background,
