@@ -121,7 +121,6 @@ local highlights = {
   -- Color Palette
   red = { fg = colors.red, bg = "" },
   bright_red = { fg = colors.bright_red, bg = "" },
-  bright_red_bold = { bold = true, fg = colors.bright_red, bg = "" },
   -- red_dark
   red_underline = { fg = colors.red, bg = "", underline = true },
 
@@ -163,9 +162,7 @@ local highlights = {
   dark_white = { fg = colors.dark_white, bg = "" },
 
   -- black
-  black = { fg = colors.black, bg = "" },
   bright_black = { fg = colors.bright_black, bg = "" },
-  dark_black = { fg = colors.dark_black, bg = "" },
   bright_black_on_dark_red = { fg = colors.bright_black, bg = colors.dark_red },
   bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
@@ -178,9 +175,7 @@ local highlights = {
   nothing_on_dark_yellow = { fg = "", bg = colors.dark_yellow },
   nothing_on_dark_green = { fg = "", bg = colors.dark_green },
   nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
-  nothing_on_dark_black = { fg = "", bg = colors.dark_black },
 
-  primary_accent_bg = { fg = colors.primary_accent_bg, bg = "" },
   secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
 
   nothing_on_visual = { fg = "", bg = colors.gray_20 },
