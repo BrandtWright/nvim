@@ -111,11 +111,6 @@ local highlights = {
     bg = colors.background,
   },
 
-  tertiary_accent_bg_on_secondary_accent_bg = {
-    fg = colors.tertiary_accent_bg,
-    bg = colors.secondary_accent_bg,
-  },
-
   background_on_background = { fg = colors.background, bg = colors.background },
 
   -- Color Palette
@@ -177,6 +172,26 @@ local highlights = {
   nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
 
   secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
+
+  primary_accent_fg_on_primary_accent_bg = {
+    fg = colors.primary_accent_fg,
+    bg = colors.primary_accent_bg,
+  },
+
+  secondary_accent_fg_on_secondary_accent_bg = {
+    fg = colors.secondary_accent_fg,
+    bg = colors.secondary_accent_bg,
+  },
+
+  tertiary_accent_fg_on_tertiary_accent_bg = {
+    fg = colors.tertiary_accent_fg,
+    bg = colors.tertiary_accent_bg,
+  },
+
+  tertiary_accent_bg_on_secondary_accent_bg = {
+    fg = colors.tertiary_accent_bg,
+    bg = colors.secondary_accent_bg,
+  },
 
   nothing_on_visual = { fg = "", bg = colors.gray_20 },
   nothing_on_cursorline = { fg = "", bg = colors.cursorline },
