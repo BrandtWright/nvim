@@ -13,8 +13,11 @@ return {
       local apply_highlights = function()
         vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
         vim.cmd("hi! link NeoTreeDirectoryName White")
-        vim.cmd("hi! link NeoTreeTitleBar dark_panel")
-        vim.cmd("hi! link NeoTreeFloatBorder dark_panel_normal_background")
+        vim.cmd("hi! link NeoTreeTitleBar Folded")
+
+        -- TODO: don't use primary_accent_bg here. Migrate to well-known group.
+        vim.cmd("hi! link NeoTreeFloatBorder primary_accent_bg")
+
         vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
         vim.cmd("hi! link NeoTreeFileStats Comment")
       end
