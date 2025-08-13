@@ -1073,6 +1073,15 @@ local links = {
   -- ["number"] = highlights.foreground_on_background,
 
   ------------------------------------------------------------------------------
+
+  ------------------------------------------------------------------------------
+  -- User Highlights
+  ------------------------------------------------------------------------------
+
+  -- TODO: Add Comment for User1, User2, User3
+  User1 = highlights.primary_accent_fg_on_primary_accent_bg,
+  User2 = highlights.secondary_accent_fg_on_secondary_accent_bg,
+  User3 = highlights.tertiary_accent_fg_on_tertiary_accent_bg,
 }
 
 local function is_nonempty_table(x)
