@@ -11,13 +11,29 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, opts)
       local apply_highlights = function()
+        local get = require("bw.util.highlights").get_attribute
+        local hl = vim.api.nvim_set_hl
+
+        local primary_accent_bg = get("User1", "bg") or "#666666"
+        local primary_accent_fg = get("User1", "fg") or "#1a1a1a"
+        local normal_fg = get("Normal", "fg") or "#ffffff"
+
+        hl(0, "NeoTreeFloatBorder", {
+          fg = primary_accent_bg,
+          bg = primary_accent_bg,
+        })
+
+        hl(0, "NeoTreeTitleBar", {
+          fg = primary_accent_fg,
+          bg = primary_accent_bg,
+        })
+
+        hl(0, "NeoTreeDirectoryName", {
+          fg = normal_fg,
+          bg = "",
+        })
+
         vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
-        vim.cmd("hi! link NeoTreeDirectoryName White")
-        vim.cmd("hi! link NeoTreeTitleBar Folded")
-
-        -- TODO: don't use primary_accent_bg here. Migrate to well-known group.
-        vim.cmd("hi! link NeoTreeFloatBorder primary_accent_bg")
-
         vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
         vim.cmd("hi! link NeoTreeFileStats Comment")
       end
