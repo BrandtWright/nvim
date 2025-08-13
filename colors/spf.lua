@@ -113,50 +113,45 @@ local highlights = {
 
   background_on_background = { fg = colors.background, bg = colors.background },
 
-  -- Color Palette
+  -- Red
   red = { fg = colors.red, bg = "" },
   bright_red = { fg = colors.bright_red, bg = "" },
-  -- red_dark
   red_underline = { fg = colors.red, bg = "", underline = true },
 
+  -- Orange
   orange = { fg = colors.orange, bg = "" },
-  -- bright_orange
-  -- dark_orange
 
+  -- Yellow
   yellow = { fg = colors.yellow, bg = "" },
-  -- bright_yelow
-  -- dark_yellow
   yellow_undercurl = { undercurl = true, fg = colors.yellow, bg = "" },
 
+  -- Green
   green = { fg = colors.green, bg = "" },
   bright_green = { fg = colors.bright_green, bg = "" },
-  -- dark_green
   green_undercurl = { undercurl = true, fg = colors.green, bg = "" },
 
+  -- Cyan
   cyan = { fg = colors.cyan, bg = "" },
-  -- bright_cyan
-  -- dark_cyan
   bright_cyan_italic = { italic = true, fg = colors.bright_cyan, bg = "" },
 
+  -- Blue
   blue = { fg = colors.blue, bg = "" },
   bright_blue = { fg = colors.bright_blue, bg = "" },
-  -- dark_blue
   blue_undercurl = { undercurl = true, fg = colors.blue, bg = "" },
 
+  -- Azure
   azure = { fg = colors.azure, bg = "" },
-  -- bright_azure
-  -- dark_azure
 
+  -- Majenta
   magenta = { fg = colors.magenta, bg = "" },
   bright_magenta = { fg = colors.bright_magenta, bg = "" },
-  -- dark_magenta
   magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
 
-  -- white
+  -- White
   bright_white = { fg = colors.bright_white, bg = "" },
   dark_white = { fg = colors.dark_white, bg = "" },
 
-  -- black
+  -- Black
   bright_black = { fg = colors.bright_black, bg = "" },
   bright_black_on_dark_red = { fg = colors.bright_black, bg = colors.dark_red },
   bright_black_on_primary_accent_bg = {
@@ -167,6 +162,7 @@ local highlights = {
   bright_black_italic = { italic = true, fg = colors.bright_black, bg = "" },
   bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black, bg = "" },
 
+  -- Backgrounds
   nothing_on_dark_yellow = { fg = "", bg = colors.dark_yellow },
   nothing_on_dark_green = { fg = "", bg = colors.dark_green },
   nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
