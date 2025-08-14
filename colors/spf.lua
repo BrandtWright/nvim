@@ -94,91 +94,153 @@ local colors = {
 
 local highlights = {
 
-  -- UI
+  -- Title
+  -- LspReferenceTarget
   bold = { bold = true },
+  -- Underlined
   underline = { underline = true },
+  -- @function.call
+  -- @markup.quote
+  -- @lsp.type.parameter
   italic = { italic = true },
 
+  -- Identifier, @variable
+  -- Pmenu
   foreground = { fg = colors.foreground, bg = "" },
+  -- Normal
+  -- SignColumn
   foreground_on_background = { fg = colors.foreground, bg = colors.background },
+  -- MatchParen
   foreground_on_bright_black_bold = {
     bold = true,
     fg = colors.foreground,
     bg = colors.bright_black,
   },
 
+  -- Ignore
   background_on_background = { fg = colors.background, bg = colors.background },
 
-  -- Red
+  -- DiagnosticError, Error, ErrorMsg,
+  -- Removed, diffremoved
+  -- @markup.list.unchecked
+  -- @keyword.operator
   red = { fg = colors.red, bg = "" },
+  -- StorageClass
   bright_red = { fg = colors.bright_red, bg = "" },
+  -- DiagnosticUnderlineError
   red_underline = { fg = colors.red, bg = "", underline = true },
 
-  -- Orange
+  -- String
+  -- @markup.raw
   orange = { fg = colors.orange, bg = "" },
-
-  -- Yellow
+  -- DiagnosticWarn, WarningMsg
+  -- Function, @lsp.typemod.function
+  -- Changed, diffChanged
   yellow = { fg = colors.yellow, bg = "" },
+  -- DiagnosticUnderlineWarn
   yellow_undercurl = { undercurl = true, fg = colors.yellow, bg = "" },
 
-  -- Green
+  -- DiagnosticOk
+  -- Added, diffAdded
+  -- Type
+  -- @lsp.type.property, @propery,
+  -- @markup.list.checked
   green = { fg = colors.green, bg = "" },
+  -- Structure
   bright_green = { fg = colors.bright_green, bg = "" },
+  -- DiagnosticUnderlineOk
   green_undercurl = { undercurl = true, fg = colors.green, bg = "" },
 
-  -- Cyan
+  -- Label
   cyan = { fg = colors.cyan, bg = "" },
+  -- Constant
   bright_cyan_italic = { italic = true, fg = colors.bright_cyan, bg = "" },
 
-  -- Blue
+  -- DiagnosticInfo,
+  -- Keyword
+  -- Todo
+  -- Typedef
+  -- Directory
+  -- @markup.link.label
   blue = { fg = colors.blue, bg = "" },
+  -- Preproc, Include, Define, Macro, PreCondit
   bright_blue = { fg = colors.bright_blue, bg = "" },
+  -- DiagnosticUnderlineInfo
   blue_undercurl = { undercurl = true, fg = colors.blue, bg = "" },
 
-  -- Azure
+  -- Tag
   azure = { fg = colors.azure, bg = "" },
 
-  -- Majenta
+  -- DiagnosticHint
+  -- Debug
+  -- @markup.link, @markup.link.url
   magenta = { fg = colors.magenta, bg = "" },
   bright_magenta = { fg = colors.bright_magenta, bg = "" },
   magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
 
-  -- White
+  -- Delimiter
   bright_white = { fg = colors.bright_white, bg = "" },
+  -- Operator
   dark_white = { fg = colors.dark_white, bg = "" },
 
-  -- Black
+  -- FloatBorder
+  -- LineNr
+  -- Conceal
+  -- NonText
+  -- DiagnosticUnnecessary
+  -- LspInlayHint
   bright_black = { fg = colors.bright_black, bg = "" },
-  bright_black_on_dark_red = { fg = colors.bright_black, bg = colors.dark_red },
+  -- Folded
   bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
     bg = colors.primary_accent_bg,
   },
+  -- CursorLineNr
   bright_black_bold = { bold = true, fg = colors.bright_black, bg = "" },
+  -- Comment
   bright_black_italic = { italic = true, fg = colors.bright_black, bg = "" },
+  -- DiagnosticDeprecated
   bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black, bg = "" },
 
-  -- Backgrounds
+  -- DiffChange
+  -- LspReferenceText
+  -- LspReferenceWrite,
   nothing_on_dark_yellow = { fg = "", bg = colors.dark_yellow },
+  -- DiffAdd
+  -- LspReferenceRead,
   nothing_on_dark_green = { fg = "", bg = colors.dark_green },
+  -- DiffText
   nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
+  -- DiffDelete
+  nothing_on_dark_red = { fg = "", bg = colors.dark_red },
 
+  -- WinSeparator
   secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
 
+  -- WinBar
   primary_accent_fg_on_primary_accent_bg = {
     fg = colors.primary_accent_fg,
     bg = colors.primary_accent_bg,
   },
 
+  -- WinBarNC
   secondary_accent_fg_on_secondary_accent_bg = {
     fg = colors.secondary_accent_fg,
     bg = colors.secondary_accent_bg,
   },
 
+  -- PmenuSel
+  -- Visual
   nothing_on_visual = { fg = "", bg = colors.gray_20 },
+  -- CursorLine
+  -- markdownCode
   nothing_on_cursorline = { fg = "", bg = colors.cursorline },
+  -- Search
   background_on_green = { bold = true, fg = colors.background, bg = colors.green },
 
+  -- Special
+  -- markdownH2, -- markdownH3, markdownH4, markdownH5, markdownH6
+  -- marksownListMarker
   gold = { fg = colors.gold, bg = "" },
 }
 
@@ -349,7 +411,7 @@ local links = {
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = highlights.bright_black_on_dark_red,
+  DiffDelete = highlights.nothing_on_dark_red,
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
@@ -474,7 +536,7 @@ local links = {
 
   -- hl-ErrorMsg
   -- Error messages on the command line.
-  ErrorMsg = {},
+  ErrorMsg = highlights.red,
 
   -- hl-ModeMsg
   -- 'showmode' message (e.g., "-- INSERT --").
@@ -498,7 +560,7 @@ local links = {
 
   -- hl-WarningMsg
   -- Warning messages.
-  WarningMsg = {},
+  WarningMsg = highlights.yellow,
 
   -- hl-SpellBad
   -- Word that is not recognized by the spellchecker. |spell|
@@ -622,109 +684,73 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- hl-DiagnosticError
-  -- Used as the base highlight group. Other Diagnostic highlights link to this
-  -- by default (except Underline)
   DiagnosticError = highlights.red,
   -- hl-DiagnosticVirtualTextError
-  -- Used for "Error" diagnostic virtual text.
   DiagnosticVirtualTextError = "DiagnosticError",
   -- hl-DiagnosticVirtualLinesError
-  -- Used for "Error" diagnostic virtual lines.
   DiagnosticVirtualLinesError = "DiagnosticError",
-  -- See vim.diagnostic.open_float()
+  -- hl-DiagnosticFloatingError
   DiagnosticFloatingError = "DiagnosticError",
   -- hl-DiagnosticSignError
-  -- Used for "Error" signs in sign column.
   DiagnosticSignError = "DiagnosticError",
   -- hl-DiagnosticUnderlineError
-  -- Used to underline "Error" diagnostics.
   DiagnosticUnderlineError = highlights.red_underline,
 
   -- hl-DiagnosticWarn
-  -- Used as the base highlight group.
-  -- Other Diagnostic highlights link to this by default (except Underline)
   DiagnosticWarn = highlights.yellow,
   -- hl-DiagnosticVirtualTextWarn
-  -- Used for "Warn" diagnostic virtual text.
   DiagnosticVirtualTextWarn = "DiagnosticWarn",
   -- hl-DiagnosticVirtualLinesWarn
-  -- Used for "Warn" diagnostic virtual lines.
   DiagnosticVirtualLinesWarn = "DiagnosticWarn",
   -- hl-DiagnosticFloatingWarn
-  -- Used to color "Warn" diagnostic messages in diagnostics float.
   DiagnosticFloatingWarn = "DiagnosticWarn",
   -- hl-DiagnosticSignWarn
-  -- Used for "Warn" signs in sign column.
   DiagnosticSignWarn = "DiagnosticWarn",
   -- hl-DiagnosticUnderlineWarn
-  -- Used to underline "Warn" diagnostics.
   DiagnosticUnderlineWarn = highlights.yellow_undercurl,
 
   -- hl-DiagnosticInfo
-  -- Used as the base highlight group.
-  -- Other Diagnostic highlights link to this by default (except Underline)
   DiagnosticInfo = highlights.blue,
   -- hl-DiagnosticVirtualTextInfo
-  -- Used for "Info" diagnostic virtual text.
   DiagnosticVirtualTextInfo = "DiagnosticInfo",
   -- hl-DiagnosticVirtualLinesInfo
-  -- Used for "Info" diagnostic virtual lines.
   DiagnosticVirtualLinesInfo = "DiagnosticInfo",
   -- hl-DiagnosticFloatingInfo
-  -- Used to color "Info" diagnostic messages in diagnostics float.
   DiagnosticFloatingInfo = "DiagnosticInfo",
   -- hl-DiagnosticSignInfo
-  -- Used for "Info" signs in sign column.
   DiagnosticSignInfo = "DiagnosticInfo",
   -- hl-DiagnosticUnderlineInfo
-  -- Used to underline "Info" diagnostics.
   DiagnosticUnderlineInfo = highlights.blue_undercurl,
 
   -- hl-DiagnosticHint
-  -- Used as the base highlight group.
-  -- Other Diagnostic highlights link to this by default (except Underline)
   DiagnosticHint = highlights.magenta,
   -- hl-DiagnosticVirtualTextHint
-  -- Used for "Hint" diagnostic virtual text.
   DiagnosticVirtualTextHint = "DiagnosticHint",
   -- hl-DiagnosticVirtualLinesHint
-  -- Used for "Hint" diagnostic virtual lines.
   DiagnosticVirtualLinesHint = "DiagnosticHint",
   -- hl-DiagnosticFloatingHint
-  -- Used to color "Hint" diagnostic messages in diagnostics float.
   DiagnosticFloatingHint = "DiagnosticHint",
   -- hl-DiagnosticSignHint
-  -- Used for "Hint" signs in sign column.
   DiagnosticSignHint = "DiagnosticHint",
   -- hl-DiagnosticUnderlineHint
-  -- Used to underline "Hint" diagnostics.
   DiagnosticUnderlineHint = highlights.magenta_undercurl,
 
   -- hl-DiagnosticOk
-  -- Used as the base highlight group.
-  -- Other Diagnostic highlights link to this by default (except Underline)
   DiagnosticOk = highlights.green,
   -- hl-DiagnosticVirtualTextOk
-  -- Used for "Ok" diagnostic virtual text.
   DiagnosticVirtualTextOk = "DiagnosticOk",
   -- hl-DiagnosticVirtualLinesOk
-  -- Used for "Ok" diagnostic virtual lines.
   DiagnosticVirtualLinesOk = "DiagnosticOk",
   -- hl-DiagnosticFloatingOk
-  -- Used to color "Ok" diagnostic messages in diagnostics float.
   DiagnosticFloatingOk = "DiagnosticOk",
   -- hl-DiagnosticSignOk
-  -- Used for "Ok" signs in sign column.
   DiagnosticSignOk = "DiagnosticOk",
   -- hl-DiagnosticUnderlineOk
-  -- Used to underline "Ok" diagnostics.
   DiagnosticUnderlineOk = highlights.green_undercurl,
 
   -- hl-DiagnosticDeprecated
-  -- Used for deprecated or obsolete code.
   DiagnosticDeprecated = highlights.bright_black_strikethrough,
   -- hl-DiagnosticUnnecessary
-  -- Used for unnecessary or unused code.
   DiagnosticUnnecessary = highlights.bright_black,
 
   ------------------------------------------------------------------------------
