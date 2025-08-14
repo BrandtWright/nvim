@@ -106,10 +106,6 @@ local highlights = {
     fg = colors.foreground,
     bg = colors.bright_black,
   },
-  foreground_on_primary_accent_bg = {
-    fg = colors.tertiary_accent_bg,
-    bg = colors.background,
-  },
 
   background_on_background = { fg = colors.background, bg = colors.background },
 
@@ -176,16 +172,6 @@ local highlights = {
 
   secondary_accent_fg_on_secondary_accent_bg = {
     fg = colors.secondary_accent_fg,
-    bg = colors.secondary_accent_bg,
-  },
-
-  tertiary_accent_fg_on_tertiary_accent_bg = {
-    fg = colors.tertiary_accent_fg,
-    bg = colors.tertiary_accent_bg,
-  },
-
-  tertiary_accent_bg_on_secondary_accent_bg = {
-    fg = colors.tertiary_accent_bg,
     bg = colors.secondary_accent_bg,
   },
 
@@ -343,15 +329,15 @@ local links = {
 
   -- hl-TabLine
   -- Tab pages line, not active tab page label.
-  Tabline = highlights.tertiary_accent_bg_on_secondary_accent_bg,
+  Tabline = "WinBarNC",
 
   -- hl-TabLineFill
   -- Tab pages line, where there are no labels.
-  TabLineFill = highlights.tertiary_accent_bg_on_secondary_accent_bg,
+  TabLineFill = "WinBarNC",
 
   -- hl-TabLineSel
   -- Tab pages line, active tab page label.
-  TabLineSel = highlights.foreground_on_primary_accent_bg,
+  TabLineSel = "Normal",
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
@@ -567,11 +553,11 @@ local links = {
 
   -- hl-WinBar
   -- Window bar of current window.
-  WinBar = {},
+  WinBar = highlights.primary_accent_fg_on_primary_accent_bg,
 
   -- hl-WinBarNC
   -- Window bar of not-current windows.
-  WinBarNC = {},
+  WinBarNC = highlights.secondary_accent_fg_on_secondary_accent_bg,
 
   -- hl-ComplMatchIns
   -- Matched text of the currently inserted completion.
@@ -1069,15 +1055,6 @@ local links = {
   -- ["number"] = highlights.foreground_on_background,
 
   ------------------------------------------------------------------------------
-
-  ------------------------------------------------------------------------------
-  -- User Highlights
-  ------------------------------------------------------------------------------
-
-  -- TODO: Add Comment for User1, User2, User3
-  User1 = highlights.primary_accent_fg_on_primary_accent_bg,
-  User2 = highlights.secondary_accent_fg_on_secondary_accent_bg,
-  User3 = highlights.tertiary_accent_fg_on_tertiary_accent_bg,
 }
 
 local function is_nonempty_table(x)

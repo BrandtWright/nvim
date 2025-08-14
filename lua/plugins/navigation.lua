@@ -14,8 +14,8 @@ return {
         local get = require("bw.util.highlights").get_attribute
         local hl = vim.api.nvim_set_hl
 
-        local primary_accent_bg = get("User1", "bg") or "#666666"
-        local primary_accent_fg = get("User1", "fg") or "#1a1a1a"
+        local primary_accent_bg = get("WinBar", "bg") or "#666666"
+        local primary_accent_fg = get("WinBar", "fg") or "#1a1a1a"
         local normal_fg = get("Normal", "fg") or "#ffffff"
 
         hl(0, "NeoTreeFloatBorder", {
