@@ -123,6 +123,7 @@ local highlights = {
   -- Removed, diffremoved
   -- @markup.list.unchecked
   -- @keyword.operator
+  -- Error, Exception
   red = { fg = colors.red, bg = "" },
   -- StorageClass
   bright_red = { fg = colors.bright_red, bg = "" },
@@ -154,7 +155,7 @@ local highlights = {
   -- Label
   cyan = { fg = colors.cyan, bg = "" },
   -- Constant
-  bright_cyan_italic = { italic = true, fg = colors.bright_cyan, bg = "" },
+  bright_cyan = { fg = colors.bright_cyan, bg = "" },
 
   -- DiagnosticInfo,
   -- Keyword
@@ -171,12 +172,18 @@ local highlights = {
   -- Tag
   azure = { fg = colors.azure, bg = "" },
 
+  -- Typedef
+  violet = { fg = colors.violet, bg = "" },
+
   -- DiagnosticHint
   -- Debug
   -- @markup.link, @markup.link.url
   magenta = { fg = colors.magenta, bg = "" },
   bright_magenta = { fg = colors.bright_magenta, bg = "" },
   magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
+
+  -- Label
+  rose = { fg = colors.rose, bg = "" },
 
   -- Delimiter
   bright_white = { fg = colors.bright_white, bg = "" },
@@ -189,6 +196,7 @@ local highlights = {
   -- NonText
   -- DiagnosticUnnecessary
   -- LspInlayHint
+  -- Comment
   bright_black = { fg = colors.bright_black, bg = "" },
   -- Folded
   bright_black_on_primary_accent_bg = {
@@ -197,8 +205,6 @@ local highlights = {
   },
   -- CursorLineNr
   bright_black_bold = { bold = true, fg = colors.bright_black, bg = "" },
-  -- Comment
-  bright_black_italic = { italic = true, fg = colors.bright_black, bg = "" },
   -- DiagnosticDeprecated
   bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black, bg = "" },
 
@@ -251,13 +257,13 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- any comment
-  Comment = highlights.bright_black_italic,
+  Comment = highlights.bright_black,
 
   -- any variable name
   Identifier = highlights.foreground,
 
   -- any constant
-  Constant = highlights.bright_cyan_italic,
+  Constant = highlights.bright_cyan,
   -- a character constant: 'c', '\n'
   Character = "Constant",
   -- a number constant: 234, 0xff
@@ -285,7 +291,7 @@ local links = {
   -- keywords TODO FIXME and XXX
   Todo = highlights.blue,
   -- a typedef
-  Typedef = highlights.blue,
+  Typedef = highlights.violet,
 
   -- case, default, etc.
   Labal = highlights.cyan,
@@ -631,7 +637,7 @@ local links = {
 
   -- hl-Conceal
   -- Placeholder characters substituted for concealed
-  Conceal = highlights.bright_black,
+  Conceal = {},
 
   -- hl-Directory
   -- Directory names (and other special names in listings).
