@@ -17,6 +17,7 @@
 -- :h lsp-semantic-highlight        (@lsp.type.variable.lua, etc)
 -- :h lsp-highlight                 (LspReferenceText, LspReferenceRead, etc)
 -------------------------------------------------------------------------------
+
 local colors = {
   foreground = "#ebdbb2",
   background = "#191816",
