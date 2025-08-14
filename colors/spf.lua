@@ -17,7 +17,6 @@
 -- :h lsp-semantic-highlight        (@lsp.type.variable.lua, etc)
 -- :h lsp-highlight                 (LspReferenceText, LspReferenceRead, etc)
 -------------------------------------------------------------------------------
-
 local colors = {
   foreground = "#ebdbb2",
   background = "#191816",
@@ -133,6 +132,7 @@ local highlights = {
   -- String
   -- @markup.raw
   orange = { fg = colors.orange, bg = "" },
+
   -- DiagnosticWarn, WarningMsg
   -- Function, @lsp.typemod.function
   -- Changed, diffChanged
