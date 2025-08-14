@@ -192,7 +192,6 @@ local highlights = {
 
   -- FloatBorder
   -- LineNr
-  -- Conceal
   -- NonText
   -- DiagnosticUnnecessary
   -- LspInlayHint
