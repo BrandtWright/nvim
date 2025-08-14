@@ -6,16 +6,16 @@
 -- TODO: implement `g:terminal_color_*` (see: https://tinyurl.com/y78ntvjk)
 --
 -- TODO: Conceal highlight
-
--- see: :edit $VIMRUNTIME/colors/README.txt
--- see: :edit $VIMRUNTIME/doc/dev_theme.txt
 --
--- :h highlight-groups              (Normal, Comment, etc.)
--- :h group-name                    (Keyword, Function, etc.)
--- :h diagnostic-highlights         (DiagnosticError, DiagnosticWarn, etc)
--- :h treesitter-highlight-groups   (@variable, @variable.builtin, etc)
--- :h lsp-semantic-highlight        (@lsp.type.variable.lua, etc)
--- :h lsp-highlight                 (LspReferenceText, LspReferenceRead, etc)
+--------------------------------------------------------------------------------
+-- :e $VIMRUNTIME/colors/README.txt
+-- :e $VIMRUNTIME/doc/dev_theme.txt
+-- :h highlight-groups                (Normal, Comment, etc.)
+-- :h group-name                      (Keyword, Function, etc.)
+-- :h diagnostic-highlights           (DiagnosticError, etc)
+-- :h treesitter-highlight-groups     (@variable, @variable.builtin, etc)
+-- :h lsp-semantic-highlight          (@lsp.type.variable.lua, etc)
+-- :h lsp-highlight                   (LspReferenceRead, etc)
 -------------------------------------------------------------------------------
 local colors = {
   foreground = "#ebdbb2",
