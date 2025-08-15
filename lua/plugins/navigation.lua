@@ -20,7 +20,7 @@ return {
 
         hl(0, "NeoTreeFloatBorder", {
           fg = primary_accent_bg,
-          bg = primary_accent_bg,
+          bg = "",
         })
 
         hl(0, "NeoTreeTitleBar", {
