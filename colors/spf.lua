@@ -34,33 +34,21 @@ local colors = {
   bright_yellow = "#fcfca4",
   dark_yellow = "#33331f",
 
-  chartreuse = "#91b76b",
-  bright_chartreuse = "#cfeaa0",
-  dark_chartreuse = "#758e57",
-
   green = "#8fa899",
   bright_green = "#b9d9b8",
   dark_green = "#1f3326",
 
-  spring = "#6da89e",
-  bright_spring = "#a9d5c8",
-  dark_spring = "#4f766e",
-
   cyan = "#7b919e",
   bright_cyan = "#a7cacc",
   dark_cyan = "#536a71",
-
-  azure = "#5f87a6",
-  bright_azure = "#a2c5e4",
-  dark_azure = "#45667e",
 
   blue = "#5692db",
   bright_blue = "#77b3fc",
   dark_blue = "#142233",
 
   violet = "#8a7b9e",
-  bright_violet = "#eebaff",
-  dark_violet = "#59497c",
+  -- bright_violet = "#eebaff",
+  -- dark_violet = "#59497c",
 
   magenta = "#8f7099",
   bright_magenta = "#c99fd6",
@@ -159,8 +147,8 @@ local highlights = {
 
   -- DiagnosticInfo,
   -- Keyword
+  -- Tag
   -- Todo
-  -- Typedef
   -- Directory
   -- @markup.link.label
   blue = { fg = colors.blue, bg = "" },
@@ -169,12 +157,6 @@ local highlights = {
   -- DiagnosticUnderlineInfo
   blue_undercurl = { undercurl = true, fg = colors.blue, bg = "" },
 
-  -- Tag
-  azure = { fg = colors.azure, bg = "" },
-
-  -- Typedef
-  violet = { fg = colors.violet, bg = "" },
-
   -- DiagnosticHint
   -- Debug
   -- @markup.link, @markup.link.url
@@ -182,7 +164,7 @@ local highlights = {
   bright_magenta = { fg = colors.bright_magenta, bg = "" },
   magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
 
-  -- Label
+  -- Typedef
   rose = { fg = colors.rose, bg = "" },
 
   -- Delimiter
@@ -289,11 +271,12 @@ local links = {
   Keyword = highlights.blue,
   -- keywords TODO FIXME and XXX
   Todo = highlights.blue,
+
   -- a typedef
-  Typedef = highlights.violet,
+  Typedef = highlights.rose,
 
   -- case, default, etc.
-  Labal = highlights.cyan,
+  Label = highlights.cyan,
 
   -- "sizeof", "+", "*", etc.
   Operator = highlights.dark_white,
@@ -345,7 +328,7 @@ local links = {
   Delimiter = highlights.bright_white,
 
   -- you can use CTRL-] on this
-  Tag = highlights.azure,
+  Tag = highlights.blue,
 
   -- debugging statements
   Debug = highlights.magenta,
