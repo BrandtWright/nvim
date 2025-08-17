@@ -18,53 +18,16 @@
 -- :h lsp-highlight                   (LspReferenceRead, etc)
 -------------------------------------------------------------------------------
 local colors = {
-  foreground = "#ebdbb2",
-  background = "#191816",
   cursorline = "#1f1d1b",
 
-  red = "#bd7671",
-  bright_red = "#ffa099",
-  dark_red = "#33201f",
+  rose = "#cd7ab8",
+  bright_rose = "#f5b8e6",
 
-  orange = "#ce9178",
-  bright_orange = "#f29950",
-  dark_orange = "#a1633f",
-
-  yellow = "#c2c27c",
-  bright_yellow = "#fcfca4",
-  dark_yellow = "#33331f",
-
-  green = "#8fa899",
-  bright_green = "#b9d9b8",
-  dark_green = "#1f3326",
-
-  cyan = "#7b919e",
-  bright_cyan = "#a7cacc",
-  dark_cyan = "#536a71",
-
-  blue = "#5692db",
-  bright_blue = "#77b3fc",
-  dark_blue = "#142233",
-
-  violet = "#8a7b9e",
-  -- bright_violet = "#eebaff",
-  -- dark_violet = "#59497c",
-
-  magenta = "#8f7099",
-  bright_magenta = "#c99fd6",
-  dark_magenta = "#5f4469",
-
-  rose = "#c08081",
-  bright_rose = "#e084a3",
-  dark_rose = "#94586b",
-
-  black = "#0e0d0c",
-  bright_black = "#737373",
-  dark_black = "#121210",
+  -- black = "#1a1816",
+  bright_black = "#8a857e",
 
   white = "#ebdbb2",
-  bright_white = "#f2e8ce",
-  dark_white = "#a89f91",
+  bright_white = "#e0d8cc",
 
   primary_accent_fg = "#a89984",
   primary_accent_bg = "#2c2826",
@@ -78,6 +41,10 @@ local colors = {
   gray_20 = "#333333",
   gold = "#a38e5d",
 }
+
+-- TODO: remove this:
+local new_colors = require("bw.config.new-colors")
+colors = vim.tbl_deep_extend("force", colors, new_colors)
 
 local highlights = {
 
@@ -93,19 +60,19 @@ local highlights = {
 
   -- Identifier, @variable
   -- Pmenu
-  foreground = { fg = colors.foreground, bg = "" },
+  foreground = { fg = colors.white, bg = "" },
   -- Normal
   -- SignColumn
-  foreground_on_background = { fg = colors.foreground, bg = colors.background },
+  white_on_black = { fg = colors.white, bg = colors.black },
   -- MatchParen
   foreground_on_bright_black_bold = {
     bold = true,
-    fg = colors.foreground,
+    fg = colors.white,
     bg = colors.bright_black,
   },
 
   -- Ignore
-  background_on_background = { fg = colors.background, bg = colors.background },
+  background_on_background = { fg = colors.black, bg = colors.black },
 
   -- DiagnosticError, Error, ErrorMsg,
   -- Removed, diffremoved
@@ -167,10 +134,10 @@ local highlights = {
   -- Typedef
   rose = { fg = colors.rose, bg = "" },
 
+  -- Operator
+  white = { fg = colors.white, bg = "" },
   -- Delimiter
   bright_white = { fg = colors.bright_white, bg = "" },
-  -- Operator
-  dark_white = { fg = colors.dark_white, bg = "" },
 
   -- FloatBorder
   -- LineNr
@@ -192,14 +159,14 @@ local highlights = {
   -- DiffChange
   -- LspReferenceText
   -- LspReferenceWrite,
-  nothing_on_dark_yellow = { fg = "", bg = colors.dark_yellow },
+  nothing_on_yellow = { fg = "", bg = colors.yellow },
   -- DiffAdd
   -- LspReferenceRead,
-  nothing_on_dark_green = { fg = "", bg = colors.dark_green },
+  nothing_on_green = { fg = "", bg = colors.green },
   -- DiffText
-  nothing_on_dark_magenta = { fg = "", bg = colors.dark_magenta },
+  nothing_on_magenta = { fg = "", bg = colors.magenta },
   -- DiffDelete
-  nothing_on_dark_red = { fg = "", bg = colors.dark_red },
+  nothing_on_red = { fg = "", bg = colors._red },
 
   -- WinSeparator
   secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
@@ -223,7 +190,7 @@ local highlights = {
   -- markdownCode
   nothing_on_cursorline = { fg = "", bg = colors.cursorline },
   -- Search
-  background_on_green = { bold = true, fg = colors.background, bg = colors.green },
+  background_on_green = { bold = true, fg = colors.black, bg = colors.green },
 
   -- Special
   -- markdownH2, -- markdownH3, markdownH4, markdownH5, markdownH6
@@ -261,7 +228,7 @@ local links = {
   Function = highlights.yellow,
 
   -- any statement (flow control, return, etc.)
-  Statement = highlights.bright_magenta,
+  Statement = highlights.magenta,
   -- if, then, else, endif, switch, etc.
   Conditional = "Statement",
   -- for, do, while, etc.
@@ -279,7 +246,7 @@ local links = {
   Label = highlights.cyan,
 
   -- "sizeof", "+", "*", etc.
-  Operator = highlights.dark_white,
+  Operator = highlights.white,
 
   -- any erroneous construct
   Error = highlights.red,
@@ -341,7 +308,7 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- Normal text.
-  Normal = highlights.foreground_on_background,
+  Normal = highlights.white_on_black,
 
   -- hl-Search
   -- Last search pattern highlighting (see 'hlsearch').
@@ -391,19 +358,19 @@ local links = {
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
-  DiffAdd = highlights.nothing_on_dark_green,
+  DiffAdd = highlights.nothing_on_green,
 
   -- hl-DiffChange
   -- Diff mode: Changed line. |diff.txt|
-  DiffChange = highlights.nothing_on_dark_yellow,
+  DiffChange = highlights.nothing_on_yellow,
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = highlights.nothing_on_dark_red,
+  DiffDelete = highlights.nothing_on_red,
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = highlights.nothing_on_dark_magenta,
+  DiffText = highlights.nothing_on_magenta,
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
@@ -595,7 +562,7 @@ local links = {
 
   -- hl-SignColumn
   -- Column where |signs| are displayed.
-  SignColumn = highlights.foreground_on_background,
+  SignColumn = "Normal",
 
   -- hl-WildMenu
   -- Current match in 'wildmenu' completion.
@@ -746,11 +713,11 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- used for highlighting "text" references
-  LspReferenceText = highlights.nothing_on_dark_yellow,
+  LspReferenceText = highlights.bold,
   -- used for highlighting "read" references
-  LspReferenceRead = highlights.nothing_on_dark_green,
+  LspReferenceRead = highlights.bold,
   -- used for highlighting "write" references
-  LspReferenceWrite = highlights.nothing_on_dark_yellow,
+  LspReferenceWrite = highlights.bold,
   -- used for highlighting reference targets (e.g. in a hover range)
   LspReferenceTarget = highlights.bold,
   -- used for highlighting inlay hints
@@ -922,7 +889,7 @@ local links = {
   -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
   ["@keyword.modifier"] = {},
   -- keywords related to loops (e.g. `for`, `while`)
-  ["@keyword.repeat"] = highlights.bright_magenta,
+  ["@keyword.repeat"] = highlights.magenta,
   -- keywords like `return` and `yield`
   ["@keyword.return"] = {},
   -- keywords related to debugging
@@ -930,7 +897,7 @@ local links = {
   -- keywords related to exceptions (e.g. `throw`, `catch`)
   ["@keyword.exception"] = {},
   -- keywords related to conditionals (e.g. `if`, `else`)
-  ["@keyword.conditional"] = highlights.bright_magenta,
+  ["@keyword.conditional"] = highlights.magenta,
   -- ternary operator (e.g. `?`, `:`)
   ["@keyword.conditional.ternary"] = {},
   -- various preprocessor directives and shebangs
@@ -1061,9 +1028,9 @@ local links = {
   -- TODO: what are these?
   ["@method"] = highlights.yellow,
   ["@method.call"] = highlights.italic,
-  ["@repeat"] = highlights.bright_magenta,
+  ["@repeat"] = highlights.magenta,
   ["@lsp.typemod.function"] = highlights.yellow,
-  ["@conditional"] = highlights.bright_magenta,
+  ["@conditional"] = highlights.magenta,
   ["@text.literal.markdown_inline"] = highlights.yellow,
   -- Intentionally disabled:
   -- ["number"] = highlights.foreground_on_background,
