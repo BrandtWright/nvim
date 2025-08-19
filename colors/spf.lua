@@ -118,7 +118,6 @@ local highlights = {
 
   nothing_on_visual = { bg = colors.gray_20 },
   nothing_on_cursorline = { bg = colors.cursorline },
-  background_on_green = { bold = true, fg = colors.black, bg = colors.green },
 
   gold = { fg = colors.gold },
 }
