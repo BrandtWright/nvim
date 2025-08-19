@@ -13,7 +13,7 @@ return {
     "saghen/blink.cmp",
     opts = function(_, opts)
       local function apply_highlights()
-        vim.cmd("hi! link BlinkCmpKind bright_cyan")
+        vim.cmd("hi! link BlinkCmpKind DiagnosticInfo")
         vim.cmd("hi! link BlinkCmpDoc Normal")
         vim.cmd("hi! link BlinkCmpDocSeparator WinSeparator")
         vim.cmd("hi! link BlinkCmpDocBorder FloatBorder")

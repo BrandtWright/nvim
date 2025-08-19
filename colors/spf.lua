@@ -7,6 +7,8 @@
 --
 -- TODO: Conceal highlight
 --
+-- TODO: change SnacksNotifierBorder/Title error to red_on_black (all levels)
+--
 --------------------------------------------------------------------------------
 -- :e $VIMRUNTIME/colors/README.txt
 -- :e $VIMRUNTIME/doc/dev_theme.txt
@@ -48,154 +50,79 @@ colors = vim.tbl_deep_extend("force", colors, new_colors)
 
 local highlights = {
 
-  -- Title
-  -- LspReferenceTarget
   bold = { bold = true },
-  -- Underlined
   underline = { underline = true },
-  -- @function.call
-  -- @markup.quote
-  -- @lsp.type.parameter
   italic = { italic = true },
 
-  -- Identifier, @variable
-  -- Pmenu
-  foreground = { fg = colors.white, bg = "" },
-  -- Normal
-  -- SignColumn
+  white = { fg = colors.white },
   white_on_black = { fg = colors.white, bg = colors.black },
-  -- MatchParen
-  foreground_on_bright_black_bold = {
-    bold = true,
-    fg = colors.white,
-    bg = colors.bright_black,
-  },
-
-  -- Ignore
-  background_on_background = { fg = colors.black, bg = colors.black },
-
-  -- DiagnosticError, Error, ErrorMsg,
-  -- Removed, diffremoved
-  -- @markup.list.unchecked
-  -- @keyword.operator
-  -- Error, Exception
-  red = { fg = colors.red, bg = "" },
-  -- StorageClass
-  bright_red = { fg = colors.bright_red, bg = "" },
-  -- DiagnosticUnderlineError
-  red_underline = { fg = colors.red, bg = "", underline = true },
-
-  -- String
-  -- @markup.raw
-  orange = { fg = colors.orange, bg = "" },
-
-  -- DiagnosticWarn, WarningMsg
-  -- Function, @lsp.typemod.function
-  -- Changed, diffChanged
-  yellow = { fg = colors.yellow, bg = "" },
-  -- DiagnosticUnderlineWarn
-  yellow_undercurl = { undercurl = true, fg = colors.yellow, bg = "" },
-
-  -- DiagnosticOk
-  -- Added, diffAdded
-  -- Type
-  -- @lsp.type.property, @propery,
-  -- @markup.list.checked
-  green = { fg = colors.green, bg = "" },
-  -- Structure
-  bright_green = { fg = colors.bright_green, bg = "" },
-  -- DiagnosticUnderlineOk
-  green_undercurl = { undercurl = true, fg = colors.green, bg = "" },
-
-  -- Label
-  cyan = { fg = colors.cyan, bg = "" },
-  -- Constant
-  bright_cyan = { fg = colors.bright_cyan, bg = "" },
-
-  -- DiagnosticInfo,
-  -- Keyword
-  -- Tag
-  -- Todo
-  -- Directory
-  -- @markup.link.label
-  blue = { fg = colors.blue, bg = "" },
-  -- Preproc, Include, Define, Macro, PreCondit
-  bright_blue = { fg = colors.bright_blue, bg = "" },
-  -- DiagnosticUnderlineInfo
-  blue_undercurl = { undercurl = true, fg = colors.blue, bg = "" },
-
-  -- DiagnosticHint
-  -- Debug
-  -- @markup.link, @markup.link.url
-  magenta = { fg = colors.magenta, bg = "" },
-  bright_magenta = { fg = colors.bright_magenta, bg = "" },
-  magenta_undercurl = { undercurl = true, fg = colors.magenta, bg = "" },
-
-  -- Typedef
-  rose = { fg = colors.rose, bg = "" },
-
-  -- Operator
-  white = { fg = colors.white, bg = "" },
-  -- Delimiter
+  white_on_bright_black_bold = { bold = true, fg = colors.white, bg = colors.bright_black },
   bright_white = { fg = colors.bright_white, bg = "" },
 
-  -- FloatBorder
-  -- LineNr
-  -- NonText
-  -- DiagnosticUnnecessary
-  -- LspInlayHint
-  -- Comment
+  black_on_black = { fg = colors.black, bg = colors.black },
   bright_black = { fg = colors.bright_black, bg = "" },
-  -- Folded
   bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
     bg = colors.primary_accent_bg,
   },
-  -- CursorLineNr
-  bright_black_bold = { bold = true, fg = colors.bright_black, bg = "" },
-  -- DiagnosticDeprecated
-  bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black, bg = "" },
+  bright_black_bold = { bold = true, fg = colors.bright_black },
+  bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black },
 
-  -- DiffChange
-  -- LspReferenceText
-  -- LspReferenceWrite,
-  nothing_on_yellow = { fg = "", bg = colors.yellow },
-  -- DiffAdd
-  -- LspReferenceRead,
-  nothing_on_green = { fg = "", bg = colors.green },
-  -- DiffText
-  nothing_on_magenta = { fg = "", bg = colors.magenta },
-  -- DiffDelete
-  nothing_on_red = { fg = "", bg = colors._red },
+  red = { fg = colors.red },
+  red_on_black = { fg = colors.red, bg = colors.black },
+  red_underline = { fg = colors.red, underline = true },
+  bright_red = { fg = colors.bright_red },
 
-  -- WinSeparator
-  secondary_accent_bg = { fg = colors.secondary_accent_bg, bg = "" },
+  orange = { fg = colors.orange },
 
-  -- WinBar
+  yellow = { fg = colors.yellow },
+  yellow_on_black = { fg = colors.yellow, bg = colors.black },
+  yellow_undercurl = { undercurl = true, fg = colors.yellow },
+
+  green = { fg = colors.green },
+  green_on_black = { fg = colors.green, bg = colors.black },
+  bright_green = { fg = colors.bright_green },
+  green_undercurl = { undercurl = true, fg = colors.green },
+
+  cyan = { fg = colors.cyan },
+  bright_cyan = { fg = colors.bright_cyan },
+
+  blue = { fg = colors.blue },
+  blue_on_black = { fg = colors.blue, bg = colors.black },
+  bright_blue = { fg = colors.bright_blue },
+  blue_undercurl = { undercurl = true, fg = colors.blue },
+
+  magenta = { fg = colors.magenta },
+  magenta_on_black = { fg = colors.magenta, bg = colors.black },
+  bright_magenta = { fg = colors.bright_magenta },
+  magenta_undercurl = { undercurl = true, fg = colors.magenta },
+
+  rose = { fg = colors.rose },
+
+  nothing_on_yellow = { bg = colors.yellow },
+  nothing_on_green = { bg = colors.green },
+  nothing_on_magenta = { bg = colors.magenta },
+  nothing_on_red = { bg = colors.red },
+
+  nothing_on_black = { bg = colors.black },
+
+  secondary_accent_bg = { fg = colors.secondary_accent_bg },
+
   primary_accent_fg_on_primary_accent_bg = {
     fg = colors.primary_accent_fg,
     bg = colors.primary_accent_bg,
   },
 
-  -- WinBarNC
   secondary_accent_fg_on_secondary_accent_bg = {
     fg = colors.secondary_accent_fg,
     bg = colors.secondary_accent_bg,
   },
 
-  -- PmenuSel
-  -- Visual
-  nothing_on_visual = { fg = "", bg = colors.gray_20 },
-  -- CursorLine
-  -- markdownCode
-  nothing_on_cursorline = { fg = "", bg = colors.cursorline },
-  -- Search
+  nothing_on_visual = { bg = colors.gray_20 },
+  nothing_on_cursorline = { bg = colors.cursorline },
   background_on_green = { bold = true, fg = colors.black, bg = colors.green },
 
-  -- Special
-  -- markdownH2, -- markdownH3, markdownH4, markdownH5, markdownH6
-  -- marksownListMarker
-  gold = { fg = colors.gold, bg = "" },
+  gold = { fg = colors.gold },
 }
 
 local links = {
@@ -208,7 +135,7 @@ local links = {
   Comment = highlights.bright_black,
 
   -- any variable name
-  Identifier = highlights.foreground,
+  Identifier = highlights.white,
 
   -- any constant
   Constant = highlights.bright_cyan,
@@ -301,7 +228,7 @@ local links = {
   Debug = highlights.magenta,
 
   -- left blank, hidden  |hl-Ignore|
-  Ignore = highlights.background_on_background,
+  Ignore = highlights.black_on_black,
 
   ------------------------------------------------------------------------------
   -- UI Highlight Groups                           see: :help 'highlight-groups'
@@ -313,7 +240,7 @@ local links = {
   -- hl-Search
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
-  Search = highlights.background_on_green,
+  Search = highlights.nothing_on_visual,
   -- hl-CurSearch
   -- Current match for the last search pattern (see 'hlsearch').
   -- Note: This is correct after a search, but may get outdated if
@@ -434,7 +361,7 @@ local links = {
 
   -- hl-Pmenu
   -- Popup menu: Normal item.
-  Pmenu = highlights.foreground,
+  Pmenu = highlights.nothing_on_black,
 
   -- hl-PmenuSel
   -- Popup menu: Selected item. Combined with |hl-Pmenu|.
@@ -599,7 +526,7 @@ local links = {
   -- hl-MatchParen
   -- Character under the cursor or just before it, if it
   -- is a paired bracket, and its match. |pi_paren.txt|
-  MatchParen = highlights.foreground_on_bright_black_bold,
+  MatchParen = highlights.white_on_bright_black_bold,
 
   -- hl-NonText
   -- '@' at the end of the window, characters from 'showbreak'
@@ -641,20 +568,20 @@ local links = {
   -- hl-DiagnosticError
   DiagnosticError = highlights.red,
   -- hl-DiagnosticVirtualTextError
-  DiagnosticVirtualTextError = "DiagnosticError",
+  DiagnosticVirtualTextError = highlights.red_on_black,
   -- hl-DiagnosticVirtualLinesError
   DiagnosticVirtualLinesError = "DiagnosticError",
   -- hl-DiagnosticFloatingError
   DiagnosticFloatingError = "DiagnosticError",
   -- hl-DiagnosticSignError
-  DiagnosticSignError = "DiagnosticError",
+  DiagnosticSignError = "DiagnosticVirtualTextError",
   -- hl-DiagnosticUnderlineError
   DiagnosticUnderlineError = highlights.red_underline,
 
   -- hl-DiagnosticWarn
   DiagnosticWarn = highlights.yellow,
   -- hl-DiagnosticVirtualTextWarn
-  DiagnosticVirtualTextWarn = "DiagnosticWarn",
+  DiagnosticVirtualTextWarn = highlights.yellow_on_black,
   -- hl-DiagnosticVirtualLinesWarn
   DiagnosticVirtualLinesWarn = "DiagnosticWarn",
   -- hl-DiagnosticFloatingWarn
@@ -667,7 +594,7 @@ local links = {
   -- hl-DiagnosticInfo
   DiagnosticInfo = highlights.blue,
   -- hl-DiagnosticVirtualTextInfo
-  DiagnosticVirtualTextInfo = "DiagnosticInfo",
+  DiagnosticVirtualTextInfo = highlights.blue_on_black,
   -- hl-DiagnosticVirtualLinesInfo
   DiagnosticVirtualLinesInfo = "DiagnosticInfo",
   -- hl-DiagnosticFloatingInfo
@@ -680,7 +607,7 @@ local links = {
   -- hl-DiagnosticHint
   DiagnosticHint = highlights.magenta,
   -- hl-DiagnosticVirtualTextHint
-  DiagnosticVirtualTextHint = "DiagnosticHint",
+  DiagnosticVirtualTextHint = highlights.magenta_on_black,
   -- hl-DiagnosticVirtualLinesHint
   DiagnosticVirtualLinesHint = "DiagnosticHint",
   -- hl-DiagnosticFloatingHint
@@ -693,7 +620,7 @@ local links = {
   -- hl-DiagnosticOk
   DiagnosticOk = highlights.green,
   -- hl-DiagnosticVirtualTextOk
-  DiagnosticVirtualTextOk = "DiagnosticOk",
+  DiagnosticVirtualTextOk = highlights.magenta_on_black,
   -- hl-DiagnosticVirtualLinesOk
   DiagnosticVirtualLinesOk = "DiagnosticOk",
   -- hl-DiagnosticFloatingOk
@@ -799,7 +726,7 @@ local links = {
   ------------------------------------------------------------------------------
 
   -- various variable names
-  ["@variable"] = highlights.foreground,
+  ["@variable"] = highlights.white,
   -- built-in variable names (e.g. `this`, `self`)
   ["@variable.builtin"] = {},
   -- parameters of a function
@@ -1108,6 +1035,6 @@ end
 for group, spec in pairs(links) do
   local target = resolve_link_name(spec, highlight_keys)
   if type(target) == "string" and target ~= "" then
-    vim.api.nvim_set_hl(0, group, { link = target })
+    vim.api.nvim_set_hl(0, group, { link = target, default = false })
   end
 end
