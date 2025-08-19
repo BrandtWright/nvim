@@ -17,6 +17,7 @@
 -- :h lsp-semantic-highlight          (@lsp.type.variable.lua, etc)
 -- :h lsp-highlight                   (LspReferenceRead, etc)
 -------------------------------------------------------------------------------
+
 -- TODO: remove this:
 local colors = require("bw.config.new-colors")
 
@@ -27,6 +28,7 @@ local highlights = {
   italic = { italic = true },
 
   white = { fg = colors.white },
+  other_white = { fg = colors.white },
   white_on_black = { fg = colors.white, bg = colors.black },
   white_on_bright_black_bold = { bold = true, fg = colors.white, bg = colors.bright_black },
   bright_white = { fg = colors.bright_white },
@@ -946,22 +948,15 @@ local function is_nonempty_string(s)
 end
 
 --- Reverse-map non-empty table values to their keys.
---- Returns: ok:boolean, result:table
+--- Returns: result:table
 local function reverse_map(tbl)
   local reversed = {}
   for key, val in pairs(tbl) do
     if is_nonempty_table(val) then
-      local existing = reversed[val]
-      if existing ~= nil then
-        local fmt = "Fix duplicate table value for keys %s and %s to load SPF."
-        local msg = fmt:format(tostring(existing), tostring(key))
-        vim.notify(msg, vim.log.levels.ERROR, { title = "SPF" })
-        return false, {}
-      end
       reversed[val] = key
     end
   end
-  return true, reversed
+  return reversed
 end
 
 local function resolve_link_name(spec, highlight_names)
@@ -973,11 +968,7 @@ local function resolve_link_name(spec, highlight_names)
   return nil
 end
 
--- Bail out before applying highlights if the reverse map fails
-local ok, highlight_keys = reverse_map(highlights)
-if not ok then
-  return
-end
+local highlight_keys = reverse_map(highlights)
 
 -- Initialize an empty colorscheme
 vim.cmd([[
