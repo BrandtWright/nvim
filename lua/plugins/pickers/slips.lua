@@ -93,16 +93,9 @@ return {
               -- supports_live: boolean (if the finder supports live updates)
             },
             related_slips = {
-
-              -- Logic to find and return the items.
-              -- This function should return an iterable (e.g., a table) of items.
-              -- Each item can be a string or a table with a 'text' field.
               finder = function()
-                -- Get slips
                 local slipbox = require("user.slipbox")
                 local slips = slipbox.get_related_slips()
-
-                -- Configure picker items
                 local items = {}
                 for _, v in ipairs(slips) do
                   local slip_path = slipbox.get_slip_path(v)
@@ -118,21 +111,10 @@ return {
                 end
                 return items
               end,
-
-              -- Optional: Customize how each item is displayed in the picker.
-              -- This function takes an item and returns a formatted string or a table
-              -- suitable for `vim.api.nvim_buf_set_text`.
               format = function(item)
                 return { { item.text } }
               end,
-
-              -- Optional parameter title: string (override the source name as title)
               title = "Related Slips",
-
-              -- Other optional parameters:
-              -- layout: string (e.g., "select", "vscode")
-              -- live: boolean (for live filtering)
-              -- supports_live: boolean (if the finder supports live updates)
             },
           },
         },
