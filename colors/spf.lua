@@ -7,8 +7,6 @@
 --
 -- TODO: Conceal highlight
 --
--- TODO: change SnacksNotifierBorder/Title error to red_on_black (all levels)
---
 --------------------------------------------------------------------------------
 -- :e $VIMRUNTIME/colors/README.txt
 -- :e $VIMRUNTIME/doc/dev_theme.txt
