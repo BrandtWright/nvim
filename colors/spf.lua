@@ -95,6 +95,7 @@ local highlights = {
   bright_magenta = { fg = colors.bright_magenta },
   magenta_undercurl = { undercurl = true, fg = colors.magenta },
 
+  -- TODO: temporarily move to new-colors for color testing
   rose = { fg = colors.rose },
 
   nothing_on_yellow = { bg = colors.yellow },
