@@ -77,11 +77,6 @@ local highlights = {
 
   rose = { fg = colors.rose },
 
-  -- nothing_on_yellow = { bg = colors.yellow },
-  -- nothing_on_green = { bg = colors.green },
-  -- nothing_on_blue = { bg = colors.blue },
-  -- nothing_on_red = { bg = colors.red },
-
   nothing_on_black = { bg = colors.black },
 
   secondary_accent_bg = { fg = colors.secondary_accent_bg },
