@@ -966,16 +966,6 @@ local function is_nonempty_string(s)
   return type(s) == "string" and s ~= ""
 end
 
----Check if a highlight group exists.
----@param name string The highlight group name
----@return boolean
-local function hl_exists(name)
-  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
-  local fmt = "Highlight group '%s' does not exist."
-  vim.notify(string.format(fmt, name), vim.log.levels.DEBUG, { title = "SPF" })
-  return ok and next(hl) ~= nil
-end
-
 --- Reverse-map non-empty table values to their keys.
 --- Returns: ok:boolean, result:table
 local function reverse_map(tbl)
