@@ -147,13 +147,6 @@ return {
         end,
         desc = "Find Slip",
       },
-      -- {
-      --   "<leader>sR",
-      --   function()
-      --     Snacks.picker.pick({ source = "related_slips" })
-      --   end,
-      --   desc = "View Related Slip",
-      -- },
     },
   },
 }
