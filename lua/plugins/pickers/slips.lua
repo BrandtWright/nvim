@@ -21,12 +21,22 @@ return {
             local ok, wk = pcall(require, "which-key")
             if ok then
               wk.add({
-                "<leader>sR",
-                function()
-                  Snacks.picker.pick({ source = "related_slips" })
-                end,
-                buffer = ev.buf,
-                desc = "View Related Slips",
+                {
+                  "<localleader>v",
+                  function()
+                    Snacks.picker.pick({ source = "related_slips" })
+                  end,
+                  buffer = ev.buf,
+                  desc = "View Related Slips",
+                },
+                {
+                  "<localleader>a",
+                  function()
+                    Snacks.picker.pick({ source = "slip_links" })
+                  end,
+                  buffer = ev.buf,
+                  desc = "Add Releated Slip",
+                },
               })
             end
           end
@@ -115,6 +125,60 @@ return {
                 return { { item.text } }
               end,
               title = "Related Slips",
+            },
+
+            slip_links = { -- This is the name displayed in the picker
+
+              -- Logic to find and return the items.
+              -- This function should return an iterable (e.g., a table) of items.
+              -- Each item can be a string or a table with a 'text' field.
+              finder = function()
+                -- Slip list field parser (splits ID<tab>TITLE<tab>TAGS)
+                local function split(str, sep)
+                  local fields = {}
+                  for field in string.gmatch(str, "([^" .. sep .. "]+)") do
+                    table.insert(fields, field)
+                  end
+                  return fields
+                end
+
+                -- Get slips
+                local slipbox = require("user.slipbox")
+                local slips = slipbox.list_slips()
+                local related_slips = slipbox.get_related_slips()
+
+                -- Configure picker items
+                local items = {}
+                for _, v in ipairs(slips) do
+                  local fields = split(v, "\t")
+                  local slip_id = fields[1]
+                  local slip_path = slipbox.get_slip_path(slip_id)
+                  local title = fields[2]
+                  local tags = fields[3] or ""
+                  -- don't add duplicates
+                  if not vim.tbl_contains(related_slips, slip_id) then
+                    table.insert(items, {
+                      text = title .. " " .. tags,
+                      name = slip_id,
+                      file = slip_path,
+                      filetype = "markdown",
+                      action = function()
+                        local row = vim.api.nvim_win_get_cursor(0)[1] -- current line (1-based)
+                        local text = string.format("  - %s", slip_id)
+                        vim.api.nvim_buf_set_lines(0, row, row, false, { text })
+                      end,
+                    })
+                  end
+                end
+                return items
+              end,
+
+              confirm = "item_action",
+              format = function(item)
+                return { { item.text } }
+              end,
+
+              title = "Link Slip",
             },
           },
         },
