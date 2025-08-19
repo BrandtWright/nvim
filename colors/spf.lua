@@ -17,29 +17,8 @@
 -- :h lsp-semantic-highlight          (@lsp.type.variable.lua, etc)
 -- :h lsp-highlight                   (LspReferenceRead, etc)
 -------------------------------------------------------------------------------
-local colors = {
-  cursorline = "#1f1d1b",
-
-  -- TODO: temporarily move to new-colors for color testing
-  rose = "#cd7ab8",
-  bright_rose = "#f5b8e6",
-
-  primary_accent_fg = "#a89984",
-  primary_accent_bg = "#2c2826",
-
-  secondary_accent_fg = "#a89984",
-  secondary_accent_bg = "#504945",
-
-  tertiary_accent_fg = "#2c2826",
-  tertiary_accent_bg = "#a89984",
-
-  gray_20 = "#333333",
-  gold = "#a38e5d",
-}
-
 -- TODO: remove this:
-local new_colors = require("bw.config.new-colors")
-colors = vim.tbl_deep_extend("force", colors, new_colors)
+local colors = require("bw.config.new-colors")
 
 local highlights = {
 
@@ -53,6 +32,11 @@ local highlights = {
   bright_white = { fg = colors.bright_white },
 
   black_on_black = { fg = colors.black, bg = colors.black },
+  black_on_red = { fg = colors.black, bg = colors.red },
+  black_on_yellow = { fg = colors.black, bg = colors.yellow },
+  black_on_green = { fg = colors.black, bg = colors.green },
+  black_on_blue = { fg = colors.black, bg = colors.blue },
+
   bright_black = { fg = colors.bright_black },
   bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
@@ -93,10 +77,10 @@ local highlights = {
 
   rose = { fg = colors.rose },
 
-  nothing_on_yellow = { bg = colors.yellow },
-  nothing_on_green = { bg = colors.green },
-  nothing_on_magenta = { bg = colors.magenta },
-  nothing_on_red = { bg = colors.red },
+  -- nothing_on_yellow = { bg = colors.yellow },
+  -- nothing_on_green = { bg = colors.green },
+  -- nothing_on_blue = { bg = colors.blue },
+  -- nothing_on_red = { bg = colors.red },
 
   nothing_on_black = { bg = colors.black },
 
@@ -278,19 +262,19 @@ local links = {
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
-  DiffAdd = highlights.nothing_on_green,
+  DiffAdd = highlights.black_on_green,
 
   -- hl-DiffChange
   -- Diff mode: Changed line. |diff.txt|
-  DiffChange = highlights.nothing_on_yellow,
+  DiffChange = highlights.black_on_yellow,
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = highlights.nothing_on_red,
+  DiffDelete = highlights.black_on_red,
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = highlights.nothing_on_magenta,
+  DiffText = highlights.black_on_blue,
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
