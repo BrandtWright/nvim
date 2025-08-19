@@ -81,9 +81,15 @@ return {
 
   {
     "zbirenbaum/copilot.lua",
+    lazy = true,
+    event = nil,
+    cmd = { "Copilot" },
+
     opts = {
+      panel = { enabled = false },
       suggestion = {
-        enabled = true,
+        enabled = false,
+
         auto_trigger = false,
         hide_during_completion = true,
         debounce = 75,
@@ -97,20 +103,14 @@ return {
         },
       },
       filetypes = {
-        c = true,
-        cpp = true,
-        cs = true,
-        markdown = true,
-        help = true,
-        lua = true,
-        typescript = true,
-        javascript = true,
-        python = true,
-        sql = true,
-        terraform = true,
-        haskell = true,
-        gleam = true,
-        rust = true,
+        ["*"] = false,
+      },
+    },
+    keys = {
+      {
+        "<leader>uo",
+        "<cmd>Copilot! toggle<cr>",
+        desc = "Toggle Copilot",
       },
     },
   },
