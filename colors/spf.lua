@@ -20,6 +20,7 @@
 local colors = {
   cursorline = "#1f1d1b",
 
+  -- TODO: temporarily move to new-colors for color testing
   rose = "#cd7ab8",
   bright_rose = "#f5b8e6",
 
@@ -90,7 +91,6 @@ local highlights = {
   bright_magenta = { fg = colors.bright_magenta },
   magenta_undercurl = { undercurl = true, fg = colors.magenta },
 
-  -- TODO: temporarily move to new-colors for color testing
   rose = { fg = colors.rose },
 
   nothing_on_yellow = { bg = colors.yellow },
