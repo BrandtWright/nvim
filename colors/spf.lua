@@ -23,12 +23,6 @@ local colors = {
   rose = "#cd7ab8",
   bright_rose = "#f5b8e6",
 
-  -- black = "#1a1816",
-  bright_black = "#8a857e",
-
-  white = "#ebdbb2",
-  bright_white = "#e0d8cc",
-
   primary_accent_fg = "#a89984",
   primary_accent_bg = "#2c2826",
 
@@ -55,10 +49,10 @@ local highlights = {
   white = { fg = colors.white },
   white_on_black = { fg = colors.white, bg = colors.black },
   white_on_bright_black_bold = { bold = true, fg = colors.white, bg = colors.bright_black },
-  bright_white = { fg = colors.bright_white, bg = "" },
+  bright_white = { fg = colors.bright_white },
 
   black_on_black = { fg = colors.black, bg = colors.black },
-  bright_black = { fg = colors.bright_black, bg = "" },
+  bright_black = { fg = colors.bright_black },
   bright_black_on_primary_accent_bg = {
     fg = colors.bright_black,
     bg = colors.primary_accent_bg,
@@ -75,6 +69,7 @@ local highlights = {
 
   yellow = { fg = colors.yellow },
   yellow_on_black = { fg = colors.yellow, bg = colors.black },
+  yellow_italic = { italic = true, fg = colors.yellow },
   yellow_undercurl = { undercurl = true, fg = colors.yellow },
 
   green = { fg = colors.green },
@@ -788,7 +783,7 @@ local links = {
   -- built-in functions
   ["@function.builtin"] = {},
   -- function calls
-  ["@function.call"] = highlights.italic,
+  ["@function.call"] = highlights.yellow_italic,
   -- preprocessor macros
   ["@function.macro"] = {},
   -- method definitions
