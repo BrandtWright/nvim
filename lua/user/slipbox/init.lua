@@ -14,12 +14,82 @@ local function configure_opts(opts)
   }, opts or {})
 end
 
+--- Extract `related` from YAML front matter at top of buffer
+---@return table # List of related values, or empty table if not found
+local function extract_yaml_related()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local in_yaml = false
+  local related = {}
+  local i = 1
+
+  while i <= #lines do
+    local line = vim.trim(lines[i])
+
+    -- Start YAML front matter
+    if not in_yaml then
+      if line == "---" then
+        in_yaml = true
+      else
+        break -- No front matter at top
+      end
+    else
+      -- End YAML front matter
+      if line == "---" or line == "..." then
+        break
+      end
+
+      -- Inline list: related: [foo, bar]
+      local inline = line:match("^related:%s*%[(.-)%]")
+      if inline then
+        for item in inline:gmatch("[^,%s]+") do
+          table.insert(related, item)
+        end
+      end
+
+      -- Block list: related: then indented - item entries
+      local is_block_list = line:match("^related:%s*$")
+      if is_block_list then
+        i = i + 1
+        while i <= #lines do
+          local tag_line = vim.trim(lines[i])
+
+          -- stop if we hit end of YAML or another property
+          if tag_line == "---" or tag_line == "..." or tag_line:match("^[%w_]+:") then
+            break
+          end
+
+          -- only match lines like "- something" (not "---")
+          local item = tag_line:match("^%-%s+(.+)")
+          if item then
+            table.insert(related, item)
+          else
+            break
+          end
+
+          i = i + 1
+        end
+        break -- stop after block list
+      end
+    end
+
+    i = i + 1
+  end
+
+  return related
+end
+
 M.get_slip_path = function(slip_id)
   return state.config.slipbox_dir .. "/" .. slip_id .. "/README.md"
 end
 
 M.get_next_slip_id = function()
   return vim.fn.trim(vim.fn.system({ "snote", "-n" }))
+end
+
+M.get_related_slips = function()
+  -- TODO: sanity check current buffer, warn if not a slip...
+  local related_slip_ids = extract_yaml_related()
+  return related_slip_ids
 end
 
 function M.list_slips()
