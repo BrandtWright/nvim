@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    "folke/snacks.nvim",
     keys = {
       {
         "<leader>fo",
