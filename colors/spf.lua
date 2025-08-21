@@ -165,7 +165,7 @@ local links = {
   Structure = highlights.bright_green,
 
   -- generic Preprocessor
-  PreProc = highlights.bright_blue,
+  PreProc = highlights.blue,
   -- preprocessor #include
   Include = "PreProc",
   -- preprocessor #define
@@ -196,7 +196,7 @@ local links = {
   Delimiter = highlights.bright_white,
 
   -- you can use CTRL-] on this
-  Tag = highlights.blue,
+  Tag = highlights.cyan,
 
   -- debugging statements
   Debug = highlights.magenta,
@@ -459,7 +459,7 @@ local links = {
   -- hl-QuickFixLine
   -- Current |quickfix| item in the quickfix window. Combined with
   -- |hl-CursorLine| when the cursor is there.
-  QuickFixLine = {},
+  QuickFixLine = "bold",
 
   -- hl-SignColumn
   -- Column where |signs| are displayed.
@@ -850,7 +850,7 @@ local links = {
   -- math environments (e.g. `$ ... $` in LaTeX)
   ["@markup.math"] = {},
   -- text references, footnotes, citations, etc.
-  ["@markup.link"] = highlights.magenta,
+  ["@markup.link"] = highlights.blue,
   -- link, reference descriptions
   ["@markup.link.label"] = highlights.blue,
   -- URL-style links
@@ -881,16 +881,11 @@ local links = {
   ["@tag.delimiter"] = {},
 
   ------------------------------------------------------------------------------
-  -- Other Common Highlights
+  -- File Types
   ------------------------------------------------------------------------------
 
-  -- Some colorschemes and plugins use these (Normal)
-  diffAdded = highlights.green,
-  diffChanged = highlights.yellow,
-  diffRemoved = highlights.red,
-  diffFile = {},
-  diffNewFile = {},
-  diffLine = {},
+  -- Vimdoc
+  ["@label.vimdoc"] = "Function",
 
   -- markdown
   markdownH1 = "Title",
@@ -924,6 +919,18 @@ local links = {
 
   -- Terraform
   ["@lsp.type.type.terraform"] = "Keyword",
+
+  ------------------------------------------------------------------------------
+  -- Other Common Highlights
+  ------------------------------------------------------------------------------
+
+  -- Some colorschemes and plugins use these (Normal)
+  diffAdded = highlights.green,
+  diffChanged = highlights.yellow,
+  diffRemoved = highlights.red,
+  diffFile = {},
+  diffNewFile = {},
+  diffLine = {},
 
   ------------------------------------------------------------------------------
   -- TODO: what are these?
