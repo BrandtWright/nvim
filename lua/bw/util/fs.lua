@@ -11,7 +11,7 @@ M.is_valid_path = function(path)
   if not is_string(path) then
     return false
   end
-  local stat = vim.loop.fs_stat(vim.fn.expand(path))
+  local stat = vim.uv.fs_stat(vim.fn.expand(path))
   return stat ~= nil
 end
 
@@ -23,7 +23,7 @@ M.is_directory = function(path)
     return false
   end
   local file_path = vim.fn.expand(path)
-  local stat = vim.loop.fs_stat(vim.fn.expand(file_path))
+  local stat = vim.uv.fs_stat(vim.fn.expand(file_path))
   return stat ~= nil and stat.type == "directory"
 end
 
@@ -32,7 +32,7 @@ M.is_file = function(path)
     return false
   end
   local file_path = vim.fn.expand(path)
-  local stat = vim.loop.fs_stat(vim.fn.expand(file_path))
+  local stat = vim.uv.fs_stat(vim.fn.expand(file_path))
   return stat ~= nil and stat.type == "file"
 end
 
@@ -45,7 +45,7 @@ M.base_path = function(path)
   end
   local file_path = vim.fn.expand(path)
   local base_path
-  if vim.loop.os_uname().version:match("Windows") then
+  if vim.uv.os_uname().version:match("Windows") then
     base_path = file_path:match("(.*\\)")
   else
     base_path = file_path:match("(.*/)")

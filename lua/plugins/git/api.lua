@@ -20,7 +20,7 @@ local validate_git_directory = function(opts)
   end
 
   -- Not a directory
-  local stat = vim.loop.fs_stat(opts.cwd)
+  local stat = vim.uv.fs_stat(opts.cwd)
   if not stat or stat.type ~= "directory" then
     return Either.left(string.format("%s is not a directory", opts.cwd))
   end
