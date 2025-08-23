@@ -7,21 +7,21 @@ return {
     opts = function(_, opts)
       local load = require("bw.util.xresources").load
       local prefix = "screen_glasses.ui."
-      local background = load("background") or "#191816"
+      local background = load("background") or "#171717"
 
       local dark_highlight = {
-        fg = load(prefix .. "color7") or "#ffffff",
-        bg = load(prefix .. "primary_accent") or "#000000",
+        fg = load(prefix .. "color7") or "#ebdbb2",
+        bg = load(prefix .. "primary_accent") or "#171717",
       }
 
       local medium_highlight = {
-        fg = load(prefix .. "color7") or "#ffffff",
-        bg = load(prefix .. "secondary_accent") or "#000000",
+        fg = load(prefix .. "color7") or "#ebdbb2",
+        bg = load(prefix .. "secondary_accent") or "#4f4945",
       }
 
       local bright_highlight = {
-        fg = load(prefix .. "color0") or "#000000",
-        bg = load(prefix .. "tertiary_accent") or "#ffffff",
+        fg = load(prefix .. "color0") or "#171717",
+        bg = load(prefix .. "tertiary_accent") or "#a89984",
       }
 
       local inactive_highlight = {
