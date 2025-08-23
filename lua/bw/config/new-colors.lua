@@ -29,5 +29,5 @@ c.secondary_accent_bg = "#4f4945"  --  hsl(22 7% 29%)
 
 c.gray_20 = "#333333"  --  hsl(0 0% 20%)
 c.gold = "#a38e5c"  --  hsl(42 28% 50%)
-c.cursorline = "#1e1c1a"  --  hsl(30 7% 11%)
+c.cursorline = "#1c1c1c"  --  hsl(0 0% 11%)
 return c
