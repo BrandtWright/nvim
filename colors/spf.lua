@@ -929,19 +929,6 @@ local links = {
   diffFile = {},
   diffNewFile = {},
   diffLine = {},
-
-  ------------------------------------------------------------------------------
-  -- TODO: what are these?
-  ["@method"] = highlights.yellow,
-  ["@method.call"] = highlights.italic,
-  ["@repeat"] = highlights.magenta,
-  ["@lsp.typemod.function"] = highlights.yellow,
-  ["@conditional"] = highlights.magenta,
-  ["@text.literal.markdown_inline"] = highlights.yellow,
-  -- Intentionally disabled:
-  -- ["number"] = highlights.foreground_on_background,
-
-  ------------------------------------------------------------------------------
 }
 
 local function is_nonempty_table(x)
