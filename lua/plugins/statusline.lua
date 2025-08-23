@@ -10,18 +10,18 @@ return {
       local background = load("background") or "#191816"
 
       local dark_highlight = {
-        fg = load(prefix .. "primary_foreground") or "#a89984",
-        bg = load(prefix .. "primary_background") or "#2c2826",
+        fg = load(prefix .. "color7") or "#ffffff",
+        bg = load(prefix .. "primary_accent") or "#000000",
       }
 
       local medium_highlight = {
-        fg = load(prefix .. "sedondary_foreground") or "#a89984",
-        bg = load(prefix .. "secondary_background") or "#504945",
+        fg = load(prefix .. "color7") or "#ffffff",
+        bg = load(prefix .. "secondary_accent") or "#000000",
       }
 
       local bright_highlight = {
-        fg = load(prefix .. "tertiary_foreground") or "#2c2826",
-        bg = load(prefix .. "tertiary_background") or "#a89984",
+        fg = load(prefix .. "color0") or "#000000",
+        bg = load(prefix .. "tertiary_accent") or "#ffffff",
       }
 
       local inactive_highlight = {
