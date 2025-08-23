@@ -16,8 +16,41 @@
 -- :h lsp-highlight                   (LspReferenceRead, etc)
 -------------------------------------------------------------------------------
 
--- TODO: remove this:
-local colors = require("bw.config.new-colors")
+local load = require("bw.util.xresources").load
+local ui_prefix = "screen_glasses.ui."
+local color_prefix = "screen_glasses.extended_colors."
+
+local colors = {
+  black = load("color0") or "#171717", --  hsl(0 0% 9%)
+  white = load("color7") or "#ebdbb2", --  hsl(43 59% 81%)
+  red = load("color1") or "#c88484", --  hsl(0 38% 65%)
+  yellow = load("color3") or "#c0c587", --  hsl(65 35% 65%)
+  green = load("color2") or "#6c9371", --  hsl(128 15% 50%)
+  cyan = load("color6") or "#6aafaf", --  hsl(180 30% 55%)
+  blue = load("color4") or "#899fd2", --  hsl(222 45% 68%)
+  magenta = load("color5") or "#c494db", --  hsl(280 50% 72%)
+  orange = load(color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
+  rose = load(color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
+
+  bright_black = load("color8") or "#636363", --  hsl(0 0% 39%)
+  bright_white = load("color15") or "#f6eedb", --  hsl(43 59% 91%)
+  bright_red = load("color9") or "#dea1a1", --  hsl(0 48% 75%)
+  bright_yellow = load("color11") or "#d2d6a9", --  hsl(65 35% 75%)
+  bright_green = load("color10") or "#a7beaa", --  hsl(128 15% 70%)
+  bright_cyan = load("color14") or "#a6d9d9", --  hsl(180 40% 75%)
+  bright_blue = load("color12") or "#a2b8eb", --  hsl(222 65% 78%)
+  bright_magenta = load("color13") or "#ddaff4", --  hsl(280 75% 82%)
+  bright_orange = load(color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
+  bright_rose = load(color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
+
+  primary_accent = load(ui_prefix .. "primary_accent") or "#2e281f", --  hsl(38 20% 15%)
+  secondary_accent = load(ui_prefix .. "secondary_accent") or "#6b5447", --  hsl(22 20% 35%)
+  tertiary_accent = load(ui_prefix .. "tertiary_accent") or "#a38675", --  hsl(22 20% 55%)
+  cursorline = load(ui_prefix .. "cursor_line") or "#1c1c1c", --  hsl(0 0% 11%)
+
+  gray_20 = "#333333", --  hsl(0 0% 20%)
+  gold = "#a38e5c", --  hsl(42 28% 50%)
+}
 
 local highlights = {
 
@@ -75,16 +108,16 @@ local highlights = {
 
   nothing_on_black = { bg = colors.black },
 
-  secondary_accent_bg = { fg = colors.secondary_accent_bg },
+  secondary_accent = { fg = colors.secondary_accent },
 
-  primary_accent_fg_on_primary_accent_bg = {
-    fg = colors.primary_accent_fg,
-    bg = colors.primary_accent_bg,
+  tertiary_accent_on_primary_accent = {
+    fg = colors.tertiary_accent,
+    bg = colors.primary_accent,
   },
 
-  secondary_accent_fg_on_secondary_accent_bg = {
-    fg = colors.secondary_accent_fg,
-    bg = colors.secondary_accent_bg,
+  tertiary_accent_on_secondary_accent = {
+    fg = colors.tertiary_accent,
+    bg = colors.secondary_accent,
   },
 
   nothing_on_visual = { bg = colors.gray_20 },
@@ -274,11 +307,11 @@ local links = {
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = highlights.secondary_accent_bg,
+  WinSeparator = highlights.secondary_accent,
 
   -- |hl-Folded|
   -- Line used for closed folds.
-  Folded = highlights.primary_accent_fg_on_primary_accent_bg,
+  Folded = highlights.tertiary_accent_on_primary_accent,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
@@ -465,11 +498,11 @@ local links = {
 
   -- hl-WinBar
   -- Window bar of current window.
-  WinBar = highlights.primary_accent_fg_on_primary_accent_bg,
+  WinBar = highlights.tertiary_accent_on_primary_accent,
 
   -- hl-WinBarNC
   -- Window bar of not-current windows.
-  WinBarNC = highlights.secondary_accent_fg_on_secondary_accent_bg,
+  WinBarNC = highlights.tertiary_accent_on_secondary_accent,
 
   -- hl-ComplMatchIns
   -- Matched text of the currently inserted completion.
