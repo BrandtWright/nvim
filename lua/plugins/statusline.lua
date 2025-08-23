@@ -3,81 +3,39 @@ return {
     "nvim-lualine/lualine.nvim",
     enabled = not vim.env.NO_LUALINE,
     opts = function(_, opts)
-      local load = require("bw.util.xresources").load
-      local prefix = "screen_glasses.ui."
-      local background = load("background") or "#171717"
+      local hl = require("bw.util.highlights").get_attribute
 
-      local dark_highlight = {
-        fg = load(prefix .. "color7") or "#ebdbb2",
-        bg = load(prefix .. "primary_accent") or "#171717",
-      }
+      -- Colors
+      local red = hl("DiagnosticError", "fg")
+      local green = hl("DiagnosticOk", "fg")
+      local yellow = hl("DiagnosticWarn", "fg")
+      local blue = hl("DiagnosticInfo", "fg")
+      local black = hl("Normal", "bg")
+      local primary_accent = hl("WinBar", "bg")
+      local secondary_accent = hl("WinBarNC", "bg")
+      local tertiary_accent = hl("WinBar", "fg")
 
-      local medium_highlight = {
-        fg = load(prefix .. "color7") or "#ebdbb2",
-        bg = load(prefix .. "secondary_accent") or "#4f4945",
-      }
+      -- Lualine C (all modes)
+      local dark_highlight = { fg = tertiary_accent, bg = primary_accent }
 
-      local bright_highlight = {
-        fg = load(prefix .. "color0") or "#171717",
-        bg = load(prefix .. "tertiary_accent") or "#a89984",
-      }
+      -- Lualine B (all modes)
+      local medium_highlight = { fg = tertiary_accent, bg = secondary_accent }
 
-      local inactive_highlight = {
-        fg = dark_highlight.bg,
-        bg = dark_highlight.bg,
-      }
-
-      local replace_highlight = {
-        fg = background,
-        bg = load("color1") or "#bd7671",
-      }
-
-      local insert_highlight = {
-        fg = background,
-        bg = load("color2") or "#8fa899",
-      }
-
-      local command_highlight = {
-        fg = background,
-        bg = load("color3") or "#c2c27c",
-      }
-
-      local visual_highlight = {
-        fg = background,
-        bg = load("color4") or "#5692db",
-      }
+      -- Lualine A (by bode)
+      local normal_highlight = { fg = primary_accent, bg = tertiary_accent }
+      local insert_highlight = { fg = black, bg = green }
+      local replace_highlight = { fg = black, bg = red }
+      local visual_highlight = { fg = black, bg = blue }
+      local command_highlight = { fg = black, bg = yellow }
+      local inactive_highlight = { fg = primary_accent, bg = primary_accent }
 
       local screen_glasses_theme = {
-        normal = {
-          a = bright_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
-        insert = {
-          a = insert_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
-        visual = {
-          a = visual_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
-        replace = {
-          a = replace_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
-        command = {
-          a = command_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
-        inactive = {
-          a = inactive_highlight,
-          b = medium_highlight,
-          c = dark_highlight,
-        },
+        normal = { a = normal_highlight, b = medium_highlight, c = dark_highlight },
+        insert = { a = insert_highlight, b = medium_highlight, c = dark_highlight },
+        visual = { a = visual_highlight, b = medium_highlight, c = dark_highlight },
+        replace = { a = replace_highlight, b = medium_highlight, c = dark_highlight },
+        command = { a = command_highlight, b = medium_highlight, c = dark_highlight },
+        inactive = { a = inactive_highlight, b = medium_highlight, c = dark_highlight },
       }
       opts.options.theme = screen_glasses_theme
       opts.options.component_separators = { left = "", right = "" }
