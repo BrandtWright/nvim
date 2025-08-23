@@ -276,7 +276,7 @@ local links = {
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
   -- By default, this is highlighted like |hl-NonText|.
-  EndOfBUffer = "Ignore",
+  EndOfBuffer = "Ignore",
 
   -- hl-WinSeparator
   -- Separators between window splits.
