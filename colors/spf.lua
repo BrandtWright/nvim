@@ -38,10 +38,6 @@ local highlights = {
   black_on_blue = { fg = colors.black, bg = colors.blue },
 
   bright_black = { fg = colors.bright_black },
-  bright_black_on_primary_accent_bg = {
-    fg = colors.bright_black,
-    bg = colors.primary_accent_bg,
-  },
   bright_black_bold = { bold = true, fg = colors.bright_black },
   bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black },
 
@@ -282,7 +278,7 @@ local links = {
 
   -- |hl-Folded|
   -- Line used for closed folds.
-  Folded = highlights.bright_black_on_primary_accent_bg,
+  Folded = highlights.primary_accent_fg_on_primary_accent_bg,
 
   -- hl-FoldColumn
   -- 'foldcolumn'
