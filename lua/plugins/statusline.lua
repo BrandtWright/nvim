@@ -1,5 +1,3 @@
--- TODO: Move primary/secondary accent colors to 'hl-User1..9''
-
 return {
   {
     "nvim-lualine/lualine.nvim",
