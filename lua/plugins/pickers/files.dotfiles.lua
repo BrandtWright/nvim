@@ -19,7 +19,7 @@ return {
             end,
           })
         end,
-        desc = "Fuzzy Find in Buffer",
+        desc = "Dotfiles",
       },
     },
   },
