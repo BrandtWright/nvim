@@ -6,7 +6,8 @@
 -- LazyVim Overrides
 --------------------------------------------------------------------------------
 
--- Disable line wrapping in markdown files
+-- Disable lazyvim autocmd for line wrapping and spell in markdown files
+-- because it is annoying.
 vim.api.nvim_clear_autocmds({
   group = "lazyvim_wrap_spell",
   event = "FileType",
