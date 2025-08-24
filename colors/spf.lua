@@ -989,8 +989,6 @@ local function resolve_link_name(spec, highlight_names)
   return nil
 end
 
-local highlight_keys = reverse_map(highlights)
-
 -- Initialize an empty colorscheme
 vim.cmd([[
   highlight clear
@@ -1006,6 +1004,7 @@ for group, spec in pairs(highlights) do
 end
 
 -- Apply links (link target is looked up via the reverse map)
+local highlight_keys = reverse_map(highlights)
 for group, spec in pairs(links) do
   local target = resolve_link_name(spec, highlight_keys)
   if type(target) == "string" and target ~= "" then
