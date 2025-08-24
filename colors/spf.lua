@@ -43,12 +43,12 @@ local colors = {
   bright_orange = load(color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
   bright_rose = load(color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
 
-  primary_accent = load(ui_prefix .. "primary_accent") or "#2e281f", --  hsl(38 20% 15%)
-  secondary_accent = load(ui_prefix .. "secondary_accent") or "#6b5447", --  hsl(22 20% 35%)
-  tertiary_accent = load(ui_prefix .. "tertiary_accent") or "#a38675", --  hsl(22 20% 55%)
+  primary_accent = load(ui_prefix .. "primary_accent") or "#2c2826", --  hsl(38 20% 15%)
+  secondary_accent = load(ui_prefix .. "secondary_accent") or "#4f4945", --  hsl(22 20% 35%)
+  tertiary_accent = load(ui_prefix .. "tertiary_accent") or "#a89984", --  hsl(22 20% 55%)
   cursorline = load(ui_prefix .. "cursor_line") or "#1c1c1c", --  hsl(0 0% 11%)
+  visual_selection = load(ui_prefix .. "visual_selection") or "#333333", --  hsl(0 0% 20%)
 
-  gray_20 = "#333333", --  hsl(0 0% 20%)
   gold = "#a38e5c", --  hsl(42 28% 50%)
 }
 
@@ -120,7 +120,7 @@ local highlights = {
     bg = colors.secondary_accent,
   },
 
-  nothing_on_visual = { bg = colors.gray_20 },
+  nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },
 
   gold = { fg = colors.gold },
