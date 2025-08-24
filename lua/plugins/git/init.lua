@@ -3,7 +3,13 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
-      { "<leader>gs", Snacks.picker.git_status, desc = "Man Pages" },
+      {
+        "<leader>gs",
+        function()
+          Snacks.picker.git_status()
+        end,
+        desc = "Man Pages",
+      },
     },
   },
   {
