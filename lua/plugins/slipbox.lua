@@ -14,7 +14,7 @@ return {
       {
         "<leader>oN",
         function()
-          local input = vim.fn.input({ prompt = "Enter note title: " })
+          local input = vim.fn.input({ prompt = "Slip ID:" })
           if input ~= "" then
             vim.cmd("SlipEdit " .. input)
           end

@@ -12,6 +12,20 @@ return {
     },
   },
   {
+    "folke/snacks.nvim",
+    opts = {
+      styles = {
+        news = {
+          backdrop = false,
+          border = "single",
+        },
+        float = {
+          backdrop = false,
+        },
+      },
+    },
+  },
+  {
     "folke/noice.nvim",
     opts = {
       presets = {
