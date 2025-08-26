@@ -8,7 +8,7 @@ return {
         function()
           Snacks.picker.git_status()
         end,
-        desc = "Man Pages",
+        desc = "Git Status (Snacks)",
       },
     },
   },
