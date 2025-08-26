@@ -26,6 +26,12 @@ return {
     },
   },
   {
+    "folke/snacks.nvim",
+    opts = function()
+      Snacks.toggle.zoom():map("<leader>wm")
+    end,
+  },
+  {
     "folke/noice.nvim",
     opts = {
       presets = {

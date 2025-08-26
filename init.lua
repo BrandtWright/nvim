@@ -31,7 +31,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "plugins" },
     { import = "plugins/pickers" },
-    { import = "plugins/toggles" },
     { import = "plugins/lsp" },
   },
   defaults = {
