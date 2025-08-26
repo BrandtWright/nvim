@@ -14,7 +14,8 @@ return {
           vim.diagnostic.config(current)
         end,
       }
-      require("snacks").toggle.new(toggle_config):map("<leader>udv")
+      Snacks.toggle.new(toggle_config):map("<leader>udv")
+      Snacks.toggle.diagnostics():map("<leader>udd")
     end,
   },
 }
