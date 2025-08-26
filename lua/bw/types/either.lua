@@ -1,7 +1,7 @@
 ---@class Either
----@field is_right boolean
----@field value any
----@field error any
+---@field is_right boolean Whether this is a Right (success) value
+---@field value? any The success value (only present when is_right = true)
+---@field error? any The error value (only present when is_right = false)
 local Either = {}
 Either.__index = Either
 

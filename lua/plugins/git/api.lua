@@ -3,16 +3,23 @@
 -- fugitive, and gitsigns and provides some utility functions
 --------------------------------------------------------------------------------
 
+---@class GitOpts
+---@field cwd? string Current working directory (defaults to vim.uv.cwd())
+---@field [string] any Additional telescope/git options
+
 local Either = require("bw.types.either")
 
 local icon = ""
 local module_name = "plugins.git.api"
 
+---@param msg string Error message to display
 local warn = function(msg)
   local toaster = require("bw.util.notification")
   toaster.warn(msg, icon, module_name)
 end
 
+---@param opts GitOpts
+---@return Either
 local validate_git_directory = function(opts)
   -- Not a string
   if type(opts.cwd) ~= "string" then
@@ -36,12 +43,16 @@ local validate_git_directory = function(opts)
   return Either.right(opts)
 end
 
+---@param opts? GitOpts
+---@return Either
 local apply_default_values = function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd or vim.uv.cwd()
   return Either.right(opts)
 end
 
+---@param opts GitOpts
+---@return Either
 local function has_git_changes(opts)
   local git_command = string.format("git -C %s status --porcelain", opts.cwd)
   local output = vim.fn.systemlist(git_command)
@@ -52,7 +63,7 @@ local function has_git_changes(opts)
   return Either.left(string.format("No uncommitted changes in %s", opts.cwd))
 end
 
----@param opts table
+---@param opts GitOpts
 ---@return Either
 local apply_drop_down_theme = function(opts)
   local themes = require("telescope.themes")
@@ -77,6 +88,7 @@ local M = {}
 
 --- Fuzzy search for files tracked by Git. This command lists the output of the
 --- `git ls-files` command
+---@param opts? GitOpts Options for git files search
 function M.files(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(apply_drop_down_theme)
   if result.is_right then
@@ -88,6 +100,7 @@ end
 
 --- Fuzzy search (with previewer) for files tracked by Git. This command lists
 --- the output of the `git ls-files` command
+---@param opts? GitOpts Options for git files search with preview
 function M.files_with_preview(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -98,6 +111,7 @@ function M.files_with_preview(opts)
 end
 
 --- Fuzzy find for commits with diff preview
+---@param opts? GitOpts Options for git commits search
 function M.commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -108,6 +122,7 @@ function M.commits(opts)
 end
 
 --- List branches for a git repository, with output from `git log --oneline` shown in the preview window
+---@param opts? GitOpts Options for git branches search
 function M.branches(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -118,6 +133,7 @@ function M.branches(opts)
 end
 
 --- Fuzzy find uncommited changes in a git repository
+---@param opts? GitOpts Options for git status search
 function M.status(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(has_git_changes)
   if result.is_right then
@@ -127,7 +143,8 @@ function M.status(opts)
   end
 end
 
---- Fuzzy find stash items in a git repositoryy
+--- Fuzzy find stash items in a git repository
+---@param opts? GitOpts Options for git stash search
 function M.stash(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -138,6 +155,7 @@ function M.stash(opts)
 end
 
 --- Perform a ':Gdiffsplit!'
+---@param opts? GitOpts Options for resolving conflicts
 function M.resolve_conflicts(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -147,7 +165,8 @@ function M.resolve_conflicts(opts)
   end
 end
 
---- Open a figitive (`:Git status`) split
+--- Open a fugitive (`:Git status`) split
+---@param opts? GitOpts Options for fugitive
 function M.fugitive(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -158,6 +177,7 @@ function M.fugitive(opts)
 end
 
 --- Show the output of `:Git log`
+---@param opts? GitOpts Options for git log
 function M.log(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -168,6 +188,7 @@ function M.log(opts)
 end
 
 --- Perform a `:diffget //2`
+---@param opts? GitOpts Options for diff get
 function M.diff_get_2(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -178,6 +199,7 @@ function M.diff_get_2(opts)
 end
 
 --- Perform a `:diffget //3`
+---@param opts? GitOpts Options for diff get
 function M.diff_get_3(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
@@ -188,16 +210,18 @@ function M.diff_get_3(opts)
 end
 
 --- Fuzzy find commits for the file specified by `path` (default: current buffer)
+---@param opts? GitOpts Options for buffer commits search
 function M.buffer_commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_bcommits({ current_file = opts })
+    require("telescope.builtin").git_bcommits(result.value)
   else
     result:handle_error(warn)
   end
 end
 
 --- Fuzzy find commits for the file specified by `path` (default: current buffer)
+---@param opts? GitOpts Options for buffer commits range search
 function M.buffer_commits_range(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
