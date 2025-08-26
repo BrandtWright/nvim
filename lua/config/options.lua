@@ -144,3 +144,16 @@ opt.guicursor = table.concat({
   "i-ci-ve:ver25-Cursor", -- insert, insert command, visual exclusive: vertical bar
   "r-cr-o:hor20-Cursor", -- replace, confirm, operator-pending: horizontal bar
 }, ",")
+
+-- Diagnostic configuration
+vim.diagnostic.config({
+  float = {
+    show_header = true,
+    border = "single",
+  },
+  virtual_text = {
+    spacing = 4,
+    source = "if_many",
+    prefix = "●",
+  },
+})
