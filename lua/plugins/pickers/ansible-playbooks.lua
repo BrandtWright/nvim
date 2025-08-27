@@ -10,7 +10,7 @@ return {
             hidden = true,
           })
         end,
-        desc = "Bitbit Playbooks",
+        desc = "Ansible Playbooks",
       },
     },
   },
