@@ -37,9 +37,32 @@ return {
         command = { a = command_highlight, b = medium_highlight, c = dark_highlight },
         inactive = { a = inactive_highlight, b = medium_highlight, c = dark_highlight },
       }
-      opts.options.theme = screen_glasses_theme
-      opts.options.component_separators = { left = "", right = "" }
-      opts.options.section_separators = { left = "", right = "" }
+
+      -- Remove the diff secion from section x (I put this in section y)
+      local lazy_x = opts.sections.lualine_x or {}
+      local diff_component = {}
+      for i, v in ipairs(lazy_x) do
+        if v[1] == "diff" then
+          diff_component = v
+          table.remove(lazy_x, i)
+        end
+      end
+
+      local my_opts = {
+        sections = {
+          lualine_y = { diff_component },
+          lualine_z = {
+            { "progress", separator = " ", padding = { left = 1, right = 0 } },
+            { "location", padding = { left = 0, right = 1 } },
+          },
+        },
+        options = {
+          theme = screen_glasses_theme,
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+        },
+      }
+      return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
   },
 }
