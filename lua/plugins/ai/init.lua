@@ -1,13 +1,7 @@
 return {
   {
 
-    -- jackMort/ChatGPT.nvim uses `FoldColumn` to style the line on the left side of popup windows
     "jackMort/ChatGPT.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
     event = "VeryLazy",
     keys = require("plugins.ai.keys"),
     cmd = {
@@ -15,60 +9,13 @@ return {
       "ChatGPTActAs",
       "ChatGPTEditWithInstructions",
       "ChatGPTRun",
+      "ChatGPTCompleteCode",
     },
     opts = function(_, opts)
-      local apply_highlights = function()
-        vim.cmd("hi! link ChatGPTTotalTokens brown_inverse")
-        vim.cmd("hi! link ChatGPTTotalTokensBorder brown")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("JackMortChatGPTHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply JackMort/ChatGPT highlight groups after colorscheme changes",
-      })
-
       local my_opts = {
         api_key_cmd = "pass show ai/openai/apikey",
         openai_params = {
           model = "gpt-4o",
-        },
-        popup_window = {
-          border = {
-            highlight = "FloatBorder",
-            text = {
-              top = "Chat-Gippity",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-        system_window = {
-          border = {
-            highlight = "FloatBorder",
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-        popup_input = {
-          border = {
-            highlight = "FloatBorder",
-            text = {
-              top = "",
-            },
-          },
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
-        },
-        settings_window = {
-          win_options = {
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-          },
         },
       }
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
