@@ -1,6 +1,9 @@
 local M = {}
 
----@param mode "split" | "vsplit" | "current_window" | "popup"
+--- Opens or reuses a transient scratch buffer with markdown filetype
+--- Creates a persistent scratch buffer that survives across sessions and provides
+--- different display modes. The buffer is unlisted and configured to prevent accidental deletion.
+---@param mode "split" | "vsplit" | "current_window" | "popup" Display mode for the scratch buffer
 M.open_scratch_buffer = function(mode)
   local scratch_buf_name = "__scratch_markdown__"
   local buf

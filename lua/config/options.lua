@@ -77,6 +77,10 @@ vim.opt.fillchars = {
   eob = " ",
 }
 
+--- Creates custom fold text using Treesitter with intelligent truncation
+--- Displays the first line of the fold with a line count suffix, handling
+--- width constraints and proper padding for visual alignment across the window
+---@return string The formatted fold text with padding to fill the window width
 function _G.TreesitterFoldText()
   local start_line = vim.fn.getline(vim.v.foldstart)
   local count = vim.v.foldend - vim.v.foldstart + 1

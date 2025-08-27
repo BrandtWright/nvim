@@ -5,6 +5,8 @@ local state = {
   config = {},
 }
 
+--- Configures module options with defaults, executed only once during setup
+---@param opts table Configuration options to merge with defaults
 local function configure_opts(opts)
   if state.loaded then
     return
@@ -14,8 +16,12 @@ local function configure_opts(opts)
   }, opts or {})
 end
 
---- Extract `related` from YAML front matter at top of buffer
----@return table # List of related values, or empty table if not found
+--- Extracts `related` field from YAML front matter at the top of current buffer
+--- Supports both inline format (related: [foo, bar]) and block format:
+--- related:
+---   - foo
+---   - bar
+---@return string[] slip_ids a list of related slip IDs, or empty table if none are found
 local function extract_yaml_related()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local in_yaml = false
@@ -78,29 +84,42 @@ local function extract_yaml_related()
   return related
 end
 
+--- Constructs the full filesystem path for a slip by its ID
+---@param slip_id string The slip identifier
+---@return string Full path to the slip's README.md file
 M.get_slip_path = function(slip_id)
   return state.config.slipbox_dir .. "/" .. slip_id .. "/README.md"
 end
 
+--- Gets the next available slip ID from the external snote command
+---@return string Next slip ID to use for new slips
 M.get_next_slip_id = function()
   return vim.fn.trim(vim.fn.system({ "snote", "-n" }))
 end
 
+--- Extracts related slip IDs from the current buffer's YAML front matter
+---@return table List of related slip IDs from the current slip
 M.get_related_slips = function()
   -- TODO: sanity check current buffer, warn if not a slip...
   local related_slip_ids = extract_yaml_related()
   return related_slip_ids
 end
 
+--- Lists all available slips using the external snote command
+---@return table List of all slip IDs in the slipbox
 function M.list_slips()
   local slips = vim.fn.systemlist("snote -l")
   return slips
 end
 
+--- Gets the configured slipbox directory path
+---@return string Path to the slipbox directory
 M.get_slipbox_path = function()
   return state.config.slipbox_dir
 end
 
+--- Creates a new slip with auto-generated ID and opens it for editing
+--- Sets up the buffer with proper options and configures it as a markdown file
 M.new_slip = function()
   local slip_id = M.get_next_slip_id()
   local slip_path = M.get_slip_path(slip_id)
@@ -113,6 +132,9 @@ M.new_slip = function()
   vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
 end
 
+--- Opens an existing slip for editing by its ID
+--- Validates the slip exists before opening and configures buffer options
+---@param slip_id string The slip identifier to edit
 M.edit_slip = function(slip_id)
   if not slip_id then
     vim.notify("Invalid argument: slip_id is nil", vim.log.levels.ERROR, { title = "Slipbox" })
@@ -141,6 +163,10 @@ M.edit_slip = function(slip_id)
   end
 end
 
+--- Initializes the slipbox module with configuration and user commands
+--- Creates SlipNew and SlipEdit commands, sets up auto-save functionality,
+--- and validates the slipbox directory exists
+---@param opts table Configuration table with slipbox_dir field required
 function M.setup(opts)
   -- Ensure that opts.slipbox_dir is set, is a string, and points to a valid directory
   if
