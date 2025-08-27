@@ -59,7 +59,6 @@ local highlights = {
   italic = { italic = true },
 
   white = { fg = colors.white },
-  other_white = { fg = colors.white },
   white_on_black = { fg = colors.white, bg = colors.black },
   white_on_bright_black_bold = { bold = true, fg = colors.white, bg = colors.bright_black },
   bright_white = { fg = colors.bright_white },
