@@ -1,5 +1,5 @@
 ignore = {
-  "631",    -- max_line_length
+  "631", -- max_line_length
 }
 globals = {
   "vim",
@@ -11,10 +11,12 @@ globals = {
   "Reload",
   "ReloadTele",
   "TelescopeMapArgs",
+  "Snacks",
+  "LazyVim",
 }
-files['tests'] = {
+files["tests"] = {
   ignore = {
-    '121',        -- Setting a read-only global variable.
-    '122',        -- Setting a read-only field of a global variable.
-  }
+    "121", -- Setting a read-only global variable.
+    "122", -- Setting a read-only field of a global variable.
+  },
 }
