@@ -18,21 +18,9 @@ return {
         local primary_accent_fg = get("WinBar", "fg") or "#1a1a1a"
         local normal_fg = get("Normal", "fg") or "#ffffff"
 
-        hl(0, "NeoTreeFloatBorder", {
-          fg = primary_accent_bg,
-          bg = "",
-        })
-
-        hl(0, "NeoTreeTitleBar", {
-          fg = primary_accent_fg,
-          bg = primary_accent_bg,
-        })
-
-        hl(0, "NeoTreeDirectoryName", {
-          fg = normal_fg,
-          bg = "",
-        })
-
+        hl(0, "NeoTreeFloatBorder", { fg = primary_accent_bg, bg = "" })
+        hl(0, "NeoTreeTitleBar", { fg = primary_accent_fg, bg = primary_accent_bg })
+        hl(0, "NeoTreeDirectoryName", { fg = normal_fg, bg = "" })
         vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
         vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
         vim.cmd("hi! link NeoTreeFileStats Comment")
@@ -112,6 +100,8 @@ return {
         enter_on_sendcmd = false,
       },
     },
+
+    -- stylua: ignore
     keys = {
       { "<leader>1", false },
       { "<leader>2", false },
@@ -120,6 +110,12 @@ return {
       { "<leader>5", false },
       { "<leader>H", false },
       { "<leader>h", false },
+      { "<leader>hh", function() require("harpoon"):list():add() end, desc = "Add", },
+      { "<leader>ha", function() require("harpoon"):list():select(1) end, desc = "Preset One", },
+      { "<leader>hs", function() require("harpoon"):list():select(2) end, desc = "Preset Two", },
+      { "<leader>hd", function() require("harpoon"):list():select(3) end, desc = "Preset Three", },
+      { "<leader>hf", function() require("harpoon"):list():select(4) end, desc = "Preset Four", },
+      { "<leader>hg", function() require("harpoon"):list():select(5) end, desc = "Preset Five", },
       {
         "<leader>hm",
         function()
@@ -127,48 +123,6 @@ return {
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
         desc = "Menu",
-      },
-      {
-        "<leader>hh",
-        function()
-          require("harpoon"):list():add()
-        end,
-        desc = "Add",
-      },
-      {
-        "<leader>ha",
-        function()
-          require("harpoon"):list():select(1)
-        end,
-        desc = "Preset One",
-      },
-      {
-        "<leader>hs",
-        function()
-          require("harpoon"):list():select(2)
-        end,
-        desc = "Preset Two",
-      },
-      {
-        "<leader>hd",
-        function()
-          require("harpoon"):list():select(3)
-        end,
-        desc = "Preset Three",
-      },
-      {
-        "<leader>hf",
-        function()
-          require("harpoon"):list():select(4)
-        end,
-        desc = "Preset Four",
-      },
-      {
-        "<leader>hg",
-        function()
-          require("harpoon"):list():select(5)
-        end,
-        desc = "Preset Five",
       },
     },
   },

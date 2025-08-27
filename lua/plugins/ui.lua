@@ -48,38 +48,12 @@ return {
       { "<leader>snt", false },
       { "<leader>sn", false },
 
-      -- Real Keys:
-      {
-        "<leader>sNn",
-        function()
-          Snacks.picker.notifications()
-        end,
-        desc = "Notifications",
-      },
-      {
-        "<leader>sNa",
-        "<cmd>NoiceAll<cr>",
-        desc = "All",
-        mode = "n",
-      },
-      {
-        "<leader>sNd",
-        "<cmd>NoiceDismiss<cr>",
-        desc = "Dismiss All",
-        mode = "n",
-      },
-      {
-        "<leader>sNh",
-        "<cmd>NoiceHistory<cr>",
-        desc = "History",
-        mode = "n",
-      },
-      {
-        "<leader>sNl",
-        "<cmd>NoiceLast<cr>",
-        desc = "Last",
-        mode = "n",
-      },
+      -- stylua: ignore
+      { "<leader>sNn", function() Snacks.picker.notifications() end, desc = "Notifications", },
+      { "<leader>sNa", "<cmd>NoiceAll<cr>", desc = "All", mode = "n" },
+      { "<leader>sNd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss All", mode = "n" },
+      { "<leader>sNh", "<cmd>NoiceHistory<cr>", desc = "History", mode = "n" },
+      { "<leader>sNl", "<cmd>NoiceLast<cr>", desc = "Last", mode = "n" },
     },
   },
   {
