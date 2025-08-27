@@ -43,12 +43,12 @@ M.load = function(key)
   local cache = load_xresources_batch()
   local value = cache[key]
 
-  -- Only return hex colors (maintain compatibility with original behavior)
-  if value and value:match("^#%x%x%x%x%x%x$") then
-    return value
+  -- Return nil if not a valid hex color
+  if not value or not value:match("^#%x%x%x%x%x%x$") then
+    return nil
   end
 
-  return nil
+  return value
 end
 
 return M
