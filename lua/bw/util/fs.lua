@@ -1,10 +1,7 @@
 local M = {}
 
-local is_string = require("bw.util.guard").is_string
-
--- Cross platform path seperator
-M.get_path_seperator = function()
-  return package.config:sub(1, 1)
+local is_string = function(str)
+  return type(str) == "string"
 end
 
 M.is_valid_path = function(path)

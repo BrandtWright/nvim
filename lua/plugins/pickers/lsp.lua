@@ -4,7 +4,6 @@
 return {
   {
     "folke/snacks.nvim",
-
     -- stylua: ignore
     keys = {
       { "<leader>sgl", function() Snacks.picker.lsp_config() end, desc = "Lsp Configuration", },
