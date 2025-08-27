@@ -32,6 +32,12 @@ return {
         completion = {
           menu = { border = "single" },
           documentation = { window = { border = "single" } },
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = false,
+            },
+          },
         },
         signature = {
           enabled = true,
