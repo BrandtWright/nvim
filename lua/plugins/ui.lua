@@ -112,6 +112,7 @@ return {
           { "<leader>fg", group = "Git Objects" },
           { "<leader>g", group = "Git" },
           { "<leader>gb", group = "Buffer", mode = { "n", "v" } },
+          { "<leader>gc", group = "Commits" },
           { "<leader>gd", group = "Diff" },
           { "<leader>gh", group = "Hunk" },
           { "<leader>gm", group = "Blame" },

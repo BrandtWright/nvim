@@ -1,24 +1,32 @@
 local git = require("plugins.git.api")
 return {
   {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      -- silly keys
+      { "<leader>gs", false },
+      { "<leader>gc", false },
+    },
+  },
+  {
     "folke/snacks.nvim",
     keys = {
-      {
-        "<leader>gs",
-        function()
-          Snacks.picker.git_status()
-        end,
-        desc = "Git Status (Snacks)",
-      },
+      { "<leader>gs", git.status, desc = "Status" },
+      { "<leader>ga", git.stash, desc = "Stash" },
+      { "<leader>gca", git.commits, desc = "All" },
+      { "<leader>gcf", git.buffer_commits, desc = "Current File" },
+      { "<leader>gcl", git.line_commits, desc = "Line" },
+      { "<leader>gf", git.files, desc = "Files" },
+      { "<leader>gy", git.branches, desc = "Branches" },
     },
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    -- Highlights
     opts = function(_, opts)
       local apply_highlights = function()
         vim.cmd("hi! link @markup.heading.gitcommit Special")
       end
-
       apply_highlights()
       vim.api.nvim_create_autocmd("ColorScheme", {
         group = vim.api.nvim_create_augroup("TreesitterGitHighlights", { clear = true }),
@@ -40,24 +48,6 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "tpope/vim-fugitive",
-    },
-    keys = {
-      -- silly key: git status picker is handled with snacks
-      { "<leader>gs", false },
-
-      { "<leader>ga", git.stash, mode = "n", desc = "Stash" },
-      { "<leader>gbc", git.buffer_commits, mode = "n", desc = "Buffer Commits" },
-      { "<leader>gc", git.commits, mode = "n", desc = "Commits" },
-      { "<leader>gf", git.files, mode = "n", desc = "Files" },
-      { "<leader>gF", git.files_with_preview, mode = "n", desc = "Files (With Preview)" },
-      { "<leader>gy", git.branches, mode = "n", desc = "Branches" },
-      { "<leader>gbc", git.buffer_commits_range, mode = "v", desc = "Buffer Commits (Range)" },
-    },
-  },
-  {
     "tpope/vim-fugitive",
     lazy = false,
     config = function()
@@ -72,24 +62,22 @@ return {
           vim.keymap.set("n", "q", "<cmd>close<cr>", { desc = "Close", buffer = true })
         end,
       })
-
-      -- TODO: Add highlights
     end,
     cmd = { "Git" },
     keys = {
       { "<leader>gl", git.log, desc = "Git Log" },
       { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Branches" },
-      -- This seems to cause goto-references to fail
-      -- { "<leader>gr", git.resolve_conflicts, desc = "Resolve Merge Conflicts" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
       {
         "<leader>gS",
         function()
-          vim.cmd("Git")
+          -- Use the current buffer path as cwd in case we are in a buffer outside of cwd
+          -- This allows us to gracefully handle failure and issue the appropriate warnings
+          -- when we have wandered outside a repo
+          git.fugitive({ cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h") })
         end,
-        mode = "n",
-        desc = "Git Status (Tele)",
+        desc = "Status",
       },
       { "<leader>gp", "<cmd>Git pull<cr>", mode = "n", desc = "Pull", ft = "fugitive" },
       { "<leader>gP", "<cmd>Git push<cr>", mode = "n", desc = "Push", ft = "fugitive" },
@@ -99,10 +87,6 @@ return {
     "lewis6991/gitsigns.nvim",
     cmd = { "Gitsigns" },
     opts = function(_, opts)
-      -- vim.cmd("hi! link GitSignAdd DiffAdd")
-      -- vim.cmd("hi! link GitSignsChange DiffChange")
-      -- vim.cmd("hi! link GitSignsDelete DiffDelete")
-
       local my_opts = {
         signs = {
           add = { text = "│" },

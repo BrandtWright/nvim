@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
--- Adds slightly better validation and error hendling on top of telescope.nvim,
+-- Adds slightly better validation and error hendling on top of snacks pickers,
 -- fugitive, and gitsigns and provides some utility functions
 --------------------------------------------------------------------------------
 
 ---@class GitOpts
 ---@field cwd? string Current working directory (defaults to vim.uv.cwd())
----@field [string] any Additional telescope/git options
+---@field [string] any Additional snacks/git options
 
 local Either = require("bw.types.either")
 
@@ -63,23 +63,6 @@ local function has_git_changes(opts)
   return Either.left(string.format("No uncommitted changes in %s", opts.cwd))
 end
 
----@param opts GitOpts
----@return Either
-local apply_drop_down_theme = function(opts)
-  local themes = require("telescope.themes")
-  local defaults = themes.get_dropdown({
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-    layout_config = {
-      width = 0.5,
-    },
-  })
-  opts = vim.tbl_deep_extend("force", opts, defaults)
-  return Either.right(opts)
-end
-
 local M = {}
 
 --------------------------------------------------------------------------------
@@ -90,21 +73,9 @@ local M = {}
 --- `git ls-files` command
 ---@param opts? GitOpts Options for git files search
 function M.files(opts)
-  local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(apply_drop_down_theme)
-  if result.is_right then
-    require("telescope.builtin").git_files(result.value)
-  else
-    result:handle_error(warn)
-  end
-end
-
---- Fuzzy search (with previewer) for files tracked by Git. This command lists
---- the output of the `git ls-files` command
----@param opts? GitOpts Options for git files search with preview
-function M.files_with_preview(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_files(result.value)
+    Snacks.picker.git_files()
   else
     result:handle_error(warn)
   end
@@ -115,7 +86,7 @@ end
 function M.commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_commits(result.value)
+    Snacks.picker.git_log()
   else
     result:handle_error(warn)
   end
@@ -126,7 +97,7 @@ end
 function M.branches(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_branches(result.value)
+    Snacks.picker.git_branches()
   else
     result:handle_error(warn)
   end
@@ -137,7 +108,7 @@ end
 function M.status(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(has_git_changes)
   if result.is_right then
-    require("telescope.builtin").git_status(result.value)
+    Snacks.picker.git_status()
   else
     result:handle_error(warn)
   end
@@ -148,7 +119,7 @@ end
 function M.stash(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_stash(result.value)
+    Snacks.picker.git_stash()
   else
     result:handle_error(warn)
   end
@@ -181,6 +152,7 @@ end
 function M.log(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
+    P(result)
     vim.cmd("Git log")
   else
     result:handle_error(warn)
@@ -214,18 +186,17 @@ end
 function M.buffer_commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_bcommits(result.value)
+    Snacks.picker.git_log_file()
   else
     result:handle_error(warn)
   end
 end
 
---- Fuzzy find commits for the file specified by `path` (default: current buffer)
----@param opts? GitOpts Options for buffer commits range search
-function M.buffer_commits_range(opts)
+---@param opts? GitOpts Options for buffer commits search
+function M.line_commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    require("telescope.builtin").git_bcommits_range(opts)
+    Snacks.picker.git_log_line()
   else
     result:handle_error(warn)
   end
