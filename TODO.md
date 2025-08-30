@@ -29,6 +29,7 @@ desc = "Move Window Down"
 
 **Priority**: High (affects user experience)  
 **Estimated Time**: 1 minute
+**Status**: Complete
 
 ### 2. Fix Missing Return Statements in Slipbox Validation
 
@@ -73,6 +74,7 @@ end
 
 **Priority**: High (logic bug)  
 **Estimated Time**: 2 minutes
+**Status**: Complete
 
 ---
 

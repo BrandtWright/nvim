@@ -138,12 +138,15 @@ end
 M.edit_slip = function(slip_id)
   if not slip_id then
     vim.notify("Invalid argument: slip_id is nil", vim.log.levels.ERROR, { title = "Slipbox" })
+    return
   end
   if slip_id == "" then
     vim.notify("Invalid argument: slip_id is empty", vim.log.levels.ERROR, { title = "Slipbox" })
+    return
   end
   if type(slip_id) ~= "string" then
     vim.notify("Invalid argument: slip_id expected to be a string", vim.log.levels.ERROR, { title = "Slipbox" })
+    return
   end
 
   local slip_path = M.get_slip_path(slip_id)
