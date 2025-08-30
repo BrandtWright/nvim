@@ -152,7 +152,6 @@ end
 function M.log(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    P(result)
     vim.cmd("Git log")
   else
     result:handle_error(warn)
