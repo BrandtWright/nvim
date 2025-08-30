@@ -48,7 +48,7 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 map("n", "<leader>wh", "<cmd>wincmd H<cr>", { desc = "Move Window Right" })
-map("n", "<leader>wj", "<cmd>wincmd J<cr>", { desc = "Move Window Doen" })
+map("n", "<leader>wj", "<cmd>wincmd J<cr>", { desc = "Move Window Down" })
 map("n", "<leader>wk", "<cmd>wincmd K<cr>", { desc = "Move to the Up" })
 map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move to the Left" })
 
