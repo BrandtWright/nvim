@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       local instrument_ansible_buffer = function()
         -- Set up buffer-local key map for `ansible-lint`
