@@ -447,7 +447,7 @@ local links = {
   -- hl-SpellBad
   -- Word that is not recognized by the spellchecker. |spell|
   -- Combined with the highlighting used otherwise.
-  SpellBad = {},
+  SpellBad = "underline",
 
   -- hl-SpellCap
   -- Word that should start with a capital. |spell|
