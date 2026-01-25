@@ -45,7 +45,7 @@ return {
         function()
           Snacks.picker.files({
             finder = function()
-              local dotfiles = vim.fn.systemlist("dotfiles")
+              local dotfiles = vim.fn.systemlist("find-dotfiles")
               local items = {}
               for _, v in ipairs(dotfiles) do
                 table.insert(items, {
