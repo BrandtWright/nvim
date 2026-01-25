@@ -12,11 +12,10 @@ return {
     opts = {
       servers = {
         harper_ls = {
-          filetypes = { "markdown", "gitcommit" },
+          filetypes = { "markdown", "gitcommit", "tex" },
           settings = {
             ["harper-ls"] = {
               linters = {
-                SentenceCapitalization = false,
                 SpellCheck = false,
               },
             },
