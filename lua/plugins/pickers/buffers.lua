@@ -21,7 +21,7 @@ return {
           Snacks.picker.buffers()
         end,
         mode = "n",
-        desc = "Recent Files",
+        desc = "Fuzy Find Buffers",
       },
       {
         "<leader>bl",

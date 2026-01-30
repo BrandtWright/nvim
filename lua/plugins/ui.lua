@@ -103,7 +103,6 @@ return {
           { "<leader>ac", group = "ChatGPT" },
           { "<leader>b", group = "Buffer" },
           { "<leader>by", group = "Yank" },
-          { "<leader>bs", group = "Scratch Buffers" },
           { "<leader>c", group = "Code" },
           { "<leader>d", group = "Debug" },
           { "<leader>dp", group = "Profiler" },
