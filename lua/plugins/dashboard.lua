@@ -49,5 +49,14 @@ return {
       }
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
+    keys = {
+      {
+        "<leader>od",
+        function()
+          Snacks.dashboard()
+        end,
+        desc = "Dashboard",
+      },
+    },
   },
 }
