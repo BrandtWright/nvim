@@ -43,9 +43,9 @@ local colors = {
   bright_orange = load(color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
   bright_rose = load(color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
 
-  primary_accent = load(ui_prefix .. "primary_accent") or "#2c2826", --  hsl(38 20% 15%)
-  secondary_accent = load(ui_prefix .. "secondary_accent") or "#4f4945", --  hsl(22 20% 35%)
-  tertiary_accent = load(ui_prefix .. "tertiary_accent") or "#a89984", --  hsl(22 20% 55%)
+  primary_accent = load(ui_prefix .. "primary_accent_background") or "#2c2826", --  hsl(38 20% 15%)
+  secondary_accent = load(ui_prefix .. "secondary_accent_background") or "#4d4136", --  hsl(22 20% 35%)
+  tertiary_accent = load(ui_prefix .. "tertiary_accent_background") or "#a49085", --  hsl(22 20% 55%)
   cursorline = load(ui_prefix .. "cursor_line") or "#1c1c1c", --  hsl(0 0% 11%)
   visual_selection = load(ui_prefix .. "visual_selection") or "#333333", --  hsl(0 0% 20%)
 
