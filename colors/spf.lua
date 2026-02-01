@@ -479,15 +479,15 @@ local links = {
 
   -- hl-StatusLine
   -- Status line of current window.
-  StatusLine = {},
+  StatusLine = "primary_accent",
 
   -- hl-StatusLineNC
   -- Status lines of not-current windows.
-  StatusLineNC = {},
+  StatusLineNC = "secondary_accent",
 
   -- hl-StatusLineTerm
   -- Status line of |terminal| window.
-  StatusLineTerm = {},
+  StatusLineTerm = "tertiary_accent",
 
   -- *hl-StatusLineTermNC
   -- Status line of non-current |terminal| windows.
