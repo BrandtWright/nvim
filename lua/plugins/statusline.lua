@@ -11,26 +11,24 @@ return {
       local yellow = hl("DiagnosticWarn", "fg")
       local blue = hl("DiagnosticInfo", "fg")
       local black = hl("Normal", "bg")
-      local primary_accent = hl("WinBar", "bg")
-      local secondary_accent = hl("WinBarNC", "bg")
-      local tertiary_accent = hl("WinBar", "fg")
 
-      -- Lualine C (all modes)
-      local dark_highlight = { fg = tertiary_accent, bg = primary_accent }
+      -- Lualine C
+      local dark_highlight = { fg = hl("StatusLine", "fg"), bg = hl("StatusLine", "bg") }
 
-      -- Lualine B (all modes)
-      local medium_highlight = { fg = tertiary_accent, bg = secondary_accent }
+      -- Lualine B
+      local medium_highlight = { fg = hl("StatusLineNC", "fg"), bg = hl("StatusLineNC", "bg") }
 
-      -- Lualine A (by bode)
-      local normal_highlight = { fg = primary_accent, bg = tertiary_accent }
+      -- Lualine A
+      local light_highlight = { fg = hl("StatusLineTerm", "fg"), bg = hl("StatusLineTerm", "bg") }
+
       local insert_highlight = { fg = black, bg = green }
       local replace_highlight = { fg = black, bg = red }
       local visual_highlight = { fg = black, bg = blue }
       local command_highlight = { fg = black, bg = yellow }
-      local inactive_highlight = { fg = primary_accent, bg = primary_accent }
+      local inactive_highlight = { fg = dark_highlight.bg, bg = dark_highlight.bg }
 
       local screen_glasses_theme = {
-        normal = { a = normal_highlight, b = medium_highlight, c = dark_highlight },
+        normal = { a = light_highlight, b = medium_highlight, c = dark_highlight },
         insert = { a = insert_highlight, b = medium_highlight, c = dark_highlight },
         visual = { a = visual_highlight, b = medium_highlight, c = dark_highlight },
         replace = { a = replace_highlight, b = medium_highlight, c = dark_highlight },
