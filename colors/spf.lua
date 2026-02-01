@@ -333,7 +333,7 @@ local links = {
 
   -- hl-Cursor
   -- Character under the cursor.
-  Cursor = {},
+  Cursor = "tertiary_accent",
 
   -- hl-lCursor
   -- Character under the cursor when |language-mapping|
