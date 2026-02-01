@@ -120,6 +120,12 @@ local highlights = {
     bg = colors.secondary_accent_background,
   },
 
+  --= None
+  tertiary_accent = {
+    fg = colors.tertiary_accent_foreground,
+    bg = colors.tertiary_accent_background,
+  },
+
   -- WinSeparator
   secondary_accent_background_on_nothing = { fg = colors.secondary_accent_background },
 
