@@ -107,6 +107,7 @@ local highlights = {
   magenta_undercurl = { undercurl = true, fg = colors.magenta },
 
   rose = { fg = colors.rose },
+  bright_gold = { fg = colors.bright_gold },
 
   -- Folded, WinBar
   primary_accent = {
@@ -132,9 +133,6 @@ local highlights = {
   nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },
   nothing_on_black = { bg = colors.black },
-
-  gold = { fg = colors.gold },
-  bright_gold = { fg = colors.bright_gold },
 }
 
 local links = {
