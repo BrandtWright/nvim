@@ -31,6 +31,7 @@ local colors = {
   magenta = load("color5") or "#c494db", --  hsl(280 50% 72%)
   orange = load(color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
   rose = load(color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
+  gold = load(color_prefix .. "gold") or "#4e442c",
 
   bright_black = load("color8") or "#636363", --  hsl(0 0% 39%)
   bright_white = load("color15") or "#f6eedb", --  hsl(43 59% 91%)
@@ -42,6 +43,7 @@ local colors = {
   bright_magenta = load("color13") or "#ddaff4", --  hsl(280 75% 82%)
   bright_orange = load(color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
   bright_rose = load(color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
+  bright_gold = load(color_prefix .. "bright_gold") or "#a38e5c",
 
   primary_accent_foreground = load(ui_prefix .. "primary_accent_foreground") or "#a49085", --  hsl(20 7% 16%)
   primary_accent_background = load(ui_prefix .. "primary_accent_background") or "#2c2826", --  hsl(20 7% 16%)
@@ -51,8 +53,6 @@ local colors = {
   tertiary_accent_background = load(ui_prefix .. "tertiary_accent_background") or "#a49085", --  hsl(24 7% 29%)
   cursorline = load(ui_prefix .. "cursor_line") or "#1c1c1c", --  hsl(0 0% 11%)
   visual_selection = load(ui_prefix .. "visual_selection") or "#333333", --  hsl(0 0% 20%)
-
-  gold = "#a38e5c", --  hsl(42 28% 50%)
 }
 
 local highlights = {
@@ -134,6 +134,7 @@ local highlights = {
   nothing_on_black = { bg = colors.black },
 
   gold = { fg = colors.gold },
+  bright_gold = { fg = colors.bright_gold },
 }
 
 local links = {
@@ -213,7 +214,7 @@ local links = {
   PreCondit = "PreProc",
 
   -- any special symbol
-  Special = "gold",
+  Special = "bright_gold",
   -- special character in a constant
   SpecialChar = "Special",
   -- special things inside a comment
@@ -926,7 +927,7 @@ local links = {
 
   -- markdown
   markdownH1 = "Title",
-  markdownH2 = "gold",
+  markdownH2 = "bright_gold",
   markdownH3 = "markdownH2",
   markdownH4 = "markdownH2",
   markdownH5 = "markdownH2",
@@ -941,7 +942,7 @@ local links = {
   markdownCodeBlock = "markdownCode",
   markdownCodeDelimiter = {},
   markdownBlockquote = {},
-  markdownListMarker = "gold",
+  markdownListMarker = "bright_gold",
   markdownOrderedListMarker = {},
   markdownRule = {},
   markdownHeadingRule = {},
