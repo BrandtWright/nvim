@@ -2,9 +2,6 @@
 -- SPF
 --
 -- A colorscheme for Neovim
---
--- TODO: Conceal highlight
---
 --------------------------------------------------------------------------------
 -- :e $VIMRUNTIME/colors/README.txt
 -- :e $VIMRUNTIME/doc/dev_theme.txt
