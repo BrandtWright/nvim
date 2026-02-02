@@ -31,7 +31,6 @@ local colors = {
   magenta = load("color5") or "#c494db", --  hsl(280 50% 72%)
   orange = load(color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
   rose = load(color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
-  gold = load(color_prefix .. "gold") or "#4e442c",
 
   bright_black = load("color8") or "#636363", --  hsl(0 0% 39%)
   bright_white = load("color15") or "#f6eedb", --  hsl(43 59% 91%)
