@@ -29,7 +29,7 @@ local colors = {
   orange = load(extended_color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
   rose = load(extended_color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
 
-  bright_black = load("color8") or "#636363", --  hsl(0 0% 39%)
+  bright_black = load("color8") or "#756157", --  hsl(0 0% 39%)
   bright_white = load("color15") or "#f6eedb", --  hsl(43 59% 91%)
   bright_red = load("color9") or "#dea1a1", --  hsl(0 48% 75%)
   bright_yellow = load("color11") or "#d2d6a9", --  hsl(65 35% 75%)
