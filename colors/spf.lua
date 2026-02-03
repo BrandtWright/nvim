@@ -15,7 +15,7 @@
 
 local load = require("bw.util.xresources").load
 local ui_prefix = "screen_glasses.ui."
-local color_prefix = "screen_glasses.extended_colors."
+local extended_color_prefix = "screen_glasses.extended_colors."
 
 local colors = {
   black = load("color0") or "#171717", --  hsl(0 0% 9%)
@@ -26,8 +26,8 @@ local colors = {
   cyan = load("color6") or "#6aafaf", --  hsl(180 30% 55%)
   blue = load("color4") or "#899fd2", --  hsl(222 45% 68%)
   magenta = load("color5") or "#c494db", --  hsl(280 50% 72%)
-  orange = load(color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
-  rose = load(color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
+  orange = load(extended_color_prefix .. "orange") or "#dba270", --  hsl(28 60% 65%)
+  rose = load(extended_color_prefix .. "rose") or "#e892b1", --  hsl(338 65% 74%)
 
   bright_black = load("color8") or "#636363", --  hsl(0 0% 39%)
   bright_white = load("color15") or "#f6eedb", --  hsl(43 59% 91%)
@@ -37,9 +37,9 @@ local colors = {
   bright_cyan = load("color14") or "#a6d9d9", --  hsl(180 40% 75%)
   bright_blue = load("color12") or "#a2b8eb", --  hsl(222 65% 78%)
   bright_magenta = load("color13") or "#ddaff4", --  hsl(280 75% 82%)
-  bright_orange = load(color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
-  bright_rose = load(color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
-  bright_gold = load(color_prefix .. "bright_gold") or "#a38e5c",
+  bright_orange = load(extended_color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
+  bright_rose = load(extended_color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
+  bright_gold = load(extended_color_prefix .. "bright_gold") or "#a38e5c",
 
   primary_accent_foreground = load(ui_prefix .. "primary_accent_foreground") or "#a49085", --  hsl(20 7% 16%)
   primary_accent_background = load(ui_prefix .. "primary_accent_background") or "#2c2826", --  hsl(20 7% 16%)
