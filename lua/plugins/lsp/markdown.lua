@@ -30,6 +30,10 @@ return {
       })
 
       local my_opts = {
+        code = {
+          right_pad = 2,
+          left_pad = 2,
+        },
         link = {
           custom = {
             web = {
