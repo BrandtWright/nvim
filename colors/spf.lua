@@ -41,6 +41,11 @@ local colors = {
   bright_rose = load(extended_color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
   bright_gold = load(extended_color_prefix .. "bright_gold") or "#a38e5c",
 
+  dark_green = load(ui_prefix .. "diff_add") or "#2a1313",
+  dark_yellow = load(ui_prefix .. "diff_change") or "#241b00",
+  dark_red = load(ui_prefix .. "diff_delete") or "#2a1313",
+  dark_blue = load(ui_prefix .. "diff_text") or "#0e1423",
+
   primary_accent_foreground = load(ui_prefix .. "primary_accent_foreground") or "#a49085", --  hsl(20 7% 16%)
   primary_accent_background = load(ui_prefix .. "primary_accent_background") or "#2c2826", --  hsl(20 7% 16%)
   secondary_accent_foreground = load(ui_prefix .. "secondary_accent_foreground") or "#a49085", --  hsl(29 18% 26%)
@@ -129,6 +134,10 @@ local highlights = {
   nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },
   nothing_on_black = { bg = colors.black },
+  nothing_on_daark_green = { bg = colors.dark_green },
+  nothing_on_daark_yellow = { bg = colors.dark_yellow },
+  nothing_on_daark_red = { bg = colors.dark_red },
+  nothing_on_daark_blue = { bg = colors.dark_blue },
 }
 
 local links = {
@@ -291,19 +300,19 @@ local links = {
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
-  DiffAdd = "black_on_green",
+  DiffAdd = "nothing_on_daark_green",
 
   -- hl-DiffChange
   -- Diff mode: Changed line. |diff.txt|
-  DiffChange = "black_on_yellow",
+  DiffChange = "nothing_on_daark_yellow",
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = "black_on_red",
+  DiffDelete = "nothing_on_daark_red",
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = "black_on_blue",
+  DiffText = "nothing_on_daark_blue",
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
