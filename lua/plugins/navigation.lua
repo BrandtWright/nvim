@@ -14,12 +14,12 @@ return {
         local get = require("bw.util.highlights").get_attribute
         local hl = vim.api.nvim_set_hl
 
-        local primary_accent_bg = get("WinBar", "bg") or "#666666"
-        local primary_accent_fg = get("WinBar", "fg") or "#1a1a1a"
+        local secondary_accent_fg = get("WinBarNC", "fg") or "#4d4136"
+        local secondary_accent_bg = get("WinBarNC", "bg") or "#4d4136"
         local normal_fg = get("Normal", "fg") or "#ffffff"
 
-        hl(0, "NeoTreeFloatBorder", { fg = primary_accent_bg, bg = "" })
-        hl(0, "NeoTreeTitleBar", { fg = primary_accent_fg, bg = primary_accent_bg })
+        hl(0, "NeoTreeTitleBar", { fg = secondary_accent_fg, bg = secondary_accent_bg })
+        hl(0, "NeoTreeFloatBorder", { fg = secondary_accent_bg, bg = secondary_accent_bg })
         hl(0, "NeoTreeDirectoryName", { fg = normal_fg, bg = "" })
         vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
         vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
