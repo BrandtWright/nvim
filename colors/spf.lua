@@ -321,7 +321,7 @@ local links = {
 
   -- hl-WinSeparator
   -- Separators between window splits.
-  WinSeparator = "secondary_accent_background_on_nothing",
+  WinSeparator = "Comment",
 
   -- |hl-Folded|
   -- Line used for closed folds.
