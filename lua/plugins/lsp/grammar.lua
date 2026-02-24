@@ -17,6 +17,7 @@ return {
             ["harper-ls"] = {
               linters = {
                 SpellCheck = false,
+                ToDoHyphen = false,
               },
             },
           },
