@@ -35,7 +35,7 @@ return {
           return #vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 }) > 0
         end,
         set = function(state)
-          for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls" })) do
+          for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 })) do
             if state then
               vim.lsp.buf_attach_client(0, client.id)
             else
