@@ -35,12 +35,14 @@ return {
           return #vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 }) > 0
         end,
         set = function(state)
-          for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 })) do
-            if state then
-              vim.lsp.buf_attach_client(0, client.id)
-            else
-              vim.lsp.buf_detach_client(0, client.id)
+          if state then
+            vim.lsp.enable("harper_ls")
+            vim.api.nvim_exec_autocmds("FileType", { buffer = 0, modeline = false })
+          else
+            for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls" })) do
+              client:stop()
             end
+            vim.lsp.enable("harper_ls", false)
           end
         end,
       }
