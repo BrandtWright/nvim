@@ -69,15 +69,16 @@ return {
       { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Branches" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
+      { "<leader>gG", "<cmd>Git commit<cr>", mode = "n", desc = "Commit" },
       {
-        "<leader>gS",
+        "<leader>gg",
         function()
           -- Use the current buffer path as cwd in case we are in a buffer outside of cwd
           -- This allows us to gracefully handle failure and issue the appropriate warnings
           -- when we have wandered outside a repo
           git.fugitive({ cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h") })
         end,
-        desc = "Status",
+        desc = "Fugitive",
       },
       { "<leader>gp", "<cmd>Git pull<cr>", mode = "n", desc = "Pull", ft = "fugitive" },
       { "<leader>gP", "<cmd>Git push<cr>", mode = "n", desc = "Push", ft = "fugitive" },
