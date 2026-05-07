@@ -270,3 +270,13 @@ vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diag
 vim.keymap.set("n", "<leader>sw", function()
   vim.cmd("!dict <cword>")
 end, { desc = "Dictionary" })
+
+--------------------------------------------------------------------------------
+-- Overrides
+--------------------------------------------------------------------------------
+-- Override `gx` with with jobstart/detatch to avoid timeouts when the xdg
+-- default application  takes a bit of time to start up.
+vim.keymap.set("n", "gx", function()
+  local target = vim.fn.expand("<cfile>")
+  vim.fn.jobstart({ "xdg-open", target }, { detach = true })
+end)

@@ -22,6 +22,16 @@ return {
             if ok then
               wk.add({
                 {
+                  "<localleader>s",
+                  function()
+                    local slip_id = vim.fn.expand("%:p:h:t")
+                    vim.cmd(":let @+ = expand('%:p:h:t')")
+                    vim.notify(slip_id, vim.log.levels.INFO, { title = "Yanked Slip Id" })
+                  end,
+                  buffer = ev.buf,
+                  desc = "View Related Slips",
+                },
+                {
                   "<localleader>v",
                   function()
                     Snacks.picker.pick({ source = "related_slips" })
@@ -38,6 +48,8 @@ return {
                   desc = "Add Releated Slip",
                 },
               })
+              local slip_path = vim.fn.expand("%:p:h")
+              vim.cmd({ cmd = "cd", args = { slip_path } })
             end
           end
         end,
