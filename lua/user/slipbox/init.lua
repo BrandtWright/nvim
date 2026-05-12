@@ -166,6 +166,92 @@ M.edit_slip = function(slip_id)
   end
 end
 
+-- Opens a link in a slip
+--
+-- 1. Priority order: inline links [text](url) are checked before reference links
+--    [text][id] because they share a common prefix, and we want the more specific
+--    match first.
+-- 2. vim.ui.open is used as the fallback rather than feedkeys("gx") which would
+--    cause an infinite loop. It's the same underlying function modern neovim's
+--    gx calls internally.
+-- 3. vim.pesc escapes the reference ID before using it as a Lua pattern, so IDs
+--    with special characters like `-` or `.` don't break the search.
+-- 4. The function is extracted as a named local so it's easier to test
+--    independently from the autocmd — call `:lua open_markdown_link()` to debug.
+-- 5. Image links ![text](url) are handled by the same inline pattern as regular
+--    links, with an optional leading `!` in the pattern.
+-- 6. Relative paths are resolved by prepending the buffer's parent directory name
+--    (the GUID directory) so that xdg-open receives a path that works relative to
+--    the slipbox root, which is where neovim's cwd will be for linting to work.
+local function open_markdown_link()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- convert to 1-indexed
+  local buf_dir = vim.fn.expand("%:p:h")
+  local parent_dir_name = vim.fn.fnamemodify(buf_dir, ":t") -- just the GUID dir name
+
+  local function resolve(path)
+    if path:match("^https?://") or path:match("^ftp://") or path:match("^mailto:") then
+      return path -- absolute URL, use as-is
+    end
+    if path:match("^/") then
+      return path -- absolute path, use as-is
+    end
+    return parent_dir_name .. "/" .. path -- prepend GUID dir name for relative paths
+  end
+
+  local url = nil
+
+  -- 1. Try inline markdown link [text](url) or image link ![text](url)
+  local pos = 1
+  while pos <= #line do
+    local s, e, link_url = line:find("!?%[.-%]%((.-)%)", pos)
+    if not s then
+      break
+    end
+    if col >= s and col <= e then
+      url = resolve(link_url)
+      break
+    end
+    pos = e + 1
+  end
+
+  -- 2. Try reference link [text][id] → look up definition in buffer
+  if not url then
+    pos = 1
+    while pos <= #line do
+      local s, e, ref_id = line:find("%[.-%]%[(.-)%]", pos)
+      if not s then
+        break
+      end
+      if col >= s and col <= e then
+        for _, bline in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+          local ref_url = bline:match("^%[" .. vim.pesc(ref_id) .. "%]:%s*(.+)$")
+          if ref_url then
+            url = resolve(vim.trim(ref_url))
+            break
+          end
+        end
+        break
+      end
+      pos = e + 1
+    end
+  end
+
+  -- 3. Try plain URL under cursor
+  if not url then
+    local cfile = vim.fn.expand("<cfile>")
+    if cfile:match("^https?://") or cfile:match("^ftp://") or cfile:match("^mailto:") then
+      url = cfile
+    end
+  end
+
+  if url then
+    vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+  else
+    vim.ui.open(vim.fn.expand("<cfile>")) -- fall back to default gx behavior
+  end
+end
+
 --- Initializes the slipbox module with configuration and user commands
 --- Creates SlipNew and SlipEdit commands, sets up auto-save functionality,
 --- and validates the slipbox directory exists
@@ -231,6 +317,17 @@ function M.setup(opts)
       vim.api.nvim_exec_autocmds("BufWritePost", {
         buffer = bufnr,
         modeline = false,
+      })
+    end,
+  })
+
+  -- Open Link In Slip
+  vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = vim.fn.expand("~") .. "/data/base/slipbox/**/README.md",
+    callback = function()
+      vim.keymap.set("n", "gx", open_markdown_link, {
+        buffer = true,
+        desc = "Open markdown link under cursor (slipbox)",
       })
     end,
   })

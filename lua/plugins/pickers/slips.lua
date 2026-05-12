@@ -29,7 +29,7 @@ return {
                     vim.notify(slip_id, vim.log.levels.INFO, { title = "Yanked Slip Id" })
                   end,
                   buffer = ev.buf,
-                  desc = "View Related Slips",
+                  desc = "Yank slip ID",
                 },
                 {
                   "<localleader>v",
@@ -48,8 +48,6 @@ return {
                   desc = "Add Releated Slip",
                 },
               })
-              local slip_path = vim.fn.expand("%:p:h")
-              vim.cmd({ cmd = "cd", args = { slip_path } })
             end
           end
         end,
