@@ -322,8 +322,10 @@ function M.setup(opts)
   })
 
   -- Open Link In Slip
+  local slip_link_group = vim.api.nvim_create_augroup("SlipLinkHandler", { clear = true })
   vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = vim.fn.expand("~") .. "/data/base/slipbox/**/README.md",
+    group = slip_link_group,
+    pattern = vim.fn.expand(M.get_slipbox_path()) .. "/**/README.md",
     callback = function()
       vim.keymap.set("n", "gx", open_markdown_link, {
         buffer = true,
