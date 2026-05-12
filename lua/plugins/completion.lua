@@ -59,8 +59,24 @@ return {
                 -- Optional: restrict to treesitter @spell captures only
                 -- (great for e.g. comments/strings in code, not identifiers)
                 enable_in_context = function()
+                  -- Priority chain:
+                  -- 1. Is vim spell off?           → no suggestions
+                  -- 2. No treesitter parser?       → suggest everywhere
+                  -- 3. In a @nospell capture?      → no suggestions
+                  -- 4. In a @spell capture?        → suggest
+                  -- 5. Neither (e.g. identifier)?  → no suggestions
+
+                  if not vim.wo.spell then
+                    return false
+                  end
+
                   local curpos = vim.api.nvim_win_get_cursor(0)
                   local captures = vim.treesitter.get_captures_at_pos(0, curpos[1] - 1, curpos[2] - 1)
+
+                  if vim.tbl_isempty(captures) then
+                    return true
+                  end
+
                   local in_spell_capture = false
                   for _, cap in ipairs(captures) do
                     if cap.capture == "spell" then
