@@ -61,17 +61,15 @@ return {
               results_width = 0.4,
               preview_width = 0.6,
             },
-          },
-
-          vertical = {
-            width = 0.9,
-            height = 0.95,
-            preview_height = 0.5,
-          },
-
-          flex = {
-            horizontal = {
-              preview_width = 0.9,
+            vertical = {
+              width = 0.9,
+              height = 0.95,
+              preview_height = 0.5,
+            },
+            flex = {
+              horizontal = {
+                preview_width = 0.9,
+              },
             },
           },
         },
