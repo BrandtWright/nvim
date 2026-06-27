@@ -107,8 +107,6 @@ return {
         },
         expand = 0,
         spec = {
-          { "<leader>a", group = "AI" },
-          { "<leader>ac", group = "ChatGPT" },
           { "<leader>b", group = "Buffer" },
           { "<leader>by", group = "Yank" },
           { "<leader>c", group = "Code" },
