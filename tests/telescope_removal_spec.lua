@@ -17,6 +17,11 @@ describe("telescope removal", function()
     assert.same({}, offenders)
   end)
 
+  it("init.lua does not import the telescope picker extra", function()
+    local content = table.concat(vim.fn.readfile(ROOT .. "/init.lua"), "\n")
+    assert.is_nil(content:find("extras%.editor%.telescope"))
+  end)
+
   it("ChatGPT declares plenary explicitly", function()
     local specs = require("plugins.ai")
     local chatgpt
