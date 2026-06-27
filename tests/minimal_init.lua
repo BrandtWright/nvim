@@ -13,6 +13,9 @@ local root = vim.fn.fnamemodify(tests_dir, ":h")
 -- point at a non-existent dir.
 vim.opt.rtp:prepend(root)
 vim.opt.rtp:prepend(root .. "/.tests-deps/plenary.nvim")
+-- The config's after/ dir is a separate rtp entry (sourced last, so its
+-- after/ftplugin/* overrides built-in ftplugins). Needed to test ftplugins.
+vim.opt.rtp:append(root .. "/after")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
