@@ -6,7 +6,6 @@ return {
     "folke/snacks.nvim",
     opts = {
       terminal = {
-        cwd = vim.fn.getcwd(),
         win = {
           border = "single",
           style = "terminal",
@@ -21,7 +20,7 @@ return {
       {
         "<c-_>",
         function()
-          Snacks.terminal.toggle("bash")
+          Snacks.terminal.toggle("bash", { cwd = vim.fn.getcwd() })
         end,
         desc = "Toggle Floating Terminal",
       },
