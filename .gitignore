@@ -6,3 +6,4 @@ spell/
 # Vim tags
 tags
 *.tags
+/.tests-deps/
