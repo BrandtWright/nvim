@@ -118,6 +118,20 @@ M.get_slipbox_path = function()
   return state.config.slipbox_dir
 end
 
+--- Extracts a slip ID from a slip's README.md buffer path within the slipbox.
+--- The slipbox root is escaped with vim.pesc so directories containing Lua
+--- pattern magic characters (e.g. "-", ".") are matched literally.
+---@param bufname string Absolute path to a buffer
+---@return string|nil slip_id, or nil if the path is not a slip README
+M.slip_id_from_path = function(bufname)
+  local root = M.get_slipbox_path()
+  if root == "" then
+    return nil
+  end
+  local relative = bufname:gsub("^" .. vim.pesc(root) .. "/", "")
+  return relative:match("^([%w%-]+)/README%.md$")
+end
+
 --- Creates a new slip with auto-generated ID and opens it for editing
 --- Sets up the buffer with proper options and configures it as a markdown file
 M.new_slip = function()
@@ -257,6 +271,13 @@ end
 --- and validates the slipbox directory exists
 ---@param opts table Configuration table with slipbox_dir field required
 function M.setup(opts)
+  -- Normalize early so "~" and env vars resolve everywhere downstream
+  -- (autocmd patterns, path stripping, get_slip_path) and so the directory
+  -- validation below checks the real, resolved path.
+  if opts and type(opts.slipbox_dir) == "string" then
+    opts.slipbox_dir = vim.fs.normalize(opts.slipbox_dir)
+  end
+
   -- Ensure that opts.slipbox_dir is set, is a string, and points to a valid directory
   if
     not opts
@@ -291,8 +312,7 @@ function M.setup(opts)
     callback = function(args)
       local bufnr = args.buf
       local bufname = vim.api.nvim_buf_get_name(bufnr)
-      local relative = bufname:gsub("^" .. M.get_slipbox_path() .. "/", "")
-      local slip_id = relative:match("^([%w%-]+)/README%.md$")
+      local slip_id = M.slip_id_from_path(bufname)
       if not slip_id then
         vim.notify("Invalid slipbox file path.", vim.log.levels.ERROR, { title = "Slipbox" })
         return
@@ -325,7 +345,7 @@ function M.setup(opts)
   local slip_link_group = vim.api.nvim_create_augroup("SlipLinkHandler", { clear = true })
   vim.api.nvim_create_autocmd("BufEnter", {
     group = slip_link_group,
-    pattern = vim.fn.expand(M.get_slipbox_path()) .. "/**/README.md",
+    pattern = M.get_slipbox_path() .. "/**/README.md",
     callback = function()
       vim.keymap.set("n", "gx", open_markdown_link, {
         buffer = true,
