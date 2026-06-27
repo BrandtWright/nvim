@@ -1,14 +1,6 @@
 local git = require("plugins.git.api")
 return {
   {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      -- silly keys
-      { "<leader>gs", false },
-      { "<leader>gc", false },
-    },
-  },
-  {
     "folke/snacks.nvim",
     keys = {
       { "<leader>gs", git.status, desc = "Status" },

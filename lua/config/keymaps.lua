@@ -216,7 +216,7 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 -- Project Stuff
 --------------------------------------------------------------------------------
 map("n", "<leader>fp", function()
-  require("telescope").extensions.project.project()
+  Snacks.picker.projects()
 end, { desc = "Project", silent = true })
 
 --------------------------------------------------------------------------------

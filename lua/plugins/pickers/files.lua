@@ -6,14 +6,6 @@ return {
   -- Silly Keys
   ------------------------------------------------------------------------------
   {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader>ff", false },
-      { "<leader>fF", false },
-      { "<leader>fc", false },
-    },
-  },
-  {
     "LazyVim/LazyVim",
     keys = {
       { "<leader>ff", false },

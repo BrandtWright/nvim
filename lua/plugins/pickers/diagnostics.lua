@@ -1,13 +1,5 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      -- silly key: buffer diagnosics are in snacks
-      { "<leader>sd", false },
-      { "<leader>sD", false },
-    },
-  },
-  {
     "folke/snacks.nvim",
     keys = {
       {

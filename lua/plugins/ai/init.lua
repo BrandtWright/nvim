@@ -6,6 +6,10 @@ return {
     ----------------------------------------------------------------------------
 
     "jackMort/ChatGPT.nvim",
+    -- plenary is ChatGPT's core async dependency (plenary.job/curl). It used to
+    -- be pulled in transitively by telescope; declare it explicitly now that
+    -- telescope has been removed. (after/plugin/globals.lua's RELOAD also uses it.)
+    dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
     cmd = {
       "ChatGPT",
