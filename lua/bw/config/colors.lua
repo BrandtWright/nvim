@@ -42,7 +42,7 @@ local colors = {
   blue = load_color("color4") or "#5692db",
   magenta = load_color("color5") or "#8f7099",
   cyan = load_color("color6") or "#7b919e",
-  white = load_color("color7") or "ebdbb2",
+  white = load_color("color7") or "#ebdbb2",
 
   -- Bright
   bright_black = load_color("color8") or "#737373",
