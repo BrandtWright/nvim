@@ -3,10 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-symbols.nvim",
-      "xiyaowong/telescope-emoji.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-project.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
       "nvim-lua/plenary.nvim",
     },
     opts = function()
@@ -75,20 +72,7 @@ return {
         },
 
         extensions = {
-          fzf = {
-            fuzzy = true, -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case" (default: "smart_case")
-          },
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({
-              -- even more opts
-            }),
-          },
-          notify = {},
-          emoji = {},
-          file_browser = {},
+          -- project is auto-loaded on access by <leader>fp (see config/keymaps.lua).
           project = {
             theme = "dropdown",
             search_by = "title",
