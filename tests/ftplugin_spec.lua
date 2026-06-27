@@ -22,3 +22,28 @@ describe("after/ftplugin/sql.vim", function()
     assert.equals("mysql", vim.g.sql_type_default)
   end)
 end)
+
+describe("after/ftplugin/term.vim", function()
+  it("sources cleanly and defines no broken TermWhitespace autocmds", function()
+    assert.is_true((source_ftplugin("term.vim")))
+    -- The broken whitespace block (undefined hl groups, E488) was removed, so
+    -- the augroup should no longer exist.
+    local ok = pcall(vim.api.nvim_get_autocmds, { group = "TermWhitespace" })
+    assert.is_false(ok)
+  end)
+
+  it("still sets the terminal-buffer options", function()
+    source_ftplugin("term.vim")
+    assert.is_false(vim.wo.number)
+    assert.is_false(vim.wo.relativenumber)
+    assert.equals(0, vim.wo.scrolloff)
+  end)
+end)
+
+describe("after/ftplugin/python.vim", function()
+  it("marks the overflow column buffer-locally instead of window-scoped :match", function()
+    source_ftplugin("python.vim")
+    assert.equals("81", vim.wo.colorcolumn)
+    assert.equals(80, vim.bo.textwidth)
+  end)
+end)

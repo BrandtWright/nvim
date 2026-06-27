@@ -5,5 +5,5 @@ setlocal textwidth=80
 setlocal smarttab
 setlocal expandtab
 
-" Highlight long lines
-match ErrorMsg '\%>79v.\+'
+" Mark the column just past textwidth (buffer-local, unlike :match)
+setlocal colorcolumn=81
