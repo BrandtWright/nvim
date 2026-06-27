@@ -37,14 +37,6 @@ local sillyKeyConfig = {
     { lhs = "<leader>ud", modes = { "n" } }, -- toggle diagnostics is in leader.
     { lhs = "<leader>uZ", modes = { "n" } }, -- leader_w_m is convenient enough.
 
-    -- Finders
-    { lhs = "<leader>fr", modes = { "n" } }, -- Recent Files (Root)
-    { lhs = "<leader>fR", modes = { "n" } }, -- Recent Files (CWD)
-    { lhs = "<leader>sg", modes = { "n" } }, -- Grep (Root)
-    { lhs = "<leader>sG", modes = { "n" } }, -- Grep (CWD)
-    { lhs = "<leader>sw", modes = { "n" } }, -- Find files matching word or visual selectino (Root)
-    { lhs = "<leader>sW", modes = { "n" } }, -- Find files matching word or visual selectino (CWD)
-
     -- Status
     { lhs = "<leader>l", modes = { "n" } }, -- lazy status
     { lhs = "<leader>L", modes = { "n" } }, -- lazy changelog
