@@ -71,7 +71,7 @@ vim.opt.fillchars = {
   foldopen = "", -- ▼
   foldclose = "", -- ▶
   foldsep = " ",
-  eob = " ",
+  eob = "~",
 }
 
 --- Creates custom fold text using Treesitter with intelligent truncation
@@ -136,9 +136,6 @@ opt.formatoptions = opt.formatoptions
 
 -- set joinspaces
 opt.joinspaces = false -- one space betwen sentences.
-
--- set fillchars=eob:~
-opt.fillchars = { eob = "~" }
 
 opt.guicursor = table.concat({
   "n-v-c-sm:block-Cursor", -- normal, visual, command, select: block with Cursor highlight
