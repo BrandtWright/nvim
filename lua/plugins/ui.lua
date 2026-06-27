@@ -77,7 +77,7 @@ return {
 
       local my_opts = {
 
-        preset = "clasic",
+        preset = "classic",
         win = {
           border = "rounded",
           no_overlap = false,
