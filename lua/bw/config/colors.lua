@@ -16,21 +16,16 @@
 --
 -- Shades:
 --
--- TODO: Move load_color() to an xresource module
 -- TODO: colors.terminal -> too many refs. Deduplicate with highlight links
 --
 --------------------------------------------------------------------------------
 
---- Gets a color from the xresource database
+--- Gets a color from the xresource database.
+--- Backed by bw.util.xresources, which queries `xrdb` once and caches the
+--- result, instead of spawning a separate `xrdb -get` subprocess per color.
 ---@param key string
 ---@return string|nil
-local load_color = function(key)
-  local color = vim.fn.system({ "xrdb", "-get", key }):gsub("\n", "")
-  if not color or color == "" or not color:match("#%x%x%x%x%x%x") then
-    return nil
-  end
-  return color
-end
+local load_color = require("bw.util.xresources").load
 
 local colors = {
 
