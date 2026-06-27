@@ -4,11 +4,15 @@
 
 local map = vim.keymap.set
 
--- Disable the silly stuff
+-- Disable the silly stuff.
+-- pcall: a key may not be mapped (e.g. a LazyVim default moved/renamed, or a
+-- plugin that defined it was removed). Without the guard, one unmapped key
+-- throws and aborts the rest of this file, so every keymap below silently fails
+-- to load.
 local sillyKeys = require("config.silly-keys")
 for _, key in ipairs(sillyKeys) do
   for _, mode in ipairs(key.modes) do
-    vim.keymap.del(mode, key.lhs)
+    pcall(vim.keymap.del, mode, key.lhs)
   end
 end
 

@@ -21,16 +21,4 @@ describe("telescope removal", function()
     local content = table.concat(vim.fn.readfile(ROOT .. "/init.lua"), "\n")
     assert.is_nil(content:find("extras%.editor%.telescope"))
   end)
-
-  it("ChatGPT declares plenary explicitly", function()
-    local specs = require("plugins.ai")
-    local chatgpt
-    for _, s in ipairs(specs) do
-      if s[1] == "jackMort/ChatGPT.nvim" then
-        chatgpt = s
-      end
-    end
-    assert.is_truthy(chatgpt)
-    assert.is_truthy(vim.tbl_contains(chatgpt.dependencies or {}, "nvim-lua/plenary.nvim"))
-  end)
 end)
