@@ -23,4 +23,8 @@ describe("nvim-colorizer spec", function()
     assert.equals("table", type(spec.opts))
     assert.is_truthy(spec.event or spec.cmd or spec.keys or spec.ft)
   end)
+
+  it("disables highlighting of bare color names", function()
+    assert.is_false(spec.opts.user_default_options.names)
+  end)
 end)

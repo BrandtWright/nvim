@@ -1,10 +1,14 @@
 return {
   {
     -- Maintained successor to the (now stale) norcalli/nvim-colorizer.lua.
-    -- opts = {} lets lazy call require("colorizer").setup(opts) for us.
+    -- opts lets lazy call require("colorizer").setup(opts) for us.
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
-    opts = {},
+    opts = {
+      user_default_options = {
+        names = false, -- don't colorize bare color names like "green"/"red"
+      },
+    },
   },
   {
     "mason-org/mason.nvim",
