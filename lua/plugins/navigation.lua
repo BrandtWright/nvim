@@ -80,15 +80,6 @@ return {
         end,
         desc = "Vifm",
       },
-      {
-        "q",
-        function()
-          vim.cmd(":q")
-        end,
-        desc = "Quit",
-        mode = "n",
-        ft = "Fm",
-      },
     },
   },
   {

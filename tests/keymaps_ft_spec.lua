@@ -26,12 +26,13 @@ local function find_key(spec, lhs)
 end
 
 describe("destructive lazy keys stay filetype-scoped", function()
-  it("fm-nvim 'q' is ft=Fm, so it is buffer-local not a global :q", function()
+  it("fm-nvim defines no global 'q' map", function()
+    -- The old `q` entry (mode=n, ft=Fm) never fired: fm-nvim runs its file
+    -- managers in terminal-insert mode. It was removed in favor of the
+    -- bw.util.close-with-q helper for normal buffers.
     local spec = find_spec(require("plugins.navigation"), "is0n/fm-nvim")
     assert.is_truthy(spec)
-    local q = find_key(spec, "q")
-    assert.is_truthy(q)
-    assert.equals("Fm", q.ft)
+    assert.is_nil(find_key(spec, "q"))
   end)
 
   it("fugitive pull/push are ft=fugitive", function()
