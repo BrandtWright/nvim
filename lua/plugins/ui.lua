@@ -1,10 +1,10 @@
 return {
   {
-    "norcalli/nvim-colorizer.lua",
-    event = "VeryLazy",
-    config = function()
-      require("colorizer").setup()
-    end,
+    -- Maintained successor to the (now stale) norcalli/nvim-colorizer.lua.
+    -- opts = {} lets lazy call require("colorizer").setup(opts) for us.
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {},
   },
   {
     "mason-org/mason.nvim",

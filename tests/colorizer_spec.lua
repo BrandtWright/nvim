@@ -1,26 +1,26 @@
--- nvim-colorizer.lua does nothing unless require("colorizer").setup() runs.
--- This pins that the ui.lua spec actually calls setup() in its config.
+-- The colorizer should be the maintained catgoose fork, installed idiomatically
+-- with an opts table (so lazy runs require("colorizer").setup(opts)) and
+-- lazy-loaded rather than eager.
 
 local function colorizer_spec()
   for _, s in ipairs(require("plugins.ui")) do
-    if s[1] == "norcalli/nvim-colorizer.lua" then
+    local repo = s[1]
+    if type(repo) == "string" and repo:match("nvim%-colorizer%.lua$") then
       return s
     end
   end
 end
 
 describe("nvim-colorizer spec", function()
-  it("calls colorizer.setup() in its config", function()
-    local called = false
-    package.loaded["colorizer"] = {
-      setup = function()
-        called = true
-      end,
-    }
-    local spec = colorizer_spec()
+  local spec = colorizer_spec()
+
+  it("uses the maintained catgoose fork (not stale norcalli)", function()
     assert.is_truthy(spec)
-    assert.equals("function", type(spec.config))
-    spec.config(spec, {})
-    assert.is_true(called)
+    assert.equals("catgoose/nvim-colorizer.lua", spec[1])
+  end)
+
+  it("has an opts table so lazy calls setup(), and is lazy-loaded", function()
+    assert.equals("table", type(spec.opts))
+    assert.is_truthy(spec.event or spec.cmd or spec.keys or spec.ft)
   end)
 end)
