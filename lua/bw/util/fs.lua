@@ -55,6 +55,7 @@ M.buff_exceeds_size = function(buf, max_size)
   if ok and stats and stats.size > max_size then
     return true
   end
+  return false
 end
 
 return M
