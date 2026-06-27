@@ -59,6 +59,11 @@ return {
       },
     },
   },
+  -- plenary is required by after/plugin/globals.lua's RELOAD helper. It used to
+  -- be pulled in transitively by telescope; declare it explicitly so the helper
+  -- keeps working regardless of telescope's presence.
+  { "nvim-lua/plenary.nvim", lazy = true },
+
   -- Blacklist
   { "akinsho/bufferline.nvim", enabled = false },
   { "RRethy/vim-illuminate", enabled = false },

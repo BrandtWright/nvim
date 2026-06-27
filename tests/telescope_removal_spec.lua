@@ -21,4 +21,15 @@ describe("telescope removal", function()
     local content = table.concat(vim.fn.readfile(ROOT .. "/init.lua"), "\n")
     assert.is_nil(content:find("extras%.editor%.telescope"))
   end)
+
+  it("plenary is declared explicitly (globals.lua RELOAD depends on it)", function()
+    local files = vim.fn.globpath(ROOT .. "/lua/plugins", "**/*.lua", false, true)
+    local found = false
+    for _, f in ipairs(files) do
+      if table.concat(vim.fn.readfile(f), "\n"):find("nvim%-lua/plenary%.nvim") then
+        found = true
+      end
+    end
+    assert.is_true(found)
+  end)
 end)
