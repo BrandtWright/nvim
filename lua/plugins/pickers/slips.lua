@@ -89,9 +89,6 @@ return {
                     name = slip_id,
                     file = slip_path,
                     filetype = "markdown",
-                    action = function()
-                      vim.cmd("edit " .. slip_path)
-                    end,
                   })
                 end
                 return items
@@ -124,9 +121,6 @@ return {
                     name = v,
                     file = slip_path,
                     filetype = "markdown",
-                    action = function()
-                      vim.cmd("edit " .. slip_path)
-                    end,
                   })
                 end
                 return items
