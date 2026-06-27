@@ -46,7 +46,9 @@ end
 ---@return Either
 local apply_default_values = function(opts)
   opts = opts or {}
-  opts.cwd = vim.fs.normalize(opts.cwd or vim.uv.cwd())
+  -- vim.uv.cwd() is typed string|nil; vim.fn.getcwd() never returns nil, so the
+  -- chain resolves to a string for vim.fs.normalize (which requires one).
+  opts.cwd = vim.fs.normalize(opts.cwd or vim.uv.cwd() or vim.fn.getcwd())
   return Either.right(opts)
 end
 
