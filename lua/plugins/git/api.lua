@@ -32,11 +32,10 @@ local validate_git_directory = function(opts)
     return Either.left(string.format("%s is not a directory", opts.cwd))
   end
 
-  -- Not a git directory
-  local path = vim.fn.expand(opts.cwd)
-  local cmd = string.format("git -C %s rev-parse --show-toplevel", path)
-  vim.fn.systemlist(cmd)
-  if vim.v.shell_error ~= 0 then
+  -- Not a git directory. Use the argv (list) form so paths with spaces or
+  -- shell metacharacters are passed to git verbatim, with no shell involved.
+  local result = vim.system({ "git", "-C", opts.cwd, "rev-parse", "--show-toplevel" }):wait()
+  if result.code ~= 0 then
     return Either.left(string.format("%s is not a git directory", opts.cwd))
   end
 
@@ -47,17 +46,16 @@ end
 ---@return Either
 local apply_default_values = function(opts)
   opts = opts or {}
-  opts.cwd = opts.cwd or vim.uv.cwd()
+  opts.cwd = vim.fs.normalize(opts.cwd or vim.uv.cwd())
   return Either.right(opts)
 end
 
 ---@param opts GitOpts
 ---@return Either
 local function has_git_changes(opts)
-  local git_command = string.format("git -C %s status --porcelain", opts.cwd)
-  local output = vim.fn.systemlist(git_command)
+  local result = vim.system({ "git", "-C", opts.cwd, "status", "--porcelain" }):wait()
   -- If there's any output, then there are uncommitted changes
-  if vim.v.shell_error == 0 and #output > 0 then
+  if result.code == 0 and (result.stdout or "") ~= "" then
     return Either.right(opts)
   end
   return Either.left(string.format("No uncommitted changes in %s", opts.cwd))
@@ -75,7 +73,7 @@ local M = {}
 function M.files(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_files()
+    Snacks.picker.git_files(result.value)
   else
     result:handle_error(warn)
   end
@@ -86,7 +84,7 @@ end
 function M.commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_log()
+    Snacks.picker.git_log(result.value)
   else
     result:handle_error(warn)
   end
@@ -97,7 +95,7 @@ end
 function M.branches(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_branches()
+    Snacks.picker.git_branches(result.value)
   else
     result:handle_error(warn)
   end
@@ -108,7 +106,7 @@ end
 function M.status(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory):bind(has_git_changes)
   if result.is_right then
-    Snacks.picker.git_status()
+    Snacks.picker.git_status(result.value)
   else
     result:handle_error(warn)
   end
@@ -119,7 +117,7 @@ end
 function M.stash(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_stash()
+    Snacks.picker.git_stash(result.value)
   else
     result:handle_error(warn)
   end
@@ -185,7 +183,7 @@ end
 function M.buffer_commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_log_file()
+    Snacks.picker.git_log_file(result.value)
   else
     result:handle_error(warn)
   end
@@ -195,7 +193,7 @@ end
 function M.line_commits(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
   if result.is_right then
-    Snacks.picker.git_log_line()
+    Snacks.picker.git_log_line(result.value)
   else
     result:handle_error(warn)
   end
