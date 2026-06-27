@@ -28,8 +28,9 @@ end
 describe("destructive lazy keys stay filetype-scoped", function()
   it("fm-nvim defines no global 'q' map", function()
     -- The old `q` entry (mode=n, ft=Fm) never fired: fm-nvim runs its file
-    -- managers in terminal-insert mode. It was removed in favor of the
-    -- bw.util.close-with-q helper for normal buffers.
+    -- managers in terminal-insert mode, so a normal-mode q went to the program.
+    -- It was removed; per-filetype q-to-close belongs in after/ftplugin or a
+    -- lazy spec's keys with ft=, not here.
     local spec = find_spec(require("plugins.navigation"), "is0n/fm-nvim")
     assert.is_truthy(spec)
     assert.is_nil(find_key(spec, "q"))
