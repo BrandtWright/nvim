@@ -1,7 +1,6 @@
 --------------------------------------------------------------------------------
 -- Picker
 --------------------------------------------------------------------------------
-local picker = require("snacks").picker
 return {
   {
     "folke/snacks.nvim",
@@ -63,11 +62,12 @@ return {
       }
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
+    -- stylua: ignore
     keys = {
-      { "<leader>lpa", picker.picker_actions, desc = "Actions" },
-      { "<leader>lpf", picker.picker_format, desc = "Format" },
-      { "<leader>lpl", picker.picker_layouts, desc = "Layouts" },
-      { "<leader>lpp", picker.picker_preview, desc = "Preview" },
+      { "<leader>lpa", function() require("snacks").picker.picker_actions() end, desc = "Actions" },
+      { "<leader>lpf", function() require("snacks").picker.picker_format() end, desc = "Format" },
+      { "<leader>lpl", function() require("snacks").picker.picker_layouts() end, desc = "Layouts" },
+      { "<leader>lpp", function() require("snacks").picker.picker_preview() end, desc = "Preview" },
     },
   },
 }
