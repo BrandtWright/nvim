@@ -56,6 +56,22 @@ return {
         checkbox = {
           enabled = true,
         },
+        overrides = {
+          -- With code.width = "block", render-markdown masks the area beside a code
+          -- block using padding whose highlight defaults to Normal. In a snacks
+          -- picker preview (a float) the surrounding bg is NormalFloat, so that
+          -- padding shows as a Normal-colored stripe under colorschemes where
+          -- Normal != NormalFloat.
+          --
+          -- render-markdown ships a `nofile` buftype override that fixes this
+          -- (padding.highlight = NormalFloat), but snacks gives file previews
+          -- buftype="" (not "nofile"), so it never matches. Those preview buffers
+          -- ARE unlisted, so key the override on buflisted=false instead. snacks
+          -- then remaps NormalFloat to the preview bg, so the padding blends in.
+          buflisted = {
+            [false] = { padding = { highlight = "NormalFloat" } },
+          },
+        },
       }
 
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
