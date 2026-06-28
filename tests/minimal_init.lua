@@ -2,7 +2,7 @@
 --
 -- Puts the config root and a test-only copy of plenary on the runtimepath so
 -- specs can `require()` individual modules / plugin-spec files WITHOUT booting
--- lazy.nvim or loading any real plugins. Run via tests/run.sh.
+-- lazy.nvim or loading any real plugins. Run via `make test`.
 
 local this = debug.getinfo(1, "S").source:sub(2)
 local tests_dir = vim.fn.fnamemodify(this, ":p:h")
