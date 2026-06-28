@@ -16,23 +16,6 @@ Optional, enabling specific features:
 - **`dict`**, **`pandoc`** + **`zathura`** — used by individual
   keymaps/ftplugins (dictionary lookup, markdown export).
 
-## Layout
-
-```text
-init.lua              Entry point: bootstraps lazy.nvim, imports the spec
-lua/
-  config/             options, keymaps, autocmds, disabled "silly-keys"
-  plugins/            plugin specs (pickers/, lsp/, git/, ai/, toggles/, …)
-  bw/                 personal namespace
-    util/             fs, highlights, xresources, scratch-buffer, …
-    types/            functional types: Either, Maybe, List
-  user/slipbox/       the slipbox note system
-after/ftplugin/       filetype-local settings
-colors/               spf + screen_glasses colorschemes
-tests/                plenary specs + harness (run via `make test`)
-Makefile              test runner (bootstraps a pinned plenary)
-```
-
 ## Testing
 
 ```bash
