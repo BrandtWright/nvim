@@ -15,7 +15,7 @@ return {
         vim.cmd("hi! link RenderMarkdownQuote4 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote5 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote6 RenderMarkdownQuote1")
-        vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
+        vim.cmd("hi! link RenderMarkdownCode ColorColumn")
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
         vim.cmd("hi! link RenderMarkdownBullet markdownListMarker")
