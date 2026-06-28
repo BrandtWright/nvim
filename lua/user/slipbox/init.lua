@@ -98,10 +98,14 @@ M.get_next_slip_id = function()
   return vim.fn.trim(vim.fn.system({ "snote", "-n" }))
 end
 
---- Extracts related slip IDs from the current buffer's YAML front matter
----@return table List of related slip IDs from the current slip
+--- Extracts related slip IDs from the current buffer's YAML front matter.
+--- Warns and returns an empty list if the current buffer is not a slip README.
+---@return table List of related slip IDs from the current slip (empty if not a slip)
 M.get_related_slips = function()
-  -- TODO: sanity check current buffer, warn if not a slip...
+  if not M.slip_id_from_path(vim.api.nvim_buf_get_name(0)) then
+    vim.notify("Current buffer is not a slip.", vim.log.levels.WARN, { title = "Slipbox" })
+    return {}
+  end
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   return M.extract_yaml_related(lines)
 end
