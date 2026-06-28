@@ -15,15 +15,18 @@ return {
         vim.cmd("hi! link RenderMarkdownQuote4 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote5 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote6 RenderMarkdownQuote1")
-        -- Keep MarkdownCode here; do NOT link this to ColorColumn/CursorLine.
-        -- The snacks picker preview sets a window-local winhighlight that remaps
-        -- CursorLine -> Visual (snacks/picker/core/preview.lua). winhighlight
-        -- follows link chains, so any target that resolves THROUGH the literal
-        -- `CursorLine` group (e.g. spf's ColorColumn = "CursorLine") renders as
-        -- Visual (nothing_on_visual) in the preview. markdownCode is a direct bg
-        -- definition (nothing_on_cursorline) -- not named CursorLine -- so the
-        -- remap doesn't touch it and code blocks render correctly in previews.
-        vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
+        -- render-markdown renders inside the snacks picker preview, and that
+        -- preview RESERVES a set of highlight groups: it remaps them window-locally
+        -- via winhighlight (see snacks/picker/core/preview.lua). The reserved
+        -- groups are: NormalFloat, FloatBorder, FloatTitle, FloatFooter, and
+        -- CursorLine (-> Visual). winhighlight follows link chains, so any
+        -- RenderMarkdown* group that resolves THROUGH one of those names will pick
+        -- up the preview's remapped color instead of the intended one.
+        --
+        -- => When choosing a link target for anything that can appear in a preview,
+        --    make sure it does not resolve (directly or via links) to a reserved
+        --    group. ColorColumn is a standard, safe target for the code background.
+        vim.cmd("hi! link RenderMarkdownCode ColorColumn")
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
         vim.cmd("hi! link RenderMarkdownBullet markdownListMarker")
