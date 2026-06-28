@@ -7,7 +7,6 @@ return {
 
     -- stylua: ignore
     keys = {
-      { "<leader>srt", function() Snacks.picker.resume() end, desc = "Resume Picker" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Auto Commands" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History", },
       { "<leader>sc", function() Snacks.picker.commands() end, desc = "Commands", },
@@ -18,7 +17,7 @@ return {
       { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
       { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-      { "<leader>srs", function() Snacks.picker.resume() end, desc = "Snacks Picker" },
+      { "<leader>srs", function() Snacks.picker.resume() end, desc = "Resume" },
       { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
       { "<leader>s'", function() Snacks.picker.registers() end, desc = "Registers" },
       { "z=", function() Snacks.picker.spelling() end, desc = "Spelling Suggestions", },

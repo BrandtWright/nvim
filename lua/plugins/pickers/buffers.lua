@@ -11,7 +11,7 @@ return {
           Snacks.picker.buffers()
         end,
         mode = "n",
-        desc = "Fuzy Find Buffers",
+        desc = "Fuzzy Find Buffers",
       },
       {
         "<leader>bl",

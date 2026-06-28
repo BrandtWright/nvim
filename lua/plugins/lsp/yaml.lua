@@ -11,7 +11,7 @@ return {
                 -- yaml files. This is a bit annoying in Ansible variable
                 -- definition files that do not contain any valid Ansible syntax.
                 -- In this case, ft=yaml and ft!=yaml.ansible (set by nvim-ansible)
-                -- so, will not cause ansiblels to attatch to the yaml buffer.
+                -- so, will not cause ansiblels to attach to the yaml buffer.
                 -- Adding the !vault scalar to customTags prevents yamlls from
                 -- complaining about variable definitions that use ansible-vault
                 -- to store encrypted strings in Ansible projects.

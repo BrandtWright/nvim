@@ -5,7 +5,8 @@ return {
       local instrument_ansible_buffer = function()
         -- Set up buffer-local key map for `ansible-lint`
         vim.keymap.set("n", "<localleader>a", function()
-          Snacks.terminal.open("ansible-lint " .. vim.fn.expand("%") .. " && anykey", {
+          -- shellescape the path so spaces/metacharacters can't break the command.
+          Snacks.terminal.open("ansible-lint " .. vim.fn.shellescape(vim.fn.expand("%")) .. " && anykey", {
             win = { border = "single", style = "terminal", relative = "editor", width = 120, height = 25 },
             interactive = true,
           })

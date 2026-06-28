@@ -1,6 +1,16 @@
 -------------------------------------------------------------------------------
 -- Fuzzy Find Slips
 -------------------------------------------------------------------------------
+
+-- Slip list field parser (splits ID<tab>TITLE<tab>TAGS).
+local function split(str, sep)
+  local fields = {}
+  for field in string.gmatch(str, "([^" .. sep .. "]+)") do
+    table.insert(fields, field)
+  end
+  return fields
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -9,7 +19,7 @@ return {
       dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
     },
     opts = function(_, opts)
-      -- Set up bufer local mappings for slips in the slipbox path
+      -- Set up buffer local mappings for slips in the slipbox path
       local slipbox_path = vim.fn.expand(require("user.slipbox").get_slipbox_path())
       local slipbox_pattern = vim.pesc(slipbox_path) .. "/[^/]+/README%.md$"
       vim.api.nvim_create_autocmd("BufReadPost", {
@@ -25,7 +35,7 @@ return {
                   "<localleader>s",
                   function()
                     local slip_id = vim.fn.expand("%:p:h:t")
-                    vim.cmd(":let @+ = expand('%:p:h:t')")
+                    vim.fn.setreg("+", slip_id)
                     vim.notify(slip_id, vim.log.levels.INFO, { title = "Yanked Slip Id" })
                   end,
                   buffer = ev.buf,
@@ -45,7 +55,7 @@ return {
                     Snacks.picker.pick({ source = "slip_links" })
                   end,
                   buffer = ev.buf,
-                  desc = "Add Releated Slip",
+                  desc = "Add Related Slip",
                 },
               })
             end
@@ -63,15 +73,6 @@ return {
               -- This function should return an iterable (e.g., a table) of items.
               -- Each item can be a string or a table with a 'text' field.
               finder = function()
-                -- Slip list field parser (splits ID<tab>TITLE<tab>TAGS)
-                local function split(str, sep)
-                  local fields = {}
-                  for field in string.gmatch(str, "([^" .. sep .. "]+)") do
-                    table.insert(fields, field)
-                  end
-                  return fields
-                end
-
                 -- Get slips
                 local slipbox = require("user.slipbox")
                 local slips = slipbox.list_slips()
@@ -137,15 +138,6 @@ return {
               -- This function should return an iterable (e.g., a table) of items.
               -- Each item can be a string or a table with a 'text' field.
               finder = function()
-                -- Slip list field parser (splits ID<tab>TITLE<tab>TAGS)
-                local function split(str, sep)
-                  local fields = {}
-                  for field in string.gmatch(str, "([^" .. sep .. "]+)") do
-                    table.insert(fields, field)
-                  end
-                  return fields
-                end
-
                 -- Get slips
                 local slipbox = require("user.slipbox")
                 local slips = slipbox.list_slips()
