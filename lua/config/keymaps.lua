@@ -4,18 +4,6 @@
 
 local map = vim.keymap.set
 
--- Disable the silly stuff.
--- pcall: a key may not be mapped (e.g. a LazyVim default moved/renamed, or a
--- plugin that defined it was removed). Without the guard, one unmapped key
--- throws and aborts the rest of this file, so every keymap below silently fails
--- to load.
-local sillyKeys = require("config.silly-keys")
-for _, key in ipairs(sillyKeys) do
-  for _, mode in ipairs(key.modes) do
-    pcall(vim.keymap.del, mode, key.lhs)
-  end
-end
-
 --------------------------------------------------------------------------------
 -- Function Keys
 --------------------------------------------------------------------------------
@@ -230,11 +218,11 @@ end, { desc = "Project", silent = true })
 -- Tmux Navigator Stuff
 --------------------------------------------------------------------------------
 -- These deliberately live here rather than in the vim-tmux-navigator spec's
--- `keys`: the silly-keys loop at the top of this file deletes the default
--- <C-h/j/k/l> window maps, and these must be re-applied *after* that deletion.
--- A plugin spec's keys load at startup (the plugin is lazy=false), i.e. before
--- the VeryLazy deletion would wipe them. vim-tmux-navigator is loaded
--- unconditionally, so no load guard is needed; outside tmux it falls back to
+-- `keys`. config/keymaps.lua loads on VeryLazy, *after* LazyVim's own
+-- config/keymaps.lua sets <C-h/j/k/l> to window navigation -- so these win by
+-- load order. In the plugin spec's `keys` they'd register at startup (the
+-- plugin is lazy=false) and LazyVim's VeryLazy maps would then clobber them.
+-- vim-tmux-navigator is loaded unconditionally; outside tmux it falls back to
 -- plain window navigation.
 map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true, desc = "Navigate Left" })
 map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Navigate Down" })
@@ -284,3 +272,10 @@ vim.keymap.set("n", "gx", function()
   local target = vim.fn.expand("<cfile>")
   vim.fn.jobstart({ "xdg-open", target }, { detach = true })
 end)
+
+--------------------------------------------------------------------------------
+-- Disabled Defaults
+--------------------------------------------------------------------------------
+
+-- Floating Terminal
+pcall(vim.keymap.del, "n", "<leader>fT") -- use lua/plugins/floating-terminal.lua
