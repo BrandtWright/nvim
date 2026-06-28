@@ -1,6 +1,15 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+--------------------------------------------------------------------------------
+-- Keymaps
+--------------------------------------------------------------------------------
+-- Loaded automatically on the VeryLazy event. Add any additional keymaps here;
+-- mappings in this file win over LazyVim's defaults.
+--
+-- Inherited keymaps come from LazyVim. To see what's active:
+--   :verbose nmap <key>        -- shows the mapping AND its source file:line
+--   Snacks.picker.keymaps()    -- fuzzy-search everything
+-- Source of the defaults
+--   ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua
+--   https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
 local map = vim.keymap.set
 
@@ -220,17 +229,17 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true, desc = "Navigat
 --------------------------------------------------------------------------------
 -- Zen Mode
 --------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>ux", function()
+map("n", "<leader>ux", function()
   local tmux = os.getenv("TMUX")
   if vim.g.zen_mode then -- restore status bars
-    vim.opt.laststatus = vim.g.zen_mode_last_status
+    vim.o.laststatus = vim.g.zen_mode_last_status
     if tmux then
       os.execute("tmux set -g status " .. vim.g.zen_mode_tmux_status_bar)
     end
     vim.g.zen_mode = false
   else -- Save state and turn stuff off
-    vim.g.zen_mode_last_status = vim.opt.laststatus:get()
-    vim.opt.laststatus = 0
+    vim.g.zen_mode_last_status = vim.o.laststatus
+    vim.o.laststatus = 0
     if tmux then
       vim.g.zen_mode_tmux_status_bar = vim.fn.system("tmux show -gv status")
       os.execute("tmux set -g status off")
@@ -242,12 +251,12 @@ end, { silent = true, desc = "Toggle TMUX Zen Mode" })
 --------------------------------------------------------------------------------
 -- Diagnostics
 --------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
 --------------------------------------------------------------------------------
 -- Reference
 --------------------------------------------------------------------------------
-vim.keymap.set("n", "<leader>sw", function()
+map("n", "<leader>sw", function()
   vim.cmd("!dict <cword>")
 end, { desc = "Dictionary" })
 
@@ -256,10 +265,10 @@ end, { desc = "Dictionary" })
 --------------------------------------------------------------------------------
 -- Override `gx` with with jobstart/detatch to avoid timeouts when the xdg
 -- default application  takes a bit of time to start up.
-vim.keymap.set("n", "gx", function()
+map("n", "gx", function()
   local target = vim.fn.expand("<cfile>")
   vim.fn.jobstart({ "xdg-open", target }, { detach = true })
-end)
+end, { desc = "Open with system handler" })
 
 --------------------------------------------------------------------------------
 -- Disabled Defaults
