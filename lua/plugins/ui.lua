@@ -1,3 +1,5 @@
+local highlights = require("bw.util.highlights")
+
 return {
   {
     -- Maintained successor to the (now stale) norcalli/nvim-colorizer.lua.
@@ -67,21 +69,13 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      local apply_highlights = function()
+      highlights.on_colorscheme("WhichKeyHighlights", function()
         vim.cmd("hi! link WhichKey Normal")
         vim.cmd("hi! link WhichKeyGroup Directory")
         vim.cmd("hi! link WhichKeyDesc Normal")
         vim.cmd("hi! link WhichKeyFloat Normal")
         vim.cmd("hi! link WhichKeyBorder FloatBorder")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("WhichKeyHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply which-key highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
 

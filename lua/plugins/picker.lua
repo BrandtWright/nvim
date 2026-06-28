@@ -1,22 +1,17 @@
 --------------------------------------------------------------------------------
 -- Picker
 --------------------------------------------------------------------------------
+local highlights = require("bw.util.highlights")
+
 return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
       -- Higlights
-      local apply_highlights = function()
+      highlights.on_colorscheme("SnacksHighlights", function()
         vim.cmd("hi! link SnacksPickerMatch NormalFloat")
         vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
-      end
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("SnacksHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply snacks highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
         picker = {

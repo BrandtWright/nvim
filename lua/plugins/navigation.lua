@@ -1,3 +1,5 @@
+local highlights = require("bw.util.highlights")
+
 return {
   {
     "christoomey/vim-tmux-navigator",
@@ -10,8 +12,8 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = function(_, opts)
-      local apply_highlights = function()
-        local get = require("bw.util.highlights").get_attribute
+      highlights.on_colorscheme("NeoTreeHighlights", function()
+        local get = highlights.get_attribute
         local hl = vim.api.nvim_set_hl
 
         local secondary_accent_fg = get("WinBarNC", "fg") or "#4d4136"
@@ -24,15 +26,7 @@ return {
         vim.cmd("hi! link NeoTreeDirectoryIcon Directory")
         vim.cmd("hi! link NeoTreeCursorLine PmenuSel")
         vim.cmd("hi! link NeoTreeFileStats Comment")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("NeoTreeHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply NeoTree highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
         window = {

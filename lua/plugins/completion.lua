@@ -1,3 +1,5 @@
+local highlights = require("bw.util.highlights")
+
 return {
   {
     "LazyVim/LazyVim",
@@ -13,21 +15,13 @@ return {
     "saghen/blink.cmp",
     dependencies = { "ribru17/blink-cmp-spell" },
     opts = function(_, opts)
-      local function apply_highlights()
+      highlights.on_colorscheme("BlinkCmpHighlights", function()
         vim.cmd("hi! link BlinkCmpKind DiagnosticInfo")
         vim.cmd("hi! link BlinkCmpDoc Normal")
         vim.cmd("hi! link BlinkCmpDocSeparator WinSeparator")
         vim.cmd("hi! link BlinkCmpDocBorder FloatBorder")
         vim.cmd("hi! link BlinkCmpMenuBorder FloatBorder")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("BlinkCmpHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply blink.cmp highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
         completion = {

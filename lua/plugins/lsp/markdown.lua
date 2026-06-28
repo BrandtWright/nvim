@@ -1,8 +1,10 @@
+local highlights = require("bw.util.highlights")
+
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = function(_, opts)
-      local apply_highlights = function()
+      highlights.on_colorscheme("RenderMarkdownHighlights", function()
         vim.cmd("hi! link RenderMarkdownH1Bg markdownH1")
         vim.cmd("hi! link RenderMarkdownH2Bg markdownH2")
         vim.cmd("hi! link RenderMarkdownH3Bg markdownH3")
@@ -30,15 +32,7 @@ return {
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
         vim.cmd("hi! link RenderMarkdownBullet markdownListMarker")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("RenderMarkdownHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply render-markdown highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
         math = { enabled = true },

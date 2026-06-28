@@ -1,27 +1,21 @@
+local highlights = require("bw.util.highlights")
+
 return {
   {
     "folke/noice.nvim",
     opts = function()
-      local function apply_highlights()
+      highlights.on_colorscheme("NoiceHighlights", function()
         vim.cmd("hi! link NoiceCmdlinePopupBorder Special")
         vim.cmd("hi! link NoiceCmdlineIcon Special")
         vim.cmd("hi! link NoiceCmdlinePopupTitle Special")
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("NoiceHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply noice highlight groups after colorscheme changes",
-      })
+      end)
     end,
   },
   {
     "folke/snacks.nvim",
     opts = function()
-      local function apply_highlights()
-        local get_attr = require("bw.util.highlights").get_attribute
+      highlights.on_colorscheme("SnacksNotifierHighlights", function()
+        local get_attr = highlights.get_attribute
         local bg = get_attr("Normal", "bg")
         local fg = get_attr("Normal", "fg")
         -- Error
@@ -54,15 +48,7 @@ return {
         vim.api.nvim_set_hl(0, "SnacksNotifierBorderHint", { fg = hint_fg, bg = bg })
         vim.api.nvim_set_hl(0, "SnacksNotifierIconHint", { fg = hint_fg, bg = bg })
         vim.api.nvim_set_hl(0, "SnacksNotifierTitleHint", { fg = hint_fg, bg = bg })
-      end
-
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("SnacksNotifierHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply snacks notifier highlight groups after colorscheme changes",
-      })
+      end)
     end,
   },
 }

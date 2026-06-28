@@ -1,4 +1,5 @@
 local git = require("plugins.git.api")
+local highlights = require("bw.util.highlights")
 return {
   {
     "folke/snacks.nvim",
@@ -16,16 +17,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     -- Highlights
     opts = function(_, opts)
-      local apply_highlights = function()
+      highlights.on_colorscheme("TreesitterGitHighlights", function()
         vim.cmd("hi! link @markup.heading.gitcommit Special")
-      end
-      apply_highlights()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = vim.api.nvim_create_augroup("TreesitterGitHighlights", { clear = true }),
-        pattern = "*",
-        callback = apply_highlights,
-        desc = "Reapply nvim-treesitter git highlight groups after colorscheme changes",
-      })
+      end)
 
       local my_opts = {
         ensure_installed = {
