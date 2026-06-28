@@ -15,7 +15,12 @@ return {
         vim.cmd("hi! link RenderMarkdownQuote4 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote5 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote6 RenderMarkdownQuote1")
-        vim.cmd("hi! link RenderMarkdownCode ColorColumn")
+        -- Keep MarkdownCode here. Do NOT "consolidate" this onto a standard group
+        -- like ColorColumn: even though MarkdownCode and ColorColumn resolve to the
+        -- same color under spf, linking RenderMarkdownCode directly to ColorColumn
+        -- breaks code rendering in the snacks picker preview (render-markdown
+        -- internals/caching). MarkdownCode is a real runtime markdown-syntax group.
+        vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
         vim.cmd("hi! link RenderMarkdownBullet markdownListMarker")
