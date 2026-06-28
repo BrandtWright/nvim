@@ -9,8 +9,6 @@ globals = {
   "RELOAD",
   "R",
   "Reload",
-  "ReloadTele",
-  "TelescopeMapArgs",
   "Snacks",
   "LazyVim",
 }
