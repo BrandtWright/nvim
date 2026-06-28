@@ -72,26 +72,8 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
--- Other
-map("n", "<leader>bo", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-
--- Save
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-
 -- New
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- Yank Buffer Name
-map({ "n" }, "<Leader>byn", function()
-  vim.cmd(":let @+ = expand('%:t')")
-  Snacks.notify.info("Buffer name", { title = "Yanked" })
-end, { desc = "Yank Buffer Name" })
-
--- Yank Buffer Name (Full Path)
-map({ "n" }, "<Leader>byN", function()
-  vim.cmd(":let @+ = expand('%:p')")
-  Snacks.notify.info("Buffer name", { title = "Yanked" })
-end, { desc = "Yank Buffer Name (Full Path)" })
 
 -- Yank Buffer Path
 map({ "n" }, "<Leader>byp", function()
@@ -99,8 +81,17 @@ map({ "n" }, "<Leader>byp", function()
   Snacks.notify.info("Buffer Path", { title = "Yanked" })
 end, { desc = "Yank Buffer Path" })
 
--- Open README
--- map({ "n" }, "<leader>or", require("config.helpers").open_readme, { desc = "Readme" })
+-- Yank Buffer Name
+map({ "n" }, "<Leader>byn", function()
+  vim.cmd(":let @+ = expand('%:t')")
+  Snacks.notify.info("Buffer name", { title = "Yanked" })
+end, { desc = "Yank Buffer Name" })
+
+-- Yank Buffer Path and Name
+map({ "n" }, "<Leader>byN", function()
+  vim.cmd(":let @+ = expand('%:p')")
+  Snacks.notify.info("Buffer name", { title = "Yanked" })
+end, { desc = "Yank Buffer Name (Full Path)" })
 
 --------------------------------------------------------------------------------
 -- Scratch Pads
@@ -188,11 +179,8 @@ map("n", "}", "}zz")
 --------------------------------------------------------------------------------
 -- Tabs
 --------------------------------------------------------------------------------
-map("n", "<leader>th", "<cmd>tabp<cr>", { desc = "Previous", silent = true })
-map("n", "<leader>tl", "<cmd>tabn<cr>", { desc = "Next", silent = true })
-map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New", silent = true })
-map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close", silent = true })
-map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Close Other Tabs", silent = true })
+map("n", "<leader><tab>h", "<cmd>tabp<cr>", { desc = "Previous", silent = true })
+map("n", "<leader><tab>l", "<cmd>tabn<cr>", { desc = "Next", silent = true })
 
 --------------------------------------------------------------------------------
 -- Editing in Insert Mode
