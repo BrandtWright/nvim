@@ -15,11 +15,14 @@ return {
         vim.cmd("hi! link RenderMarkdownQuote4 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote5 RenderMarkdownQuote1")
         vim.cmd("hi! link RenderMarkdownQuote6 RenderMarkdownQuote1")
-        -- Keep MarkdownCode here. Empirically, linking RenderMarkdownCode to
-        -- ColorColumn instead breaks code rendering in the snacks picker preview,
-        -- even though MarkdownCode and ColorColumn resolve to the SAME color under
-        -- spf and render-markdown reads only the resolved color. The cause is
-        -- unknown -- treat this as a known-good value, verified by smoke test.
+        -- Keep MarkdownCode here; do NOT link this to ColorColumn/CursorLine.
+        -- The snacks picker preview sets a window-local winhighlight that remaps
+        -- CursorLine -> Visual (snacks/picker/core/preview.lua). winhighlight
+        -- follows link chains, so any target that resolves THROUGH the literal
+        -- `CursorLine` group (e.g. spf's ColorColumn = "CursorLine") renders as
+        -- Visual (nothing_on_visual) in the preview. markdownCode is a direct bg
+        -- definition (nothing_on_cursorline) -- not named CursorLine -- so the
+        -- remap doesn't touch it and code blocks render correctly in previews.
         vim.cmd("hi! link RenderMarkdownCode MarkdownCode")
         vim.cmd("hi! link RenderMarkdownTableHead FloatBorder")
         vim.cmd("hi! link RenderMarkdownTableRow FloatBorder")
