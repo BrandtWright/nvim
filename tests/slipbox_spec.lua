@@ -28,6 +28,45 @@ describe("slipbox.slip_id_from_path", function()
   end)
 end)
 
+describe("slipbox.extract_yaml_related", function()
+  it("parses an inline list (related: [a, b])", function()
+    assert.same({ "foo", "bar" }, slipbox.extract_yaml_related({
+      "---",
+      "related: [foo, bar]",
+      "---",
+    }))
+  end)
+
+  it("parses a block list (related: then - items)", function()
+    assert.same({ "foo", "bar" }, slipbox.extract_yaml_related({
+      "---",
+      "title: x",
+      "related:",
+      "  - foo",
+      "  - bar",
+      "---",
+    }))
+  end)
+
+  it("stops a block list at the next yaml key", function()
+    assert.same({ "foo" }, slipbox.extract_yaml_related({
+      "---",
+      "related:",
+      "  - foo",
+      "tags: [t]",
+      "---",
+    }))
+  end)
+
+  it("returns empty when there is no front matter", function()
+    assert.same({}, slipbox.extract_yaml_related({ "# Title", "related: [x]" }))
+  end)
+
+  it("returns empty when front matter has no related field", function()
+    assert.same({}, slipbox.extract_yaml_related({ "---", "title: x", "---" }))
+  end)
+end)
+
 describe("slipbox save autocmd", function()
   it("registers BufWriteCmd with the resolved absolute root in its pattern", function()
     local aus = vim.api.nvim_get_autocmds({ group = "SlipWrite", event = "BufWriteCmd" })

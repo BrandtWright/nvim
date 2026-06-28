@@ -16,14 +16,15 @@ local function configure_opts(opts)
   }, opts or {})
 end
 
---- Extracts `related` field from YAML front matter at the top of current buffer
+--- Extracts the `related` field from YAML front matter at the top of `lines`.
 --- Supports both inline format (related: [foo, bar]) and block format:
 --- related:
 ---   - foo
 ---   - bar
+--- Pure (takes the lines rather than reading the buffer) so it is unit-testable.
+---@param lines string[] buffer lines, front matter expected at the top
 ---@return string[] slip_ids a list of related slip IDs, or empty table if none are found
-local function extract_yaml_related()
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+M.extract_yaml_related = function(lines)
   local in_yaml = false
   local related = {}
   local i = 1
@@ -101,8 +102,8 @@ end
 ---@return table List of related slip IDs from the current slip
 M.get_related_slips = function()
   -- TODO: sanity check current buffer, warn if not a slip...
-  local related_slip_ids = extract_yaml_related()
-  return related_slip_ids
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  return M.extract_yaml_related(lines)
 end
 
 --- Lists all available slips using the external snote command
