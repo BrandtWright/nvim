@@ -36,8 +36,9 @@ return {
         },
         sources = {
           -- `lsp`, `buffer`, `snippets`, `path` and `omni` are built-in
-          -- so you don't need to define them in `sources.providers`
-          default = { "lsp", "buffer", "snippets", "path", "spell" },
+          -- so you don't need to define them in `sources.providers`.
+          -- `spell` is appended to sources.default after the merge below rather
+          -- than set here, so an index-aligned list merge can't clobber it.
           providers = {
             -- This is config for the ribru17/blink-cmp-spell dependency
             spell = {
@@ -92,7 +93,15 @@ return {
           window = { border = "single" },
         },
       }
-      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+      local merged = vim.tbl_deep_extend("force", opts or {}, my_opts)
+      -- Append our spell source rather than replacing sources.default, so the
+      -- LazyVim base list (and anything an extra appends to it) is preserved.
+      merged.sources = merged.sources or {}
+      merged.sources.default = merged.sources.default or { "lsp", "buffer", "snippets", "path" }
+      if not vim.tbl_contains(merged.sources.default, "spell") then
+        table.insert(merged.sources.default, "spell")
+      end
+      return merged
     end,
   },
 }

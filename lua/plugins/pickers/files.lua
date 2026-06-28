@@ -17,6 +17,10 @@ return {
     keys = {
       -- moved to <leader>sgc
       { "<leader>fc", false },
+      -- <leader>sg is a prefix here (sgc/sgp/sgl), so disable LazyVim's grep on
+      -- the bare <leader>sg -- otherwise the default grep stalls for timeoutlen
+      -- waiting to see whether a c/p/l follows.
+      { "<leader>sg", false },
     },
   },
   ------------------------------------------------------------------------------
@@ -80,7 +84,7 @@ return {
       {
         "<leader>sgp",
         function()
-          Snacks.picker.files({ cwd = vim.fn.stdpath("data") })
+          Snacks.picker.files({ cwd = vim.fn.stdpath("data") .. "/lazy" })
         end,
         desc = "Neovim Plugin File",
       },

@@ -24,13 +24,17 @@ function List.from_table(tbl)
   return List.new(tbl)
 end
 
---- Maps a plain function over each element.
+--- Maps a plain function over each element. A nil result is dropped (Lua
+--- sequences cannot hold nil), so a nil-returning func acts as a filter-map.
 ---@param func fun(value: any): any
 ---@return List
 function List:map(func)
   local result = {}
   for _, v in ipairs(self.value) do
-    table.insert(result, func(v))
+    local mapped = func(v)
+    if mapped ~= nil then
+      result[#result + 1] = mapped
+    end
   end
   return List.new(result)
 end

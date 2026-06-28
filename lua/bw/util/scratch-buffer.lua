@@ -43,9 +43,11 @@ M.open_scratch_buffer = function(mode)
   elseif mode == "current_window" then
     vim.api.nvim_set_current_buf(buf)
   elseif mode == "popup" then
-    -- Check if already open in a floating window
+    -- Check if already open in a floating window. Match on float-ness too: the
+    -- buffer is reused across modes, so without the `relative ~= ""` guard a
+    -- copy showing in a split would short-circuit and no popup would open.
     for _, win in ipairs(vim.api.nvim_list_wins()) do
-      if vim.api.nvim_win_get_buf(win) == buf then
+      if vim.api.nvim_win_get_buf(win) == buf and vim.api.nvim_win_get_config(win).relative ~= "" then
         vim.api.nvim_set_current_win(win)
         return
       end

@@ -36,11 +36,13 @@ function Maybe.from_nilable(value)
 end
 
 --- Maps a plain function over the contained value. Nothing passes through.
+--- A func that returns nil yields Nothing (via from_nilable) rather than a
+--- Just wrapping nil, which would violate the type's invariant.
 ---@param func fun(value: any): any
 ---@return Maybe
 function Maybe:map(func)
   if self.is_just then
-    return Maybe.just(func(self.value))
+    return Maybe.from_nilable(func(self.value))
   end
   return self
 end

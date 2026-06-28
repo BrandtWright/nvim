@@ -43,9 +43,11 @@ local function load_xresources_batch()
     return xres_cache
   end
 
-  -- Get all xresources in one shell call
-  local ok, output = pcall(vim.fn.system, "xrdb -query")
-  xres_cache = (ok and output and output ~= "") and M.parse(output) or {}
+  -- Get all xresources in one shell call. Consult v:shell_error so a failure
+  -- (e.g. xrdb missing) caches an empty table rather than parsing the error
+  -- text into junk keys.
+  local output = vim.fn.system("xrdb -query")
+  xres_cache = (vim.v.shell_error == 0 and output ~= "") and M.parse(output) or {}
   return xres_cache
 end
 

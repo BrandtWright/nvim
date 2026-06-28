@@ -19,7 +19,9 @@ local function capture_toggle()
   }
   package.loaded["plugins.diagnostics"] = nil
   local spec = require("plugins.diagnostics")
-  spec[1].opts()
+  -- spec[1] is the nvim-lspconfig entry (opts is a table); the toggle-building
+  -- function lives on spec[2], the snacks.nvim entry.
+  spec[2].opts()
   return captured
 end
 

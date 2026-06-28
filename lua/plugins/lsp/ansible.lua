@@ -1,25 +1,10 @@
 return {
   {
+    -- The <localleader>a lint keymap lives in after/ftplugin/ansible.lua so it
+    -- attaches reliably to the first ansible buffer (registering it here, in a
+    -- lazy plugin's opts, races the FileType event that loads the plugin).
     "mason-org/mason.nvim",
     opts = function(_, opts)
-      local instrument_ansible_buffer = function()
-        -- Set up buffer-local key map for `ansible-lint`
-        vim.keymap.set("n", "<localleader>a", function()
-          -- shellescape the path so spaces/metacharacters can't break the command.
-          Snacks.terminal.open("ansible-lint " .. vim.fn.shellescape(vim.fn.expand("%")) .. " && anykey", {
-            win = { border = "single", style = "terminal", relative = "editor", width = 120, height = 25 },
-            interactive = true,
-          })
-        end, { buffer = true, noremap = true, silent = true, desc = "Ansible Lint Buffer" })
-      end
-
-      -- Set up buffer local keymaps for ansible files
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("AnsibleLintKeyMapAutoGroup", { clear = true }),
-        pattern = "yaml.ansible",
-        callback = instrument_ansible_buffer,
-      })
-
       opts.ensure_installed = opts.ensure_installed or {}
       table.insert(opts.ensure_installed, "ansible-lint")
     end,

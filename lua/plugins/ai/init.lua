@@ -6,7 +6,6 @@ return {
   {
     "zbirenbaum/copilot.lua",
     lazy = true,
-    event = nil,
     cmd = { "Copilot" },
 
     opts = {

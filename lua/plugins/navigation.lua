@@ -68,13 +68,9 @@ return {
       },
     },
     keys = {
-      {
-        "-",
-        function()
-          vim.cmd("Explore")
-        end,
-        desc = "Netrw",
-      },
+      -- `-` is intentionally left to vim-vinegar (open netrw on the parent dir
+      -- with the current file selected). Mapping it here would shadow vinegar
+      -- and needlessly load fm-nvim just to call netrw's :Explore.
       {
         "_",
         function()
@@ -86,8 +82,10 @@ return {
   },
   {
     "ThePrimeagen/harpoon",
+    -- harpoon2 (pinned via the lazyvim harpoon2 extra) takes its config under
+    -- `settings`; the v1 `global_settings` key was silently ignored.
     opts = {
-      global_settings = {
+      settings = {
         save_on_toggle = false,
         save_on_change = true,
         enter_on_sendcmd = false,
