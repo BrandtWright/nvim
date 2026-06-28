@@ -84,22 +84,23 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- New
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- Yank Buffer Path
-map({ "n" }, "<Leader>byp", function()
-  vim.cmd(":let @+ = expand('%:h')")
-  Snacks.notify.info("Buffer Path", { title = "Yanked" })
+-- Yank a buffer-relative path to the system clipboard and report what landed
+-- there. `modifier` is a filename-modifier letter (see :h filename-modifiers):
+-- h = head/dir, t = tail/name, p = full path.
+local function yank_bufname(modifier, label)
+  local value = vim.fn.expand("%:" .. modifier)
+  vim.fn.setreg("+", value)
+  Snacks.notify.info(value, { title = label })
+end
+
+map("n", "<Leader>byp", function()
+  yank_bufname("h", "Yanked Buffer Path")
 end, { desc = "Yank Buffer Path" })
-
--- Yank Buffer Name
-map({ "n" }, "<Leader>byn", function()
-  vim.cmd(":let @+ = expand('%:t')")
-  Snacks.notify.info("Buffer name", { title = "Yanked" })
+map("n", "<Leader>byn", function()
+  yank_bufname("t", "Yanked Buffer Name")
 end, { desc = "Yank Buffer Name" })
-
--- Yank Buffer Path and Name
-map({ "n" }, "<Leader>byN", function()
-  vim.cmd(":let @+ = expand('%:p')")
-  Snacks.notify.info("Buffer name", { title = "Yanked" })
+map("n", "<Leader>byN", function()
+  yank_bufname("p", "Yanked Buffer Path (Full)")
 end, { desc = "Yank Buffer Name (Full Path)" })
 
 --------------------------------------------------------------------------------
@@ -241,7 +242,7 @@ map("n", "<leader>ux", function()
     vim.g.zen_mode_last_status = vim.o.laststatus
     vim.o.laststatus = 0
     if tmux then
-      vim.g.zen_mode_tmux_status_bar = vim.fn.system("tmux show -gv status")
+      vim.g.zen_mode_tmux_status_bar = vim.trim(vim.fn.system("tmux show -gv status"))
       os.execute("tmux set -g status off")
     end
     vim.g.zen_mode = true
@@ -263,8 +264,8 @@ end, { desc = "Dictionary" })
 --------------------------------------------------------------------------------
 -- Overrides
 --------------------------------------------------------------------------------
--- Override `gx` with with jobstart/detatch to avoid timeouts when the xdg
--- default application  takes a bit of time to start up.
+-- Override `gx` with jobstart/detach to avoid timeouts when the xdg default
+-- application takes a bit of time to start up.
 map("n", "gx", function()
   local target = vim.fn.expand("<cfile>")
   vim.fn.jobstart({ "xdg-open", target }, { detach = true })
