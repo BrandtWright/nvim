@@ -133,12 +133,13 @@ map("n", "<leader>oSp", function()
 end, { desc = "Open Scratch Buffer (Popup Window)" })
 
 -- Persistent Scrath Pad
-map("n", "<leader>osh", "<cmd>edit ~/data/projects/scratch/README.md<cr>", { desc = "Current Window" })
-map("n", "<leader>oss", "<cmd>split ~/data/projects/scratch/README.md<cr>", { desc = "Horizontal Split" })
-map("n", "<leader>osv", "<cmd>vsplit ~/data/projects/scratch/README.md<cr>", { desc = "Vertical Split" })
+local scratch_pad = vim.fn.expand("~/data/projects/scratch/README.md")
+map("n", "<leader>osh", "<cmd>edit " .. scratch_pad .. "<cr>", { desc = "Current Window" })
+map("n", "<leader>oss", "<cmd>split " .. scratch_pad .. "<cr>", { desc = "Horizontal Split" })
+map("n", "<leader>osv", "<cmd>vsplit " .. scratch_pad .. "<cr>", { desc = "Vertical Split" })
 map("n", "<leader>osp", function()
   Snacks.win.new({
-    file = vim.fn.expand("~/data/projects/scratch/README.md"),
+    file = scratch_pad,
     width = 0.6,
     max_width = 90,
     height = 0.6,
