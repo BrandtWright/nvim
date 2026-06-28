@@ -146,7 +146,6 @@ opt.guicursor = table.concat({
 -- Diagnostic configuration
 vim.diagnostic.config({
   float = {
-    show_header = true,
     border = "single",
   },
   virtual_text = {

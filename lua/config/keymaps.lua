@@ -21,7 +21,7 @@ end
 --------------------------------------------------------------------------------
 map("n", "<F7>", function()
   vim.cmd("setlocal spell!")
-end, { desc = "Project", silent = true })
+end, { desc = "Toggle Spell", silent = true })
 
 --------------------------------------------------------------------------------
 -- Movement
@@ -31,8 +31,8 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map("n", "<C-n>", "j<C-e>", { desc = "Scroll Up" })
-map("n", "<C-p>", "k<C-y>", { desc = "Scroll Down" })
+map("n", "<C-n>", "j<C-e>", { desc = "Scroll Down" })
+map("n", "<C-p>", "k<C-y>", { desc = "Scroll Up" })
 
 -- Better indenting
 map("v", "<", "<gv")
@@ -41,7 +41,7 @@ map("v", ">", ">gv")
 --------------------------------------------------------------------------------
 -- Windows
 --------------------------------------------------------------------------------
-map("n", "<leader>ws", "<cmd>split<cr>", { desc = "Vertical Split", silent = true })
+map("n", "<leader>ws", "<cmd>split<cr>", { desc = "Horizontal Split", silent = true })
 map("n", "<leader>wv", "<cmd>vsplit<cr>", { desc = "Vertical Split", silent = true })
 map("n", "<leader>wd", "<c-w>c", { desc = "Delete Window", silent = true })
 map("n", "<leader>wo", "<c-w>o", { desc = "Close Other Windows", silent = true })
@@ -51,10 +51,10 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
-map("n", "<leader>wh", "<cmd>wincmd H<cr>", { desc = "Move Window Right" })
+map("n", "<leader>wh", "<cmd>wincmd H<cr>", { desc = "Move Window Left" })
 map("n", "<leader>wj", "<cmd>wincmd J<cr>", { desc = "Move Window Down" })
-map("n", "<leader>wk", "<cmd>wincmd K<cr>", { desc = "Move to the Up" })
-map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move to the Left" })
+map("n", "<leader>wk", "<cmd>wincmd K<cr>", { desc = "Move Window Up" })
+map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move Window Right" })
 
 --------------------------------------------------------------------------------
 -- Terminals
@@ -161,10 +161,10 @@ end, { desc = "Popup Window" })
 --------------------------------------------------------------------------------
 map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-map("n", "]q", "<cmd>cnext<cr>", { desc = "Previous quickfix" })
-map("n", "[q", "<cmd>cprev<cr>", { desc = "Next quickfix" })
+map("n", "]q", "<cmd>cnext<cr>", { desc = "Next Quickfix" })
+map("n", "[q", "<cmd>cprev<cr>", { desc = "Previous Quickfix" })
 map("n", "<leader>xj", "<cmd>jumps<cr>", { desc = "Jump List" })
-map("n", "<leader>xc", "<cmd>jumps<cr>", { desc = "Jump List" })
+map("n", "<leader>xc", "<cmd>changes<cr>", { desc = "Change List" })
 
 --------------------------------------------------------------------------------
 -- Quit the Vim

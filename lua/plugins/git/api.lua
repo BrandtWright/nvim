@@ -125,7 +125,7 @@ function M.stash(opts)
   end
 end
 
---- Perform a ':Gdiffsplit!'
+--- Perform a ':Gvdiffsplit!'
 ---@param opts? GitOpts Options for resolving conflicts
 function M.resolve_conflicts(opts)
   local result = Either.unit(opts):bind(apply_default_values):bind(validate_git_directory)
