@@ -39,7 +39,7 @@ Optional, enabling specific features:
 
 ## Layout
 
-```
+```text
 init.lua              Entry point: bootstraps lazy.nvim, imports the spec
 lua/
   config/             options, keymaps, autocmds, disabled "silly-keys"
@@ -59,7 +59,7 @@ Makefile              test runner (bootstraps a pinned plenary)
 Leader is `<Space>`. Keys are grouped by prefix (shown via which-key):
 
 | Prefix | Group | | Prefix | Group |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `<leader>b` | Buffer | | `<leader>o` | Open (scratch, slipbox) |
 | `<leader>c` | Code | | `<leader>r` | Grep |
 | `<leader>f` | Find | | `<leader>s` | Search |
