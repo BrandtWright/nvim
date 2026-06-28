@@ -47,7 +47,7 @@ return {
       {
         "<leader>or",
         function()
-          local readme = LazyVim.root() .. require("bw.util.os").path_separator() .. "README.md"
+          local readme = vim.fs.joinpath(LazyVim.root(), "README.md")
           -- `{ args = { path } }` fnameescapes the path, so spaces/special chars are safe.
           vim.cmd.edit({ args = { readme } })
         end,
