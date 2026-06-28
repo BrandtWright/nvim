@@ -68,8 +68,8 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldcolumn = "1"
 vim.opt.fillchars = {
   fold = " ", -- remove trailing filler dots
-  foldopen = "", -- ▼
-  foldclose = "", -- ▶
+  foldopen = "▼",
+  foldclose = "▶",
   foldsep = " ",
   eob = "~",
 }
