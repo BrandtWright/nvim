@@ -118,7 +118,7 @@ end, { desc = "Yank Buffer Path" })
 -- Scratch Pads
 --------------------------------------------------------------------------------
 
--- Transient Scrath Buffer
+-- Transient Scratch Buffer
 map("n", "<leader>oSh", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("current_window")
 end, { desc = "Open Scratch Buffer" })
@@ -132,11 +132,18 @@ map("n", "<leader>oSp", function()
   require("bw.util.scratch-buffer").open_scratch_buffer("popup")
 end, { desc = "Open Scratch Buffer (Popup Window)" })
 
--- Persistent Scrath Pad
+-- Persistent Scratch Pad
 local scratch_pad = vim.fn.expand("~/data/projects/scratch/README.md")
-map("n", "<leader>osh", "<cmd>edit " .. scratch_pad .. "<cr>", { desc = "Current Window" })
-map("n", "<leader>oss", "<cmd>split " .. scratch_pad .. "<cr>", { desc = "Horizontal Split" })
-map("n", "<leader>osv", "<cmd>vsplit " .. scratch_pad .. "<cr>", { desc = "Vertical Split" })
+-- `{ args = { path } }` fnameescapes the path, so spaces/special chars are safe.
+map("n", "<leader>osh", function()
+  vim.cmd.edit({ args = { scratch_pad } })
+end, { desc = "Current Window" })
+map("n", "<leader>oss", function()
+  vim.cmd.split({ args = { scratch_pad } })
+end, { desc = "Horizontal Split" })
+map("n", "<leader>osv", function()
+  vim.cmd.vsplit({ args = { scratch_pad } })
+end, { desc = "Vertical Split" })
 map("n", "<leader>osp", function()
   Snacks.win.new({
     file = scratch_pad,
@@ -208,11 +215,6 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 --------------------------------------------------------------------------------
--- Save
---------------------------------------------------------------------------------
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-
---------------------------------------------------------------------------------
 -- Keywordprg
 --------------------------------------------------------------------------------
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
@@ -225,22 +227,19 @@ map("n", "<leader>fp", function()
 end, { desc = "Project", silent = true })
 
 --------------------------------------------------------------------------------
--- Neotree Stuff
---------------------------------------------------------------------------------
-if pcall(require, "neo-tree") then
-  vim.keymap.set("n", "<leader>es", "<cmd>Neotree left<cr>", { desc = "Neotree Toggle" })
-  vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Neotree Toggle" })
-end
-
---------------------------------------------------------------------------------
 -- Tmux Navigator Stuff
 --------------------------------------------------------------------------------
-if vim.g.loaded_tmux_navigator == 1 then
-  vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<CR>", { silent = true })
-  vim.keymap.set("n", "<C-j>", ":TmuxNavigateDown<CR>", { silent = true })
-  vim.keymap.set("n", "<C-k>", ":TmuxNavigateUp<CR>", { silent = true })
-  vim.keymap.set("n", "<C-l>", ":TmuxNavigateRight<CR>", { silent = true })
-end
+-- These deliberately live here rather than in the vim-tmux-navigator spec's
+-- `keys`: the silly-keys loop at the top of this file deletes the default
+-- <C-h/j/k/l> window maps, and these must be re-applied *after* that deletion.
+-- A plugin spec's keys load at startup (the plugin is lazy=false), i.e. before
+-- the VeryLazy deletion would wipe them. vim-tmux-navigator is loaded
+-- unconditionally, so no load guard is needed; outside tmux it falls back to
+-- plain window navigation.
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true, desc = "Navigate Left" })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Navigate Down" })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { silent = true, desc = "Navigate Up" })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true, desc = "Navigate Right" })
 
 --------------------------------------------------------------------------------
 -- Zen Mode

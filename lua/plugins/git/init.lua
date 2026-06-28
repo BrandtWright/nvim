@@ -111,7 +111,7 @@ return {
           map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 
-          -- Stage, Reset, Undoo
+          -- Stage, Reset, Undo
           map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
           map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
           map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")

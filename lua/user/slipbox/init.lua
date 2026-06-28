@@ -166,7 +166,8 @@ M.edit_slip = function(slip_id)
 
   local slip_path = M.get_slip_path(slip_id)
   if vim.fn.filereadable(slip_path) == 1 then
-    vim.cmd("edit " .. slip_path)
+    -- `{ args = { path } }` fnameescapes the path, so spaces/special chars are safe.
+    vim.cmd.edit({ args = { slip_path } })
     local bufnr = vim.api.nvim_get_current_buf()
     vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
     vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })

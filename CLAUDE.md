@@ -12,7 +12,15 @@ code in this repository.
 
 ### Testing
 
-No test framework is present in this configuration.
+Tests use plenary's busted harness and run headless via the `Makefile`:
+
+- `make test` - Run the whole spec suite (`tests/*_spec.lua`)
+- `make test FILE=tests/fs_spec.lua` - Run a single spec file
+- `make deps` - Clone the pinned test deps (plenary) into the gitignored `.tests-deps/`
+- `make clean-deps` - Remove the cloned test deps
+
+Specs `require()` individual modules against `tests/minimal_init.lua` without
+booting lazy.nvim, so prefer extracting pure logic into testable functions.
 
 ## Architecture Overview
 

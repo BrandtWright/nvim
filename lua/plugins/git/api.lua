@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- Adds slightly better validation and error hendling on top of snacks pickers,
+-- Adds slightly better validation and error handling on top of snacks pickers,
 -- fugitive, and gitsigns and provides some utility functions
 --------------------------------------------------------------------------------
 

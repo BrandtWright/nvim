@@ -15,9 +15,9 @@ local opt = vim.opt
 
 opt.laststatus = 3
 
--- Ignore compiled files
-opt.wildignore = "__pycache__"
-opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
+-- Ignore compiled / generated files in completion and globbing.
+-- `:append` adds to any existing value instead of replacing it.
+opt.wildignore:append({ "*.o", "*~", "*.pyc", "*pycache*" })
 
 opt.wildmode = { "longest", "list", "full" }
 
@@ -135,7 +135,7 @@ opt.formatoptions = opt.formatoptions
   - "2" -- I'm not in gradeschool anymore
 
 -- set joinspaces
-opt.joinspaces = false -- one space betwen sentences.
+opt.joinspaces = false -- one space between sentences.
 
 opt.guicursor = table.concat({
   "n-v-c-sm:block-Cursor", -- normal, visual, command, select: block with Cursor highlight

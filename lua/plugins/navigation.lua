@@ -11,6 +11,14 @@ return {
   { "tpope/vim-vinegar" },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    -- Defined here (not in config/keymaps.lua) so they lazy-load neo-tree on
+    -- demand. The old `if pcall(require, "neo-tree")` guard in keymaps.lua ran at
+    -- VeryLazy, before neo-tree had loaded, so it was false and the maps silently
+    -- never registered.
+    keys = {
+      { "<leader>es", "<cmd>Neotree left<cr>", desc = "Neotree (Left)" },
+      { "<leader>ef", "<cmd>Neotree float<cr>", desc = "Neotree (Float)" },
+    },
     opts = function(_, opts)
       highlights.on_colorscheme("NeoTreeHighlights", function()
         local get = highlights.get_attribute

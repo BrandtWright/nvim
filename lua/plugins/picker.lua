@@ -7,7 +7,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = function(_, opts)
-      -- Higlights
+      -- Highlights
       highlights.on_colorscheme("SnacksHighlights", function()
         vim.cmd("hi! link SnacksPickerMatch NormalFloat")
         vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")

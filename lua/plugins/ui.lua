@@ -96,7 +96,7 @@ return {
           spacing = 5,
         },
         plugins = {
-          -- Donn't use which-key for spelling suggestions
+          -- Don't use which-key for spelling suggestions
           spelling = false,
         },
         expand = 0,
@@ -122,7 +122,7 @@ return {
           { "<leader>lp", group = "Picker" },
           { "<leader>m", group = "Terminal" },
           { "<leader>o", group = "Open" },
-          { "<leader>os", group = "Persistant Scratch Pad" },
+          { "<leader>os", group = "Persistent Scratch Pad" },
           { "<leader>oS", group = "Temporary Scratch Pad" },
           { "<leader>q", group = "Session" },
           { "<leader>r", group = "Grep" },

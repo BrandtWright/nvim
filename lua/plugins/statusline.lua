@@ -43,6 +43,7 @@ return {
         if v[1] == "diff" then
           diff_component = v
           table.remove(lazy_x, i)
+          break -- stop iterating: table.remove shifts later indices, so continuing would skip an element
         end
       end
 
