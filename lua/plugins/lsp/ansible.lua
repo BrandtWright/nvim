@@ -20,11 +20,8 @@ return {
         callback = instrument_ansible_buffer,
       })
 
-      local my_opts = {
-        ensure_installed = { "ansible-lint" },
-      }
-
-      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      table.insert(opts.ensure_installed, "ansible-lint")
     end,
   },
 }

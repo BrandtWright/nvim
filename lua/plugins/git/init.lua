@@ -21,16 +21,15 @@ return {
         vim.cmd("hi! link @markup.heading.gitcommit Special")
       end)
 
-      local my_opts = {
-        ensure_installed = {
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, {
           "git_config",
           "gitcommit",
           "git_rebase",
           "gitignore",
           "gitattributes",
-        },
-      }
-      return vim.tbl_deep_extend("force", opts or {}, my_opts)
+        })
+      end
     end,
   },
   {
