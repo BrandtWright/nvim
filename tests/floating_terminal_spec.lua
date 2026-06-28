@@ -15,6 +15,7 @@ describe("floating terminal", function()
 
   it("passes the current cwd when the toggle keymap fires", function()
     local captured
+    ---@diagnostic disable-next-line: missing-fields -- intentional partial stub of Snacks
     _G.Snacks = {
       terminal = {
         toggle = function(cmd, o)

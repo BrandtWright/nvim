@@ -5,6 +5,7 @@
 
 local function capture_toggle()
   local captured
+  ---@diagnostic disable-next-line: missing-fields -- intentional partial stub of Snacks
   _G.Snacks = {
     toggle = {
       new = function(cfg)

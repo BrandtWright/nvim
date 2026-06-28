@@ -13,6 +13,7 @@ end
 
 local function stub_snacks()
   local captured = {}
+  ---@diagnostic disable-next-line: missing-fields -- intentional partial stub of Snacks
   _G.Snacks = {
     picker = setmetatable({}, {
       __index = function(_, k)
