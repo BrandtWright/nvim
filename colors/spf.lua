@@ -333,11 +333,6 @@ local links = {
 
   -- hl-ColorColumn
   -- Used for the columns set with 'colorcolumn'.
-  -- Link straight to nothing_on_cursorline instead of through CursorLine (the color
-  -- is identical either way). Plugins link to ColorColumn for code-block-style
-  -- backgrounds; routing it through the literal CursorLine group would make those
-  -- render with the wrong color inside the snacks picker preview, which remaps
-  -- CursorLine window-locally. Keeping this chain free of CursorLine avoids that.
   ColorColumn = "nothing_on_cursorline",
 
   -- hl-Cursor
