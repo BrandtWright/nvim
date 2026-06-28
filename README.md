@@ -1,9 +1,9 @@
 # Neovim Configuration
 
-A personal Neovim setup built on [LazyVim](https://www.lazyvim.org/), with a
-custom xresources-driven colorscheme, an all-[snacks.nvim](https://github.com/folke/snacks.nvim)
-picker layer, a [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten)-style
-"slipbox", and a small library of utilities under the `bw/` namespace.
+A personal Neovim setup built on [LazyVim][lazyvim], with a custom
+xresources-driven colorscheme, an all-[snacks.nvim][snacks] picker layer, a
+[Zettelkasten][zettelkasten]-style "slipbox", and a small library of utilities
+under the `bw/` namespace.
 
 ## Highlights
 
@@ -20,7 +20,7 @@ picker layer, a [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten)-style
   `:SlipEdit`, related-note navigation, and a custom picker (`lua/user/slipbox/`).
 - **Scratch buffers** — transient (`<leader>oS*`) and persistent
   (`<leader>os*`) scratch pads.
-- **Tested** — a headless [plenary](https://github.com/nvim-lua/plenary.nvim)
+- **Tested** — a headless [plenary][plenary]
   busted suite under `tests/`, runnable with `make test`.
 
 ## Requirements
@@ -87,3 +87,8 @@ modules directly without booting lazy.nvim.
 
 - `luacheck .` — Lua linting (config in `.luacheckrc`).
 - `stylua` — formatting (config in `stylua.toml`: 2 spaces, 120 columns).
+
+[lazyvim]: https://www.lazyvim.org/
+[snacks]: https://github.com/folke/snacks.nvim
+[zettelkasten]: https://en.wikipedia.org/wiki/Zettelkasten
+[plenary]: https://github.com/nvim-lua/plenary.nvim

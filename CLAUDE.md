@@ -111,5 +111,8 @@ and imports all modules
 
 - Neovim Help Files
   - `/usr/share/nvim/runtime/doc/`
-- [Snacks.nvim Documentation](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
-- [LazyVim Documentation](https://www.lazyvim.org/)
+- [Snacks.nvim Documentation][snacks-picker-docs]
+- [LazyVim Documentation][lazyvim-docs]
+
+[snacks-picker-docs]: https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
+[lazyvim-docs]: https://www.lazyvim.org/
