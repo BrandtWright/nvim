@@ -1,27 +1,21 @@
 local M = {}
 
---- Info toaster
----@param msg string
----@param icon string
----@param title string
-M.info = function(msg, icon, title)
-  vim.notify(msg, vim.log.levels.INFO, { title = title, icon = icon })
+--- Builds a toaster bound to a specific log level.
+---@param level integer A `vim.log.levels` value
+---@return fun(msg: string, icon: string, title: string)
+local function toaster(level)
+  return function(msg, icon, title)
+    vim.notify(msg, level, { title = title, icon = icon })
+  end
 end
+
+--- Info toaster
+M.info = toaster(vim.log.levels.INFO)
 
 --- Warn toaster
----@param msg string
----@param icon string
----@param title string
-M.warn = function(msg, icon, title)
-  vim.notify(msg, vim.log.levels.WARN, { title = title, icon = icon })
-end
+M.warn = toaster(vim.log.levels.WARN)
 
----Error toaster
----@param msg string
----@param icon string
----@param title string
-M.error = function(msg, icon, title)
-  vim.notify(msg, vim.log.levels.ERROR, { title = title, icon = icon })
-end
+--- Error toaster
+M.error = toaster(vim.log.levels.ERROR)
 
 return M
