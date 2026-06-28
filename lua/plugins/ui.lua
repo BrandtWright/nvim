@@ -69,7 +69,7 @@ return {
     opts = function(_, opts)
       local apply_highlights = function()
         vim.cmd("hi! link WhichKey Normal")
-        vim.cmd("hi! link WhichKeyGroup Orange")
+        vim.cmd("hi! link WhichKeyGroup Directory")
         vim.cmd("hi! link WhichKeyDesc Normal")
         vim.cmd("hi! link WhichKeyFloat Normal")
         vim.cmd("hi! link WhichKeyBorder FloatBorder")

@@ -7,7 +7,7 @@ return {
     opts = function(_, opts)
       -- Higlights
       local apply_highlights = function()
-        vim.cmd("hi! link SnacksPickerMatch Match")
+        vim.cmd("hi! link SnacksPickerMatch NormalFloat")
         vim.cmd("hi! link SnacksPickerListCursorline PmenuSel")
       end
       apply_highlights()
