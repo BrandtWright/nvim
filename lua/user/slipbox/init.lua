@@ -110,11 +110,16 @@ M.get_related_slips = function()
   return M.extract_yaml_related(lines)
 end
 
---- Lists all available slips using the external snote command
----@return table List of all slip IDs in the slipbox
+--- Lists all slips via the external snote command, parsed into records so
+--- callers need not know snote's `ID<tab>TITLE<tab>TAGS` line format.
+---@return { id: string, title: string, tags: string }[]
 function M.list_slips()
-  local slips = vim.fn.systemlist("snote -l")
-  return slips
+  local records = {}
+  for _, line in ipairs(vim.fn.systemlist("snote -l")) do
+    local fields = vim.split(line, "\t", { plain = true })
+    table.insert(records, { id = fields[1], title = fields[2] or "", tags = fields[3] or "" })
+  end
+  return records
 end
 
 --- Gets the configured slipbox directory path

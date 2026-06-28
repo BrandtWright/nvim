@@ -8,7 +8,10 @@ package.loaded["user.slipbox"] = {
     return "/tmp/slipbox"
   end,
   list_slips = function()
-    return { "001\tFirst\ttag1", "002\tSecond\t" }
+    return {
+      { id = "001", title = "First", tags = "tag1" },
+      { id = "002", title = "Second", tags = "" },
+    }
   end,
   get_related_slips = function()
     return { "002" }

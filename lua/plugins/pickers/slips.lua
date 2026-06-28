@@ -2,15 +2,6 @@
 -- Fuzzy Find Slips
 -------------------------------------------------------------------------------
 
--- Slip list field parser (splits ID<tab>TITLE<tab>TAGS).
-local function split(str, sep)
-  local fields = {}
-  for field in string.gmatch(str, "([^" .. sep .. "]+)") do
-    table.insert(fields, field)
-  end
-  return fields
-end
-
 return {
   {
     "folke/snacks.nvim",
@@ -19,22 +10,22 @@ return {
       dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
     },
     opts = function(_, opts)
-      -- Set up buffer local mappings for slips in the slipbox path
-      local slipbox_path = vim.fn.expand(require("user.slipbox").get_slipbox_path())
-      local slipbox_pattern = vim.pesc(slipbox_path) .. "/[^/]+/README%.md$"
+      -- Buffer-local mappings for slip buffers. Asking the slipbox module whether
+      -- a buffer is a slip keeps the on-disk layout knowledge in the module and
+      -- avoids depending on setup() having run before these opts are evaluated.
       vim.api.nvim_create_autocmd("BufReadPost", {
         group = vim.api.nvim_create_augroup("SlipboxBuffLocalKeyMaps", { clear = true }),
         pattern = "*",
         callback = function(ev)
-          local path = vim.api.nvim_buf_get_name(ev.buf)
-          if path:match(slipbox_pattern) then
+          local slipbox = require("user.slipbox")
+          local slip_id = slipbox.slip_id_from_path(vim.api.nvim_buf_get_name(ev.buf))
+          if slip_id then
             local ok, wk = pcall(require, "which-key")
             if ok then
               wk.add({
                 {
                   "<localleader>s",
                   function()
-                    local slip_id = vim.fn.expand("%:p:h:t")
                     vim.fn.setreg("+", slip_id)
                     vim.notify(slip_id, vim.log.levels.INFO, { title = "Yanked Slip Id" })
                   end,
@@ -73,22 +64,13 @@ return {
               -- This function should return an iterable (e.g., a table) of items.
               -- Each item can be a string or a table with a 'text' field.
               finder = function()
-                -- Get slips
                 local slipbox = require("user.slipbox")
-                local slips = slipbox.list_slips()
-
-                -- Configure picker items
                 local items = {}
-                for _, v in ipairs(slips) do
-                  local fields = split(v, "\t")
-                  local slip_id = fields[1]
-                  local slip_path = slipbox.get_slip_path(slip_id)
-                  local title = fields[2]
-                  local tags = fields[3] or ""
+                for _, slip in ipairs(slipbox.list_slips()) do
                   table.insert(items, {
-                    text = title .. " " .. tags,
-                    name = slip_id,
-                    file = slip_path,
+                    text = slip.title .. " " .. slip.tags,
+                    name = slip.id,
+                    file = slipbox.get_slip_path(slip.id),
                     filetype = "markdown",
                   })
                 end
@@ -138,29 +120,20 @@ return {
               -- This function should return an iterable (e.g., a table) of items.
               -- Each item can be a string or a table with a 'text' field.
               finder = function()
-                -- Get slips
                 local slipbox = require("user.slipbox")
-                local slips = slipbox.list_slips()
                 local related_slips = slipbox.get_related_slips()
-
-                -- Configure picker items
                 local items = {}
-                for _, v in ipairs(slips) do
-                  local fields = split(v, "\t")
-                  local slip_id = fields[1]
-                  local slip_path = slipbox.get_slip_path(slip_id)
-                  local title = fields[2]
-                  local tags = fields[3] or ""
-                  -- don't add duplicates
-                  if not vim.tbl_contains(related_slips, slip_id) then
+                for _, slip in ipairs(slipbox.list_slips()) do
+                  -- don't add slips that are already related
+                  if not vim.tbl_contains(related_slips, slip.id) then
                     table.insert(items, {
-                      text = title .. " " .. tags,
-                      name = slip_id,
-                      file = slip_path,
+                      text = slip.title .. " " .. slip.tags,
+                      name = slip.id,
+                      file = slipbox.get_slip_path(slip.id),
                       filetype = "markdown",
                       action = function()
                         local row = vim.api.nvim_win_get_cursor(0)[1] -- current line (1-based)
-                        local text = string.format("  - %s", slip_id)
+                        local text = string.format("  - %s", slip.id)
                         vim.api.nvim_buf_set_lines(0, row, row, false, { text })
                       end,
                     })
