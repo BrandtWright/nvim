@@ -75,7 +75,6 @@ and imports all modules
 #### Custom Colorschemes
 
 - Primary: `spf` (colors/spf.lua)
-- Alternative: `screen_glasses`
 
 #### Extensive Picker System
 
