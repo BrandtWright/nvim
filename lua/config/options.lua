@@ -4,14 +4,14 @@
 
 vim.g.mapleader = " "
 
--- Color and Brightness Options
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-
 -- Disable the trouble symbols in lualine (method/function names and symbols)
 vim.g.trouble_lualine = false
 
 local opt = vim.opt
+
+-- Color and Brightness Options
+opt.termguicolors = true
+opt.background = "dark"
 
 opt.laststatus = 3
 
@@ -60,13 +60,13 @@ opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldcolumn = "1"
-vim.opt.fillchars = {
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldcolumn = "1"
+opt.fillchars = {
   fold = " ", -- remove trailing filler dots
   foldopen = "▼",
   foldclose = "▶",
@@ -102,7 +102,7 @@ function _G.TreesitterFoldText()
   return foldtext
 end
 
-vim.opt.foldtext = "v:lua.TreesitterFoldText()"
+opt.foldtext = "v:lua.TreesitterFoldText()"
 
 opt.belloff = "all" -- Just turn the dang bell off
 
@@ -115,14 +115,12 @@ opt.shada = { "!", "'1000", "<50", "s10", "h" }
 opt.mouse = "n"
 
 -- Spelling
-vim.opt.spelllang = { "en_us" }
-vim.opt.spell = false
+opt.spelllang = { "en_us" }
+opt.spell = false
 
 -- Helpful related items:
 --   1. :center, :left, :right
 --   2. gw{motion} - Put cursor back after formatting motion.
---
--- TODO: w, {v, b, l}
 opt.formatoptions = opt.formatoptions
   - "a" -- Auto formatting is BAD.
   - "t" -- Don't auto format my code. I got linters for that.
