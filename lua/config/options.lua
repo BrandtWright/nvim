@@ -143,14 +143,7 @@ opt.guicursor = table.concat({
   "r-cr-o:hor20-Cursor", -- replace, confirm, operator-pending: horizontal bar
 }, ",")
 
--- Diagnostic configuration
-vim.diagnostic.config({
-  float = {
-    border = "single",
-  },
-  virtual_text = {
-    spacing = 4,
-    source = "if_many",
-    prefix = "●",
-  },
-})
+-- Diagnostic display is configured in lua/plugins/diagnostics.lua via the
+-- nvim-lspconfig `opts.diagnostics` table. Setting it here would be clobbered:
+-- LazyVim applies its own vim.diagnostic.config() during LSP setup, which runs
+-- after this file loads.

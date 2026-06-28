@@ -1,5 +1,23 @@
 return {
   {
+    -- Diagnostic display. Set here (not in config/options.lua) so it merges with
+    -- LazyVim's defaults: LazyVim applies vim.diagnostic.config() during LSP
+    -- setup, which would override anything set earlier in options.lua.
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        float = {
+          border = "single",
+        },
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
+          prefix = "●",
+        },
+      },
+    },
+  },
+  {
     "folke/snacks.nvim",
     opts = function()
       -- Remembers the configured virtual_text value (often a table, e.g.
