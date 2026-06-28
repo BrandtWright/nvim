@@ -95,14 +95,20 @@ return {
             related_slips = {
               finder = function()
                 local slipbox = require("user.slipbox")
-                local slips = slipbox.get_related_slips()
+                -- get_related_slips() returns the front-matter IDs; join them
+                -- against the catalog (list_slips records) to show title + tags.
+                -- Falls back to the bare ID for a related slip not in the catalog.
+                local catalog = {}
+                for _, slip in ipairs(slipbox.list_slips()) do
+                  catalog[slip.id] = slip
+                end
                 local items = {}
-                for _, v in ipairs(slips) do
-                  local slip_path = slipbox.get_slip_path(v)
+                for _, id in ipairs(slipbox.get_related_slips()) do
+                  local slip = catalog[id]
                   table.insert(items, {
-                    text = v,
-                    name = v,
-                    file = slip_path,
+                    text = slip and (slip.title .. " " .. slip.tags) or id,
+                    name = id,
+                    file = slipbox.get_slip_path(id),
                     filetype = "markdown",
                   })
                 end
