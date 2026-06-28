@@ -66,15 +66,24 @@ M.open_scratch_buffer = function(mode)
       border = "rounded",
     }
 
-    -- local original_win = vim.api.nvim_get_current_win()
     local float_win = vim.api.nvim_open_win(buf, true, win_opts)
 
-    -- 'q' closes just the popup
+    -- 'q' closes just the popup. Scoped to the float's lifetime: the buffer is
+    -- reused across display modes, so a permanent buffer-local 'q' would shadow
+    -- normal 'q' once the buffer is later shown in a split.
     vim.keymap.set("n", "q", function()
       if vim.api.nvim_win_is_valid(float_win) then
         vim.api.nvim_win_close(float_win, true)
       end
     end, { buffer = buf, silent = true })
+
+    vim.api.nvim_create_autocmd("WinClosed", {
+      pattern = tostring(float_win),
+      once = true,
+      callback = function()
+        pcall(vim.keymap.del, "n", "q", { buffer = buf })
+      end,
+    })
   else
     vim.notify("Invalid mode for scratch buffer: " .. tostring(mode), vim.log.levels.ERROR)
   end
