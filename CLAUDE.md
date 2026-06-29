@@ -46,8 +46,7 @@ and imports all modules
 - `lua/plugins/` - Plugin configurations organized by functionality
   - `colorscheme.lua` - Custom colorscheme setup (uses "spf" theme)
   - `completion.lua`, `navigation.lua`, `statusline.lua`, etc.
-  - `pickers/` - Extensive custom picker configurations for telescope/snacks
-  - `toggles/` - UI toggle functionality
+  - `pickers/` - Extensive custom picker configurations for snacks
   - `ai/` - AI integration (Copilot)
   - `git/` - Git-related plugins
 
@@ -77,7 +76,7 @@ and imports all modules
 
 #### Extensive Picker System
 
-- 30+ custom pickers in `lua/plugins/pickers/`
+- Custom pickers in `lua/plugins/pickers/`
 - Categories: files, grep, LSP, nvim internals, diagnostics
 - Special pickers for slipbox, git workflows
 
@@ -103,7 +102,7 @@ and imports all modules
 - Follow LazyVim conventions for plugin configuration
 - Custom utilities go in `bw/` namespace
 - Pickers are organized by category in separate files
-- LSP configurations are language-specific in `lsp/` directory
+- LSP configurations are language-specific in `lua/plugins/lsp/`
 
 ## Additional Documentation
 
