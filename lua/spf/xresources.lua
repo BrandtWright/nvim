@@ -44,10 +44,19 @@ local function load_xresources_batch()
     return xres_cache
   end
 
+  -- Bail to an empty table when xrdb isn't on PATH (headless CI, no X11). The
+  -- argv (list) form of vim.fn.system() RAISES E475 for a missing command rather
+  -- than setting v:shell_error, so without this guard a host without xrdb would
+  -- error out of palette loading instead of falling back to the baked-in hex.
+  if vim.fn.executable("xrdb") ~= 1 then
+    xres_cache = {}
+    return xres_cache
+  end
+
   -- Get all xresources in one call. Argv (list) form, so no shell is involved --
   -- consistent with the rest of the config's shell-outs. Consult v:shell_error so
-  -- a failure (e.g. xrdb missing) caches an empty table rather than parsing the
-  -- error text into junk keys.
+  -- a query failure caches an empty table rather than parsing error text into
+  -- junk keys.
   local output = vim.fn.system({ "xrdb", "-query" })
   xres_cache = (vim.v.shell_error == 0 and output ~= "") and M.parse(output) or {}
   return xres_cache

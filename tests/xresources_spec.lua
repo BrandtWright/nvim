@@ -57,3 +57,33 @@ describe("spf.xresources.color", function()
     assert.is_nil(xr.color(t, "absent_key"))
   end)
 end)
+
+describe("spf.xresources.load fallback", function()
+  -- Keeps the suite hermetic: spf's palette must degrade to its baked-in hex
+  -- when xrdb is unavailable (headless CI, no X11) instead of erroring. The argv
+  -- form of vim.fn.system() RAISES E475 for a missing command rather than
+  -- setting v:shell_error, so the loader has to short-circuit on executable().
+  local orig_executable = vim.fn.executable
+  local orig_module = package.loaded["spf.xresources"]
+
+  after_each(function()
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.fn.executable = orig_executable
+    -- Restore the shared module so specs running after this one get the real one.
+    package.loaded["spf.xresources"] = orig_module
+  end)
+
+  it("returns nil (no error) when xrdb is not executable", function()
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.fn.executable = function(name)
+      if name == "xrdb" then
+        return 0
+      end
+      return orig_executable(name)
+    end
+    -- Reload so the module's xrdb cache reflects the stub, not an earlier real call.
+    package.loaded["spf.xresources"] = nil
+    local xr_fresh = require("spf.xresources")
+    assert.is_nil(xr_fresh.load("color0"))
+  end)
+end)
