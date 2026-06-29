@@ -9,6 +9,7 @@ local M = {}
 --- collapsing it to a bare boolean.
 ---@return snacks.toggle.Opts
 M.virtual_text_toggle = function()
+  ---@type boolean|vim.diagnostic.Opts.VirtualText|(fun(namespace: integer, bufnr: integer): vim.diagnostic.Opts.VirtualText)
   local saved_virtual_text = true
   return {
     id = "diagnostic_virtual_text",
