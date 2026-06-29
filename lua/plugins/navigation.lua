@@ -8,7 +8,9 @@ return {
       vim.cmd([[let g:tmux_navigator_disable_when_zoomed = 1]])
     end,
   },
-  { "tpope/vim-vinegar" },
+  -- vim-vinegar owns `-` (open netrw on the parent dir with the current file
+  -- selected). Lazy-load on that key rather than eagerly at startup.
+  { "tpope/vim-vinegar", keys = { "-" } },
   {
     "nvim-neo-tree/neo-tree.nvim",
     -- Defined here (not in config/keymaps.lua) so they lazy-load neo-tree on
