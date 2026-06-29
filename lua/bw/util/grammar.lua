@@ -9,7 +9,10 @@ M.checker_toggle = function()
     id = "grammar_checker",
     name = "Grammar Checker",
     get = function()
-      return #vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 }) > 0
+      -- Global scope to match `set`: disabling stops every harper_ls client and
+      -- runs `vim.lsp.enable(false)` globally, so the reported state must be
+      -- global too (a per-buffer check would disagree with the toggle's effect).
+      return #vim.lsp.get_clients({ name = "harper_ls" }) > 0
     end,
     set = function(state)
       if state then
