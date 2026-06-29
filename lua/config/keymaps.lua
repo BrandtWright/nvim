@@ -262,16 +262,6 @@ map("n", "<leader>sw", function()
 end, { desc = "Dictionary" })
 
 --------------------------------------------------------------------------------
--- Overrides
---------------------------------------------------------------------------------
--- Override `gx` with jobstart/detach to avoid timeouts when the xdg default
--- application takes a bit of time to start up.
-map("n", "gx", function()
-  local target = vim.fn.expand("<cfile>")
-  vim.fn.jobstart({ "xdg-open", target }, { detach = true })
-end, { desc = "Open with system handler" })
-
---------------------------------------------------------------------------------
 -- Disabled Defaults
 --------------------------------------------------------------------------------
 
