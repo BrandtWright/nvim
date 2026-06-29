@@ -1,3 +1,6 @@
+exclude_files = {
+  ".tests-deps", -- vendored test deps (plenary); not our code
+}
 ignore = {
   "631", -- max_line_length
 }
