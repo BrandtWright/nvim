@@ -13,6 +13,7 @@ end
 describe("after/ftplugin/sql.vim", function()
   it("sources without error (was Lua in a vimscript file -> E499)", function()
     local ok, err = source_ftplugin("sql.vim")
+    ---@diagnostic disable-next-line: redundant-parameter -- luassert is_true accepts a failure message
     assert.is_true(ok, tostring(err))
   end)
 

@@ -14,6 +14,7 @@ describe("slipbox plugin loading", function()
         found = true
       end
     end
+    ---@diagnostic disable-next-line: redundant-parameter -- luassert is_true accepts a failure message
     assert.is_true(found, "expected a BufReadPre <slipbox>/*/README.md lazy event trigger")
   end)
 end)

@@ -1,4 +1,13 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "Lua.workspace.checkThirdParty": false
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.diagnostics.globals": [
+        "describe",
+        "it",
+        "before_each",
+        "after_each",
+        "pending",
+        "setup",
+        "teardown"
+    ]
 }
