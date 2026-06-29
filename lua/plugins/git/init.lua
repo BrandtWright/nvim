@@ -59,16 +59,11 @@ return {
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
       { "<leader>gG", "<cmd>Git commit<cr>", mode = "n", desc = "Commit" },
-      {
-        "<leader>gg",
-        function()
-          -- Use the current buffer path as cwd in case we are in a buffer outside of cwd
-          -- This allows us to gracefully handle failure and issue the appropriate warnings
-          -- when we have wandered outside a repo
-          git.fugitive({ cwd = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h") })
-        end,
-        desc = "Fugitive",
-      },
+      -- These fugitive/diff actions validate against the current buffer's
+      -- directory (handled in git.api's with_buffer_cwd), so they warn cleanly
+      -- when the buffer has wandered outside a repo instead of acting on the
+      -- wrong one.
+      { "<leader>gg", git.fugitive, desc = "Fugitive" },
       { "<leader>gp", "<cmd>Git pull<cr>", mode = "n", desc = "Pull", ft = "fugitive" },
       { "<leader>gP", "<cmd>Git push<cr>", mode = "n", desc = "Push", ft = "fugitive" },
     },
@@ -117,7 +112,18 @@ return {
           -- Stage, Reset, Undo
           map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
           map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-          map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+          -- gitsigns made stage_hunk a toggle and deprecated undo_stage_hunk.
+          -- Plugins float to latest here, so guard against a build that has
+          -- dropped it (passing gs.undo_stage_hunk directly would be nil and
+          -- throw at on_attach). Re-toggling stage_hunk on a staged hunk unstages
+          -- it, so it's the right fallback.
+          map("n", "<leader>ghu", function()
+            if gs.undo_stage_hunk then
+              gs.undo_stage_hunk()
+            else
+              gs.stage_hunk()
+            end
+          end, "Undo Stage Hunk")
 
           -- Preview
           map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
