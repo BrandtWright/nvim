@@ -7,6 +7,12 @@ vim.g.mapleader = " "
 -- Disable the trouble symbols in lualine (method/function names and symbols)
 vim.g.trouble_lualine = false
 
+-- Keep Copilot (and any other AI) OUT of the blink completion menu. As a menu
+-- source it would query Copilot on every popup -- and Copilot costs money.
+-- Copilot is configured as opt-in, on-demand inline suggestions instead; see
+-- lua/plugins/ai/init.lua.
+vim.g.ai_cmp = false
+
 local opt = vim.opt
 
 -- Color and Brightness Options
