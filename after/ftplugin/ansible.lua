@@ -6,7 +6,9 @@
 -- the time mason's opts run).
 vim.keymap.set("n", "<localleader>a", function()
   -- shellescape the path so spaces/metacharacters can't break the command.
-  Snacks.terminal.open("ansible-lint " .. vim.fn.shellescape(vim.fn.expand("%")) .. " && anykey", {
+  -- `;` (not `&&`) so the `anykey` pause still fires when ansible-lint exits
+  -- non-zero -- the common case, since a non-zero exit means it found issues to read.
+  Snacks.terminal.open("ansible-lint " .. vim.fn.shellescape(vim.fn.expand("%")) .. " ; anykey", {
     win = { border = "single", style = "terminal", relative = "editor", width = 120, height = 25 },
     interactive = true,
   })
