@@ -5,7 +5,8 @@ system as is but feel free to take what you can from it.
 
 ## Requirements
 
-- **Neovim ≥ 0.10** (uses `vim.uv`, `vim.system`, `vim.treesitter.foldexpr`, etc.)
+- **Neovim 0.12+** — CI-verified at `v0.12.3` (uses `vim.lsp.enable`,
+  `vim.system`, `vim.treesitter.foldexpr`, etc.).
 - **`git`**, **`ripgrep`** (`rg`), and **`fd`** — for plugin management and pickers.
 
 Optional, enabling specific features:

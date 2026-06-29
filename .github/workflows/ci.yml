@@ -19,8 +19,8 @@ jobs:
 
       # Pinned to a concrete Neovim release rather than `stable` so a new
       # upstream release can't turn CI red on an unchanged tree. Bump this
-      # deliberately (and re-run the suite locally) when you move the floor.
-      # The config targets Neovim >= 0.10; see README.md.
+      # deliberately (and re-run the suite locally) when you move it.
+      # v0.12.3 is the version this config is verified against; see README.md.
       - name: Install Neovim
         uses: rhysd/action-setup-vim@v1
         with:
