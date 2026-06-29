@@ -170,7 +170,7 @@ end
 --- The slipbox root is escaped with vim.pesc so directories containing Lua
 --- pattern magic characters (e.g. "-", ".") are matched literally.
 ---@param bufname string Absolute path to a buffer
----@return string|nil slip_id, or nil if the path is not a slip README
+---@return string|nil slip_id Slip ID or nil if the path is not a slip README
 M.slip_id_from_path = function(bufname)
   local root = M.get_slipbox_path()
   if root == "" then
