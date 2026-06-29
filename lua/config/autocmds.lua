@@ -16,7 +16,7 @@ vim.api.nvim_clear_autocmds({
 
 -- Show the column number (useful when in zen mode).
 vim.api.nvim_create_user_command("Column", function()
-  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local col = vim.api.nvim_win_get_cursor(0)[2]
   local msg = string.format("Col: %d", col + 1)
   require("bw.util.notification").info(msg, "Column Toaster", "💡")
 end, { desc = "Show current cursor column" })
