@@ -287,7 +287,7 @@ local links = {
 
   -- hl-TabLine
   -- Tab pages line, not active tab page label.
-  Tabline = "WinBarNC",
+  TabLine = "WinBarNC",
 
   -- hl-TabLineFill
   -- Tab pages line, where there are no labels.
