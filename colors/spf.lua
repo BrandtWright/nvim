@@ -1015,3 +1015,8 @@ vim.g.terminal_color_12 = colors.bright_blue
 vim.g.terminal_color_13 = colors.bright_magenta
 vim.g.terminal_color_14 = colors.bright_cyan
 vim.g.terminal_color_15 = colors.bright_white
+
+-- Expose the theme's source-of-truth tables so they can be inspected by tests
+-- (loadfile this file to apply the scheme AND capture the tables). `:colorscheme
+-- spf` ignores the return value, so this keeps spf a single self-contained file.
+return { colors = colors, highlights = highlights, links = links }
