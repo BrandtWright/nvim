@@ -1,8 +1,7 @@
 return {
   {
-    -- The <localleader>a lint keymap lives in after/ftplugin/ansible.lua so it
-    -- attaches reliably to the first ansible buffer (registering it here, in a
-    -- lazy plugin's opts, races the FileType event that loads the plugin).
+    -- ansible-lint is the linter the ansible language server (from the LazyVim
+    -- ansible extra) runs for inline diagnostics; ensure it's installed.
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
