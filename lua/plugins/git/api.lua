@@ -15,7 +15,7 @@ local module_name = "plugins.git.api"
 ---@param msg string Error message to display
 local warn = function(msg)
   local toaster = require("bw.util.notification")
-  toaster.warn(msg, icon, module_name)
+  toaster.warn(msg, module_name, icon)
 end
 
 ---@param opts GitOpts

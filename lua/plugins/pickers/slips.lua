@@ -40,7 +40,7 @@ return {
                   "<localleader>s",
                   function()
                     vim.fn.setreg("+", slip_id)
-                    vim.notify(slip_id, vim.log.levels.INFO, { title = "Yanked Slip Id" })
+                    require("bw.util.notification").info(slip_id, "Yanked Slip Id")
                   end,
                   buffer = ev.buf,
                   desc = "Yank slip ID",

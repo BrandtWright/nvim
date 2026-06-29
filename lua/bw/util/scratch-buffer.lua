@@ -1,5 +1,7 @@
 local M = {}
 
+local toast = require("bw.util.notification")
+
 --- Opens or reuses a transient markdown scratch buffer in the requested mode.
 --- The buffer is a single in-memory `nofile` buffer reused for the lifetime of
 --- the Neovim session; it is NOT written to disk and does NOT survive a restart.
@@ -30,7 +32,7 @@ M.open_scratch_buffer = function(mode)
 
   -- remove keymap for delete buffer
   vim.keymap.set("n", "<leader>bd", function()
-    vim.notify("Cannot delete scratch buffer")
+    toast.warn("Cannot delete scratch buffer", "Scratch Buffer")
   end, { buffer = buf, silent = true })
 
   -- Determine how to display the buffer
@@ -87,7 +89,7 @@ M.open_scratch_buffer = function(mode)
       end,
     })
   else
-    vim.notify("Invalid mode for scratch buffer: " .. tostring(mode), vim.log.levels.ERROR)
+    toast.error("Invalid mode for scratch buffer: " .. tostring(mode), "Scratch Buffer")
   end
 end
 

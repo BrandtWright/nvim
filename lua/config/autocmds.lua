@@ -18,5 +18,5 @@ vim.api.nvim_clear_autocmds({
 vim.api.nvim_create_user_command("Column", function()
   local _, col = unpack(vim.api.nvim_win_get_cursor(0))
   local msg = string.format("Col: %d", col + 1)
-  vim.notify(msg, vim.log.levels.INFO, { title = "Column Toaster", icon = "💡" })
+  require("bw.util.notification").info(msg, "Column Toaster", "💡")
 end, { desc = "Show current cursor column" })

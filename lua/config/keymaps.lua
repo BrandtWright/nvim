@@ -90,7 +90,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 local function yank_bufname(modifier, label)
   local value = vim.fn.expand("%:" .. modifier)
   vim.fn.setreg("+", value)
-  Snacks.notify.info(value, { title = label })
+  require("bw.util.notification").info(value, label)
 end
 
 map("n", "<Leader>byp", function()
