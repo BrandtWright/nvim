@@ -2,13 +2,6 @@ local highlights = require("bw.util.highlights")
 
 return {
   {
-
-    -- Pined to version 1.0 (2.0 was a breaking change).
-    -- Update when dependent plugins support the proper public interface
-    -- See: https://github.com/LazyVim/LazyVim/issues/6039
-    -- { "mason-org/mason.nvim", version = "^1.0.0" },
-    -- { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
-
     "LazyVim/LazyVim",
     opts = function()
       highlights.on_colorscheme("LazyVimHighlights", function()
