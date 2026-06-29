@@ -82,13 +82,14 @@ return {
   },
   {
     "ThePrimeagen/harpoon",
-    -- harpoon2 (pinned via the lazyvim harpoon2 extra) takes its config under
-    -- `settings`; the v1 `global_settings` key was silently ignored.
+    -- harpoon2 (pinned via the lazyvim harpoon2 extra) reads config under
+    -- `settings`. Its only valid keys are save_on_toggle / sync_on_ui_close /
+    -- key; the old save_on_change and enter_on_sendcmd were v1-only and are
+    -- ignored by v2 (which persists on change automatically). save_on_toggle =
+    -- false is also the v2 default, kept explicit to document intent.
     opts = {
       settings = {
         save_on_toggle = false,
-        save_on_change = true,
-        enter_on_sendcmd = false,
       },
     },
 

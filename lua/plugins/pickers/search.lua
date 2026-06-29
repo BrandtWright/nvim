@@ -1,5 +1,12 @@
 -------------------------------------------------------------------------------
--- Fuzzy find over autocommands
+-- Search pickers that DEVIATE from LazyVim's snacks_picker defaults. The maps
+-- identical to LazyVim's (sa, :, sh, sH, sj, sk, sl, sM, sm, sq) were dropped --
+-- LazyVim already provides them via the auto-enabled snacks_picker default.
+-- Kept below are the genuine deviations:
+--   <leader>sc  -> Commands    (LazyVim's <leader>sc is Command History)
+--   <leader>srs -> Resume      (LazyVim binds resume to <leader>sR)
+--   <leader>s'  -> Registers   (LazyVim binds registers to <leader>s")
+--   z=          -> Spelling    (not mapped by LazyVim)
 -------------------------------------------------------------------------------
 return {
   {
@@ -7,18 +14,8 @@ return {
 
     -- stylua: ignore
     keys = {
-      { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Auto Commands" },
-      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History", },
       { "<leader>sc", function() Snacks.picker.commands() end, desc = "Commands", },
-      { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
-      { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-      { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jump List" },
-      { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Key Maps" },
-      { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
-      { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
-      { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
       { "<leader>srs", function() Snacks.picker.resume() end, desc = "Resume" },
-      { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
       { "<leader>s'", function() Snacks.picker.registers() end, desc = "Registers" },
       { "z=", function() Snacks.picker.spelling() end, desc = "Spelling Suggestions", },
     },
