@@ -9,6 +9,13 @@ local ROOT = vim.fs.normalize(vim.fn.tempname() .. "-slip.box")
 vim.fn.mkdir(ROOT, "p")
 slipbox.setup({ slipbox_dir = ROOT })
 
+-- Remove the temp slipbox on exit (plenary quits via :cquit, which fires VimLeavePre).
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    vim.fn.delete(ROOT, "rf")
+  end,
+})
+
 describe("slipbox.slip_id_from_path", function()
   it("extracts the id from a slip README path", function()
     assert.equals("a1b2", slipbox.slip_id_from_path(ROOT .. "/a1b2/README.md"))

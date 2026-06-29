@@ -23,7 +23,8 @@ ifeq ($(strip $(FILE)),)
 	nvim --headless --noplugin -u $(INIT) \
 	  -c "PlenaryBustedDirectory tests/ { minimal_init = '$(INIT)' }"
 else
-	nvim --headless --noplugin -u $(INIT) -c "PlenaryBustedFile $(FILE)"
+	nvim --headless --noplugin -u $(INIT) \
+	  -c "lua require('plenary.busted').run(vim.fn.expand('$(FILE)'))"
 endif
 
 # Clone + pin plenary on first use. The directory target makes this idempotent:

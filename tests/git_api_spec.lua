@@ -4,9 +4,26 @@
 
 local api = require("plugins.git.api")
 
-local function make_repo(suffix)
+-- Track temp dirs so they can be removed on exit (plenary quits via :cquit,
+-- which fires VimLeavePre).
+local temp_dirs = {}
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    for _, d in ipairs(temp_dirs) do
+      vim.fn.delete(d, "rf")
+    end
+  end,
+})
+
+local function make_temp_dir(suffix)
   local dir = vim.fs.normalize(vim.fn.tempname() .. suffix)
   vim.fn.mkdir(dir, "p")
+  table.insert(temp_dirs, dir)
+  return dir
+end
+
+local function make_repo(suffix)
+  local dir = make_temp_dir(suffix)
   vim.system({ "git", "-C", dir, "init" }):wait()
   return dir
 end
@@ -44,8 +61,7 @@ describe("git.api", function()
   end)
 
   it("does not open the picker for a non-git directory", function()
-    local dir = vim.fs.normalize(vim.fn.tempname() .. "-plain")
-    vim.fn.mkdir(dir, "p")
+    local dir = make_temp_dir("-plain")
     local captured = stub_snacks()
     api.files({ cwd = dir })
     assert.is_nil(captured.git_files)
