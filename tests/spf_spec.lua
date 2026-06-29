@@ -50,6 +50,7 @@ describe("colors/spf loading", function()
     load_theme()
     for i = 0, 15 do
       local c = vim.g["terminal_color_" .. i]
+      ---@diagnostic disable-next-line: redundant-parameter -- luassert allows a failure message
       assert.is_truthy(c, "terminal_color_" .. i .. " is unset")
       assert.equals("string", type(c))
     end
@@ -165,6 +166,7 @@ describe("colors/spf section assembly", function()
   it("merges every groups/*.lua file into links", function()
     local theme = load_theme()
     local files = vim.api.nvim_get_runtime_file("lua/spf/groups/*.lua", true)
+    ---@diagnostic disable-next-line: redundant-parameter -- luassert allows a failure message
     assert.is_true(#files > 0, "no group files found on the runtimepath")
     for _, path in ipairs(files) do
       local name = path:match("([^/\\]+)%.lua$")
@@ -174,6 +176,7 @@ describe("colors/spf section assembly", function()
         for group in pairs(dofile(path)) do
           assert.is_truthy(
             theme.links[group] ~= nil,
+            ---@diagnostic disable-next-line: redundant-parameter -- luassert allows a failure message
             string.format("%s from groups/%s missing in assembled links", group, name)
           )
         end

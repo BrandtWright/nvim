@@ -27,6 +27,7 @@ describe("floating terminal", function()
     local captured
     ---@diagnostic disable-next-line: missing-fields -- intentional partial stub of Snacks
     _G.Snacks = {
+      ---@diagnostic disable-next-line: missing-fields -- partial stub of snacks.terminal
       terminal = {
         toggle = function(cmd, o)
           captured = { cmd = cmd, opts = o }

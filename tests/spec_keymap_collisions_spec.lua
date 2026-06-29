@@ -54,7 +54,7 @@ local function index_keys(specs, src, acc)
     if type(s.keys) == "table" then
       for _, k in ipairs(s.keys) do
         if type(k) == "table" and type(k[1]) == "string" then
-          local modes = k.mode or "n"
+          local modes = k.mode or "n" ---@type string|string[]
           if type(modes) == "string" then
             modes = { modes }
           end
@@ -129,11 +129,13 @@ describe("plugin spec keymap collisions", function()
   -- The real tripwire: walk this config's own plugin specs.
   it("no declarative spec binds the same key twice", function()
     local files = vim.fn.glob(root .. "/lua/plugins/**/*.lua", false, true)
+    ---@diagnostic disable-next-line: redundant-parameter -- luassert allows a failure message
     assert.is_true(#files > 0, "found no plugin spec files to scan")
 
     local acc = {}
     for _, path in ipairs(files) do
       local ok, ret = pcall(dofile, path)
+      ---@diagnostic disable-next-line: redundant-parameter -- luassert allows a failure message
       assert.is_true(ok, "spec file failed to load: " .. path .. "\n" .. tostring(ret))
       local specs = {}
       collect_specs(ret, specs)
