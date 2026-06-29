@@ -7,7 +7,11 @@ local ROOT = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h:h")
 
 local function source_ftplugin(name)
   vim.cmd("enew")
-  return pcall(vim.cmd, "source " .. ROOT .. "/after/ftplugin/" .. name)
+  -- Wrap in a closure: vim.cmd is a callable table, not a bare function, so
+  -- lua_ls rejects passing it straight to pcall (param-type-mismatch).
+  return pcall(function()
+    vim.cmd("source " .. ROOT .. "/after/ftplugin/" .. name)
+  end)
 end
 
 describe("after/ftplugin/sql.vim", function()
