@@ -34,7 +34,10 @@ return {
   },
   {
     "tpope/vim-fugitive",
-    lazy = false,
+    -- Lazy-loaded by its `cmd`/`keys` below. `config` runs on first trigger
+    -- (e.g. `:Git` or any <leader>g* fugitive map), which is in time: lazy runs
+    -- config before dispatching the triggering command, so the diffopt tweak and
+    -- the FileType autocmd are registered before the first fugitive buffer opens.
     config = function()
       vim.opt.diffopt:append("hiddenoff")
 
