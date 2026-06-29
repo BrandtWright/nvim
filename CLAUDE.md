@@ -10,6 +10,24 @@ code in this repository.
 - `luacheck .` - Run Lua linting (luacheck is installed)
 - Code formatting uses stylua configuration in `stylua.toml` (2 spaces, 120 columns)
 
+### Type checking
+
+- `make lint-types` - Run lua-language-server headless over the project.
+
+`luacheck` is a linter, not a type checker: it never sees the type-level
+diagnostics that lua_ls (the LSP behind editor squiggles) reports --
+`missing-fields`, `redundant-parameter`, `cast-local-type`, `undefined-doc-name`,
+etc. Those otherwise surface only live in an editor and accumulate unnoticed.
+`make lint-types` (script: `tests/luals-check.sh`) brings them into the pipeline.
+
+It resolves the type library (`$VIMRUNTIME` + the lazy plugin dir) from nvim at
+runtime -- nothing hardcoded -- so it needs **nvim with plugins installed** for
+full fidelity (in the editor, lazydev injects that library, which is why
+`.luarc.json` carries no library paths). lua_ls is found on `$PATH`, from Mason,
+or via `make lint-types LUALS=/path/to/lua-language-server`. Suppress an
+intentional finding with a targeted `---@diagnostic disable-next-line: <code>`
+plus a reason (see the existing ones in `tests/`).
+
 ### Testing
 
 Tests use plenary's busted harness and run headless via the `Makefile`:

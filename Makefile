@@ -4,6 +4,13 @@
 #   make test FILE=tests/foldtext_spec.lua   # run a single spec file
 #   make deps                          # clone the pinned test deps (plenary)
 #   make clean-deps                    # remove the cloned test deps
+#   make lint-types                    # headless lua-language-server type-check
+#
+# `make test` and luacheck are NOT type checkers; lint-types runs lua_ls (the
+# analyzer behind editor diagnostics) headless so type-level findings -- missing
+# fields, redundant params, bad @-annotations -- are caught in the pipeline
+# instead of only live in an editor. It needs plugins installed (lazydev's type
+# library) for full fidelity; see tests/luals-check.sh.
 #
 # The specs need only plenary. It's cloned into the gitignored .tests-deps/ and
 # pinned to a known-good commit for reproducibility. Keep PLENARY_REF in sync
@@ -16,8 +23,9 @@ PLENARY_URL := https://github.com/nvim-lua/plenary.nvim
 PLENARY_REF := 74b06c6c75e4eeb3108ec01852001636d85a932b
 INIT        := tests/minimal_init.lua
 FILE        ?=
+LUALS       ?=
 
-.PHONY: test deps clean-deps
+.PHONY: test deps clean-deps lint-types
 
 test: deps
 ifeq ($(strip $(FILE)),)
@@ -38,3 +46,10 @@ $(PLENARY):
 
 clean-deps:
 	rm -rf $(DEPS)
+
+# Headless lua-language-server check. Resolves the type library from nvim, so it
+# needs nvim + plugins installed (and lua_ls on PATH, via LUALS=, or from Mason).
+# Invoked via `bash` (not directly) so it runs even where the executable bit was
+# dropped on checkout (e.g. core.fileMode=false); the script needs bash anyway.
+lint-types:
+	@LUALS="$(LUALS)" bash tests/luals-check.sh
