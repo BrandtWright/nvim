@@ -1,16 +1,15 @@
--- bw.util.scratch-buffer: the transient scratch buffer is created/reused by
--- name and shown in several display modes. These drive real windows in the
--- headless harness. Only the behaviours with actual logic are covered: the
--- reuse-by-name dedup, the popup `relative ~= ""` float guard, and the 'q'-map
--- lifetime cleanup -- the bits the source comments call out as subtle.
+-- bw.util.scratch-buffer: the transient scratch buffer is created/reused via a
+-- buffer-local identity tag and shown in several display modes. These drive real
+-- windows in the headless harness. Only the behaviours with actual logic are
+-- covered: the reuse dedup, the popup `relative ~= ""` float guard, and the
+-- 'q'-map lifetime cleanup -- the bits the source comments call out as subtle.
 
 local scratch = require("bw.util.scratch-buffer")
-local NAME = "__scratch_markdown__"
 
 local function scratch_bufs()
   local found = {}
   for _, b in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_name(b):match(NAME .. "$") then
+    if vim.b[b].bw_scratch then
       table.insert(found, b)
     end
   end

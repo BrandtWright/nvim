@@ -11,9 +11,10 @@ M.open_scratch_buffer = function(mode)
   local scratch_buf_name = "__scratch_markdown__"
   local buf
 
-  -- Search for existing scratch buffer
+  -- Find the existing scratch buffer by its identity tag, not its name -- a real
+  -- file whose path ends in the scratch name would otherwise be mistaken for it.
   for _, b in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_name(b):match(scratch_buf_name .. "$") then
+    if vim.b[b].bw_scratch then
       buf = b
       break
     end
@@ -22,7 +23,8 @@ M.open_scratch_buffer = function(mode)
   -- Create buffer if not found
   if not buf or not vim.api.nvim_buf_is_valid(buf) then
     buf = vim.api.nvim_create_buf(false, true) -- unlisted scratch buffer
-    vim.api.nvim_buf_set_name(buf, scratch_buf_name)
+    vim.api.nvim_buf_set_name(buf, scratch_buf_name) -- display name only
+    vim.b[buf].bw_scratch = true -- identity tag used to find/reuse this buffer
     vim.bo[buf].buftype = "nofile"
     vim.bo[buf].swapfile = false
     vim.bo[buf].filetype = "markdown"
