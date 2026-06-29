@@ -1,7 +1,7 @@
 # Test harness for this Neovim config (plenary busted, headless).
 #
 #   make test                          # run the whole suite
-#   make test FILE=tests/fs_spec.lua   # run a single spec file
+#   make test FILE=tests/foldtext_spec.lua   # run a single spec file
 #   make deps                          # clone the pinned test deps (plenary)
 #   make clean-deps                    # remove the cloned test deps
 #
