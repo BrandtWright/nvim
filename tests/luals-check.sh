@@ -58,42 +58,65 @@ cfg["Lua.workspace.ignoreDir"] = [".tests-deps", ".lua", ".luarocks"]
 json.dump(cfg, open(out, "w"), indent=2)
 PY
 
-# 4. Check the whole project at >= Warning. --check writes findings to check.json
-#    and exits 0 even WITH findings, so the exit code can't drive the gate. But a
-#    crash / early-exit also "succeeds" silently -- so we require lua_ls's own
-#    completion marker ("Diagnosis complete[d] ...") as proof it actually ran.
-#    Without that check a broken run looks identical to a clean one and the gate
-#    lies green (which is exactly how a false "no diagnostics" slipped through).
+# 4. Check the whole project at >= Warning, then gate on lua_ls's own reported
+#    problem COUNT -- the only reliable signal. --check exits 0 even WITH findings,
+#    so the exit code is useless; and the machine-readable report (check.json)
+#    lands in a version-dependent place (some versions don't even create the
+#    --logpath dir), so "is check.json present" is unreliable too -- that combo is
+#    what produced a false "no diagnostics" against a run that found 9 problems.
+#    Pre-create the log dir, parse the count from lua_ls's summary, and treat
+#    check.json as best-effort detail wherever it ends up.
+mkdir -p "$work/log"
 set +e
 out=$("$luals" --check "$root" --configpath="$work/luarc.json" \
   --checklevel=Warning --logpath="$work/log" 2>&1)
 set -e
 
-if ! printf '%s' "$out" | tr '\r' '\n' | grep -q "Diagnosis complete"; then
+# Require lua_ls's completion marker; absent it, lua_ls crashed/early-exited and
+# we must fail loudly rather than report a false 'clean'.
+summary=$(printf '%s' "$out" | tr '\r' '\n' | grep -iE "Diagnosis complete" | tail -1)
+if [ -z "$summary" ]; then
   echo "lua-language-server did not complete a check -- failing rather than" >&2
   echo "reporting a false 'clean'. Its output was:" >&2
   printf '%s\n' "$out" | tr '\r' '\n' | tail -20 >&2
   exit 2
 fi
 
-report="$work/log/check.json"
-if [ -s "$report" ] && [ "$(cat "$report")" != "{}" ]; then
+# "Diagnosis completed, no problems found" -> 0; "... N problems found" -> N.
+if printf '%s' "$summary" | grep -qi "no problem"; then
+  count=0
+else
+  count=$(printf '%s' "$summary" | grep -oiE "[0-9]+[[:space:]]+problem" | grep -oE "[0-9]+" | head -1)
+  count=${count:-0}
+fi
+
+if [ "$count" -eq 0 ]; then
+  echo "lua-language-server: no diagnostics ($summary)"
+  exit 0
+fi
+
+# Findings exist -> the gate fails. List them from the detail report, looked for
+# at the path lua_ls names ("see <path>"), then our logpath, then anywhere under
+# the temp dir (covers versions that ignore --logpath's exact layout).
+report=$(printf '%s' "$out" | tr '\r' '\n' | sed -nE 's/.*see (.*check\.json).*/\1/p' | tail -1)
+{ [ -n "$report" ] && [ -s "$report" ]; } || report="$work/log/check.json"
+[ -s "$report" ] || report=$(find "$work" -name check.json -type f 2>/dev/null | head -1)
+
+if [ -n "$report" ] && [ -s "$report" ] && [ "$(cat "$report")" != "{}" ]; then
   python3 - "$report" "$root" <<'PY'
 import json, sys
 data = json.load(open(sys.argv[1]))
 root = sys.argv[2].rstrip("/") + "/"
-total = 0
 for uri, probs in sorted(data.items()):
     path = uri.replace("file://", "").replace(root, "")
     for p in sorted(probs, key=lambda x: x["range"]["start"]["line"]):
-        total += 1
         ln = p["range"]["start"]["line"] + 1
         print(f"{path}:{ln} [{p['code']}] {p['message'].splitlines()[0]}")
-print(f"\nlua-language-server: {total} diagnostic(s)", file=sys.stderr)
 PY
-  exit 1
+else
+  echo "(could not locate lua_ls's check.json to itemize; summary + version:)" >&2
+  echo "  $summary" >&2
+  echo "  lua_ls $("$luals" --version 2>/dev/null | head -1)" >&2
 fi
-
-# Echo lua_ls's own completion line so a green result visibly proves it ran.
-printf '%s\n' "$out" | tr '\r' '\n' | grep "Diagnosis complete" | tail -1
-echo "lua-language-server: no diagnostics"
+echo "lua-language-server: $count diagnostic(s)" >&2
+exit 1
