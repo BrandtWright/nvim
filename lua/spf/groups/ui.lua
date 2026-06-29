@@ -6,16 +6,16 @@ return {
   -- hl-Search
   -- Last search pattern highlighting (see 'hlsearch').
   -- Also used for similar items that need to stand out.
-  Search = "black_on_red",
+  Search = "black_on_yellow",
   -- hl-CurSearch
   -- Current match for the last search pattern (see 'hlsearch').
   -- Note: This is correct after a search, but may get outdated if
   -- changes are made or the screen is redrawn.
-  CurSearch = "black_on_green",
+  CurSearch = "black_on_red",
   -- hl-IncSearch
   -- 'incsearch' highlighting; also used for the text replaced with
   -- ":s///c".
-  IncSearch = "black_on_yellow",
+  IncSearch = "black_on_green",
 
   -- hl-Title
   -- Titles for output from ":set all", ":autocmd" etc.
