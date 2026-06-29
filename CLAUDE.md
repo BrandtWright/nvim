@@ -102,7 +102,7 @@ and imports all modules
 - Follow LazyVim conventions for plugin configuration
 - Custom utilities go in `bw/` namespace
 - Pickers are organized by category in separate files
-- LSP configurations are language-specific in `lua/plugins/lsp/`
+- Language support (LSP, treesitter, mason, rendering) is per-language in `lua/plugins/lang/`
 
 ## Additional Documentation
 
