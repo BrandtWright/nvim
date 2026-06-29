@@ -69,7 +69,7 @@ PY
 mkdir -p "$work/log"
 set +e
 out=$("$luals" --check "$root" --configpath="$work/luarc.json" \
-  --checklevel=Warning --logpath="$work/log" 2>&1)
+  --checklevel=Warning --check_out_path="$work/check.json" --logpath="$work/log" 2>&1)
 set -e
 
 # Require lua_ls's completion marker; absent it, lua_ls crashed/early-exited and
@@ -95,12 +95,12 @@ if [ "$count" -eq 0 ]; then
   exit 0
 fi
 
-# Findings exist -> the gate fails. List them from the detail report, looked for
-# at the path lua_ls names ("see <path>"), then our logpath, then anywhere under
-# the temp dir (covers versions that ignore --logpath's exact layout).
-report=$(printf '%s' "$out" | tr '\r' '\n' | sed -nE 's/.*see (.*check\.json).*/\1/p' | tail -1)
-{ [ -n "$report" ] && [ -s "$report" ]; } || report="$work/log/check.json"
-[ -s "$report" ] || report=$(find "$work" -name check.json -type f 2>/dev/null | head -1)
+# Findings exist -> the gate fails. List them from the report. --check_out_path
+# pins it to $work/check.json across versions; the fallbacks (the path lua_ls may
+# name, then anything under the temp dir) just guard against future changes.
+report="$work/check.json"
+[ -s "$report" ] || report=$(printf '%s' "$out" | tr '\r' '\n' | sed -nE 's/.*see (.*check\.json).*/\1/p' | tail -1)
+{ [ -n "$report" ] && [ -s "$report" ]; } || report=$(find "$work" -name 'check*.json' -type f 2>/dev/null | head -1)
 
 if [ -n "$report" ] && [ -s "$report" ] && [ "$(cat "$report")" != "{}" ]; then
   python3 - "$report" "$root" <<'PY'
