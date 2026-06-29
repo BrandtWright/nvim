@@ -283,7 +283,9 @@ function M.setup(opts)
         content = content .. "\n"
       end
 
-      local result = vim.system({ "snote", "-s", slip_id }, { stdin = content }):wait()
+      -- Bounded so a wedged snote (e.g. hung on a locked store) fails the write
+      -- with an error toast instead of freezing the UI on the synchronous :wait.
+      local result = vim.system({ "snote", "-s", slip_id }, { stdin = content }):wait(5000)
       if result.code ~= 0 then
         -- stderr can be nil on some failure paths; guard the concat.
         toast.error("Failed to save file: " .. (result.stderr or ""), "Slipbox")
