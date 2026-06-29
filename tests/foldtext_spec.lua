@@ -29,4 +29,21 @@ describe("bw.util.foldtext.build", function()
     local out = ft.build({ line = "abc", count = 7, width = 40 })
     assert.is_truthy(out:find("[7 lines]", 1, true))
   end)
+
+  it("truncates a wide-character (double-width) line without overflowing", function()
+    -- Each 世 is 2 display cells; cutting by character count (the old behaviour)
+    -- would leave a line wider than the window. Truncation must respect width.
+    local out = ft.build({ line = string.rep("世", 50), count = 3, width = 40 })
+    assert.is_true(vim.fn.strdisplaywidth(out) <= 38) -- width - 2, no overflow
+    assert.is_truthy(out:find("…", 1, true))
+    assert.is_truthy(out:find("[3 lines]", 1, true))
+  end)
+
+  it("handles a window narrower than the suffix without error", function()
+    -- content_width goes negative here; the build must clamp rather than pass a
+    -- negative length to strcharpart, and still return a usable string.
+    local out = ft.build({ line = string.rep("x", 50), count = 9, width = 8 })
+    assert.equals("string", type(out))
+    assert.is_truthy(out:find("[9 lines]", 1, true))
+  end)
 end)
