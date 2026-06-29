@@ -25,6 +25,16 @@ vim.g.sql_type_default = "mysql"
 -- lua/plugins/ai/init.lua.
 vim.g.ai_cmp = false
 
+-- Force the snacks picker as LazyVim's default backend. This config was first
+-- installed under lazyvim.json `install_version` 7 (pre-v8), so LazyVim's
+-- grandfather rule (lazyvim/config/init.lua) keeps the old fzf picker default
+-- and never enables the `editor.snacks_picker` extra -- which is what supplies
+-- the inherited <leader>s* picker maps (sH=Highlights, sj, sk, ...). Setting
+-- this opts into the snacks default explicitly, so those maps trickle down
+-- without re-listing them. Must be a vim.g set here in options.lua: it is read
+-- while plugin modules are sourced, before any plugin spec's config runs.
+vim.g.lazyvim_picker = "snacks"
+
 local opt = vim.opt
 
 -- Color and Brightness Options

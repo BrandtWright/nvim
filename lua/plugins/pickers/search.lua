@@ -1,7 +1,11 @@
 -------------------------------------------------------------------------------
 -- Search pickers that DEVIATE from LazyVim's snacks_picker defaults. The maps
 -- identical to LazyVim's (sa, :, sh, sH, sj, sk, sl, sM, sm, sq) were dropped --
--- LazyVim already provides them via the auto-enabled snacks_picker default.
+-- LazyVim provides them via the snacks_picker extra. That extra is NOT
+-- auto-enabled here: this config's lazyvim.json `install_version` is 7 (pre-v8),
+-- so LazyVim's grandfather rule defaults the picker to fzf and never imports
+-- snacks_picker's maps. `vim.g.lazyvim_picker = "snacks"` in config/options.lua
+-- opts back in -- without it, the dropped maps silently vanish.
 -- Kept below are the genuine deviations:
 --   <leader>sc  -> Commands    (LazyVim's <leader>sc is Command History)
 --   <leader>srs -> Resume      (LazyVim binds resume to <leader>sR)
