@@ -65,7 +65,7 @@ return {
       {
         "<leader>fl",
         function()
-          local dir = vim.fn.input("Directory", "", "dir")
+          local dir = vim.fn.input("Directory: ", "", "dir")
           if dir and dir ~= "" then
             Snacks.picker.files({
               dirs = { dir },

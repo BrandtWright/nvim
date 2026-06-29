@@ -9,13 +9,7 @@ local function toaster(level)
   end
 end
 
---- Info toaster
-M.info = toaster(vim.log.levels.INFO)
-
 --- Warn toaster
 M.warn = toaster(vim.log.levels.WARN)
-
---- Error toaster
-M.error = toaster(vim.log.levels.ERROR)
 
 return M
