@@ -58,6 +58,7 @@ map("n", "<leader>wl", "<cmd>wincmd L<cr>", { desc = "Move Window Right" })
 --------------------------------------------------------------------------------
 map("n", "<leader>ms", "<cmd>split | terminal<cr>a", { desc = "Terminal Buffer (Horizontal Split)", silent = true })
 map("n", "<leader>mv", "<cmd>vsplit | terminal<cr>a", { desc = "Terminal Buffer (Vertical Split)", silent = true })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 --------------------------------------------------------------------------------
 -- Lines

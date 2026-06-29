@@ -18,6 +18,11 @@ return {
     -- VeryLazy, before neo-tree had loaded, so it was false and the maps silently
     -- never registered.
     keys = {
+      -- Drop LazyVim's default neo-tree explorer maps; replaced by <leader>es/ef.
+      { "<leader>fe", false },
+      { "<leader>fE", false },
+      { "<leader>e", false },
+      { "<leader>E", false },
       { "<leader>es", "<cmd>Neotree left<cr>", desc = "Neotree (Left)" },
       { "<leader>ef", "<cmd>Neotree float<cr>", desc = "Neotree (Float)" },
     },

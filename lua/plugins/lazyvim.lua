@@ -1,3 +1,8 @@
+-- Distribution-level configuration: things that shape the LazyVim distro itself
+-- rather than any one bundled plugin -- LazyVim core tweaks (highlights, the
+-- <leader>l* lazy-management maps), the explicit plenary dependency, and the
+-- blacklist of bundled plugins we opt out of. Plugin-specific keymap overrides
+-- live with that plugin's spec instead (e.g. neo-tree's are in navigation.lua).
 local highlights = require("bw.util.highlights")
 
 return {
@@ -10,12 +15,6 @@ return {
       end)
     end,
     keys = {
-      {
-        "<esc><esc>",
-        "<c-\\><c-n>",
-        desc = "Enter Normal Mode",
-        mode = { "t" },
-      },
       {
         "<leader>ls",
         function()
@@ -60,13 +59,4 @@ return {
   { "ibhagwan/fzf-lua", enabled = false },
   { "nvim-pack/nvim-spectre", enabled = false },
   { "MagicDuck/grug-far.nvim", enabled = false },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    keys = {
-      { "<leader>fe", false },
-      { "<leader>fE", false },
-      { "<leader>e", false },
-      { "<leader>E", false },
-    },
-  },
 }

@@ -1,7 +1,8 @@
 -- plenary must be declared as an explicit plugin spec: globals.lua's RELOAD
 -- helper requires("plenary.reload"), and plenary is no longer pulled in
 -- transitively (it used to ride along with telescope, since removed). If the
--- explicit lazy-overrides entry is ever dropped, RELOAD breaks -- this guards it.
+-- explicit entry (in plugins/lazyvim.lua) is ever dropped, RELOAD breaks --
+-- this guards it.
 --
 -- Checks the DECLARED specs (walks the required plugins/* tables) rather than
 -- grepping source text, so a mention in a comment can never satisfy it.
