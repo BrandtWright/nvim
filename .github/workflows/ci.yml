@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# A newer push to the same ref supersedes in-flight runs.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (plenary)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pinned to a concrete Neovim release rather than `stable` so a new
+      # upstream release can't turn CI red on an unchanged tree. Bump this
+      # deliberately (and re-run the suite locally) when you move the floor.
+      # The config targets Neovim >= 0.10; see README.md.
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: v0.12.3
+
+      # `make` clones the pinned plenary into the gitignored .tests-deps/ on
+      # first use (PLENARY_REF in the Makefile), so the suite is hermetic.
+      - name: Run the spec suite
+        run: make test
+
+  lint:
+    name: lint (luacheck + stylua)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # luacheck runs on Lua 5.1 (matches the PUC-Rio runtime used locally).
+      - name: Set up Lua
+        uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "5.1"
+      - name: Set up LuaRocks
+        uses: leafo/gh-actions-luarocks@v5
+
+      # Pinned: a luacheck release that adds a new check could fail an
+      # unchanged tree. 1.2.0 is the version this config is verified clean against.
+      - name: Install luacheck
+        run: luarocks install luacheck 1.2.0
+      - name: luacheck
+        run: luacheck .
+
+      # Pinned for the same reason: stylua's default formatting can shift
+      # between releases. Keep this in sync with the version you format with
+      # locally. Use `-- stylua: ignore` on any span you want to hand-format.
+      - name: stylua --check
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: v2.5.2
+          args: --check .

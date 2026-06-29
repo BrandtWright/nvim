@@ -16,6 +16,40 @@ Optional, enabling specific features:
 - **`dict`**, **`pandoc`** + **`zathura`** — used by individual
   keymaps/ftplugins (dictionary lookup, markdown export).
 
+## Plugin versions & reproducibility
+
+Plugins deliberately **float to upstream latest** — there is no committed
+restore point, and that drift is an accepted cost.
+
+- `defaults.version = false` (in `init.lua`) means each plugin resolves to its
+  latest git commit, and `checker = { enabled = true }` surfaces updates.
+- `lazy-lock.json` is **intentionally gitignored** (see `.gitignore`). It is
+  written locally by lazy.nvim but never committed.
+
+**Why accept the drift.** This config is edited and updated from more than one
+machine. A committed `lazy-lock.json` would change on every `:Lazy update` on
+every machine, so it would generate constant merge conflicts for no real
+benefit. Pinning every plugin instead would trade those conflicts for staleness
+— missing upstream fixes until each pin is manually bumped. Letting the set
+float keeps maintenance near zero.
+
+**What the drift costs.** There is no committed snapshot to `:Lazy restore` to,
+so two checkouts (or this machine before and after an update) can resolve to
+different plugin commits, and a bad upstream commit can land on an update. The
+only restore point is the local, uncommitted lock; recovery is `:Lazy update`
+(or rolling an individual plugin back by hand).
+
+**What is *not* allowed to drift.** Reproducibility is spent where it actually
+protects correctness — the verification tooling, not the running plugin set:
+
+- The test suite's only dependency, **plenary, is pinned by commit SHA**
+  (`PLENARY_REF` in the `Makefile`).
+- **CI pins Neovim, luacheck, and stylua** to concrete versions
+  (`.github/workflows/ci.yml`).
+
+So the checks that decide whether the config is healthy are fully
+deterministic, even though the plugins they run against are not.
+
 ## Copilot
 
 GitHub Copilot is installed but **disabled by default**, and deliberately so:
@@ -66,6 +100,17 @@ its own Neovim instance, and `require()` config modules directly.
 
 - `luacheck .` — Lua linting (config in `.luacheckrc`).
 - `stylua` — formatting (config in `stylua.toml`: 2 spaces, 120 columns).
+  Use `-- stylua: ignore` to preserve a hand-formatted span.
 - `markdownlint-cli2 '**/*.md'` — Markdown linting.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every push to `main` and on pull requests:
+
+- **test** — `make test` against a pinned Neovim.
+- **lint** — `luacheck .` and `stylua --check .`, both pinned.
+
+The pins (Neovim, luacheck, stylua, and plenary via the `Makefile`) keep CI
+deterministic; bump them deliberately and re-run the suite locally when you do.
 
 [snote]: https://github.com/BrandtWright/slipbox
