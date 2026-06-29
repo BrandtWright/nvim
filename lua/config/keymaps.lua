@@ -231,22 +231,7 @@ map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true, desc = "Navigat
 -- Zen Mode
 --------------------------------------------------------------------------------
 map("n", "<leader>ux", function()
-  local tmux = os.getenv("TMUX")
-  if vim.g.zen_mode then -- restore status bars
-    vim.o.laststatus = vim.g.zen_mode_last_status
-    if tmux then
-      os.execute("tmux set -g status " .. vim.g.zen_mode_tmux_status_bar)
-    end
-    vim.g.zen_mode = false
-  else -- Save state and turn stuff off
-    vim.g.zen_mode_last_status = vim.o.laststatus
-    vim.o.laststatus = 0
-    if tmux then
-      vim.g.zen_mode_tmux_status_bar = vim.trim(vim.fn.system("tmux show -gv status"))
-      os.execute("tmux set -g status off")
-    end
-    vim.g.zen_mode = true
-  end
+  require("bw.util.zen").toggle()
 end, { silent = true, desc = "Toggle TMUX Zen Mode" })
 
 --------------------------------------------------------------------------------
