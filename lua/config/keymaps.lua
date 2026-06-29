@@ -182,7 +182,9 @@ map("n", "*", "*zz")
 map("n", "#", "#zz")
 map("n", "g#", "g#zz")
 map("n", "g*", "g*zz")
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+-- Normal mode only (LazyVim's default scope): an insert-mode <esc> override can
+-- interfere with completion/popup dismissal.
+map("n", "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 map("n", "{", "{zz")
 map("n", "}", "}zz")
 
@@ -242,6 +244,9 @@ map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 --------------------------------------------------------------------------------
 -- Reference
 --------------------------------------------------------------------------------
+-- Deliberately overrides LazyVim's <leader>sw (grep word under cursor): this
+-- config prefers a dictionary lookup here. <cword> is iskeyword-limited, so the
+-- shell-out is safe. (Grep-by-word is still available via the pickers.)
 map("n", "<leader>sw", function()
   vim.cmd("!dict <cword>")
 end, { desc = "Dictionary" })
