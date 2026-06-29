@@ -74,6 +74,33 @@ describe("slipbox.extract_yaml_related", function()
   end)
 end)
 
+describe("slipbox.parse_slip_lines", function()
+  it("parses id, title and tags from a tab-separated line", function()
+    assert.same(
+      { { id = "001", title = "First", tags = "tag1 tag2" } },
+      slipbox.parse_slip_lines({ "001\tFirst\ttag1 tag2" })
+    )
+  end)
+
+  it("defaults a missing title and tags to empty strings", function()
+    assert.same(
+      { { id = "002", title = "Second", tags = "" }, { id = "003", title = "", tags = "" } },
+      slipbox.parse_slip_lines({ "002\tSecond", "003" })
+    )
+  end)
+
+  it("skips blank lines (e.g. a trailing newline from snote)", function()
+    assert.same(
+      { { id = "001", title = "First", tags = "" } },
+      slipbox.parse_slip_lines({ "001\tFirst", "" })
+    )
+  end)
+
+  it("returns empty for empty input", function()
+    assert.same({}, slipbox.parse_slip_lines({}))
+  end)
+end)
+
 describe("slipbox save autocmd", function()
   it("registers BufWriteCmd with the resolved absolute root in its pattern", function()
     local aus = vim.api.nvim_get_autocmds({ group = "SlipWrite", event = "BufWriteCmd" })

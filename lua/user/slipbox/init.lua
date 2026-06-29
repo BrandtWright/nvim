@@ -110,16 +110,27 @@ M.get_related_slips = function()
   return M.extract_yaml_related(lines)
 end
 
+--- Parses snote's `ID<tab>TITLE<tab>TAGS` lines into records. Blank lines (e.g.
+--- a trailing newline from snote) are skipped so they don't yield junk records.
+--- Pure, so it is unit-testable without invoking snote.
+---@param lines string[] Raw lines from `snote -l`
+---@return { id: string, title: string, tags: string }[]
+function M.parse_slip_lines(lines)
+  local records = {}
+  for _, line in ipairs(lines) do
+    local fields = vim.split(line, "\t", { plain = true })
+    if fields[1] and fields[1] ~= "" then
+      table.insert(records, { id = fields[1], title = fields[2] or "", tags = fields[3] or "" })
+    end
+  end
+  return records
+end
+
 --- Lists all slips via the external snote command, parsed into records so
 --- callers need not know snote's `ID<tab>TITLE<tab>TAGS` line format.
 ---@return { id: string, title: string, tags: string }[]
 function M.list_slips()
-  local records = {}
-  for _, line in ipairs(vim.fn.systemlist("snote -l")) do
-    local fields = vim.split(line, "\t", { plain = true })
-    table.insert(records, { id = fields[1], title = fields[2] or "", tags = fields[3] or "" })
-  end
-  return records
+  return M.parse_slip_lines(vim.fn.systemlist("snote -l"))
 end
 
 --- Gets the configured slipbox directory path
