@@ -1,4 +1,9 @@
-local slipbox_dir = vim.fn.expand("~/data/base/slipbox")
+-- Source the slipbox directory from the domain module so there is a single
+-- definition (also used as its pre-setup fallback). require() here only loads
+-- the pure module; the plugin's setup() -- which creates the user commands and
+-- the save autocmd -- still runs lazily from `config`, so it stays deferred.
+local slipbox = require("user.slipbox")
+local slipbox_dir = slipbox.default_slipbox_dir
 
 return {
   {
@@ -27,9 +32,20 @@ return {
         end,
         desc = "Edit Slip by ID",
       },
+      -- Find-slip picker. Lives on the slipbox spec (not the snacks spec) so
+      -- pressing it loads slipbox -> runs setup() before the picker's finder
+      -- resolves slip paths. snacks is eager-loaded, so the "slipbox" source
+      -- (registered in pickers/slips.lua) already exists when this fires.
+      {
+        "<leader>sn",
+        function()
+          Snacks.picker.pick({ source = "slipbox" })
+        end,
+        desc = "Find Slip",
+      },
     },
     config = function()
-      require("user.slipbox").setup({
+      slipbox.setup({
         slipbox_dir = slipbox_dir,
       })
     end,

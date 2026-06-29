@@ -23,10 +23,13 @@ end
 return {
   {
     "folke/snacks.nvim",
-    dependencies = {
-      name = "slipbox",
-      dir = vim.fn.stdpath("config") .. "/lua/user/slipbox",
-    },
+    -- This spec only registers snacks picker *sources* (and the slip buffer-local
+    -- maps autocmd) -- both require("user.slipbox") at call time, so neither needs
+    -- the slipbox plugin loaded up front. The slipbox plugin is therefore NOT
+    -- declared as a dependency here (that would force-load it with snacks and
+    -- defeat its own cmd/event/keys lazy triggers). The <leader>sn keymap that
+    -- opens these sources lives on the slipbox spec, so invoking it loads slipbox
+    -- (-> setup()) before any finder resolves a slip path.
     opts = function(_, opts)
       -- Buffer-local mappings for slip buffers. Asking the slipbox module whether
       -- a buffer is a slip keeps the on-disk layout knowledge in the module and
@@ -158,14 +161,5 @@ return {
       }
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
-    keys = {
-      {
-        "<leader>sn",
-        function()
-          Snacks.picker.pick({ source = "slipbox" })
-        end,
-        desc = "Find Slip",
-      },
-    },
   },
 }

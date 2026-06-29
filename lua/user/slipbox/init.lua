@@ -2,9 +2,21 @@ local M = {}
 
 local toast = require("bw.util.notification")
 
+-- Default on-disk location of the slipbox. This is a domain default, not plugin
+-- coupling: it lets the path readers below resolve a sensible directory even if
+-- a caller reaches them before setup() has run (belt-and-suspenders -- the real
+-- call sites load the plugin, which runs setup() first). setup() overrides it
+-- with the configured value. Exposed so the plugin spec reuses this one
+-- definition instead of duplicating the path.
+local DEFAULT_SLIPBOX_DIR = vim.fs.normalize("~/data/base/slipbox")
+M.default_slipbox_dir = DEFAULT_SLIPBOX_DIR
+
 local state = {
   loaded = false,
-  config = {},
+  -- Seed with the default so the dir readers (get_slip_path, slip_id_from_path,
+  -- get_slipbox_path) never read nil -- and resolve correctly -- when invoked
+  -- before setup().
+  config = { slipbox_dir = DEFAULT_SLIPBOX_DIR },
 }
 
 --- Configures module options with defaults, executed only once during setup
@@ -14,7 +26,7 @@ local function configure_opts(opts)
     return
   end
   state.config = vim.tbl_deep_extend("force", {
-    slipbox_dir = "",
+    slipbox_dir = DEFAULT_SLIPBOX_DIR,
   }, opts or {})
 end
 
