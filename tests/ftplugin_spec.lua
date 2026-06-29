@@ -24,7 +24,8 @@ describe("after/ftplugin/sql.vim", function()
   it("sets a mysql-style commentstring", function()
     assert.is_true((source_ftplugin("sql.vim")))
     assert.equals("-- %s", vim.bo.commentstring)
-    assert.equals("mysql", vim.g.sql_type_default)
+    -- g:sql_type_default is a global and now lives in lua/config/options.lua
+    -- (set once at startup), so it's intentionally NOT set by this ftplugin.
   end)
 end)
 

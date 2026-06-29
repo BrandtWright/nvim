@@ -13,6 +13,12 @@ vim.g.maplocalleader = "\\"
 -- Disable the trouble symbols in lualine (method/function names and symbols)
 vim.g.trouble_lualine = false
 
+-- Default SQL dialect for syntax/`commentstring`. This is a global by design
+-- (read by $VIMRUNTIME/syntax/sql.vim when a SQL buffer loads, and the runtime
+-- recommends setting it in config) -- so it lives here rather than in
+-- after/ftplugin/sql.vim, where it was re-set as a global on every SQL buffer.
+vim.g.sql_type_default = "mysql"
+
 -- Keep Copilot (and any other AI) OUT of the blink completion menu. As a menu
 -- source it would query Copilot on every popup -- and Copilot costs money.
 -- Copilot is configured as opt-in, on-demand inline suggestions instead; see
