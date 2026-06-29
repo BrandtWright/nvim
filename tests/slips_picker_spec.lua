@@ -3,7 +3,10 @@
 -- `action` closures they also carried were dead code. Only slip_links sets
 -- confirm = "item_action" and genuinely needs its action. This pins that down.
 
-package.loaded["user.slipbox"] = {
+-- The picker sources call require("user.slipbox") at finder time, so we inject a
+-- stub for it. It's installed/restored per-test (rather than left at file scope)
+-- so it never leaks into another spec if the suite is ever run in-process.
+local slipbox_stub = {
   get_slipbox_path = function()
     return "/tmp/slipbox"
   end,
@@ -28,7 +31,20 @@ local function sources()
 end
 
 describe("slips picker sources", function()
-  local src = sources()
+  local orig_slipbox = package.loaded["user.slipbox"]
+  local src
+
+  before_each(function()
+    package.loaded["user.slipbox"] = slipbox_stub
+    src = sources()
+  end)
+
+  after_each(function()
+    package.loaded["user.slipbox"] = orig_slipbox
+    -- Drop the copy of pickers/slips that was required against the stub so a
+    -- later require re-reads it cleanly.
+    package.loaded["plugins.pickers.slips"] = nil
+  end)
 
   it("slipbox items rely on default file-open confirm (no dead action)", function()
     assert.is_nil(src.slipbox.confirm)
