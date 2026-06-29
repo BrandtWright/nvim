@@ -48,7 +48,10 @@ return {
   -- Identifiers that declare or reference a function or method parameters
   ["@lsp.type.parameter"] = "italic",
   -- Identifiers that declare or reference a member property, member field, or member variable
-  ["@lsp.type.property"] = "green",
+  -- Left to inherit nvim's default (-> Identifier), so LSP buffers (e.g. tsserver)
+  -- render fields the same as treesitter's @property/@variable.member. An explicit
+  -- color here would override treesitter and make TS/JS diverge.
+  ["@lsp.type.property"] = {},
   -- Tokens that represent a regular expression literal
   ["@lsp.type.regexp"] = {},
   -- Tokens that represent a string literal

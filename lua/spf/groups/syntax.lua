@@ -32,11 +32,14 @@ return {
 
   -- any other keyword
   Keyword = "blue",
-  -- keywords TODO FIXME and XXX
-  Todo = "blue",
+  -- keywords TODO FIXME and XXX. Comment-attention is a diagnostic-severity
+  -- analog (nvim links @comment.error/warning/note -> Diagnostic{Error,Warn,Info});
+  -- todo has no severity of its own, so map it to the leftover Hint. @comment.todo
+  -- inherits this via its default link to Todo.
+  Todo = "DiagnosticHint",
 
-  -- a typedef
-  Typedef = "rose",
+  -- a typedef -- folded into Type; a typedef is a type (see @type.definition).
+  Typedef = "green",
 
   -- case, default, etc.
   Label = "cyan",
@@ -47,17 +50,20 @@ return {
   -- any erroneous construct
   Error = "red",
 
-  -- try, catch, throw
-  Exception = "Error",
+  -- try, catch, throw -- flow control, not errors. Folded into the magenta
+  -- Statement family alongside conditionals/return (see @keyword.exception).
+  Exception = "Statement",
 
   -- int, long, char, etc.
   Type = "green",
 
-  -- static, register, volatile, etc.
-  StorageClass = "bright_red",
+  -- static, register, volatile, etc. -- modifier keywords, so keyword/blue
+  -- (mirrors @keyword.modifier).
+  StorageClass = "Keyword",
 
-  -- struct, union, enum, etc.
-  Structure = "bright_green",
+  -- struct, union, enum, etc. -- the declaration keyword is a keyword/blue,
+  -- like `class` (mirrors @keyword.type). The type *name* stays green (@type).
+  Structure = "Keyword",
 
   -- generic Preprocessor
   PreProc = "blue",

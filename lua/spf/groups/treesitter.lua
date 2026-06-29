@@ -1,23 +1,29 @@
 -- Treesitter @capture groups.        see :help treesitter-highlight-groups
 return {
-  -- various variable names
-  ["@variable"] = "white",
+  -- various variable names -- the identifier family (this, @variable.member,
+  -- @property) all link to Identifier so there's one source of truth.
+  ["@variable"] = "Identifier",
   -- built-in variable names (e.g. `this`, `self`)
   ["@variable.builtin"] = {},
-  -- parameters of a function
-  ["@variable.parameter"] = {},
+  -- parameters of a function -- italic, so a "passed in" variable is instantly
+  -- distinguishable from a local (white). Same base color, just slanted; mirrors
+  -- @lsp.type.parameter so TS-only and LSP buffers render the same.
+  ["@variable.parameter"] = "italic",
   -- special parameters (e.g. `_`, `it`)
   ["@variable.parameter.builtin"] = {},
-  -- object and struct fields
-  ["@variable.member"] = {},
+  -- object and struct fields -- a field is an identifier (restores nvim's
+  -- default; unifies with @property).
+  ["@variable.member"] = "Identifier",
   -- constant identifiers
   ["@constant"] = "Constant",
   -- built-in constant values
   ["@constant.builtin"] = {},
   -- constants defined by the preprocessor
   ["@constant.macro"] = {},
-  -- modules or namespaces
-  ["@module"] = {},
+  -- modules or namespaces -- a scope/container is type-adjacent but distinct;
+  -- bright_green (rehomed from the old struct-keyword role). Decoupled from the
+  -- @module -> Structure default link; propagates to @lsp.type.namespace.
+  ["@module"] = "bright_green",
   -- built-in modules or namespaces
   ["@module.builtin"] = {},
   -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
@@ -58,8 +64,9 @@ return {
   ["@attribute"] = {},
   -- builtin annotations (e.g. `@property` in Python)
   ["@attribute.builtin"] = {},
-  -- the key in key/value pairs
-  ["@property"] = "green",
+  -- the key in key/value pairs -- a field is an identifier, not a type; keeps
+  -- green meaning "types" (unified with @variable.member).
+  ["@property"] = "Identifier",
   -- function definitions
   ["@function"] = {},
   -- built-in functions
@@ -82,22 +89,27 @@ return {
   ["@keyword.coroutine"] = {},
   -- keywords that define a function (e.g. `func` in Go, `def` in Python)
   ["@keyword.function"] = "Keyword",
-  -- operators that are English words (e.g. `and`, `or`)
-  ["@keyword.operator"] = "red",
+  -- operators that are English words (e.g. `and`, `or`) -- boolean connectors
+  -- are the glue of conditionals; magenta (Statement), not the error hue.
+  ["@keyword.operator"] = "Statement",
   -- keywords for including or exporting modules (e.g. `import`, `from` in Python)
-  ["@keyword.import"] = {},
+  -- -- declarative, preprocessor-family (blue), distinct from flow control.
+  ["@keyword.import"] = "PreProc",
   -- keywords describing namespaces and composite types (e.g. `struct`, `enum`)
-  ["@keyword.type"] = {},
+  -- -- declaration keyword is a keyword/blue, like `class` (mirrors Structure).
+  ["@keyword.type"] = "Keyword",
   -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
-  ["@keyword.modifier"] = {},
+  -- -- modifier keywords, keyword/blue (mirrors StorageClass).
+  ["@keyword.modifier"] = "Keyword",
   -- keywords related to loops (e.g. `for`, `while`)
   ["@keyword.repeat"] = "magenta",
-  -- keywords like `return` and `yield`
-  ["@keyword.return"] = {},
+  -- keywords like `return` and `yield` -- flow control, magenta (Statement).
+  ["@keyword.return"] = "Statement",
   -- keywords related to debugging
   ["@keyword.debug"] = {},
-  -- keywords related to exceptions (e.g. `throw`, `catch`)
-  ["@keyword.exception"] = {},
+  -- keywords related to exceptions (e.g. `throw`, `catch`) -- flow control,
+  -- magenta (Statement), not the error hue (mirrors Exception).
+  ["@keyword.exception"] = "Statement",
   -- keywords related to conditionals (e.g. `if`, `else`)
   ["@keyword.conditional"] = "magenta",
   -- ternary operator (e.g. `?`, `:`)
