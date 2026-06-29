@@ -192,16 +192,14 @@ end
 --- Validates the slip exists before opening and configures buffer options
 ---@param slip_id string The slip identifier to edit
 M.edit_slip = function(slip_id)
-  if not slip_id then
-    toast.error("Invalid argument: slip_id is nil", "Slipbox")
+  -- Validate type first (this also rules out nil), then non-empty -- so the
+  -- guards run most-fundamental-first rather than type-checking last.
+  if type(slip_id) ~= "string" then
+    toast.error("Invalid argument: slip_id expected to be a string", "Slipbox")
     return
   end
   if slip_id == "" then
     toast.error("Invalid argument: slip_id is empty", "Slipbox")
-    return
-  end
-  if type(slip_id) ~= "string" then
-    toast.error("Invalid argument: slip_id expected to be a string", "Slipbox")
     return
   end
 
