@@ -90,6 +90,16 @@ jobs:
           neovim: true
           version: v0.12.3
 
+      # nvim discovers its config at ~/.config/nvim, but checkout puts the repo
+      # at $GITHUB_WORKSPACE -- so without this the config never loads, `:Lazy`
+      # doesn't exist, the install below silently no-ops, and lint-types then
+      # runs against an empty plugin dir (every type undefined). Symlink so nvim
+      # loads THIS checkout as its config.
+      - name: Make the config discoverable
+        run: |
+          mkdir -p ~/.config
+          ln -sfn "$GITHUB_WORKSPACE" ~/.config/nvim
+
       # lua_ls reads types from the installed plugins, so CI must populate the
       # lazy dir. Cache it on lazy-lock.json so unchanged pins skip re-cloning.
       - name: Cache lazy plugins
