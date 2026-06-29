@@ -128,7 +128,6 @@ local highlights = {
     bg = colors.tertiary_accent_background,
   },
 
-  -- WinSeparator
   secondary_accent_background_on_nothing = { fg = colors.secondary_accent_background },
 
   nothing_on_visual = { bg = colors.visual_selection },

@@ -27,7 +27,7 @@ return {
       local command_highlight = { fg = black, bg = yellow }
       local inactive_highlight = { fg = dark_highlight.bg, bg = dark_highlight.bg }
 
-      local screen_glasses_theme = {
+      local statusline_theme = {
         normal = { a = light_highlight, b = medium_highlight, c = dark_highlight },
         insert = { a = insert_highlight, b = medium_highlight, c = dark_highlight },
         visual = { a = visual_highlight, b = medium_highlight, c = dark_highlight },
@@ -56,7 +56,7 @@ return {
           },
         },
         options = {
-          theme = screen_glasses_theme,
+          theme = statusline_theme,
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
         },

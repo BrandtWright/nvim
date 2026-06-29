@@ -27,7 +27,6 @@ return {
       },
       filetypes = {
         ["*"] = false,
-        markdown = false,
       },
     },
     keys = {
