@@ -59,7 +59,12 @@ describe("grammar checker toggle", function()
 
   it("set(false) stops running clients and disables harper_ls", function()
     local stopped = 0
-    clients = { { name = "harper_ls", stop = function() stopped = stopped + 1 end } }
+    clients = { {
+      name = "harper_ls",
+      stop = function()
+        stopped = stopped + 1
+      end,
+    } }
     toggle.set(false)
     assert.equals(1, stopped)
     local last = enable_calls[#enable_calls]

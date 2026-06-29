@@ -239,10 +239,7 @@ function M.setup(opts)
     or not vim.uv.fs_stat(opts.slipbox_dir)
     or vim.uv.fs_stat(opts.slipbox_dir).type ~= "directory"
   then
-    toast.error(
-      "Slipbox setup requires a valid 'slipbox_dir' option that points to an existing directory.",
-      "Slipbox"
-    )
+    toast.error("Slipbox setup requires a valid 'slipbox_dir' option that points to an existing directory.", "Slipbox")
     return
   end
 

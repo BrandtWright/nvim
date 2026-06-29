@@ -4,9 +4,12 @@ local List = require("bw.types.list")
 
 describe("bw.types.either", function()
   it("map transforms a Right and passes a Left through", function()
-    assert.equals(4, Either.right(2):map(function(x)
-      return x * 2
-    end).value)
+    assert.equals(
+      4,
+      Either.right(2):map(function(x)
+        return x * 2
+      end).value
+    )
 
     local left = Either.left("boom")
     local mapped = left:map(function(x)
@@ -28,22 +31,31 @@ describe("bw.types.either", function()
   end)
 
   it("handle_error recovers a Left and ignores a Right", function()
-    assert.equals("recovered", Either.left("e"):handle_error(function()
-      return "recovered"
-    end))
+    assert.equals(
+      "recovered",
+      Either.left("e"):handle_error(function()
+        return "recovered"
+      end)
+    )
     -- On a Right, handler is not called and the Either is returned unchanged.
     local right = Either.right(1)
-    assert.equals(right, right:handle_error(function()
-      return "nope"
-    end))
+    assert.equals(
+      right,
+      right:handle_error(function()
+        return "nope"
+      end)
+    )
   end)
 end)
 
 describe("bw.types.maybe", function()
   it("map transforms a Just and passes Nothing through", function()
-    assert.equals(10, Maybe.just(5):map(function(x)
-      return x * 2
-    end).value)
+    assert.equals(
+      10,
+      Maybe.just(5):map(function(x)
+        return x * 2
+      end).value
+    )
     assert.is_false(Maybe.nothing():map(function(x)
       return x * 2
     end).is_just)
@@ -66,9 +78,14 @@ end)
 
 describe("bw.types.list", function()
   it("map applies a function to each element", function()
-    assert.same({ 2, 4, 6 }, List.from_table({ 1, 2, 3 }):map(function(x)
-      return x * 2
-    end):to_table())
+    assert.same(
+      { 2, 4, 6 },
+      List.from_table({ 1, 2, 3 })
+        :map(function(x)
+          return x * 2
+        end)
+        :to_table()
+    )
   end)
 
   it("unit wraps a single value", function()

@@ -37,32 +37,41 @@ end)
 
 describe("slipbox.extract_yaml_related", function()
   it("parses an inline list (related: [a, b])", function()
-    assert.same({ "foo", "bar" }, slipbox.extract_yaml_related({
-      "---",
-      "related: [foo, bar]",
-      "---",
-    }))
+    assert.same(
+      { "foo", "bar" },
+      slipbox.extract_yaml_related({
+        "---",
+        "related: [foo, bar]",
+        "---",
+      })
+    )
   end)
 
   it("parses a block list (related: then - items)", function()
-    assert.same({ "foo", "bar" }, slipbox.extract_yaml_related({
-      "---",
-      "title: x",
-      "related:",
-      "  - foo",
-      "  - bar",
-      "---",
-    }))
+    assert.same(
+      { "foo", "bar" },
+      slipbox.extract_yaml_related({
+        "---",
+        "title: x",
+        "related:",
+        "  - foo",
+        "  - bar",
+        "---",
+      })
+    )
   end)
 
   it("stops a block list at the next yaml key", function()
-    assert.same({ "foo" }, slipbox.extract_yaml_related({
-      "---",
-      "related:",
-      "  - foo",
-      "tags: [t]",
-      "---",
-    }))
+    assert.same(
+      { "foo" },
+      slipbox.extract_yaml_related({
+        "---",
+        "related:",
+        "  - foo",
+        "tags: [t]",
+        "---",
+      })
+    )
   end)
 
   it("returns empty when there is no front matter", function()
@@ -90,10 +99,7 @@ describe("slipbox.parse_slip_lines", function()
   end)
 
   it("skips blank lines (e.g. a trailing newline from snote)", function()
-    assert.same(
-      { { id = "001", title = "First", tags = "" } },
-      slipbox.parse_slip_lines({ "001\tFirst", "" })
-    )
+    assert.same({ { id = "001", title = "First", tags = "" } }, slipbox.parse_slip_lines({ "001\tFirst", "" }))
   end)
 
   it("returns empty for empty input", function()
