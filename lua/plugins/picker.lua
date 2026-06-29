@@ -59,10 +59,10 @@ return {
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>lpa", function() require("snacks").picker.picker_actions() end, desc = "Actions" },
-      { "<leader>lpf", function() require("snacks").picker.picker_format() end, desc = "Format" },
-      { "<leader>lpl", function() require("snacks").picker.picker_layouts() end, desc = "Layouts" },
-      { "<leader>lpp", function() require("snacks").picker.picker_preview() end, desc = "Preview" },
+      { "<leader>lpa", function() Snacks.picker.picker_actions() end, desc = "Actions" },
+      { "<leader>lpf", function() Snacks.picker.picker_format() end, desc = "Format" },
+      { "<leader>lpl", function() Snacks.picker.picker_layouts() end, desc = "Layouts" },
+      { "<leader>lpp", function() Snacks.picker.picker_preview() end, desc = "Preview" },
     },
   },
 }

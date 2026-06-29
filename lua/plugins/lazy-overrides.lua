@@ -40,7 +40,7 @@ return {
       {
         "<leader>lc",
         function()
-          require("snacks").picker.lazy()
+          Snacks.picker.lazy()
         end,
         desc = "Lazy Config",
       },
