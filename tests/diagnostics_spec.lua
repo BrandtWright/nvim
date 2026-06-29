@@ -9,10 +9,19 @@ local diagnostics = require("bw.util.diagnostics")
 describe("diagnostics virtual_text toggle", function()
   local toggle
 
+  -- These tests mutate the global vim.diagnostic config; snapshot the pristine
+  -- config now (before any before_each runs) and restore it after each test so
+  -- nothing leaks into other specs sharing this headless instance.
+  local orig_config = vim.deepcopy(vim.diagnostic.config())
+
   before_each(function()
     toggle = diagnostics.virtual_text_toggle()
     -- Start from a rich (table) virtual_text config, as LazyVim sets.
     vim.diagnostic.config({ virtual_text = { prefix = "X" } })
+  end)
+
+  after_each(function()
+    vim.diagnostic.config(orig_config)
   end)
 
   it("get() reports a boolean, not the raw config value", function()

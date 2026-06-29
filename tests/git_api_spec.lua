@@ -44,6 +44,16 @@ local function stub_snacks()
 end
 
 describe("git.api", function()
+  -- stub_snacks() replaces the global _G.Snacks; snapshot and restore it so the
+  -- stub doesn't leak into other specs sharing this headless instance.
+  local orig_snacks
+  before_each(function()
+    orig_snacks = _G.Snacks
+  end)
+  after_each(function()
+    _G.Snacks = orig_snacks
+  end)
+
   it("passes the validated cwd through to the snacks picker", function()
     local repo = make_repo("-gitrepo")
     local captured = stub_snacks()

@@ -9,6 +9,24 @@ describe("bw.util.highlights.get_attribute", function()
 end)
 
 describe("bw.util.highlights.on_colorscheme", function()
+  -- These tests create real augroups (BwTestHl1/2/3) and one switches the global
+  -- colorscheme. Left in place, those augroups would fire on every later
+  -- ColorScheme event in other specs sharing this headless instance, and the
+  -- colorscheme switch would leak. Capture the original colorscheme and tear
+  -- both down after each test.
+  local orig_colors = vim.g.colors_name
+
+  after_each(function()
+    -- Delete the test augroups FIRST so the colorscheme restore below doesn't
+    -- re-fire their callbacks.
+    for _, g in ipairs({ "BwTestHl1", "BwTestHl2", "BwTestHl3" }) do
+      pcall(vim.api.nvim_del_augroup_by_name, g)
+    end
+    if vim.g.colors_name ~= orig_colors then
+      pcall(vim.cmd.colorscheme, orig_colors or "default")
+    end
+  end)
+
   it("applies fn immediately and again on ColorScheme", function()
     local count = 0
     hl.on_colorscheme("BwTestHl1", function()

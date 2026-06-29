@@ -8,6 +8,16 @@ end
 describe("floating terminal", function()
   local spec = require("plugins.floating-terminal")[1]
 
+  -- The cwd test stubs the global _G.Snacks; snapshot and restore it so the stub
+  -- doesn't leak into other specs sharing this headless instance.
+  local orig_snacks
+  before_each(function()
+    orig_snacks = _G.Snacks
+  end)
+  after_each(function()
+    _G.Snacks = orig_snacks
+  end)
+
   it("does not bake a frozen cwd into the terminal opts", function()
     local opts = get_opts(spec)
     assert.is_nil(opts.terminal.cwd)
