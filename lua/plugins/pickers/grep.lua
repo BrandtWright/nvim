@@ -19,22 +19,18 @@ return {
       {
         "<leader>rt",
         function()
-          local file_type = vim.fn.input("Type: ")
-          if file_type and file_type ~= "" then
-            Snacks.picker.grep({
-              ft = file_type,
-            })
-          end
+          require("bw.util.pick").with_input("Type: ", nil, function(ft)
+            Snacks.picker.grep({ ft = ft })
+          end)
         end,
         desc = "File Type",
       },
       {
         "<leader>rl",
         function()
-          local dir = vim.fn.input("Directory: ", "", "dir")
-          if dir and dir ~= "" then
+          require("bw.util.pick").with_input("Directory: ", "dir", function(dir)
             Snacks.picker.grep({ dirs = { dir } })
-          end
+          end)
         end,
         desc = "From Location",
       },

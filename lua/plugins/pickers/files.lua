@@ -65,12 +65,9 @@ return {
       {
         "<leader>fl",
         function()
-          local dir = vim.fn.input("Directory: ", "", "dir")
-          if dir and dir ~= "" then
-            Snacks.picker.files({
-              dirs = { dir },
-            })
-          end
+          require("bw.util.pick").with_input("Directory: ", "dir", function(dir)
+            Snacks.picker.files({ dirs = { dir } })
+          end)
         end,
         desc = "Files (Location Picker)",
       },
