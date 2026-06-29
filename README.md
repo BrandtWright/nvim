@@ -16,6 +16,10 @@ Optional, enabling specific features:
 - **[`snote`][snote]** — required by the slipbox (`:SlipNew` / `:SlipEdit` / save).
 - **`dict`**, **`pandoc`** + **`zathura`** — used by individual
   keymaps/ftplugins (dictionary lookup, markdown export).
+- **`find-dotfiles`** — backs the `<leader>f.` dotfiles picker.
+
+Run **`:checkhealth bw`** to see which of these are present on the current
+machine and what each one powers.
 
 ## Plugin versions & reproducibility
 
