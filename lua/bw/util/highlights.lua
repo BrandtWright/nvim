@@ -2,6 +2,7 @@ local M = {}
 --- Utility to get color values
 ---@param group string
 ---@param attr string
+---@return string? hex `#rrggbb` for the attribute, or nil if the group/attr is unset
 M.get_attribute = function(group, attr)
   local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
   if hl and type(hl[attr]) == "number" then

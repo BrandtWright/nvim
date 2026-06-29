@@ -94,7 +94,7 @@ describe("bw.types.list", function()
 
   it("bind flattens List-returning functions", function()
     local dup = function(x)
-      return List.new({ x, x })
+      return List.from_table({ x, x })
     end
     assert.same({ 1, 1, 2, 2 }, List.from_table({ 1, 2 }):bind(dup):to_table())
   end)

@@ -30,12 +30,14 @@ M.open_scratch_buffer = function(mode)
     vim.bo[buf].filetype = "markdown"
     vim.bo[buf].bufhidden = "hide"
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "# Scratch Pad", "" })
-  end
 
-  -- remove keymap for delete buffer
-  vim.keymap.set("n", "<leader>bd", function()
-    toast.warn("Cannot delete scratch buffer", "Scratch Buffer")
-  end, { buffer = buf, silent = true })
+    -- Shadow <leader>bd so the scratch buffer can't be deleted. Buffer-local, so
+    -- it persists for the buffer's (session-long) lifetime -- set once here at
+    -- creation rather than on every open call.
+    vim.keymap.set("n", "<leader>bd", function()
+      toast.warn("Cannot delete scratch buffer", "Scratch Buffer")
+    end, { buffer = buf, silent = true })
+  end
 
   -- Determine how to display the buffer
   if mode == "split" then

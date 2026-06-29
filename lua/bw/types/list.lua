@@ -3,25 +3,20 @@
 local List = {}
 List.__index = List
 
---- Constructs a List from an existing array.
----@param value table
----@return List
-function List.new(value)
-  return setmetatable({ value = value }, List)
-end
-
---- Lifts a single value into a one-element List.
----@param value any
----@return List
-function List.unit(value)
-  return List.new({ value })
-end
-
---- Creates a List from a table.
+--- Constructs a List from a raw array table (the carrier constructor). Paired
+--- with `to_table`, its inverse: from_table(t):to_table() returns t.
 ---@param tbl table
 ---@return List
 function List.from_table(tbl)
-  return List.new(tbl)
+  return setmetatable({ value = tbl }, List)
+end
+
+--- Lifts a single value into a one-element List (the monadic `unit`/`return`).
+--- Distinct from `from_table`, which wraps an already-array-shaped table.
+---@param value any
+---@return List
+function List.unit(value)
+  return List.from_table({ value })
 end
 
 --- Maps a plain function over each element. A nil result is dropped (Lua
@@ -36,7 +31,7 @@ function List:map(func)
       result[#result + 1] = mapped
     end
   end
-  return List.new(result)
+  return List.from_table(result)
 end
 
 --- Applies func (which must return a List) to each element and flattens the
@@ -53,7 +48,7 @@ function List:bind(func)
       table.insert(result, mv)
     end
   end
-  return List.new(result)
+  return List.from_table(result)
 end
 
 --- Converts a List back to a plain table.

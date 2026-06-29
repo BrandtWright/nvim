@@ -5,17 +5,23 @@
 local Either = {}
 Either.__index = Either
 
--- Type constructor for right
+--- Constructs a Right (success) holding `value`.
+---@param value any
+---@return Either
 function Either.right(value)
   return setmetatable({ value = value, is_right = true }, Either)
 end
 
--- Type constructor for left
-function Either.left(error)
-  return setmetatable({ error = error, is_right = false }, Either)
+--- Constructs a Left (failure) holding `err`.
+---@param err any
+---@return Either
+function Either.left(err)
+  return setmetatable({ error = err, is_right = false }, Either)
 end
 
--- Lifts a value into a monadic context
+--- Lifts a value into a monadic context (a Right).
+---@param value any
+---@return Either
 function Either.unit(value)
   return Either.right(value)
 end
