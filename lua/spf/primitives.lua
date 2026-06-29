@@ -17,7 +17,6 @@ return {
   black_on_red = { fg = colors.black, bg = colors.red },
   black_on_yellow = { fg = colors.black, bg = colors.yellow },
   black_on_green = { fg = colors.black, bg = colors.green },
-  black_on_blue = { fg = colors.black, bg = colors.blue },
 
   bright_black = { fg = colors.bright_black },
   bright_black_bold = { bold = true, fg = colors.bright_black },
@@ -73,8 +72,6 @@ return {
     fg = colors.tertiary_accent_foreground,
     bg = colors.tertiary_accent_background,
   },
-
-  secondary_accent_background_on_nothing = { fg = colors.secondary_accent_background },
 
   nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },

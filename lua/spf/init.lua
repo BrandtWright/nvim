@@ -65,8 +65,19 @@ end
 --- Applies the colorscheme: clears existing highlights, paints the primitives
 --- and links, and sets the 16 terminal colors. Returns the built tables so
 --- `:colorscheme spf` (which ignores the value) and tests share one path.
+---
+--- Requires `termguicolors`: every primitive sets only gui fg/bg (no cterm
+--- fallbacks), so spf only renders correctly in a true-color UI. options.lua
+--- sets `termguicolors = true` globally.
 ---@return { colors: table, highlights: table, links: table }
 function M.apply()
+  -- spf is dark-only. Set `background` before `highlight clear`/`syntax reset`:
+  -- changing `background` itself reseeds Neovim's default highlights, so doing it
+  -- afterward would clobber what we paint. It also makes the many `{}` groups
+  -- (which intentionally inherit core defaults) inherit the dark variants even if
+  -- the user/terminal had `background=light`.
+  vim.o.background = "dark"
+
   vim.cmd("highlight clear")
   vim.cmd("syntax reset")
   vim.g.colors_name = "spf"
@@ -75,6 +86,13 @@ function M.apply()
 
   -- Concrete specs first, then links (links resolve lazily, so order between
   -- the two loops is not load-bearing).
+  --
+  -- Convention: an empty table (`{}`) in either map means "leave this group at
+  -- Neovim's default" -- it is skipped here, NOT written as a cleared group. The
+  -- name is still intentionally claimed (the groups/* files list `{}` entries as
+  -- documentation of what spf deliberately doesn't override, and a real link may
+  -- target such a name and let Neovim resolve it). To actually blank a group,
+  -- give it an explicit spec like `{ fg = "NONE", bg = "NONE" }`.
   for group, keyset in pairs(theme.highlights) do
     if is_nonempty_table(keyset) then
       vim.api.nvim_set_hl(0, group, keyset)
