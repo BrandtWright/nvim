@@ -153,3 +153,31 @@ describe("colors/spf coverage", function()
     assert.same({}, missing)
   end)
 end)
+
+describe("colors/spf section assembly", function()
+  after_each(restore_colorscheme)
+
+  -- The assembler discovers lua/spf/groups/*.lua dynamically (no hardcoded list),
+  -- so guard that every section file is actually merged into links. A discovery
+  -- bug that dropped a non-load-bearing section (e.g. filetypes) would otherwise
+  -- slip past the link-integrity and coverage specs, since those sections are
+  -- mostly self-contained leaf links.
+  it("merges every groups/*.lua file into links", function()
+    local theme = load_theme()
+    local files = vim.api.nvim_get_runtime_file("lua/spf/groups/*.lua", true)
+    assert.is_true(#files > 0, "no group files found on the runtimepath")
+    for _, path in ipairs(files) do
+      local name = path:match("([^/\\]+)%.lua$")
+      if name ~= "init" then
+        -- Load the file directly (independent of the assembler) and confirm
+        -- each of its keys made it into the merged table.
+        for group in pairs(dofile(path)) do
+          assert.is_truthy(
+            theme.links[group] ~= nil,
+            string.format("%s from groups/%s missing in assembled links", group, name)
+          )
+        end
+      end
+    end
+  end)
+end)

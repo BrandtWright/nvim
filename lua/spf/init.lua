@@ -11,12 +11,28 @@
 
 local M = {}
 
--- Group sections, merged (in order) into one link map. Names match
--- spf/groups/<name>.lua.
-local SECTIONS = { "syntax", "ui", "diagnostic", "lsp", "treesitter", "filetypes", "other" }
-
 local function is_nonempty_table(x)
   return type(x) == "table" and next(x) ~= nil
+end
+
+-- Discover the group modules under spf/groups/ instead of hardcoding a list, so
+-- adding, renaming, or splitting a section file needs no edit here. Searches the
+-- whole runtimepath (so it works the same embedded in a config or installed as a
+-- plugin), dedupes names that appear in more than one rtp root, and sorts for a
+-- deterministic merge order. (Order isn't load-bearing -- links resolve lazily --
+-- but a stable order keeps the duplicate-key warning predictable.)
+---@return string[] section module names, e.g. { "diagnostic", "lsp", ... }
+local function group_sections()
+  local seen, names = {}, {}
+  for _, path in ipairs(vim.api.nvim_get_runtime_file("lua/spf/groups/*.lua", true)) do
+    local name = path:match("([^/\\]+)%.lua$")
+    if name and name ~= "init" and not seen[name] then
+      seen[name] = true
+      names[#names + 1] = name
+    end
+  end
+  table.sort(names)
+  return names
 end
 
 -- Merge a section's group->target map into `links`. The old flat table let a
@@ -36,7 +52,7 @@ end
 ---@return { colors: table, highlights: table, links: table }
 function M.build()
   local links = {}
-  for _, section in ipairs(SECTIONS) do
+  for _, section in ipairs(group_sections()) do
     merge(links, section)
   end
   return {
