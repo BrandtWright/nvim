@@ -74,32 +74,16 @@ opt.fillchars = {
   eob = "~",
 }
 
---- Creates custom fold text using Treesitter with intelligent truncation
---- Displays the first line of the fold with a line count suffix, handling
---- width constraints and proper padding for visual alignment across the window
+--- Creates custom fold text using Treesitter with intelligent truncation.
+--- Gathers the live window/buffer state and delegates the (pure, unit-tested)
+--- formatting to bw.util.foldtext.
 ---@return string The formatted fold text with padding to fill the window width
 function _G.TreesitterFoldText()
-  local start_line = vim.fn.getline(vim.v.foldstart)
-  local count = vim.v.foldend - vim.v.foldstart + 1
-  local suffix = string.format("  … [%d lines]", count)
-  local prefix = " "
-  local max_width = vim.api.nvim_win_get_width(0) - 2 -- allow for fold column
-  local line = vim.trim(start_line)
-  local content_width = max_width - vim.fn.strdisplaywidth(prefix .. suffix)
-
-  -- truncate if needed
-  if vim.fn.strdisplaywidth(line) > content_width then
-    line = vim.fn.strcharpart(line, 0, content_width - 1) .. "…"
-  end
-
-  -- left-justified + padded manually
-  local foldtext = prefix .. line .. suffix
-  local total_padding = max_width - vim.fn.strdisplaywidth(foldtext)
-  if total_padding > 0 then
-    foldtext = foldtext .. string.rep(" ", total_padding)
-  end
-
-  return foldtext
+  return require("bw.util.foldtext").build({
+    line = vim.fn.getline(vim.v.foldstart),
+    count = vim.v.foldend - vim.v.foldstart + 1,
+    width = vim.api.nvim_win_get_width(0),
+  })
 end
 
 opt.foldtext = "v:lua.TreesitterFoldText()"
