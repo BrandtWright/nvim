@@ -40,7 +40,6 @@ and imports all modules
   - `options.lua` - Vim options (leader key, colors, tabs, folding, etc.)
   - `keymaps.lua` - Custom keybindings and navigation
   - `autocmds.lua` - Autocommands
-  - `silly-keys.lua` - Keys to disable
 
 #### Plugin Architecture
 
