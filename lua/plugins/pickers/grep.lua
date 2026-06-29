@@ -1,21 +1,14 @@
+-- <leader>rr and <leader>/ are two bindings for the same action (grep from cwd).
+local function grep_cwd()
+  Snacks.picker.grep()
+end
+
 return {
   {
     "folke/snacks.nvim",
     keys = {
-      {
-        "<leader>rr",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = "From CWD",
-      },
-      {
-        "<leader>/",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = "From CWD",
-      },
+      { "<leader>rr", grep_cwd, desc = "From CWD" },
+      { "<leader>/", grep_cwd, desc = "From CWD" },
       {
         "<leader>rt",
         function()

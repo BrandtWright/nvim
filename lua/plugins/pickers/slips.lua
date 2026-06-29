@@ -15,6 +15,11 @@ local function slip_item(slip)
   }
 end
 
+-- Render a slip item as a single display column. Shared by every slip source.
+local function format_slip(item)
+  return { { item.text } }
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -88,9 +93,7 @@ return {
               -- Optional: Customize how each item is displayed in the picker.
               -- This function takes an item and returns a formatted string or a table
               -- suitable for `vim.api.nvim_buf_set_text`.
-              format = function(item)
-                return { { item.text } }
-              end,
+              format = format_slip,
 
               -- Optional parameter title: string (override the source name as title)
               title = "Slipbox",
@@ -117,9 +120,7 @@ return {
                 end
                 return items
               end,
-              format = function(item)
-                return { { item.text } }
-              end,
+              format = format_slip,
               title = "Related Slips",
             },
 
@@ -148,9 +149,7 @@ return {
               end,
 
               confirm = "item_action",
-              format = function(item)
-                return { { item.text } }
-              end,
+              format = format_slip,
 
               title = "Link Slip",
             },
