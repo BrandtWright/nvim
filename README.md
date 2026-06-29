@@ -101,7 +101,8 @@ its own Neovim instance, and `require()` config modules directly.
 - `luacheck .` — Lua linting (config in `.luacheckrc`).
 - `stylua` — formatting (config in `stylua.toml`: 2 spaces, 120 columns).
   Use `-- stylua: ignore` to preserve a hand-formatted span.
-- `markdownlint-cli2 '**/*.md'` — Markdown linting.
+- `markdownlint-cli2` — Markdown linting (globs/ignores in
+  `.markdownlint-cli2.yaml`).
 
 ## Continuous integration
 
@@ -109,8 +110,10 @@ its own Neovim instance, and `require()` config modules directly.
 
 - **test** — `make test` against a pinned Neovim.
 - **lint** — `luacheck .` and `stylua --check .`, both pinned.
+- **markdown** — `markdownlint-cli2`, pinned.
 
-The pins (Neovim, luacheck, stylua, and plenary via the `Makefile`) keep CI
-deterministic; bump them deliberately and re-run the suite locally when you do.
+The pins (Neovim, luacheck, stylua, markdownlint-cli2, and plenary via the
+`Makefile`) keep CI deterministic; bump them deliberately and re-run the
+relevant check locally when you do.
 
 [snote]: https://github.com/BrandtWright/slipbox

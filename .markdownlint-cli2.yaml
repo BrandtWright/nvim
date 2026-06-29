@@ -1,0 +1,15 @@
+# markdownlint-cli2 configuration.
+#
+# globs/ignores live here (not on the command line) so the same bare
+# `markdownlint-cli2` invocation works locally and in CI. Mirrors how
+# .luacheckrc excludes vendored/tooling trees.
+
+globs:
+  - "**/*.md"
+
+ignores:
+  - ".tests-deps/**" # vendored test deps (plenary); not our docs
+  - ".lua/**" # local Lua install tree (CI tooling)
+  - ".luarocks/**" # local LuaRocks tree (CI tooling)
+
+# No rule overrides: CLAUDE.md and README.md pass markdownlint's defaults.
