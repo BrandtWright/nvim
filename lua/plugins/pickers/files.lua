@@ -41,7 +41,15 @@ return {
         function()
           Snacks.picker.files({
             finder = function()
-              local dotfiles = vim.fn.systemlist("find-dotfiles")
+              -- argv form: no shell, so the call can't be derailed by quoting.
+              local dotfiles = vim.fn.systemlist({ "find-dotfiles" })
+              if vim.v.shell_error ~= 0 then
+                require("bw.util.notification").error(
+                  "find-dotfiles failed: " .. table.concat(dotfiles, " "),
+                  "Dotfiles"
+                )
+                return {}
+              end
               local items = {}
               for _, v in ipairs(dotfiles) do
                 table.insert(items, {
