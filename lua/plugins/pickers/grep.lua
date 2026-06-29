@@ -43,8 +43,13 @@ return {
         function()
           Snacks.picker.grep_word()
         end,
-        desc = "String",
+        desc = "Word / Selection",
+        mode = { "n", "x" },
       },
+      -- Grep lives under <leader>r; disable LazyVim's vestigial grep_word (cwd)
+      -- default so it doesn't linger in the search namespace. (<leader>sw is
+      -- repurposed for Dictionary in config/keymaps.lua.)
+      { "<leader>sW", false, mode = { "n", "x" } },
     },
   },
 }
