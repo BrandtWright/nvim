@@ -2,6 +2,19 @@
 -- Fuzzy Find Slips
 -------------------------------------------------------------------------------
 
+-- Build a picker item from a slip record. Tags are appended only when present,
+-- so tagless slips don't render a trailing space.
+local function slip_item(slip)
+  local title = slip.title or ""
+  local tags = slip.tags or ""
+  return {
+    text = tags ~= "" and (title .. " " .. tags) or title,
+    name = slip.id,
+    file = require("user.slipbox").get_slip_path(slip.id),
+    filetype = "markdown",
+  }
+end
+
 return {
   {
     "folke/snacks.nvim",
@@ -67,12 +80,7 @@ return {
                 local slipbox = require("user.slipbox")
                 local items = {}
                 for _, slip in ipairs(slipbox.list_slips()) do
-                  table.insert(items, {
-                    text = slip.title .. " " .. slip.tags,
-                    name = slip.id,
-                    file = slipbox.get_slip_path(slip.id),
-                    filetype = "markdown",
-                  })
+                  table.insert(items, slip_item(slip))
                 end
                 return items
               end,
@@ -104,13 +112,8 @@ return {
                 end
                 local items = {}
                 for _, id in ipairs(slipbox.get_related_slips()) do
-                  local slip = catalog[id]
-                  table.insert(items, {
-                    text = slip and (slip.title .. " " .. slip.tags) or id,
-                    name = id,
-                    file = slipbox.get_slip_path(id),
-                    filetype = "markdown",
-                  })
+                  -- Fall back to a bare-ID record for a related slip not in the catalog.
+                  table.insert(items, slip_item(catalog[id] or { id = id, title = id }))
                 end
                 return items
               end,
@@ -132,17 +135,13 @@ return {
                 for _, slip in ipairs(slipbox.list_slips()) do
                   -- don't add slips that are already related
                   if not vim.tbl_contains(related_slips, slip.id) then
-                    table.insert(items, {
-                      text = slip.title .. " " .. slip.tags,
-                      name = slip.id,
-                      file = slipbox.get_slip_path(slip.id),
-                      filetype = "markdown",
-                      action = function()
-                        local row = vim.api.nvim_win_get_cursor(0)[1] -- current line (1-based)
-                        local text = string.format("  - %s", slip.id)
-                        vim.api.nvim_buf_set_lines(0, row, row, false, { text })
-                      end,
-                    })
+                    local item = slip_item(slip)
+                    item.action = function()
+                      local row = vim.api.nvim_win_get_cursor(0)[1] -- current line (1-based)
+                      local text = string.format("  - %s", slip.id)
+                      vim.api.nvim_buf_set_lines(0, row, row, false, { text })
+                    end
+                    table.insert(items, item)
                   end
                 end
                 return items

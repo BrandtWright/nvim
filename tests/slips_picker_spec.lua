@@ -36,12 +36,16 @@ describe("slips picker sources", function()
     assert.is_true(#items > 0)
     assert.is_truthy(items[1].file)
     assert.is_nil(items[1].action)
+    -- text is "title tags" when the slip has tags
+    assert.equals("First tag1", items[1].text)
   end)
 
   it("related_slips items have no dead action either", function()
     local items = src.related_slips.finder()
     assert.is_true(#items > 0)
     assert.is_nil(items[1].action)
+    -- a tagless slip renders just the title (no trailing space)
+    assert.equals("Second", items[1].text)
   end)
 
   it("slip_links keeps confirm=item_action and a real action", function()
