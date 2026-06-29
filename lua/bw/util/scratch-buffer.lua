@@ -8,6 +8,14 @@ local toast = require("bw.util.notification")
 --- It is unlisted and `<leader>bd` is shadowed to prevent accidental deletion.
 ---@param mode "split" | "vsplit" | "current_window" | "popup" Display mode for the scratch buffer
 M.open_scratch_buffer = function(mode)
+  -- Validate the mode up front, before creating any buffer: a bad mode used to
+  -- create the singleton buffer (and its <leader>bd shadow) and only then error,
+  -- orphaning a buffer.
+  if mode ~= "split" and mode ~= "vsplit" and mode ~= "current_window" and mode ~= "popup" then
+    toast.error("Invalid mode for scratch buffer: " .. tostring(mode), "Scratch Buffer")
+    return
+  end
+
   local scratch_buf_name = "__scratch_markdown__"
   local buf
 
@@ -92,8 +100,6 @@ M.open_scratch_buffer = function(mode)
         pcall(vim.keymap.del, "n", "q", { buffer = buf })
       end,
     })
-  else
-    toast.error("Invalid mode for scratch buffer: " .. tostring(mode), "Scratch Buffer")
   end
 end
 
