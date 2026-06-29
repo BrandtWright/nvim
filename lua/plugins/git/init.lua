@@ -51,7 +51,8 @@ return {
     cmd = { "Git" },
     keys = {
       { "<leader>gl", git.log, desc = "Git Log" },
-      { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Branches" },
+      { "<leader>gv", "<cmd>vertical Git<cr>", mode = "n", desc = "Status (Vertical)" },
+      { "<leader>gdc", git.resolve_conflicts, desc = "Resolve Conflicts" },
       { "<leader>gdh", git.diff_get_2, desc = "Diffget //2" },
       { "<leader>gdl", git.diff_get_3, desc = "Diffget //3" },
       { "<leader>gG", "<cmd>Git commit<cr>", mode = "n", desc = "Commit" },
