@@ -75,3 +75,48 @@ jobs:
       # npx uses the runner's preinstalled Node; no extra setup needed.
       - name: markdownlint
         run: npx --yes markdownlint-cli2@0.22.1
+
+  type-check:
+    name: type-check (lua-language-server)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Same pinned Neovim as the test job: `make lint-types` resolves its type
+      # library ($VIMRUNTIME + the lazy plugin dir) from nvim at runtime.
+      - name: Install Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: v0.12.3
+
+      # lua_ls reads types from the installed plugins, so CI must populate the
+      # lazy dir. Cache it on lazy-lock.json so unchanged pins skip re-cloning.
+      - name: Cache lazy plugins
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/nvim/lazy
+          key: lazy-${{ hashFiles('lazy-lock.json') }}
+
+      # `install` clones anything missing; `restore` checks out the
+      # lazy-lock.json pins, so the type set is reproducible and matches the
+      # local tree. `!` makes each block until done (no UI to wait on).
+      - name: Install plugins
+        run: |
+          nvim --headless "+Lazy! install" +qa
+          nvim --headless "+Lazy! restore" +qa
+
+      # Pinned like the other tools: lua_ls diagnostics shift between releases,
+      # so a new version could turn an unchanged tree red. 3.18.2 is the version
+      # this tree is verified clean against; keep it in sync with the lua_ls you
+      # run locally and re-run `make lint-types` when you bump it.
+      - name: Install lua-language-server
+        run: |
+          VER=3.18.2
+          mkdir -p "$HOME/luals"
+          curl -sfL "https://github.com/LuaLS/lua-language-server/releases/download/${VER}/lua-language-server-${VER}-linux-x64.tar.gz" \
+            | tar xz -C "$HOME/luals"
+          echo "$HOME/luals/bin" >> "$GITHUB_PATH"
+
+      - name: make lint-types
+        run: make lint-types
