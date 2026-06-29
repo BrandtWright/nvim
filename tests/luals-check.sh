@@ -58,11 +58,23 @@ cfg["Lua.workspace.ignoreDir"] = [".tests-deps", ".lua", ".luarocks"]
 json.dump(cfg, open(out, "w"), indent=2)
 PY
 
-# 4. Check the whole project at >= Warning. --check writes results to check.json
-#    and (in current lua_ls) exits 0 even on findings, so we read the report and
-#    set the exit status ourselves to make this a real CI gate.
-"$luals" --check "$root" --configpath="$work/luarc.json" \
-  --checklevel=Warning --logpath="$work/log" >/dev/null 2>&1 || true
+# 4. Check the whole project at >= Warning. --check writes findings to check.json
+#    and exits 0 even WITH findings, so the exit code can't drive the gate. But a
+#    crash / early-exit also "succeeds" silently -- so we require lua_ls's own
+#    completion marker ("Diagnosis complete[d] ...") as proof it actually ran.
+#    Without that check a broken run looks identical to a clean one and the gate
+#    lies green (which is exactly how a false "no diagnostics" slipped through).
+set +e
+out=$("$luals" --check "$root" --configpath="$work/luarc.json" \
+  --checklevel=Warning --logpath="$work/log" 2>&1)
+set -e
+
+if ! printf '%s' "$out" | tr '\r' '\n' | grep -q "Diagnosis complete"; then
+  echo "lua-language-server did not complete a check -- failing rather than" >&2
+  echo "reporting a false 'clean'. Its output was:" >&2
+  printf '%s\n' "$out" | tr '\r' '\n' | tail -20 >&2
+  exit 2
+fi
 
 report="$work/log/check.json"
 if [ -s "$report" ] && [ "$(cat "$report")" != "{}" ]; then
@@ -82,4 +94,6 @@ PY
   exit 1
 fi
 
+# Echo lua_ls's own completion line so a green result visibly proves it ran.
+printf '%s\n' "$out" | tr '\r' '\n' | grep "Diagnosis complete" | tail -1
 echo "lua-language-server: no diagnostics"
