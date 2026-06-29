@@ -3,6 +3,12 @@
 -- Add any additional options here
 
 vim.g.mapleader = " "
+-- Set the local leader explicitly rather than relying on LazyVim's default.
+-- It must NOT be the same key as mapleader (Space): the slip buffer-local maps
+-- (<localleader>s/v/a in lua/plugins/pickers/slips.lua) would otherwise expand
+-- to <Space>s/v/a and shadow the global <leader>s* picker namespace inside slip
+-- buffers. "\\" matches LazyVim's default, so this is explicit, not a change.
+vim.g.maplocalleader = "\\"
 
 -- Disable the trouble symbols in lualine (method/function names and symbols)
 vim.g.trouble_lualine = false

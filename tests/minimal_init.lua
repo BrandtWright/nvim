@@ -18,6 +18,9 @@ vim.opt.rtp:prepend(root .. "/.tests-deps/plenary.nvim")
 vim.opt.rtp:append(root .. "/after")
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Match the running config (lua/config/options.lua): localleader is "\\", not
+-- Space. Keeping it distinct from mapleader here mirrors reality, so specs that
+-- touch <localleader> maps behave as they do in the real config.
+vim.g.maplocalleader = "\\"
 
 vim.cmd("runtime plugin/plenary.vim")
