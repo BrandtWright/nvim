@@ -101,6 +101,34 @@ describe("slipbox.parse_slip_lines", function()
   end)
 end)
 
+describe("slipbox.list_slips", function()
+  local orig_systemlist
+
+  before_each(function()
+    orig_systemlist = vim.fn.systemlist
+  end)
+
+  after_each(function()
+    vim.fn.systemlist = orig_systemlist
+  end)
+
+  it("returns an empty list when snote fails, not a record from its error text", function()
+    vim.fn.systemlist = function()
+      vim.fn.system({ "false" }) -- drive v:shell_error non-zero like a failed snote
+      return { "sh: snote: not found" }
+    end
+    assert.same({}, slipbox.list_slips())
+  end)
+
+  it("parses snote output when the command succeeds", function()
+    vim.fn.systemlist = function()
+      vim.fn.system({ "true" }) -- drive v:shell_error to zero
+      return { "001\tFirst\ttag1" }
+    end
+    assert.same({ { id = "001", title = "First", tags = "tag1" } }, slipbox.list_slips())
+  end)
+end)
+
 describe("slipbox save autocmd", function()
   it("registers BufWriteCmd with the resolved absolute root in its pattern", function()
     local aus = vim.api.nvim_get_autocmds({ group = "SlipWrite", event = "BufWriteCmd" })

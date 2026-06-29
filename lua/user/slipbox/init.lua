@@ -135,10 +135,17 @@ function M.parse_slip_lines(lines)
 end
 
 --- Lists all slips via the external snote command, parsed into records so
---- callers need not know snote's `ID<tab>TITLE<tab>TAGS` line format.
+--- callers need not know snote's `ID<tab>TITLE<tab>TAGS` line format. Uses the
+--- argv form (no shell) and checks shell_error, returning an empty list rather
+--- than letting snote's error text (e.g. "sh: snote: not found") be parsed into
+--- a bogus record -- mirrors the handling in get_next_slip_id.
 ---@return { id: string, title: string, tags: string }[]
 function M.list_slips()
-  return M.parse_slip_lines(vim.fn.systemlist("snote -l"))
+  local lines = vim.fn.systemlist({ "snote", "-l" })
+  if vim.v.shell_error ~= 0 then
+    return {}
+  end
+  return M.parse_slip_lines(lines)
 end
 
 --- Gets the configured slipbox directory path
@@ -175,7 +182,9 @@ M.new_slip = function()
   vim.api.nvim_buf_set_name(bufnr, slip_path)
   vim.api.nvim_set_option_value("buftype", "", { buf = bufnr })
   vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
-  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
+  -- Intentionally NOT bufhidden=wipe: with the global 'hidden' on, an abandoned
+  -- new slip survives in the background (and prompts on quit if modified) rather
+  -- than being silently discarded when you navigate away before the first :w.
   vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
 end
 
