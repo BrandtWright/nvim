@@ -1,5 +1,7 @@
 local M = {}
 
+local toast = require("bw.util.notification")
+
 local state = {
   loaded = false,
   config = {},
@@ -92,10 +94,16 @@ M.get_slip_path = function(slip_id)
   return state.config.slipbox_dir .. "/" .. slip_id .. "/README.md"
 end
 
---- Gets the next available slip ID from the external snote command
----@return string Next slip ID to use for new slips
+--- Gets the next available slip ID from the external snote command.
+--- Returns nil (rather than snote's error text) when snote is missing or fails,
+--- so callers don't treat an error message as a slip ID / filesystem path.
+---@return string|nil slip_id Next slip ID, or nil if snote failed or produced nothing
 M.get_next_slip_id = function()
-  return vim.fn.trim(vim.fn.system({ "snote", "-n" }))
+  local id = vim.fn.trim(vim.fn.system({ "snote", "-n" }))
+  if vim.v.shell_error ~= 0 or id == "" then
+    return nil
+  end
+  return id
 end
 
 --- Extracts related slip IDs from the current buffer's YAML front matter.
@@ -103,7 +111,7 @@ end
 ---@return table List of related slip IDs from the current slip (empty if not a slip)
 M.get_related_slips = function()
   if not M.slip_id_from_path(vim.api.nvim_buf_get_name(0)) then
-    vim.notify("Current buffer is not a slip.", vim.log.levels.WARN, { title = "Slipbox" })
+    toast.warn("Current buffer is not a slip.", "Slipbox")
     return {}
   end
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
@@ -157,6 +165,10 @@ end
 --- Sets up the buffer with proper options and configures it as a markdown file
 M.new_slip = function()
   local slip_id = M.get_next_slip_id()
+  if not slip_id then
+    toast.error("Could not generate a slip ID (is `snote` installed and working?).", "Slipbox")
+    return
+  end
   local slip_path = M.get_slip_path(slip_id)
   vim.cmd("enew")
   local bufnr = vim.api.nvim_get_current_buf()
@@ -172,15 +184,15 @@ end
 ---@param slip_id string The slip identifier to edit
 M.edit_slip = function(slip_id)
   if not slip_id then
-    vim.notify("Invalid argument: slip_id is nil", vim.log.levels.ERROR, { title = "Slipbox" })
+    toast.error("Invalid argument: slip_id is nil", "Slipbox")
     return
   end
   if slip_id == "" then
-    vim.notify("Invalid argument: slip_id is empty", vim.log.levels.ERROR, { title = "Slipbox" })
+    toast.error("Invalid argument: slip_id is empty", "Slipbox")
     return
   end
   if type(slip_id) ~= "string" then
-    vim.notify("Invalid argument: slip_id expected to be a string", vim.log.levels.ERROR, { title = "Slipbox" })
+    toast.error("Invalid argument: slip_id expected to be a string", "Slipbox")
     return
   end
 
@@ -194,11 +206,7 @@ M.edit_slip = function(slip_id)
     vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
     vim.api.nvim_set_option_value("filetype", "markdown", { buf = bufnr })
   else
-    vim.notify(
-      "Slip with ID '" .. slip_id .. "' does not exist.",
-      vim.log.levels.ERROR,
-      { title = "Slipbox", icon = "" }
-    )
+    toast.error("Slip with ID '" .. slip_id .. "' does not exist.", "Slipbox", "")
   end
 end
 
@@ -308,10 +316,9 @@ function M.setup(opts)
     or not vim.uv.fs_stat(opts.slipbox_dir)
     or vim.uv.fs_stat(opts.slipbox_dir).type ~= "directory"
   then
-    vim.notify(
+    toast.error(
       "Slipbox setup requires a valid 'slipbox_dir' option that points to an existing directory.",
-      vim.log.levels.ERROR,
-      { title = "Slipbox" }
+      "Slipbox"
     )
     return
   end
@@ -336,7 +343,7 @@ function M.setup(opts)
       local bufname = vim.api.nvim_buf_get_name(bufnr)
       local slip_id = M.slip_id_from_path(bufname)
       if not slip_id then
-        vim.notify("Invalid slipbox file path.", vim.log.levels.ERROR, { title = "Slipbox" })
+        toast.error("Invalid slipbox file path.", "Slipbox")
         return
       end
 
@@ -348,7 +355,8 @@ function M.setup(opts)
 
       local result = vim.system({ "snote", "-s", slip_id }, { stdin = content }):wait()
       if result.code ~= 0 then
-        vim.notify("Failed to save file: " .. result.stderr, vim.log.levels.ERROR)
+        -- stderr can be nil on some failure paths; guard the concat.
+        toast.error("Failed to save file: " .. (result.stderr or ""), "Slipbox")
         return
       end
 
