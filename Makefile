@@ -6,8 +6,9 @@
 #   make clean-deps                    # remove the cloned test deps
 #
 # The specs need only plenary. It's cloned into the gitignored .tests-deps/ and
-# pinned to a known-good commit for reproducibility (matches lazy-lock.json;
-# bump PLENARY_REF when you intentionally update it).
+# pinned to a known-good commit for reproducibility. Keep PLENARY_REF in sync
+# with the plenary entry in your local (gitignored) lazy-lock.json; bump it when
+# you intentionally update plenary.
 
 DEPS        := .tests-deps
 PLENARY     := $(DEPS)/plenary.nvim

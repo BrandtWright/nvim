@@ -1,5 +1,8 @@
 .neoconf.json
 *.log
+# lazy-lock.json is intentionally NOT committed: plugins are updated from any
+# machine (version = false / always-latest), so committing the lockfile would
+# cause constant merge conflicts. Trade-off: no committed :Lazy restore point.
 lazy-lock.json
 lazyvim.json
 spell/
