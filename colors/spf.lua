@@ -39,12 +39,12 @@ local colors = {
   bright_magenta = load("color13") or "#ddaff4", --  hsl(280 75% 82%)
   bright_orange = load(extended_color_prefix .. "bright_orange") or "#e5bd99", --  hsl(28 60% 75%)
   bright_rose = load(extended_color_prefix .. "bright_rose") or "#f5b8ce", --  hsl(338 75% 84%)
-  bright_gold = load(extended_color_prefix .. "bright_gold") or "#a38e5c",
+  bright_gold = load(extended_color_prefix .. "bright_gold") or "#a38e5c", --  hsl(42 28% 50%)
 
-  dark_green = load(ui_prefix .. "diff_add") or "#1b271e",
-  dark_yellow = load(ui_prefix .. "diff_change") or "#241b00",
-  dark_red = load(ui_prefix .. "diff_delete") or "#2a1313",
-  dark_blue = load(ui_prefix .. "diff_text") or "#0e1423",
+  dark_green = load(ui_prefix .. "diff_add") or "#1b271e", --  hsl(135 18% 13%)
+  dark_yellow = load(ui_prefix .. "diff_change") or "#241b00", --  hsl(45 100% 7%)
+  dark_red = load(ui_prefix .. "diff_delete") or "#2a1313", --  hsl(0 38% 12%)
+  dark_blue = load(ui_prefix .. "diff_text") or "#0e1423", --  hsl(223 43% 10%)
 
   primary_accent_foreground = load(ui_prefix .. "primary_accent_foreground") or "#a8948a", --  hsl(20 15% 60%)
   primary_accent_background = load(ui_prefix .. "primary_accent_background") or "#221c19", --  hsl(20 15% 12%)
