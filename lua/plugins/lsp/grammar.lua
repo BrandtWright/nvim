@@ -27,26 +27,11 @@ return {
   },
   {
     "folke/snacks.nvim",
+    -- Registered in the snacks spec (not config/keymaps.lua) so the Snacks
+    -- global is guaranteed loaded here. The enable/disable logic lives in the
+    -- pure bw.util.grammar builder so it stays unit-testable.
     opts = function()
-      local toggle_config = {
-        id = "grammar_checker",
-        name = "Grammar Checker",
-        get = function()
-          return #vim.lsp.get_clients({ name = "harper_ls", bufnr = 0 }) > 0
-        end,
-        set = function(state)
-          if state then
-            vim.lsp.enable("harper_ls")
-            vim.api.nvim_exec_autocmds("FileType", { buffer = 0, modeline = false })
-          else
-            for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls" })) do
-              client:stop()
-            end
-            vim.lsp.enable("harper_ls", false)
-          end
-        end,
-      }
-      Snacks.toggle.new(toggle_config):map("<leader>uR")
+      Snacks.toggle.new(require("bw.util.grammar").checker_toggle()):map("<leader>uR")
     end,
   },
 }
