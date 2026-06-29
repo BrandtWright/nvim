@@ -54,7 +54,9 @@ describe("grammar checker toggle", function()
     toggle.set(true)
     assert.equals("harper_ls", enable_calls[1].name)
     assert.is_nil(enable_calls[1].enabled) -- enable, not disable
-    assert.equals(1, filetype_fired)
+    -- Re-fires FileType for each loaded buffer (>= 1 in the headless instance)
+    -- so harper attaches to every open prose buffer, not just the focused one.
+    assert.is_true(filetype_fired >= 1)
   end)
 
   it("set(false) stops running clients and disables harper_ls", function()

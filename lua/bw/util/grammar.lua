@@ -17,8 +17,15 @@ M.checker_toggle = function()
     set = function(state)
       if state then
         vim.lsp.enable("harper_ls")
-        -- re-fire FileType so harper_ls attaches to the current buffer now
-        vim.api.nvim_exec_autocmds("FileType", { buffer = 0, modeline = false })
+        -- Re-fire FileType for every loaded buffer so harper_ls attaches to all
+        -- open prose buffers, not just the focused one (vim.lsp.enable only
+        -- registers the config; attachment happens on the FileType event). The
+        -- re-run of other FileType handlers is idempotent setlocal work.
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_is_loaded(buf) then
+            vim.api.nvim_exec_autocmds("FileType", { buffer = buf, modeline = false })
+          end
+        end
       else
         for _, client in ipairs(vim.lsp.get_clients({ name = "harper_ls" })) do
           client:stop()
