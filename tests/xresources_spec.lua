@@ -1,6 +1,6 @@
-local xr = require("bw.util.xresources")
+local xr = require("spf.xresources")
 
-describe("bw.util.xresources.parse", function()
+describe("spf.xresources.parse", function()
   it("parses key:value lines into a table", function()
     local t = xr.parse("URxvt.foreground: #ffffff\nURxvt.background:\t#000000")
     assert.equals("#ffffff", t["URxvt.foreground"])
@@ -36,7 +36,7 @@ describe("bw.util.xresources.parse", function()
   end)
 end)
 
-describe("bw.util.xresources.color", function()
+describe("spf.xresources.color", function()
   local t = {
     ok = "#dba270",
     not_hex = "blue",

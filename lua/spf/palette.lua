@@ -1,6 +1,6 @@
 -- SPF palette: raw colors, sourced from xresources (screen_glasses.*) with
 -- baked-in fallbacks. The single source of hex values for the theme.
-local load = require("bw.util.xresources").load
+local load = require("spf.xresources").load
 local ui_prefix = "screen_glasses.ui."
 local extended_color_prefix = "screen_glasses.extended_colors."
 
