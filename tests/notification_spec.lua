@@ -11,6 +11,7 @@ describe("bw.util.notification", function()
   before_each(function()
     captured = nil
     orig_notify = vim.notify
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.notify = function(msg, level, opts)
       captured = { msg = msg, level = level, opts = opts or {} }
     end

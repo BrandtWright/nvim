@@ -23,12 +23,15 @@ describe("grammar checker toggle", function()
       exec_autocmds = vim.api.nvim_exec_autocmds,
     }
 
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.lsp.get_clients = function()
       return clients
     end
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.lsp.enable = function(name, enabled)
       table.insert(enable_calls, { name = name, enabled = enabled })
     end
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.api.nvim_exec_autocmds = function(event)
       if event == "FileType" then
         filetype_fired = filetype_fired + 1

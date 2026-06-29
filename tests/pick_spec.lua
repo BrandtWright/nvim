@@ -18,6 +18,7 @@ describe("bw.util.pick.with_input", function()
   end)
 
   local function stub_input(value)
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.fn.input = function(...)
       input_args = { ... }
       return value

@@ -12,7 +12,7 @@ describe("diagnostics virtual_text toggle", function()
   -- These tests mutate the global vim.diagnostic config; snapshot the pristine
   -- config now (before any before_each runs) and restore it after each test so
   -- nothing leaks into other specs sharing this headless instance.
-  local orig_config = vim.deepcopy(vim.diagnostic.config())
+  local orig_config = vim.deepcopy(vim.diagnostic.config() or {})
 
   before_each(function()
     toggle = diagnostics.virtual_text_toggle()

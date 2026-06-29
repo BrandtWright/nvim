@@ -119,6 +119,7 @@ describe("slipbox.list_slips", function()
   end)
 
   it("returns an empty list when snote fails, not a record from its error text", function()
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.fn.systemlist = function()
       vim.fn.system({ "false" }) -- drive v:shell_error non-zero like a failed snote
       return { "sh: snote: not found" }
@@ -127,6 +128,7 @@ describe("slipbox.list_slips", function()
   end)
 
   it("parses snote output when the command succeeds", function()
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.fn.systemlist = function()
       vim.fn.system({ "true" }) -- drive v:shell_error to zero
       return { "001\tFirst\ttag1" }
