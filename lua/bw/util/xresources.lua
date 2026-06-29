@@ -16,10 +16,11 @@ M.parse = function(output)
       -- Store the key as-is (preserve all prefixes)
       result[key] = value
 
-      -- Also store without a leading "*." wildcard prefix (a wildcard pattern,
-      -- not a literal application name).
-      if key:match("^%*%.") then
-        result[key:gsub("^%*%.", "")] = value
+      -- Also store without a leading "*" / "*." wildcard prefix (a wildcard
+      -- pattern, not a literal application name). xrdb emits both the dotted
+      -- form ("*.color0") and the bare form ("*color0").
+      if key:match("^%*") then
+        result[key:gsub("^%*%.?", "")] = value
       end
     end
   end

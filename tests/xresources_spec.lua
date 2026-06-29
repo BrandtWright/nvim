@@ -13,6 +13,12 @@ describe("bw.util.xresources.parse", function()
     assert.equals("#1c1c1c", t["color0"]) -- stripped alias
   end)
 
+  it("also stores bare '*' wildcard entries under the stripped key", function()
+    local t = xr.parse("*color0: #1c1c1c")
+    assert.equals("#1c1c1c", t["*color0"]) -- original preserved
+    assert.equals("#1c1c1c", t["color0"]) -- stripped alias
+  end)
+
   it("does not strip non-wildcard keys", function()
     local t = xr.parse("screen_glasses.ui.cursor_line: #1c1c1c")
     assert.equals("#1c1c1c", t["screen_glasses.ui.cursor_line"])
