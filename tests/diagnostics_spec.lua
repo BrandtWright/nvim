@@ -1,35 +1,16 @@
--- Exercises the custom "Diagnostic Virtual Text" toggle defined in
--- lua/plugins/diagnostics.lua. We stub the Snacks global so the spec's opts
--- function runs, capture the toggle config it builds, then drive its get/set
--- against the real vim.diagnostic API.
+-- Exercises the "Diagnostic Virtual Text" toggle builder in
+-- lua/bw/util/diagnostics.lua. The builder is pure (no Snacks/keymap side
+-- effects), so we build the toggle config and drive its get/set straight
+-- against the real vim.diagnostic API -- no Snacks stub, and no coupling to the
+-- plugin spec's ordering.
 
-local function capture_toggle()
-  local captured
-  ---@diagnostic disable-next-line: missing-fields -- intentional partial stub of Snacks
-  _G.Snacks = {
-    toggle = {
-      new = function(cfg)
-        captured = cfg
-        return { map = function() end }
-      end,
-      diagnostics = function()
-        return { map = function() end }
-      end,
-    },
-  }
-  package.loaded["plugins.diagnostics"] = nil
-  local spec = require("plugins.diagnostics")
-  -- spec[1] is the nvim-lspconfig entry (opts is a table); the toggle-building
-  -- function lives on spec[2], the snacks.nvim entry.
-  spec[2].opts()
-  return captured
-end
+local diagnostics = require("bw.util.diagnostics")
 
 describe("diagnostics virtual_text toggle", function()
   local toggle
 
   before_each(function()
-    toggle = capture_toggle()
+    toggle = diagnostics.virtual_text_toggle()
     -- Start from a rich (table) virtual_text config, as LazyVim sets.
     vim.diagnostic.config({ virtual_text = { prefix = "X" } })
   end)
