@@ -133,10 +133,10 @@ local highlights = {
   nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },
   nothing_on_black = { bg = colors.black },
-  nothing_on_daark_green = { bg = colors.dark_green },
-  nothing_on_daark_yellow = { bg = colors.dark_yellow },
-  nothing_on_daark_red = { bg = colors.dark_red },
-  nothing_on_daark_blue = { bg = colors.dark_blue },
+  nothing_on_dark_green = { bg = colors.dark_green },
+  nothing_on_dark_yellow = { bg = colors.dark_yellow },
+  nothing_on_dark_red = { bg = colors.dark_red },
+  nothing_on_dark_blue = { bg = colors.dark_blue },
 }
 
 local links = {
@@ -299,19 +299,19 @@ local links = {
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
-  DiffAdd = "nothing_on_daark_green",
+  DiffAdd = "nothing_on_dark_green",
 
   -- hl-DiffChange
   -- Diff mode: Changed line. |diff.txt|
-  DiffChange = "nothing_on_daark_yellow",
+  DiffChange = "nothing_on_dark_yellow",
 
   -- hl-DiffDelete
   -- Diff mode: Deleted line. |diff.txt|
-  DiffDelete = "nothing_on_daark_red",
+  DiffDelete = "nothing_on_dark_red",
 
   -- hl-DiffText
   -- Diff mode: Changed text within a changed line. |diff.txt|
-  DiffText = "nothing_on_daark_blue",
+  DiffText = "nothing_on_dark_blue",
 
   -- hl-EndOfBuffer
   -- Filler lines (~) after the end of the buffer.
