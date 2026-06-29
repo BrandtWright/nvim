@@ -30,18 +30,18 @@ describe("bw.types.either", function()
     assert.equals("odd", result.error)
   end)
 
-  it("handle_error recovers a Left and ignores a Right", function()
+  it("handle_error folds: recovers a Left, unwraps a Right", function()
     assert.equals(
       "recovered",
       Either.left("e"):handle_error(function()
         return "recovered"
       end)
     )
-    -- On a Right, handler is not called and the Either is returned unchanged.
-    local right = Either.right(1)
+    -- On a Right, the handler is not called and the contained value is returned
+    -- (a terminal fold to a plain value, never an Either).
     assert.equals(
-      right,
-      right:handle_error(function()
+      1,
+      Either.right(1):handle_error(function()
         return "nope"
       end)
     )

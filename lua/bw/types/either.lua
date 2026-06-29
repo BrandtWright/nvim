@@ -48,17 +48,17 @@ function Either:bind(func)
   end
 end
 
---- Recovers from a Left by calling handler(error) and returning its result.
---- On a Right the handler is not called and the Either is returned unchanged,
---- so this is a terminal operation rather than a chainable one.
+--- Recovers from a Left by calling handler(error) and returning its result; on
+--- a Right the handler is not called and the contained value is returned. This
+--- is a terminal fold: it always yields a plain value (never an Either), so the
+--- recovered result can be used directly rather than re-unwrapped.
 ---@param handler fun(error: any): any
----@return any|Either
+---@return any
 function Either:handle_error(handler)
-  if not self.is_right then
-    return handler(self.error)
-  else
-    return self
+  if self.is_right then
+    return self.value
   end
+  return handler(self.error)
 end
 
 return Either
