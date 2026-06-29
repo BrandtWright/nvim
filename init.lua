@@ -28,6 +28,20 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    -- Import topology. `import = "plugins"` pulls in every top-level
+    -- lua/plugins/*.lua, plus the `init.lua` of any *subdirectory* that has one
+    -- -- it does NOT enumerate other loose files inside a subdir. That single
+    -- rule explains the layout convention here:
+    --   * plugins/git/ and plugins/ai/ each have an init.lua, so they are
+    --     auto-imported by the line below. A loose non-spec module like
+    --     plugins/git/api.lua is therefore SAFE to sit beside that init.lua:
+    --     lazy only pulls the subdir's init.lua, so api.lua is never mistaken
+    --     for a plugin spec.
+    --   * plugins/pickers/ and plugins/lang/ are bags of independent specs with
+    --     NO init.lua, so `import = "plugins"` skips them -- hence the two
+    --     explicit imports below. They are required, not redundant.
+    -- Convention: a cohesive feature gets a subdir + init.lua (auto-imported); a
+    -- collection of unrelated specs gets loose files + an explicit import here.
     { import = "plugins" },
     { import = "plugins/pickers" },
     { import = "plugins/lang" },
