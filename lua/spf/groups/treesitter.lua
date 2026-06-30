@@ -87,8 +87,11 @@ return {
   -- method calls -- "calls are italic": method calls italicize like @function.call
   -- (definitions stay plain yellow), so an invocation reads distinctly everywhere.
   ["@function.method.call"] = "yellow_italic",
-  -- constructor calls and definitions
-  ["@constructor"] = {},
+  -- constructor calls and definitions -- the name in `new Foo()` / `Foo {}` is a
+  -- type reference, so follow Type (green) like every other use of that name,
+  -- not nvim's default Special. (No italic: @constructor isn't call-specific --
+  -- it covers definitions too -- so the "calls are italic" rule doesn't apply.)
+  ["@constructor"] = "Type",
   -- symbolic operators (e.g. `+`, `*`)
   ["@operator"] = {},
   -- keywords not fitting into specific categories
