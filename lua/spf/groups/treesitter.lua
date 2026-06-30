@@ -89,9 +89,11 @@ return {
   ["@keyword.coroutine"] = {},
   -- keywords that define a function (e.g. `func` in Go, `def` in Python)
   ["@keyword.function"] = "Keyword",
-  -- operators that are English words (e.g. `and`, `or`) -- boolean connectors
-  -- are the glue of conditionals; magenta (Statement), not the error hue.
-  ["@keyword.operator"] = "Statement",
+  -- operators that are English words (e.g. `and`, `or`, `not`, `in`, `is`) --
+  -- their own category: identifier-shaped operators that need disambiguating from
+  -- variables (unlike self-evident symbolic operators, which stay neutral via
+  -- @operator/Operator = white). rose, a hue used by nothing else.
+  ["@keyword.operator"] = "rose",
   -- keywords for including or exporting modules (e.g. `import`, `from` in Python)
   -- -- declarative, preprocessor-family (blue), distinct from flow control.
   ["@keyword.import"] = "PreProc",
@@ -101,8 +103,9 @@ return {
   -- keywords modifying other constructs (e.g. `const`, `static`, `public`)
   -- -- modifier keywords, keyword/blue (mirrors StorageClass).
   ["@keyword.modifier"] = "Keyword",
-  -- keywords related to loops (e.g. `for`, `while`)
-  ["@keyword.repeat"] = "magenta",
+  -- keywords related to loops (e.g. `for`, `while`) -- flow control; link to the
+  -- Statement anchor (not the raw color) so all control flow recolors in one edit.
+  ["@keyword.repeat"] = "Statement",
   -- keywords like `return` and `yield` -- flow control, magenta (Statement).
   ["@keyword.return"] = "Statement",
   -- keywords related to debugging
@@ -110,8 +113,9 @@ return {
   -- keywords related to exceptions (e.g. `throw`, `catch`) -- flow control,
   -- magenta (Statement), not the error hue (mirrors Exception).
   ["@keyword.exception"] = "Statement",
-  -- keywords related to conditionals (e.g. `if`, `else`)
-  ["@keyword.conditional"] = "magenta",
+  -- keywords related to conditionals (e.g. `if`, `else`) -- flow control; link to
+  -- the Statement anchor (not the raw color) so all control flow recolors at once.
+  ["@keyword.conditional"] = "Statement",
   -- ternary operator (e.g. `?`, `:`)
   ["@keyword.conditional.ternary"] = {},
   -- various preprocessor directives and shebangs
