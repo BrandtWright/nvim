@@ -189,10 +189,12 @@ return {
   ["@markup.raw.block"] = {},
   -- list markers
   ["@markup.list"] = {},
-  -- checked todo-style list markers
-  ["@markup.list.checked"] = "green",
-  -- unchecked todo-style list markers
-  ["@markup.list.unchecked"] = "red",
+  -- checked todo-style list markers -- a checkbox is a status indicator; "done"
+  -- anchors on DiagnosticOk (green), like success/added (item 12).
+  ["@markup.list.checked"] = "DiagnosticOk",
+  -- unchecked todo-style list markers -- "to-do" anchors on DiagnosticHint
+  -- (magenta), the same status as a `TODO` (item 5), not red (= error).
+  ["@markup.list.unchecked"] = "DiagnosticHint",
   -- added text (for diff files)
   ["@diff.plus"] = {},
   -- deleted text (for diff files)
