@@ -47,8 +47,34 @@ return {
             },
           },
         },
+        -- Checkboxes are status indicators: each state maps to a diagnostic
+        -- status color (the status palette lives in spf -- DiagnosticOk/Hint/
+        -- Info/Warn/Error -- so the colorscheme stays the source of truth; this
+        -- only assigns each STATE to a STATUS). Treesitter natively distinguishes
+        -- only checked/unchecked (anchored in spf, item 12); the extended states
+        -- below are render-markdown custom states. See colors.md item 13.
+        --
+        -- Icons are nerd-font glyphs -- adjust to taste / your font; the colors,
+        -- not the glyphs, carry the semantics.
         checkbox = {
           enabled = true,
+          -- done -> DiagnosticOk (green); to-do -> DiagnosticHint (magenta).
+          -- Follow the treesitter groups so spf remains the single source.
+          unchecked = { highlight = "@markup.list.unchecked" },
+          checked = { highlight = "@markup.list.checked" },
+          custom = {
+            -- `todo` is render-markdown's built-in key for `[-]`; repurpose it as
+            -- "cancelled" (Obsidian convention): gray marker + struck-through text.
+            todo = { raw = "[-]", rendered = " ", highlight = "Comment", scope_highlight = "DiagnosticDeprecated" },
+            -- in progress -> Info (blue)
+            in_progress = { raw = "[/]", rendered = " ", highlight = "DiagnosticInfo" },
+            -- deferred / waiting -> Warn (yellow)
+            waiting = { raw = "[>]", rendered = " ", highlight = "DiagnosticWarn" },
+            -- important / urgent -> Error (red)
+            important = { raw = "[!]", rendered = " ", highlight = "DiagnosticError" },
+            -- question / uncertain -> Hint (magenta), the open/unresolved family
+            question = { raw = "[?]", rendered = " ", highlight = "DiagnosticHint" },
+          },
         },
         overrides = {
           -- With code.width = "block", render-markdown masks the area beside a code
