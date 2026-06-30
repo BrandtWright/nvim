@@ -12,4 +12,10 @@ ignores:
   - ".lua/**" # local Lua install tree (CI tooling)
   - ".luarocks/**" # local LuaRocks tree (CI tooling)
 
-# No rule overrides: CLAUDE.md and README.md pass markdownlint's defaults.
+# Rule overrides.
+config:
+  # MD013 (line-length): keep the 80-column limit for prose, but exempt tables.
+  # Reference tables (e.g. role/anchor/color maps) often have no sane way to wrap
+  # a row, and folding them hurts readability more than a long line does.
+  MD013:
+    tables: false
