@@ -183,8 +183,9 @@ return {
   LineNrBelow = {},
 
   -- hl-ErrorMsg
-  -- Error messages on the command line.
-  ErrorMsg = "red",
+  -- Error messages on the command line. Follows the diagnostic error role so
+  -- the "error" color lives in one place (same hue today; single-source recolor).
+  ErrorMsg = "DiagnosticError",
 
   -- hl-ModeMsg
   -- 'showmode' message (e.g., "-- INSERT --").
@@ -207,8 +208,8 @@ return {
   MoreMsg = {},
 
   -- hl-WarningMsg
-  -- Warning messages.
-  WarningMsg = "yellow",
+  -- Warning messages. Follows the diagnostic warn role (see ErrorMsg).
+  WarningMsg = "DiagnosticWarn",
 
   -- hl-SpellBad
   -- Word that is not recognized by the spellchecker. |spell|
