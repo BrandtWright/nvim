@@ -3,8 +3,10 @@ return {
   -- various variable names -- the identifier family (this, @variable.member,
   -- @property) all link to Identifier so there's one source of truth.
   ["@variable"] = "Identifier",
-  -- built-in variable names (e.g. `this`, `self`)
-  ["@variable.builtin"] = {},
+  -- built-in variable names (e.g. `this`, `self`) -- a builtin is still a
+  -- variable; follow the Identifier category rather than nvim's default Special
+  -- (gold). See the "builtins follow their category" rule.
+  ["@variable.builtin"] = "Identifier",
   -- parameters of a function -- italic, so a "passed in" variable is instantly
   -- distinguishable from a local (white). Same base color, just slanted; mirrors
   -- @lsp.type.parameter so TS-only and LSP buffers render the same.
@@ -16,16 +18,18 @@ return {
   ["@variable.member"] = "Identifier",
   -- constant identifiers
   ["@constant"] = "Constant",
-  -- built-in constant values
-  ["@constant.builtin"] = {},
+  -- built-in constant values (e.g. `nil`/`None`/`null`) -- a literal; follow
+  -- Constant (bright_cyan) like @boolean/@number, not nvim's default Special.
+  ["@constant.builtin"] = "Constant",
   -- constants defined by the preprocessor
   ["@constant.macro"] = {},
   -- modules or namespaces -- a scope/container is type-adjacent but distinct;
   -- bright_green (rehomed from the old struct-keyword role). Decoupled from the
   -- @module -> Structure default link; propagates to @lsp.type.namespace.
   ["@module"] = "bright_green",
-  -- built-in modules or namespaces
-  ["@module.builtin"] = {},
+  -- built-in modules or namespaces -- follow the namespace category; anchor to
+  -- the @module capture (no legacy "Module" group) so both track bright_green.
+  ["@module.builtin"] = "@module",
   -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
   ["@label"] = {},
   -- string literals
@@ -56,29 +60,33 @@ return {
   ["@number.float"] = {},
   -- type or class definitions and annotations
   ["@type"] = {},
-  -- built-in types
-  ["@type.builtin"] = {},
+  -- built-in types (e.g. `int`/`bool`/`str`) -- a type is a type; follow Type
+  -- (green) so "type names are green" holds, not nvim's default Special.
+  ["@type.builtin"] = "Type",
   -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
   ["@type.definition"] = {},
   -- attribute annotations (e.g. Python decorators, Rust lifetimes)
   ["@attribute"] = {},
-  -- builtin annotations (e.g. `@property` in Python)
-  ["@attribute.builtin"] = {},
+  -- builtin annotations (e.g. `@property` in Python) -- follow the attribute
+  -- category; anchor to @attribute (no legacy group) instead of nvim's Special.
+  ["@attribute.builtin"] = "@attribute",
   -- the key in key/value pairs -- a field is an identifier, not a type; keeps
   -- green meaning "types" (unified with @variable.member).
   ["@property"] = "Identifier",
   -- function definitions
   ["@function"] = {},
-  -- built-in functions
-  ["@function.builtin"] = {},
+  -- built-in functions (e.g. `print`/`len`) -- a function is a function; follow
+  -- Function (yellow), not nvim's default Special.
+  ["@function.builtin"] = "Function",
   -- function calls
   ["@function.call"] = "yellow_italic",
   -- preprocessor macros
   ["@function.macro"] = {},
   -- method definitions
   ["@function.method"] = {},
-  -- method calls
-  ["@function.method.call"] = {},
+  -- method calls -- "calls are italic": method calls italicize like @function.call
+  -- (definitions stay plain yellow), so an invocation reads distinctly everywhere.
+  ["@function.method.call"] = "yellow_italic",
   -- constructor calls and definitions
   ["@constructor"] = {},
   -- symbolic operators (e.g. `+`, `*`)
@@ -190,8 +198,9 @@ return {
   ["@diff.delta"] = {},
   -- XML-style tag names (e.g. in XML, HTML, etc.)
   ["@tag"] = {},
-  -- builtin tag names (e.g. HTML5 tags)
-  ["@tag.builtin"] = {},
+  -- builtin tag names (e.g. HTML5 tags like `<div>`) -- follow the tag category
+  -- (Tag = cyan) so builtin and custom tags match, not nvim's default Special.
+  ["@tag.builtin"] = "Tag",
   -- XML-style tag attributes
   ["@tag.attribute"] = {},
   -- XML-style tag delimiters
