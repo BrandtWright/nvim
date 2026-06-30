@@ -35,7 +35,6 @@ return {
       end)
 
       local my_opts = {
-        math = { enabled = true },
         code = {
           right_pad = 2,
           left_pad = 2,
@@ -62,18 +61,22 @@ return {
           -- Follow the treesitter groups so spf remains the single source.
           unchecked = { highlight = "@markup.list.unchecked" },
           checked = { highlight = "@markup.list.checked" },
+          -- Icons are Font Awesome basics written as \u{} escapes (the literal
+          -- glyphs got mangled to spaces once already). Present in any nerd font;
+          -- swap to taste. The status COLOR carries the meaning, not the glyph.
           custom = {
             -- `todo` is render-markdown's built-in key for `[-]`; repurpose it as
             -- "cancelled" (Obsidian convention): gray marker + struck-through text.
-            todo = { raw = "[-]", rendered = " ", highlight = "Comment", scope_highlight = "DiagnosticDeprecated" },
-            -- in progress -> Info (blue)
-            in_progress = { raw = "[/]", rendered = " ", highlight = "DiagnosticInfo" },
-            -- deferred / waiting -> Warn (yellow)
-            waiting = { raw = "[>]", rendered = " ", highlight = "DiagnosticWarn" },
-            -- important / urgent -> Error (red)
-            important = { raw = "[!]", rendered = " ", highlight = "DiagnosticError" },
-            -- question / uncertain -> Hint (magenta), the open/unresolved family
-            question = { raw = "[?]", rendered = " ", highlight = "DiagnosticHint" },
+            -- \u{f00d} = times (✗)
+            todo = { raw = "[-]", rendered = "\u{f00d} ", highlight = "Comment", scope_highlight = "DiagnosticDeprecated" },
+            -- in progress -> Info (blue). \u{f254} = hourglass
+            in_progress = { raw = "[/]", rendered = "\u{f254} ", highlight = "DiagnosticInfo" },
+            -- deferred / waiting -> Warn (yellow). \u{f017} = clock
+            waiting = { raw = "[>]", rendered = "\u{f017} ", highlight = "DiagnosticWarn" },
+            -- important / urgent -> Error (red). \u{f071} = warning triangle
+            important = { raw = "[!]", rendered = "\u{f071} ", highlight = "DiagnosticError" },
+            -- question / uncertain -> Hint (magenta). \u{f059} = question circle
+            question = { raw = "[?]", rendered = "\u{f059} ", highlight = "DiagnosticHint" },
           },
         },
         overrides = {
