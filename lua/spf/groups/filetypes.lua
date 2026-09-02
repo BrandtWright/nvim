@@ -16,7 +16,7 @@ return {
   ["@markup.heading.4.markdown"] = "markdownH4",
   ["@markup.heading.5.markdown"] = "markdownH5",
   ["@markup.heading.6.markdown"] = "markdownH6",
-  markdownCode = "nothing_on_cursorline",
+  markdownCode = "current_line",
   markdownCodeBlock = "markdownCode",
   markdownCodeDelimiter = {},
   markdownBlockquote = {},

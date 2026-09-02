@@ -33,12 +33,15 @@ return {
   dark_red = load(ui_prefix .. "diff_delete") or "#2a1313", --  hsl(0 38% 12%)
   dark_blue = load(ui_prefix .. "diff_text") or "#0e1423", --  hsl(223 43% 10%)
 
-  primary_accent_foreground = load(ui_prefix .. "primary_accent_foreground") or "#a8948a", --  hsl(20 15% 60%)
-  primary_accent_background = load(ui_prefix .. "primary_accent_background") or "#221c19", --  hsl(20 15% 12%)
-  secondary_accent_foreground = load(ui_prefix .. "secondary_accent_foreground") or "#a8948a", --  hsl(20 15% 60%)
-  secondary_accent_background = load(ui_prefix .. "secondary_accent_background") or "#382e29", --  hsl(20 15% 19%)
-  tertiary_accent_foreground = load(ui_prefix .. "tertiary_accent_foreground") or "#221c19", --  hsl(20 15% 12%)
-  tertiary_accent_background = load(ui_prefix .. "tertiary_accent_background") or "#a8948a", --  hsl(20 15% 60%)
-  cursorline = load(ui_prefix .. "cursor_line") or "#221c19", --  hsl(20 15% 12%)
-  visual_selection = load(ui_prefix .. "visual_selection") or "#333333", --  hsl(0 0% 20%)
+  -- Chrome system (see colors.md "UI"): one dark warm surface plus the chrome
+  -- foreground. Surfaces never stack (a float sits over a buffer, not over the
+  -- statusline), so a single dark rung serves all chrome; depth is read from the
+  -- border, not brightness. Focus (active vs inactive) is a foreground-strength
+  -- change, so active and inactive chrome share that one surface.
+  chrome_fg = load(ui_prefix .. "chrome_fg") or "#a8948a", -- hsl(20 15% 60%)
+  surface = load(ui_prefix .. "surface") or "#221c19", -- hsl(20 15% 12%) dark warm surface: chrome bands + list backgrounds
+  surface_border = load(ui_prefix .. "surface_border") or "#473b34", -- hsl(22 15% 24%) quiet warm float/popup border
+  textbox_bg = load(ui_prefix .. "textbox_bg") or "#382e29", -- hsl(20 15% 19%) textbox field well, clearly lifted above surface
+  cursorline = load(ui_prefix .. "cursor_line") or "#221c19", -- hsl(20 15% 12%) faint current-line lift, blends with Normal
+  visual_selection = load(ui_prefix .. "visual_selection") or "#3a3a3a", -- hsl(0 0% 23%) neutral-gray emphasis, lifted for selected-item contrast
 }

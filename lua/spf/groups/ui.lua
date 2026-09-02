@@ -22,20 +22,25 @@ return {
   Title = "bold",
 
   -- hl-NormalFloat
-  -- Normal text in floating windows.
+  -- Normal text in floating windows. Content plane: a float is just a container,
+  -- and the dominant floats here render *content* (picker previews, terminals)
+  -- that must read as a buffer -- i.e. a `view`. A surface bg is reserved for
+  -- `list` controls (Pmenu), which never hold content. The border delineates the
+  -- float.
   NormalFloat = "Normal",
 
   -- hl-FloatBorder
-  -- Border of floating windows.
-  FloatBorder = "bright_black",
+  -- Border of floating windows. A quiet warm edge -- the depth cue for floats,
+  -- since the surface itself is dark and close to content.
+  FloatBorder = "border",
 
   -- hl-FloatTitle
-  -- Title of floating windows.
-  FloatTitle = "Normal",
+  -- Title of floating windows. Sits on the float's content plane.
+  FloatTitle = "NormalFloat",
 
   -- hl-FloatFooter
-  -- Footer of floating windows.
-  FloatFooter = "Normal",
+  -- Footer of floating windows. Sits on the float's content plane.
+  FloatFooter = "NormalFloat",
 
   -- hl-TabLine
   -- Tab pages line, not active tab page label.
@@ -46,8 +51,9 @@ return {
   TabLineFill = "WinBarNC",
 
   -- hl-TabLineSel
-  -- Tab pages line, active tab page label.
-  TabLineSel = "Normal",
+  -- Tab pages line, active tab page label. Active focus on the chrome surface
+  -- (TabLine/TabLineFill follow WinBarNC = inactive focus).
+  TabLineSel = "chrome_active",
 
   -- hl-DiffAdd
   -- Diff mode: Added line. |diff.txt|
@@ -75,20 +81,21 @@ return {
   WinSeparator = "Comment",
 
   -- |hl-Folded|
-  -- Line used for closed folds.
-  Folded = "primary_accent",
+  -- Line used for closed folds. A fold is collapsed *content*, not window
+  -- furniture -- so it recedes (dim fg) rather than wearing a chrome surface.
+  Folded = "recede",
 
   -- hl-FoldColumn
   -- 'foldcolumn'
   FoldColumn = {},
 
   -- hl-ColorColumn
-  -- Used for the columns set with 'colorcolumn'.
-  ColorColumn = "nothing_on_cursorline",
+  -- Used for the columns set with 'colorcolumn'. Shares the current-line lift.
+  ColorColumn = "current_line",
 
   -- hl-Cursor
-  -- Character under the cursor.
-  Cursor = "tertiary_accent",
+  -- Character under the cursor. Emphasis (strong): an inverted block.
+  Cursor = "cursor_block",
 
   -- hl-lCursor
   -- Character under the cursor when |language-mapping|
@@ -106,7 +113,9 @@ return {
   -- hl-CursorLine
   -- Screen-line at the cursor, when 'cursorline' is set.
   -- Low-priority if foreground (ctermfg OR guifg) is not set.
-  CursorLine = "nothing_on_cursorline",
+  -- The current content line: a faint warm lift of Normal (its own concept,
+  -- not the gray emphasis family) so it stays easy on the eyes.
+  CursorLine = "current_line",
 
   -- hl-CursorLineNr
   -- Like LineNr when 'cursorline' is set and 'cursorlineopt'
@@ -126,12 +135,13 @@ return {
   TermCursor = {},
 
   -- hl-Pmenu
-  -- Popup menu: Normal item.
-  Pmenu = "nothing_on_black",
+  -- Popup menu: Normal item. The completion menu is a `list` control (its
+  -- selected item is PmenuSel -> selection).
+  Pmenu = "list",
 
   -- hl-PmenuSel
-  -- Popup menu: Selected item. Combined with |hl-Pmenu|.
-  PmenuSel = "nothing_on_visual",
+  -- Popup menu: Selected item. Combined with |hl-Pmenu|. Emphasis: selection.
+  PmenuSel = "selection",
 
   -- hl-PmenuSbar
   -- Popup menu: Scrollbar.
@@ -170,7 +180,7 @@ return {
   -- hl-LineNr
   -- Line number for ":number" and ":#" commands, and when 'number'
   -- or 'relativenumber' option is set.
-  LineNr = "bright_black",
+  LineNr = "recede",
 
   -- hl-LineNrAbove
   -- Line number for when the 'relativenumber'
@@ -188,8 +198,9 @@ return {
   ErrorMsg = "DiagnosticError",
 
   -- hl-ModeMsg
-  -- 'showmode' message (e.g., "-- INSERT --").
-  ModeMsg = {},
+  -- 'showmode' message (e.g., "-- INSERT --"). A quiet, persistent indicator;
+  -- recedes. (Was {} -> leaked Neovim's off-palette green.)
+  ModeMsg = "recede",
 
   -- hl-MsgArea
   -- Area for messages and command-line, see also 'cmdheight'.
@@ -200,12 +211,13 @@ return {
   MsgSeparator = {},
 
   -- hl-Question
-  -- |hit-enter| prompt and yes/no questions.
-  Question = {},
+  -- |hit-enter| prompt and yes/no questions. Needs to be read -> content fg.
+  -- (Was {} -> leaked Neovim's off-palette cyan.)
+  Question = "white",
 
   -- hl-MoreMsg
-  -- |more-prompt|
-  MoreMsg = {},
+  -- |more-prompt|. Transient prompt; recedes. (Was {} -> off-palette cyan.)
+  MoreMsg = "recede",
 
   -- hl-WarningMsg
   -- Warning messages. Follows the diagnostic warn role (see ErrorMsg).
@@ -234,16 +246,17 @@ return {
   SpellRare = {},
 
   -- hl-StatusLine
-  -- Status line of current window.
-  StatusLine = "primary_accent",
+  -- Status line of current window. Chrome surface: raised elevation + active
+  -- focus. Focus is foreground strength, so inactive shares the same bg.
+  StatusLine = "chrome_active",
 
   -- hl-StatusLineNC
-  -- Status lines of not-current windows.
-  StatusLineNC = "secondary_accent",
+  -- Status lines of not-current windows. Same raised surface, muted (inactive) fg.
+  StatusLineNC = "chrome_inactive",
 
   -- hl-StatusLineTerm
   -- Status line of |terminal| window.
-  StatusLineTerm = "tertiary_accent",
+  StatusLineTerm = "chrome_active",
 
   -- *hl-StatusLineTermNC
   -- Status line of non-current |terminal| windows.
@@ -251,24 +264,24 @@ return {
 
   -- hl-QuickFixLine
   -- Current |quickfix| item in the quickfix window. Combined with
-  -- |hl-CursorLine| when the cursor is there.
-  QuickFixLine = "bold",
+  -- |hl-CursorLine| when the cursor is there. Emphasis: selection.
+  QuickFixLine = "selection",
 
   -- hl-SignColumn
   -- Column where |signs| are displayed.
   SignColumn = "Normal",
 
   -- hl-WildMenu
-  -- Current match in 'wildmenu' completion.
-  WildMenu = {},
+  -- Current match in 'wildmenu' completion. Emphasis: selection.
+  WildMenu = "selection",
 
   -- hl-WinBar
-  -- Window bar of current window.
-  WinBar = "primary_accent",
+  -- Window bar of current window. Chrome surface, active focus (see StatusLine).
+  WinBar = "chrome_active",
 
   -- hl-WinBarNC
-  -- Window bar of not-current windows.
-  WinBarNC = "secondary_accent",
+  -- Window bar of not-current windows. Same surface, inactive focus.
+  WinBarNC = "chrome_inactive",
 
   -- hl-ComplMatchIns
   -- Matched text of the currently inserted completion.
@@ -279,8 +292,9 @@ return {
   SnippetTabstop = {},
 
   -- hl-Conceal
-  -- Placeholder characters substituted for concealed
-  Conceal = {},
+  -- Placeholder characters substituted for concealed text. Meta -> recedes.
+  -- (Was {} -> leaked an off-palette gray.)
+  Conceal = "recede",
 
   -- hl-Directory
   -- Directory names (and other special names in listings).
@@ -300,7 +314,7 @@ return {
   -- and other characters that do not really exist in the text
   -- (e.g., ">" displayed when a double-wide character doesn't
   -- fit at the end of the line). See also |hl-EndOfBuffer|.
-  NonText = "bright_black",
+  NonText = "recede",
 
   -- hl-Normal
   -- Normal text.
@@ -316,8 +330,8 @@ return {
   SpecialKey = {},
 
   -- hl-Visual
-  -- Visual mode selection.
-  Visual = "nothing_on_visual",
+  -- Visual mode selection. Emphasis: selection (the canonical "selected" look).
+  Visual = "selection",
 
   -- hl-VisualNOS
   -- Visual mode selection when vim is "Not Owning the Selection".

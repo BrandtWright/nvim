@@ -55,27 +55,48 @@ return {
   rose = { fg = colors.rose },
   bright_gold = { fg = colors.bright_gold },
 
-  -- Folded, WinBar
-  primary_accent = {
-    fg = colors.primary_accent_foreground,
-    bg = colors.primary_accent_background,
-  },
+  -- UI chrome system (see colors.md "UI"). Built from orthogonal axes:
+  --   surface    one dark warm bg for all chrome (depth read from the border)
+  --   focus      foreground strength (chrome_active vs chrome_inactive)
+  --   emphasis   neutral-gray background for current/selected (selection)
+  --   recede     one dim foreground (bright_black) for meta/structural text
+  -- current_line is its own faint warm lift, deliberately kept out of the gray
+  -- emphasis family so it blends with Normal.
 
-  -- WinbarNC
-  secondary_accent = {
-    fg = colors.secondary_accent_foreground,
-    bg = colors.secondary_accent_background,
-  },
+  -- surface x focus: window chrome (statusline, winbar, tabline)
+  chrome_active = { fg = colors.chrome_fg, bg = colors.surface },
+  chrome_inactive = { fg = colors.bright_black, bg = colors.surface },
+  -- emphasis: current/selected items -- neutral gray reads over any surface
+  selection = { bg = colors.visual_selection },
+  -- emphasis (strong): inverted block for the cursor
+  cursor_block = { fg = colors.black, bg = colors.chrome_fg },
+  -- structure: the current content line -- faint warm lift, blends with Normal
+  current_line = { bg = colors.cursorline },
+  -- recede: dim editor furniture & messages (line numbers, folds, non-text). A UI
+  -- concept, not a color -- it borrows `bright_black` for now (see `ghost`).
+  recede = { fg = colors.bright_black },
 
-  --= None
-  tertiary_accent = {
-    fg = colors.tertiary_accent_foreground,
-    bg = colors.tertiary_accent_background,
-  },
-
-  nothing_on_visual = { bg = colors.visual_selection },
-  nothing_on_cursorline = { bg = colors.cursorline },
-  nothing_on_black = { bg = colors.black },
+  -- Composite UI concepts (see colors.md "Panels & controls"). Application-
+  -- agnostic: a panel hosts controls. spf is one realization; the same concepts
+  -- drive tmux/xmobar/dmenu from the shared xresources tones.
+  --   panel    framed container/bar -- its frame band + title fg
+  --   textbox  editable text input -- content-bright fg on its own field bg
+  --   list     selectable item list -- normal items; selected item -> selection
+  --   view     embedded content buffer -> the content plane (Normal); no primitive
+  panel = { fg = colors.white, bg = colors.surface_border },
+  textbox = { fg = colors.white, bg = colors.textbox_bg },
+  list = { fg = colors.white, bg = colors.surface },
+  -- a panel edge drawn as a line (FloatBorder) rather than a solid band
+  border = { fg = colors.surface_border },
+  -- Text on a control has two neutral prominence levels:
+  --   label  the legible default fg (titles, the value, item names) -- just the
+  --          surface's own fg, no role of its own
+  --   ghost  muted secondary text (counts, placeholders, metadata, descriptions)
+  -- `ghost` is a UI *concept*, not a color: it borrows `bright_black` today (free,
+  -- at hand) but is named so it stays decoupled from syntax -- `Comment` is also
+  -- bright_black, yet that's coincidence, not coupling. UI groups link to `ghost`,
+  -- never the raw tone, so the two domains can diverge later.
+  ghost = { fg = colors.bright_black },
   nothing_on_dark_green = { bg = colors.dark_green },
   nothing_on_dark_yellow = { bg = colors.dark_yellow },
   nothing_on_dark_red = { bg = colors.dark_red },
