@@ -354,6 +354,15 @@ noted only where they explain the choice.
     surface; `FloatBorder` moved off the harsh `bright_black` (40% L) to a quiet
     warm `surface_border` (`#473b34`). Picker frame/preview separation now leans
     on the border, matching how the snacks frame opts into `overlay`.
+    - **Open reconsideration (TBD — gradient):** collapsing the ramp removed the
+      *gradient concept* entirely, but the lualine statusline is a real case
+      where a graded A/B/C bar is legitimately useful and now reads flat. This
+      reopens #20's premise — "surfaces never stack" holds for floats, yet a
+      *bar* can want graded segments within one surface. Undecided whether to
+      (a) treat lualine as a one-off plugin-layer gradient, or (b) promote
+      "gradient" to a first-class, bounded UI concept (other UI may want it too).
+      Noted, not decided — the earlier "restore the gradient" call is withdrawn
+      back to open.
 21. **Input is its own role, not a surface.** An editable field (picker query,
     `vim.ui.input`) is *interactive* chrome, distinct from *display* surfaces:
     `input` = content-bright fg (`white`) on its own field bg (`input_bg`

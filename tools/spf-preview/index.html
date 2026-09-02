@@ -450,8 +450,8 @@ function renderStatusline(){
       <div style="flex:1;background:${c.bg}"></div>${seg(b,' lua ')}${seg(a,' 24:8 ')}</div></div>`;
   const same = a.bg===c.bg && a.bg===b.bg;
   $('#statusline-note').innerHTML = same
-    ? `<b>All three tiers share one background</b> (${a.bg}) — decisions #15 (focus = foreground) + #20 (collapsed elevation) removed the old primary/secondary/tertiary ramp, so lualine's A/B/C gradient flattened. <b>Decided:</b> restore the gradient at the plugin layer (statusline.lua). <b>Not yet implemented.</b>`
-    : `Tiers now differ: A ${a.bg} · B ${b.bg} · C ${c.bg} — gradient restored.`;
+    ? `<b>All three tiers share one background</b> (${a.bg}) — decisions #15 (focus = foreground) + #20 (collapsed elevation) removed the old primary/secondary/tertiary ramp, so lualine's A/B/C gradient flattened. <b>Open / TBD:</b> a statusline is a legitimate case <i>for</i> a gradient — restoring one reopens the concept #20 removed. Undecided: treat lualine as a one-off plugin-layer gradient, or promote "gradient" to a first-class UI concept. See "Where more clarity is needed" below.`
+    : `Tiers now differ: A ${a.bg} · B ${b.bg} · C ${c.bg}.`;
 }
 function renderPicker(){
   const panel=R('panel'), tb=R('textbox'), list=R('list'), sel=R('selection'), ghost=R('ghost'), norm=R('Normal');
@@ -572,8 +572,8 @@ function renderDocs(){
 /* ---------- status board + clarity ---------- */
 const BOARD = {
   done: ['Palette recast to semantic keys','Primitives = concept layer','UI groups bind to concepts','Elevation collapsed to two planes','Picker speaks the vocabulary','Messages follow diagnostics','Ghost decoupled from syntax Comment'],
-  wip: ['Surfaces × roles grid (designed, not coded)','selection → selected rename','current-line as content-only state','Restore lualine gradient (decided)','Per-surface override via xresources chains'],
-  open: ['State name: selected vs current','Default ghost tone (#9a8578?)','Statusline-as-panel reconcile','xresources keys → concept names','Search / Spell treatment'],
+  wip: ['Surfaces × roles grid (designed, not coded)','selection → selected rename','current-line as content-only state','Per-surface override via xresources chains'],
+  open: ['Gradient concept: removed in #20, but lualine wants one — TBD','State name: selected vs current','Default ghost tone (#9a8578?)','Statusline-as-panel reconcile','xresources keys → concept names','Search / Spell treatment'],
 };
 function renderBoard(){
   const cols=[['done','Implemented'],['wip','Designed / decided'],['open','Open questions']];
@@ -582,7 +582,7 @@ function renderBoard(){
 const CLARITY = [
   ['Ghost contrast','#756157 fails WCAG on most surfaces (down to 1.85:1 on the panel band). A default of #9a8578 clears 3:1 everywhere. Fix is part of the grid work.'],
   ['selection vs current-line','On a buffer, cursor ≠ selection (two stacking states); on a list they collapse to one. The rename to `selected` + `current-line` split isn\'t in code yet.'],
-  ['Statusline is a panel','lualine A/B/C flattened when the chrome ramp collapsed. A statusline is a panel too — does it get its own tier surfaces, or reuse chrome_*? Decided: restore at plugin layer; still pending.'],
+  ['Gradient — a removed concept worth revisiting','Decision #20 removed the primary/secondary/tertiary background ramp entirely (surfaces never stack → depth from the border). But lualine\'s A/B/C tiers legitimately want a gradient, and other UI may too. Open question: was removing the gradient concept wholesale the wrong call? Options: (a) keep it removed, treat lualine as a one-off plugin-layer gradient; (b) reintroduce "gradient" as a first-class, bounded UI concept. TBD — noted, not decided.'],
   ['Per-surface overrides','The grid says role-default + per-surface override via xresources fallback chains. No override keys exist yet — all surfaces share one ghost/label today.'],
   ['Search / Spell','Deliberately unsettled: Search/IncSearch/CurSearch chromatic colors unchosen; SpellBad underline vs colored variants undecided.'],
 ];
