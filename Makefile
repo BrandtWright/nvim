@@ -25,7 +25,14 @@ INIT        := tests/minimal_init.lua
 FILE        ?=
 LUALS       ?=
 
-.PHONY: test deps clean-deps lint-types
+.PHONY: test deps clean-deps lint-types preview
+
+# Live visual preview of the spf UI/color design system. Serves a page whose
+# colors are resolved by running the real theme under headless nvim, refreshed
+# whenever a lua/spf/** source changes. See tools/spf-preview/README.md.
+PORT ?= 8765
+preview:
+	@python3 tools/spf-preview/serve.py $(PORT)
 
 test: deps
 ifeq ($(strip $(FILE)),)

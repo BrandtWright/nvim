@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>spf — UI/color design system</title>
+<style>
+  :root {
+    --bg: #1a1614; --fg: #ebdbb2; --dim: #756157; --surface: #221c19;
+    --border: #473b34; --panel: #382e29; --accent: #dba270; --blue: #899fd2;
+    --green: #7b9d80; --red: #c88484; --radius: 10px;
+    --mono: ui-monospace, "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--sans); line-height: 1.5; font-size: 15px;
+  }
+  a { color: var(--accent); }
+  code, .mono { font-family: var(--mono); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px 120px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  header.top .inner {
+    max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  header.top h1 { font-size: 16px; margin: 0; letter-spacing: .3px; }
+  header.top h1 .tag { color: var(--dim); font-weight: 400; }
+  nav.sections { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+  nav.sections a {
+    font-size: 12.5px; color: var(--fg); text-decoration: none; opacity: .7;
+    padding: 4px 9px; border-radius: 6px; border: 1px solid transparent;
+  }
+  nav.sections a:hover { opacity: 1; border-color: var(--border); background: var(--surface); }
+  .live { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--dim); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .dot.stale { background: var(--red); box-shadow: 0 0 8px var(--red); }
+
+  .hero { padding: 40px 0 8px; }
+  .hero h2 { font-size: 30px; margin: 0 0 8px; line-height: 1.2; }
+  .hero p { max-width: 760px; color: color-mix(in srgb, var(--fg) 82%, transparent); margin: 8px 0; }
+  .pill { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 999px;
+          border: 1px solid var(--border); background: var(--surface); color: var(--dim); }
+
+  section { margin-top: 54px; scroll-margin-top: 68px; }
+  section > h3 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 1.4px;
+    color: var(--accent); margin: 0 0 4px;
+  }
+  section > .lead { color: var(--dim); margin: 0 0 20px; max-width: 780px; font-size: 14px; }
+  h4.sub { font-size: 15px; margin: 26px 0 12px; color: var(--fg);
+           border-left: 3px solid var(--border); padding-left: 10px; }
+
+  .grid { display: grid; gap: 12px; }
+  .cards-4 { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .cards-6 { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+  /* swatch card */
+  .sw { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .sw .chip { height: 62px; display: flex; align-items: flex-end; justify-content: flex-end; padding: 6px; }
+  .sw .meta { padding: 8px 10px; }
+  .sw .name { font-family: var(--mono); font-size: 12.5px; font-weight: 600; word-break: break-all; }
+  .sw .hex { font-family: var(--mono); font-size: 11px; color: var(--dim); text-transform: uppercase; }
+  .sw .hsl { font-family: var(--mono); font-size: 10.5px; color: color-mix(in srgb, var(--dim) 80%, transparent); }
+
+  /* primitive/concept card */
+  .pc { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .pc .demo { padding: 16px 12px; font-family: var(--mono); font-size: 15px; text-align: center;
+              display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 58px; }
+  .pc .demo .att { font-size: 10px; opacity: .8; }
+  .pc .cap { padding: 8px 10px; background: var(--surface); border-top: 1px solid var(--border); }
+  .pc .cap .name { font-family: var(--mono); font-size: 12.5px; font-weight: 600; }
+  .pc .cap .refs { font-size: 11px; color: var(--dim); font-family: var(--mono); }
+
+  .callout { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+             padding: 14px 16px; }
+  .callout.warn { border-color: color-mix(in srgb, var(--red) 55%, var(--border)); }
+  .callout.info { border-color: color-mix(in srgb, var(--blue) 45%, var(--border)); }
+  .callout.ok { border-color: color-mix(in srgb, var(--green) 45%, var(--border)); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  table.map { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.map th, table.map td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  table.map th { color: var(--dim); font-weight: 500; position: sticky; top: 56px; background: var(--bg); }
+  table.map td.g { font-family: var(--mono); }
+  table.map td .arrow { color: var(--dim); }
+  table.map td .tgt { font-family: var(--mono); color: var(--accent); }
+  .mapwrap { max-height: 460px; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+  .filter { width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
+            background: var(--surface); color: var(--fg); font-family: var(--mono); font-size: 13px; margin-bottom: 10px; }
+
+  .cchip { display: inline-block; width: 13px; height: 13px; border-radius: 3px; vertical-align: -2px;
+           border: 1px solid color-mix(in srgb, var(--fg) 20%, transparent); margin-right: 5px; }
+
+  /* mockups */
+  .mock { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .mock .label { font-size: 11.5px; color: var(--dim); padding: 6px 12px; background: var(--surface);
+                 border-bottom: 1px solid var(--border); font-family: var(--mono); }
+  .statusline { display: flex; font-family: var(--mono); font-size: 13px; }
+  .statusline .seg { padding: 5px 16px; display: flex; align-items: center; }
+  .buf { font-family: var(--mono); font-size: 13.5px; padding: 10px 0; }
+  .buf .ln { display: flex; }
+  .buf .gutter { width: 34px; text-align: right; padding-right: 12px; user-select: none; }
+  .buf .code { white-space: pre; }
+  .axtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .axtable th, .axtable td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .axtable th { color: var(--dim); font-weight: 500; }
+  .axtable td.ax { font-weight: 600; }
+
+  /* rendered markdown */
+  .md { font-size: 14px; }
+  .md h2 { font-size: 18px; margin: 4px 0 10px; }
+  .md h3 { font-size: 15px; margin: 18px 0 6px; }
+  .md p { margin: 8px 0; }
+  .md ul, .md ol { margin: 8px 0; padding-left: 22px; }
+  .md li { margin: 4px 0; }
+  .md code { background: var(--surface); padding: 1px 5px; border-radius: 4px; font-size: 12.5px; }
+  .md blockquote { border-left: 3px solid var(--border); margin: 8px 0; padding: 2px 12px; color: var(--dim); }
+  .md table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 12.5px; display: block; overflow-x: auto; }
+  .md th, .md td { border: 1px solid var(--border); padding: 5px 8px; text-align: left; }
+  .md hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  .decision { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+              padding: 4px 16px; margin: 10px 0; }
+
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .board { grid-template-columns: 1fr; } }
+  .col h4 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .8px; }
+  .col.done h4 { color: var(--green); } .col.wip h4 { color: var(--accent); } .col.open h4 { color: var(--blue); }
+  .item { border: 1px solid var(--border); border-radius: 8px; padding: 8px 11px; margin-bottom: 8px;
+          background: var(--surface); font-size: 13px; }
+  .item .k { font-family: var(--mono); font-size: 11px; color: var(--dim); display: block; margin-bottom: 2px; }
+  .err { border: 1px solid var(--red); background: color-mix(in srgb, var(--red) 12%, var(--bg));
+         padding: 12px 16px; border-radius: var(--radius); font-family: var(--mono); font-size: 12.5px; white-space: pre-wrap; }
+  .muted { color: var(--dim); }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="inner">
+    <h1>spf <span class="tag">· UI / color design system</span></h1>
+    <nav class="sections">
+      <a href="#overview">Overview</a>
+      <a href="#palette">Palette</a>
+      <a href="#concepts">Concepts</a>
+      <a href="#primitives">Primitives</a>
+      <a href="#mockups">Mockups</a>
+      <a href="#map">Group map</a>
+      <a href="#decisions">Decisions</a>
+      <a href="#todo">What's left</a>
+    </nav>
+    <div class="live"><span class="dot" id="dot"></span><span id="livetext">connecting…</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero" id="overview">
+    <span class="pill" id="statuspill">loading…</span>
+    <h2>A working picture of the spf UI refactor</h2>
+    <p>Every color on this page is resolved live by running the real theme
+      assembler (<code>spf/init.lua</code>) under headless nvim — not hand-copied.
+      Edit any <code>lua/spf/**</code> source and save; this page refreshes within
+      a couple of seconds. Prose (decisions, next steps) is sliced live from
+      <code>colors.md</code> and <code>UI_REFACTOR.md</code>.</p>
+    <div id="errbox"></div>
+  </div>
+
+  <section id="palette">
+    <h3>Palette</h3>
+    <p class="lead">Raw hex from xresources (<code>screen_glasses.*</code>) with
+      baked-in fallbacks — the single source of hex for the theme. Shown here as
+      the fallbacks resolve headless (no xrdb). Syntax hues, then the chrome/UI
+      keys the refactor added.</p>
+    <div id="palette-groups"></div>
+  </section>
+
+  <section id="concepts">
+    <h3>The UI concept system</h3>
+    <p class="lead">Chrome is built from orthogonal, hue-agnostic <b>axes</b> and a
+      small composite vocabulary — a <b>panel</b> hosts <b>controls</b>
+      (<code>textbox</code>, <code>list</code>, <code>view</code>). Colors are
+      swappable; the structure holds.</p>
+
+    <h4 class="sub">Panel hosts controls — the composite vocabulary</h4>
+    <div id="concept-diagram"></div>
+
+    <h4 class="sub">The orthogonal axes</h4>
+    <div id="axes"></div>
+
+    <h4 class="sub">Text prominence on a surface — label · ghost · accent</h4>
+    <p class="lead" style="margin-bottom:12px">Each surface carries the foregrounds
+      legible on it. <code>label</code> = the surface's own fg, <code>ghost</code> =
+      muted secondary, <code>accent</code> = stands-out-via-hue. The
+      <span class="muted">ghost contrast bug</span> is visible below where ghost
+      dips toward its background.</p>
+    <div id="text-bands" class="grid cards-4"></div>
+  </section>
+
+  <section id="primitives">
+    <h3>Primitives</h3>
+    <p class="lead">Named styles built from the palette — the middle layer groups
+      link to by name. UI concept primitives first, then the syntax/text styles.</p>
+    <h4 class="sub">UI concept primitives</h4>
+    <div id="prim-ui" class="grid cards-4"></div>
+    <h4 class="sub">Syntax &amp; text primitives</h4>
+    <div id="prim-text" class="grid cards-6"></div>
+  </section>
+
+  <section id="mockups">
+    <h3>Live component mockups</h3>
+    <p class="lead">Real highlight groups, resolved. This is what the concepts add
+      up to on screen.</p>
+
+    <h4 class="sub">Statusline (lualine) — <span class="muted">current state: flat</span></h4>
+    <div id="mock-statusline"></div>
+    <div class="callout warn" style="margin-top:10px" id="statusline-note"></div>
+
+    <h4 class="sub">Picker (snacks) — panel · textbox · list · view</h4>
+    <div id="mock-picker"></div>
+
+    <div class="two-col" style="margin-top:18px">
+      <div>
+        <h4 class="sub">Completion menu (Pmenu)</h4>
+        <div id="mock-pmenu"></div>
+      </div>
+      <div>
+        <h4 class="sub">Diagnostics &amp; diff</h4>
+        <div id="mock-diag"></div>
+      </div>
+    </div>
+
+    <h4 class="sub">Buffer — syntax, current line, selection, recede</h4>
+    <div id="mock-buffer"></div>
+  </section>
+
+  <section id="map">
+    <h3>Group → concept map</h3>
+    <p class="lead">Every semantic highlight group and the concept/primitive it
+      binds to. A UI group binds to a UI concept, never a raw tone. Filter by
+      group or target.</p>
+    <input class="filter" id="mapfilter" placeholder="filter… e.g. Status, Pmenu, panel, selection" />
+    <div class="mapwrap">
+      <table class="map"><thead><tr><th>Highlight group</th><th></th><th>Binds to</th><th>Resolves</th></tr></thead>
+      <tbody id="maprows"></tbody></table>
+    </div>
+  </section>
+
+  <section id="decisions">
+    <h3>Design decisions</h3>
+    <p class="lead">Sliced live from <code>colors.md</code> — the durable record of
+      why each choice was made, in order.</p>
+    <div id="doc-decisions" class="md"></div>
+  </section>
+
+  <section id="todo">
+    <h3>Where it stands &amp; what's left</h3>
+    <p class="lead">The refactor is mid-flight: the concept system is implemented;
+      a surfaces × roles grid is designed but not yet coded.</p>
+    <div class="board" id="status-board"></div>
+
+    <h4 class="sub">Where more clarity is needed</h4>
+    <div class="grid" id="clarity" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))"></div>
+
+    <div class="two-col" style="margin-top:24px">
+      <div class="callout"><div class="md" id="doc-next"></div></div>
+      <div class="callout warn"><div class="md" id="doc-bug"></div></div>
+    </div>
+    <div class="callout info md" id="doc-open" style="margin-top:14px"></div>
+    <details style="margin-top:14px">
+      <summary class="muted" style="cursor:pointer">Full designed-but-not-coded model (from UI_REFACTOR.md)</summary>
+      <div class="md" id="doc-designed" style="margin-top:10px"></div>
+    </details>
+  </section>
+</div>
+
+<script>
+const $ = (s, r=document) => r.querySelector(s);
+const el = (t, cls, html) => { const e = document.createElement(t); if (cls) e.className = cls; if (html!=null) e.innerHTML = html; return e; };
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---------- color helpers ---------- */
+function hexToRgb(h){ const m=/^#?([0-9a-f]{6})$/i.exec(h||''); if(!m) return null; const n=parseInt(m[1],16); return [n>>16&255,n>>8&255,n&255]; }
+function relLum(h){ const c=hexToRgb(h); if(!c) return 0; const f=v=>{v/=255; return v<=.03928? v/12.92 : ((v+.055)/1.055)**2.4;}; return .2126*f(c[0])+.7152*f(c[1])+.0722*f(c[2]); }
+function contrast(a,b){ const L1=relLum(a),L2=relLum(b); const hi=Math.max(L1,L2),lo=Math.min(L1,L2); return (hi+.05)/(lo+.05); }
+function hexToHsl(h){ const c=hexToRgb(h); if(!c) return ''; let [r,g,b]=c.map(v=>v/255); const mx=Math.max(r,g,b),mn=Math.min(r,g,b); let hh=0,s=0,l=(mx+mn)/2; const d=mx-mn;
+  if(d){ s=l>.5? d/(2-mx-mn) : d/(mx+mn); if(mx===r) hh=((g-b)/d+(g<b?6:0)); else if(mx===g) hh=(b-r)/d+2; else hh=(r-g)/d+4; hh*=60; }
+  return `hsl(${Math.round(hh)} ${Math.round(s*100)}% ${Math.round(l*100)}%)`; }
+
+let DATA = {}, PALETTE_BY_HEX = {};
+function nameForHex(hex){ return PALETTE_BY_HEX[(hex||'').toLowerCase()]; }
+function styleFor(r){ // css for a resolved {fg,bg,attrs}
+  if(!r) return '';
+  let s='';
+  if(r.bg) s+=`background:${r.bg};`; if(r.fg) s+=`color:${r.fg};`;
+  if(r.bold) s+='font-weight:700;'; if(r.italic) s+='font-style:italic;';
+  let td=[]; if(r.underline||r.undercurl||r.underdotted||r.underdouble) td.push('underline');
+  if(r.strikethrough) td.push('line-through'); if(td.length) s+=`text-decoration:${td.join(' ')};`;
+  if(r.undercurl) s+='text-decoration-style:wavy;';
+  return s;
+}
+function chip(hex){ return hex? `<span class="cchip" style="background:${hex}"></span>` : ''; }
+
+/* ---------- palette ---------- */
+const PAL_GROUPS = [
+  ['Base — normal', ['black','red','green','yellow','blue','magenta','cyan','white']],
+  ['Base — bright', ['bright_black','bright_red','bright_green','bright_yellow','bright_blue','bright_magenta','bright_cyan','bright_white']],
+  ['Extended hues', ['orange','rose','bright_orange','bright_rose','bright_gold']],
+  ['Diff backgrounds', ['dark_green','dark_yellow','dark_red','dark_blue']],
+  ['Chrome / UI (added by the refactor)', ['chrome_fg','surface','surface_border','textbox_bg','cursorline','visual_selection']],
+];
+function renderPalette(){
+  const host = $('#palette-groups'); host.innerHTML='';
+  const seen = new Set();
+  for(const [title, keys] of PAL_GROUPS){
+    const present = keys.filter(k=>DATA.palette && DATA.palette[k]);
+    if(!present.length) continue;
+    host.appendChild(el('h4','sub',title));
+    const g = el('div','grid cards-6');
+    for(const k of present){ seen.add(k);
+      const hex = DATA.palette[k];
+      const card = el('div','sw');
+      const fgOnChip = contrast(hex,'#000')>contrast(hex,'#fff')? '#000':'#fff';
+      card.innerHTML = `<div class="chip" style="background:${hex};color:${fgOnChip}"><span style="font-size:10px;font-family:var(--mono)">${k.startsWith('surface')||k.includes('bg')||k.startsWith('dark')||k==='cursorline'||k==='visual_selection'?'Aa':''}</span></div>
+        <div class="meta"><div class="name">${k}</div><div class="hex">${hex}</div><div class="hsl">${hexToHsl(hex)}</div></div>`;
+      g.appendChild(card);
+    }
+    host.appendChild(g);
+  }
+  // leftovers
+  const rest = Object.keys(DATA.palette||{}).filter(k=>!seen.has(k)).sort();
+  if(rest.length){ host.appendChild(el('h4','sub','Other'));
+    const g=el('div','grid cards-6');
+    for(const k of rest){ const hex=DATA.palette[k];
+      g.appendChild(el('div','sw',`<div class="chip" style="background:${hex}"></div><div class="meta"><div class="name">${k}</div><div class="hex">${hex}</div></div>`)); }
+    host.appendChild(g);
+  }
+}
+
+/* ---------- primitives ---------- */
+const UI_PRIMS = ['chrome_active','chrome_inactive','panel','textbox','list','view','border','selection','current_line','cursor_block','recede','ghost'];
+function primDemo(name, p){
+  const r = p && p.resolved || {};
+  const hasBg = !!r.bg;
+  const demoStyle = styleFor(r) || 'color:var(--fg)';
+  const atts=[]; for(const a of ['bold','italic','underline','undercurl','strikethrough','reverse']) if(r[a]) atts.push(a);
+  // references: reverse-map fg/bg to palette names
+  const refs=[]; if(r.fg){ const n=nameForHex(r.fg); refs.push(`fg ${n?n:r.fg}`);} if(r.bg){ const n=nameForHex(r.bg); refs.push(`bg ${n?n:r.bg}`);}
+  const label = name==='view' ? 'view = Normal' : 'Ag';
+  const card = el('div','pc');
+  card.innerHTML = `<div class="demo" style="${hasBg?demoStyle:('background:var(--surface);'+demoStyle)}">
+      <span>${label}</span>${atts.length?`<span class="att">${atts.join(' · ')}</span>`:''}</div>
+    <div class="cap"><div class="name">${name}</div><div class="refs">${refs.join('  ')||'—'}</div></div>`;
+  return card;
+}
+function renderPrimitives(){
+  const prims = DATA.primitives||{};
+  const ui = $('#prim-ui'); ui.innerHTML='';
+  for(const n of UI_PRIMS){ if(n==='view'){ ui.appendChild(primDemo('view',{resolved:DATA.resolved&&DATA.resolved.Normal})); continue; }
+    if(prims[n]) ui.appendChild(primDemo(n, prims[n])); }
+  const text = $('#prim-text'); text.innerHTML='';
+  const skip = new Set([...UI_PRIMS, ...Object.keys(prims).filter(k=>k.startsWith('nothing_on_'))]);
+  const names = Object.keys(prims).filter(k=>!skip.has(k)).sort();
+  for(const n of names) text.appendChild(primDemo(n, prims[n]));
+}
+
+/* ---------- concept diagram + axes + bands ---------- */
+function R(name){ return (DATA.resolved && DATA.resolved[name]) || {}; }
+function renderConcept(){
+  const panel=R('panel'), tb=R('textbox'), list=R('list'), sel=R('selection'), norm=R('Normal'), ghost=R('ghost'), border=R('border');
+  const kw=R('Keyword').fg||'#899fd2', fn=R('Function').fg||'#c0c587', str=R('String').fg||'#dba270', cm=R('Comment').fg||'#756157';
+  const acc=R('Special').fg || R('DiagnosticHint').fg || '#a38e5c';
+  const host=$('#concept-diagram');
+  host.innerHTML = `
+  <div class="mock">
+    <div style="background:${panel.bg};color:${panel.fg};padding:6px 12px;font-family:var(--mono);font-size:12.5px;display:flex;justify-content:space-between">
+      <span><b>panel</b> — frame band + title</span><span style="opacity:.7">Files 128</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+      <div style="border-right:2px solid ${panel.bg}">
+        <div style="background:${tb.bg};color:${tb.fg};padding:7px 12px;font-family:var(--mono);font-size:13px">
+          <span style="opacity:.5">&gt; </span>config<span style="border-left:1.5px solid ${tb.fg};margin-left:1px">&nbsp;</span>
+          <span style="float:right;opacity:.55;font-size:11px">textbox</span></div>
+        <div style="background:${list.bg};color:${list.fg};font-family:var(--mono);font-size:13px">
+          <div style="padding:4px 12px">lua/spf/<b style="color:${acc}">palette</b>.lua</div>
+          <div style="padding:4px 12px;background:${sel.bg}">lua/spf/<b style="color:${acc}">config</b>.lua <span style="color:${ghost.fg}">· selected row</span></div>
+          <div style="padding:4px 12px">lua/plugins/<b style="color:${acc}">config</b>.lua <span style="color:${ghost.fg}">core/</span></div>
+          <div style="padding:4px 12px;color:${ghost.fg}">list — normal · <span style="color:${acc}">accent</span> match · ghost meta</div>
+        </div>
+      </div>
+      <div style="background:${norm.bg};color:${norm.fg};font-family:var(--mono);font-size:12.5px;padding:8px 12px">
+        <div style="color:${cm}">-- view = content plane (Normal)</div>
+        <div><span style="color:${kw}">local</span> palette = <span style="color:${fn}">require</span>(<span style="color:${str}">"spf.palette"</span>)</div>
+        <div><span style="color:${kw}">return</span> { fg = palette.<span>white</span> }</div>
+        <div style="color:${cm}">-- a picker preview reads as a buffer</div>
+      </div>
+    </div>
+  </div>
+  <p class="lead" style="margin-top:10px">Frame band = <code>panel</code> (${panel.bg}). Query = <code>textbox</code>
+    (${tb.bg}). Results = <code>list</code> (${list.bg}); selected row = <code>selection</code> (${sel.bg}).
+    Preview = <code>view</code> = <code>Normal</code> (${norm.bg}).</p>`;
+}
+const AXES = [
+  ['Elevation','content vs surface (depth)','two planes; depth from the border, not brightness', ['Normal','chrome_active','list','border']],
+  ['Focus','active vs inactive window','foreground strength on one shared surface', ['chrome_active','chrome_inactive']],
+  ['Emphasis','current / selected item','neutral-gray background, ladder to strong', ['selection','cursor_block']],
+  ['State','severity / change','borrowed wholesale from diagnostics & diff', ['DiagnosticError','DiagnosticWarn','DiagnosticInfo','DiffAdd']],
+  ['Recede','meta / structural furniture','one dim foreground', ['recede']],
+  ['Text','label / ghost / accent','prominence of text on a control', ['ghost']],
+];
+function renderAxes(){
+  const rows = AXES.map(([ax,enc,how,prims])=>{
+    const chips = prims.map(p=>{ const r=R(p); const c=r.bg||r.fg; return `${chip(c)}<span class="mono" style="font-size:11px">${p}</span>`; }).join('&nbsp; ');
+    return `<tr><td class="ax">${ax}</td><td>${enc}</td><td class="muted">${how}</td><td>${chips}</td></tr>`;
+  }).join('');
+  $('#axes').innerHTML = `<div class="mock"><table class="axtable"><thead><tr><th>Axis</th><th>Encodes</th><th>How</th><th>Primitives</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderBands(){
+  const host=$('#text-bands'); host.innerHTML='';
+  const surfaces=[['content','Normal'],['list','list'],['textbox','textbox'],['panel','panel']];
+  const ghostFg = R('ghost').fg;
+  const acc = R('Special').fg || '#a38e5c';
+  for(const [label,grp] of surfaces){
+    const s=R(grp); const bg=s.bg||R('Normal').bg; const labelFg=s.fg||R('Normal').fg;
+    const ratio = ghostFg? contrast(ghostFg,bg).toFixed(2) : '—';
+    const bad = ghostFg && contrast(ghostFg,bg) < 3;
+    const card=el('div','pc');
+    card.innerHTML = `<div class="demo" style="flex-direction:column;gap:3px;align-items:flex-start;background:${bg};padding:12px 14px">
+        <div style="color:${labelFg};font-weight:600">label — primary text</div>
+        <div style="color:${ghostFg}">ghost — secondary text</div>
+        <div style="color:${acc};font-weight:600">accent — match / severity</div>
+      </div>
+      <div class="cap"><div class="name">${label} <span class="muted" style="font-weight:400">(${grp})</span></div>
+        <div class="refs">ghost contrast ${ratio}:1 ${bad?'<span style="color:'+ (R('DiagnosticError').fg||'#c88484') +'">✗ &lt;3</span>':'<span style="color:'+(R('DiagnosticOk').fg||'#7b9d80')+'">✓</span>'}</div></div>`;
+    host.appendChild(card);
+  }
+}
+
+/* ---------- mockups ---------- */
+function renderStatusline(){
+  const a=R('StatusLineTerm'), b=R('StatusLineNC'), c=R('StatusLine');
+  const seg=(r,txt)=>`<div class="seg" style="background:${r.bg};color:${r.fg}">${txt}</div>`;
+  $('#mock-statusline').innerHTML = `<div class="mock"><div class="label">lualine · A=StatusLineTerm  B=StatusLineNC  C=StatusLine</div>
+    <div class="statusline">${seg(a,'NORMAL')}${seg(b,' main ')}${seg(c,'&nbsp; lua/spf/palette.lua &nbsp;')}
+      <div style="flex:1;background:${c.bg}"></div>${seg(b,' lua ')}${seg(a,' 24:8 ')}</div></div>`;
+  const same = a.bg===c.bg && a.bg===b.bg;
+  $('#statusline-note').innerHTML = same
+    ? `<b>All three tiers share one background</b> (${a.bg}) — decisions #15 (focus = foreground) + #20 (collapsed elevation) removed the old primary/secondary/tertiary ramp, so lualine's A/B/C gradient flattened. <b>Decided:</b> restore the gradient at the plugin layer (statusline.lua). <b>Not yet implemented.</b>`
+    : `Tiers now differ: A ${a.bg} · B ${b.bg} · C ${c.bg} — gradient restored.`;
+}
+function renderPicker(){
+  const panel=R('panel'), tb=R('textbox'), list=R('list'), sel=R('selection'), ghost=R('ghost'), norm=R('Normal');
+  const acc = R('Special').fg||'#a38e5c';
+  const row=(name,dir,selrow)=>`<div style="padding:3px 12px;${selrow?'background:'+sel.bg+';':''}">
+    <b style="color:${acc}">${name}</b> <span style="color:${ghost.fg}">${dir}</span></div>`;
+  $('#mock-picker').innerHTML = `<div class="mock"><div class="label">snacks picker — solid borders, panel frame</div>
+    <div style="background:${panel.bg};padding:3px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+        <div>
+          <div style="background:${tb.bg};color:${tb.fg};padding:6px 12px;font-family:var(--mono);font-size:13px">&gt; pal</div>
+          <div style="background:${list.bg};color:${list.fg};font-family:var(--mono);font-size:13px;padding:4px 0">
+            ${row('palette','lua/spf/',true)}${row('primitives','lua/spf/')}${row('palette','tests/')}
+            <div style="padding:4px 12px;color:${ghost.fg}">3/128</div></div>
+        </div>
+        <div style="background:${norm.bg};color:${norm.fg};font-family:var(--mono);font-size:12px;padding:8px 12px">
+          <div style="color:${R('Comment').fg}">-- palette.lua</div>
+          <div><span style="color:${R('Keyword').fg}">return</span> {</div>
+          <div>&nbsp; white = <span style="color:${R('String').fg}">"#ebdbb2"</span>,</div>
+          <div>}</div></div>
+      </div></div></div>`;
+}
+function renderPmenu(){
+  const p=R('Pmenu'), s=R('PmenuSel');
+  const item=(t,k,selrow)=>`<div style="display:flex;justify-content:space-between;padding:3px 12px;${selrow?'background:'+s.bg+';color:'+(s.fg||p.fg)+';':'color:'+p.fg+';'}"><span>${t}</span><span style="opacity:.6">${k}</span></div>`;
+  $('#mock-pmenu').innerHTML = `<div class="mock"><div class="label">Pmenu · PmenuSel</div>
+    <div style="background:${p.bg};font-family:var(--mono);font-size:13px;padding:4px 0">
+      ${item('require','fn',false)}${item('resolve','fn',true)}${item('return','kw',false)}</div></div>`;
+}
+function renderDiag(){
+  const mk=(g,t)=>{ const r=R(g); return `<div style="display:flex;align-items:center;gap:8px;padding:3px 0"><span class="cchip" style="background:${r.fg}"></span><span style="color:${r.fg};font-family:var(--mono);font-size:12.5px">${t}</span></div>`; };
+  const diff=(g,t)=>{ const r=R(g); return `<div style="background:${r.bg};padding:3px 10px;font-family:var(--mono);font-size:12.5px">${t}</div>`; };
+  $('#mock-diag').innerHTML = `<div class="mock"><div class="label">Diagnostics (fg) · Diff (bg)</div>
+    <div style="padding:8px 12px">
+      ${mk('DiagnosticError','error')}${mk('DiagnosticWarn','warn')}${mk('DiagnosticInfo','info')}${mk('DiagnosticHint','hint')}${mk('DiagnosticOk','ok')}
+      <div style="margin-top:8px;border-radius:6px;overflow:hidden">${diff('DiffAdd','+ added line')}${diff('DiffChange','~ changed line')}${diff('DiffDelete','- deleted line')}${diff('DiffText','changed text')}</div>
+    </div></div>`;
+}
+function renderBuffer(){
+  const norm=R('Normal'), ln=R('LineNr'), cl=R('CursorLine'), vis=R('Visual'), clnr=R('CursorLineNr');
+  const C={kw:R('Keyword').fg,fn:R('Function').fg,str:R('String').fg,cm:R('Comment').fg,ty:R('Type').fg,num:R('Constant').fg,op:R('Operator').fg,id:R('Identifier').fg,st:R('Statement').fg,pre:R('PreProc').fg};
+  const err = R('DiagnosticError').fg;
+  const line=(n,html,opts={})=>`<div class="ln" style="${opts.cur?'background:'+cl.bg+';':''}">
+    <span class="gutter" style="color:${opts.cur?(clnr.fg||ln.fg):ln.fg}">${n}</span><span class="code">${html}</span></div>`;
+  const s=(c,t)=>`<span style="color:${c}">${t}</span>`;
+  $('#mock-buffer').innerHTML = `<div class="mock"><div class="label">buffer — Normal bg, LineNr=recede, CursorLine, Visual, syntax roles</div>
+    <div class="buf" style="background:${norm.bg};color:${norm.fg}">
+      ${line(1, s(C.cm,'-- resolve a role to a color'))}
+      ${line(2, s(C.kw,'local')+' '+s(C.id,'function')+' '+s(C.fn,'resolve')+s(C.op,'(')+s(C.id,'name')+s(C.op,')'))}
+      ${line(3, '&nbsp; '+s(C.st,'if')+' '+s(C.id,'links')+s(C.op,'[')+s(C.id,'name')+s(C.op,']')+' '+s(C.kw,'then')+' '+s(C.st,'return')+' '+s(C.id,'links')+s(C.op,'[')+s(C.id,'name')+s(C.op,']'), {cur:true})}
+      ${line(4, '&nbsp; '+s(C.st,'return')+' <span style="background:'+vis.bg+'">'+s(C.num,'0xff')+' '+s(C.op,'..')+' '+s(C.str,'"x"')+'</span>')}
+      ${line(5, s(C.kw,'end')+'  '+`<span style="text-decoration:underline wavy;text-decoration-color:${err}">typo</span>`+' '+s(C.cm,'-- diagnostic underline'))}
+    </div></div>`;
+}
+
+/* ---------- group map ---------- */
+let MAP_ROWS=[];
+function renderMap(){
+  const links=DATA.links||{};
+  MAP_ROWS = Object.keys(links).sort().map(g=>{
+    const t=links[g]; const r=DATA.resolved&&DATA.resolved[g]||{}; const c=r.bg||r.fg||'';
+    return {g, t, c, hay:(g+' '+t).toLowerCase()};
+  });
+  drawMap('');
+}
+function drawMap(q){
+  const rows = q? MAP_ROWS.filter(r=>r.hay.includes(q)) : MAP_ROWS;
+  $('#maprows').innerHTML = rows.map(r=>`<tr><td class="g">${esc(r.g)}</td><td class="arrow">→</td><td><span class="tgt">${esc(r.t)}</span></td><td>${r.c?chip(r.c)+'<span class="mono" style="font-size:11px">'+r.c+'</span>':''}</td></tr>`).join('');
+}
+
+/* ---------- minimal markdown ---------- */
+function md(src){
+  if(!src) return '<p class="muted">— not found in source —</p>';
+  const lines = src.split('\n'); let out=[], i=0;
+  const inline = t => esc(t)
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*]+)\*/g,'$1<em>$2</em>');
+  while(i<lines.length){
+    let l=lines[i];
+    if(/^\s*$/.test(l)){ i++; continue; }
+    if(/^#{1,6}\s/.test(l)){ const lv=l.match(/^#+/)[0].length; out.push(`<h${lv}>${inline(l.replace(/^#+\s/,''))}</h${lv}>`); i++; continue; }
+    if(/^---+\s*$/.test(l)){ out.push('<hr>'); i++; continue; }
+    if(/^>\s?/.test(l)){ let b=[]; while(i<lines.length&&/^>\s?/.test(lines[i])){ b.push(inline(lines[i].replace(/^>\s?/,''))); i++; } out.push(`<blockquote>${b.join('<br>')}</blockquote>`); continue; }
+    if(/^\|/.test(l)){ let t=[]; while(i<lines.length&&/^\|/.test(lines[i])){ t.push(lines[i]); i++; }
+      const cells=r=>r.split('|').slice(1,-1).map(c=>c.trim());
+      const head=cells(t[0]); const body=t.slice(2).map(cells);
+      out.push(`<table><thead><tr>${head.map(h=>`<th>${inline(h)}</th>`).join('')}</tr></thead><tbody>${body.map(r=>`<tr>${r.map(c=>`<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
+      continue; }
+    if(/^\s*[-*]\s/.test(l) || /^\s*\d+\.\s/.test(l)){
+      const ordered=/^\s*\d+\.\s/.test(l); const tag=ordered?'ol':'ul'; let items=[];
+      while(i<lines.length && (/^\s*[-*]\s/.test(lines[i])||/^\s*\d+\.\s/.test(lines[i])||/^\s{2,}\S/.test(lines[i]))){
+        let li=lines[i];
+        if(/^\s*[-*]\s/.test(li)||/^\s*\d+\.\s/.test(li)){ items.push(inline(li.replace(/^\s*([-*]|\d+\.)\s/,''))); }
+        else { items[items.length-1]+=' '+inline(li.trim()); }
+        i++;
+      }
+      out.push(`<${tag}>${items.map(x=>`<li>${x}</li>`).join('')}</${tag}>`);
+      continue;
+    }
+    let p=[l]; i++; while(i<lines.length&&!/^\s*$/.test(lines[i])&&!/^[#>|]/.test(lines[i])&&!/^\s*[-*]\s/.test(lines[i])&&!/^\s*\d+\.\s/.test(lines[i])){ p.push(lines[i]); i++; }
+    out.push(`<p>${inline(p.join(' '))}</p>`);
+  }
+  return out.join('\n');
+}
+function renderDocs(){
+  const d=DATA.docs||{};
+  // decisions -> split numbered items into cards for readability
+  const dec = d.decisions||'';
+  const body = dec.replace(/^##[^\n]*\n/,'');
+  $('#doc-decisions').innerHTML = md(body);
+  $('#doc-next').innerHTML = md(d.nextSteps);
+  $('#doc-bug').innerHTML = md(d.knownBug);
+  $('#doc-open').innerHTML = md(d.openDecisions);
+  $('#doc-designed').innerHTML = md(d.designedNotCoded);
+}
+
+/* ---------- status board + clarity ---------- */
+const BOARD = {
+  done: ['Palette recast to semantic keys','Primitives = concept layer','UI groups bind to concepts','Elevation collapsed to two planes','Picker speaks the vocabulary','Messages follow diagnostics','Ghost decoupled from syntax Comment'],
+  wip: ['Surfaces × roles grid (designed, not coded)','selection → selected rename','current-line as content-only state','Restore lualine gradient (decided)','Per-surface override via xresources chains'],
+  open: ['State name: selected vs current','Default ghost tone (#9a8578?)','Statusline-as-panel reconcile','xresources keys → concept names','Search / Spell treatment'],
+};
+function renderBoard(){
+  const cols=[['done','Implemented'],['wip','Designed / decided'],['open','Open questions']];
+  $('#status-board').innerHTML = cols.map(([k,t])=>`<div class="col ${k}"><h4>${t}</h4>${BOARD[k].map(x=>`<div class="item">${esc(x)}</div>`).join('')}</div>`).join('');
+}
+const CLARITY = [
+  ['Ghost contrast','#756157 fails WCAG on most surfaces (down to 1.85:1 on the panel band). A default of #9a8578 clears 3:1 everywhere. Fix is part of the grid work.'],
+  ['selection vs current-line','On a buffer, cursor ≠ selection (two stacking states); on a list they collapse to one. The rename to `selected` + `current-line` split isn\'t in code yet.'],
+  ['Statusline is a panel','lualine A/B/C flattened when the chrome ramp collapsed. A statusline is a panel too — does it get its own tier surfaces, or reuse chrome_*? Decided: restore at plugin layer; still pending.'],
+  ['Per-surface overrides','The grid says role-default + per-surface override via xresources fallback chains. No override keys exist yet — all surfaces share one ghost/label today.'],
+  ['Search / Spell','Deliberately unsettled: Search/IncSearch/CurSearch chromatic colors unchosen; SpellBad underline vs colored variants undecided.'],
+];
+function renderClarity(){
+  $('#clarity').innerHTML = CLARITY.map(([t,b])=>`<div class="callout"><b style="color:var(--accent)">${esc(t)}</b><p style="margin:6px 0 0;font-size:13px" class="muted">${esc(b)}</p></div>`).join('');
+}
+
+/* ---------- theme the page from spf itself ---------- */
+function applyTheme(){
+  const p=DATA.palette||{}, n=DATA.normal||{};
+  const set=(k,v)=>{ if(v) document.documentElement.style.setProperty(k,v); };
+  set('--bg', n.bg); set('--fg', n.fg); set('--dim', p.bright_black);
+  set('--surface', p.surface); set('--border', p.surface_border); set('--panel', p.textbox_bg);
+  set('--accent', p.orange); set('--blue', p.blue); set('--green', p.green); set('--red', p.red);
+}
+
+/* ---------- render all ---------- */
+function renderAll(){
+  if(DATA.error){ $('#errbox').innerHTML = `<div class="err">⚠ ${esc(DATA.error)}</div>`; }
+  else $('#errbox').innerHTML='';
+  if(!DATA.palette) return;
+  PALETTE_BY_HEX={}; for(const [k,v] of Object.entries(DATA.palette)) PALETTE_BY_HEX[v.toLowerCase()]=k;
+  applyTheme();
+  renderPalette(); renderConcept(); renderAxes(); renderBands();
+  renderPrimitives(); renderStatusline(); renderPicker(); renderPmenu(); renderDiag(); renderBuffer();
+  renderMap(); renderDocs(); renderBoard(); renderClarity();
+  const nPrim=Object.keys(DATA.primitives||{}).length, nLink=Object.keys(DATA.links||{}).length, nPal=Object.keys(DATA.palette||{}).length;
+  $('#statuspill').textContent = `${nPal} palette · ${nPrim} primitives · ${nLink} group links · resolved live`;
+}
+
+/* ---------- live polling ---------- */
+let last='';
+async function poll(){
+  try{
+    const res = await fetch('/design.json', {cache:'no-store'});
+    const txt = await res.text();
+    $('#dot').classList.remove('stale'); $('#livetext').textContent='live';
+    if(txt!==last){ last=txt; DATA=JSON.parse(txt); renderAll(); $('#livetext').textContent='updated'; setTimeout(()=>$('#livetext').textContent='live',1200); }
+  }catch(e){ $('#dot').classList.add('stale'); $('#livetext').textContent='offline'; }
+}
+$('#mapfilter').addEventListener('input', e=>drawMap(e.target.value.trim().toLowerCase()));
+poll(); setInterval(poll, 2000);
+</script>
+</body>
+</html>
