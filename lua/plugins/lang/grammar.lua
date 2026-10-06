@@ -12,7 +12,7 @@ return {
     opts = {
       servers = {
         harper_ls = {
-          filetypes = { "markdown", "tex" },
+          filetypes = { "tex" },
           settings = {
             ["harper-ls"] = {
               linters = {
