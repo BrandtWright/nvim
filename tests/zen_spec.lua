@@ -14,8 +14,8 @@ describe("bw.util.zen.toggle", function()
   local execute_calls
 
   before_each(function()
-    -- Snapshot global state we mutate so it doesn't leak across the shared
-    -- headless instance.
+    -- Snapshot global state we mutate so it doesn't leak into later tests in
+    -- this file.
     orig_laststatus = vim.o.laststatus
     orig_zen = vim.g.zen_mode
     orig_saved = vim.g.zen_mode_last_status

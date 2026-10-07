@@ -1,6 +1,6 @@
 -- bw.util.notification builds level-bound toasters over vim.notify. Stub
 -- vim.notify to capture what each toaster forwards (level + title/icon), and
--- restore it after each test so the stub doesn't leak into other specs.
+-- restore it after each test so the stub doesn't leak into later tests.
 
 local toast = require("bw.util.notification")
 

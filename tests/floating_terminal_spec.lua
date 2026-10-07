@@ -9,7 +9,7 @@ describe("floating terminal", function()
   local spec = require("plugins.floating-terminal")[1]
 
   -- The cwd test stubs the global _G.Snacks; snapshot and restore it so the stub
-  -- doesn't leak into other specs sharing this headless instance.
+  -- doesn't leak into later tests in this file.
   local orig_snacks
   before_each(function()
     orig_snacks = _G.Snacks

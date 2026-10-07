@@ -20,8 +20,8 @@ local function load_theme()
   return loadfile(spf_path)()
 end
 
--- spf sets the global colorscheme; restore it so it does not leak to other specs
--- sharing this headless instance.
+-- spf sets the global colorscheme; restore it so it does not leak into later
+-- tests in this file.
 local orig_colors = vim.g.colors_name
 local function restore_colorscheme()
   if vim.g.colors_name ~= orig_colors then

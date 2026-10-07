@@ -45,7 +45,7 @@ end
 
 describe("git.api", function()
   -- stub_snacks() replaces the global _G.Snacks; snapshot and restore it so the
-  -- stub doesn't leak into other specs sharing this headless instance.
+  -- stub doesn't leak into later tests in this file.
   local orig_snacks
   before_each(function()
     orig_snacks = _G.Snacks

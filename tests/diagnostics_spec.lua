@@ -11,7 +11,8 @@ describe("diagnostics virtual_text toggle", function()
 
   -- These tests mutate the global vim.diagnostic config; snapshot the pristine
   -- config now (before any before_each runs) and restore it after each test so
-  -- nothing leaks into other specs sharing this headless instance.
+  -- nothing leaks into later tests in this file (each spec file runs in its own
+  -- nvim process, so the risk is intra-file).
   local orig_config = vim.deepcopy(vim.diagnostic.config() or {})
 
   before_each(function()
