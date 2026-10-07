@@ -68,7 +68,12 @@ return {
             -- `todo` is render-markdown's built-in key for `[-]`; repurpose it as
             -- "cancelled" (Obsidian convention): gray marker + struck-through text.
             -- \u{f00d} = times (✗)
-            todo = { raw = "[-]", rendered = "\u{f00d} ", highlight = "Comment", scope_highlight = "DiagnosticDeprecated" },
+            todo = {
+              raw = "[-]",
+              rendered = "\u{f00d} ",
+              highlight = "Comment",
+              scope_highlight = "DiagnosticDeprecated",
+            },
             -- in progress -> Info (blue). \u{f254} = hourglass
             in_progress = { raw = "[/]", rendered = "\u{f254} ", highlight = "DiagnosticInfo" },
             -- deferred / waiting -> Warn (yellow). \u{f017} = clock
