@@ -37,6 +37,10 @@ Tests use plenary's busted harness and run headless via the `Makefile`:
 - `make deps` - Clone the pinned test deps (plenary) into the gitignored `.tests-deps/`
 - `make clean-deps` - Remove the cloned test deps
 
+`make test` goes through `tests/run.sh`, which runs each spec in its own headless
+nvim, prints a suite-wide total plus the failing tests, and writes a job summary
+in GitHub Actions. Exit status is the pass/fail signal.
+
 Specs `require()` individual modules against `tests/minimal_init.lua` without
 booting lazy.nvim, so prefer extracting pure logic into testable functions.
 

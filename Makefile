@@ -2,6 +2,7 @@
 #
 #   make test                          # run the whole suite
 #   make test FILE=tests/foldtext_spec.lua   # run a single spec file
+#   make test FILE="tests/a_spec.lua tests/b_spec.lua"   # or several
 #   make deps                          # clone the pinned test deps (plenary)
 #   make clean-deps                    # remove the cloned test deps
 #   make lint-types                    # headless lua-language-server type-check
@@ -21,20 +22,15 @@ DEPS        := .tests-deps
 PLENARY     := $(DEPS)/plenary.nvim
 PLENARY_URL := https://github.com/nvim-lua/plenary.nvim
 PLENARY_REF := 74b06c6c75e4eeb3108ec01852001636d85a932b
-INIT        := tests/minimal_init.lua
 FILE        ?=
 LUALS       ?=
 
 .PHONY: test deps clean-deps lint-types
 
+# tests/run.sh runs each spec in its own headless nvim and adds a suite-wide
+# summary (and a GitHub job summary in CI); see the script header.
 test: deps
-ifeq ($(strip $(FILE)),)
-	nvim --headless --noplugin -u $(INIT) \
-	  -c "PlenaryBustedDirectory tests/ { minimal_init = '$(INIT)' }"
-else
-	nvim --headless --noplugin -u $(INIT) \
-	  -c "lua require('plenary.busted').run(vim.fn.expand('$(FILE)'))"
-endif
+	@bash tests/run.sh $(FILE)
 
 # Clone + pin plenary on first use. The directory target makes this idempotent:
 # it's skipped once .tests-deps/plenary.nvim exists.

@@ -101,6 +101,11 @@ The suite needs only plenary, which `make` clones into the gitignored
 `.tests-deps/` and pins to a known-good commit. Specs run headlessly, each in
 its own Neovim instance, and `require()` config modules directly.
 
+`tests/run.sh` (what `make test` calls) prints each file's results, then a
+suite-wide total with any failing tests repeated at the bottom. Colors are
+dropped when output isn't a terminal, and in GitHub Actions the totals and
+failures are also written to the job summary.
+
 ## Linting & formatting
 
 - `luacheck .` — Lua linting (config in `.luacheckrc`).
