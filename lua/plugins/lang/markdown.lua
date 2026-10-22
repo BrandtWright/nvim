@@ -105,4 +105,32 @@ return {
       return vim.tbl_deep_extend("force", opts or {}, my_opts)
     end,
   },
+  {
+    -- Markdown is formatted by markdownlint-cli2 --fix, driven by the repo's
+    -- .markdownlint-cli2.yaml -- the same config (and Mason pins the same
+    -- version) CI lints with, so a save produces exactly what CI accepts.
+    --
+    -- The LazyVim markdown extra puts prettier first in this list. prettier's
+    -- markdown style is fixed (e.g. it always rewrites *em* to _em_) and can't
+    -- be configured, so it's dropped. Lists replace rather than merge in lazy
+    -- opts, so this fully overrides the extra's list.
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters = {
+        -- The extra only runs markdownlint-cli2 when the buffer already has
+        -- markdownlint diagnostics, which makes a save's result depend on
+        -- whether nvim-lint has run yet. Always run it; a clean file is a no-op.
+        ["markdownlint-cli2"] = {
+          condition = function()
+            return true
+          end,
+        },
+      },
+      formatters_by_ft = {
+        ["markdown"] = { "markdownlint-cli2", "markdown-toc" },
+        ["markdown.mdx"] = { "markdownlint-cli2", "markdown-toc" },
+      },
+    },
+  },
 }

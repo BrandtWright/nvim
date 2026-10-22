@@ -19,3 +19,21 @@ config:
   # a row, and folding them hurts readability more than a long line does.
   MD013:
     tables: false
+
+  # Style preferences. With markdownlint-cli2 as the markdown formatter
+  # (lua/plugins/lang/markdown.lua), the fixable ones (MD004, MD049, MD050) are
+  # rewritten on save; the rest are flagged only.
+  MD003: # heading style
+    style: atx # # Heading
+  MD004: # unordered list marker
+    style: dash # - item
+  MD035: # horizontal rule
+    style: "---"
+  MD046: # code block style
+    style: fenced
+  MD048: # code fence marker
+    style: backtick
+  MD049: # emphasis
+    style: asterisk # *em*
+  MD050: # strong
+    style: asterisk # **strong**
