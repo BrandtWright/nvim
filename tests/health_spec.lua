@@ -17,6 +17,16 @@ describe("bw.health inventory", function()
     end
   end)
 
+  it("every entry belongs to a known section", function()
+    local known = {}
+    for _, section in ipairs(health.sections) do
+      known[section.key] = true
+    end
+    for _, t in ipairs(health.tools) do
+      assert.is_truthy(known[t.section], "unknown section for " .. t.name .. ": " .. tostring(t.section))
+    end
+  end)
+
   it("names are unique", function()
     local seen = {}
     for _, t in ipairs(health.tools) do
@@ -28,9 +38,9 @@ end)
 
 describe("bw.health.evaluate", function()
   local spec = {
-    { name = "alpha", level = "required", reason = "r1" },
-    { name = "beta", level = "optional", reason = "r2" },
-    { name = "gamma", level = "required", reason = "r3" },
+    { section = "s1", name = "alpha", level = "required", reason = "r1" },
+    { section = "s1", name = "beta", level = "optional", reason = "r2" },
+    { section = "s2", name = "gamma", level = "required", reason = "r3" },
   }
 
   it("marks a present tool ok regardless of level", function()
@@ -57,12 +67,13 @@ describe("bw.health.evaluate", function()
     assert.equals("error", by_name.gamma.status) -- required, missing
   end)
 
-  it("preserves order and carries through name/level/reason", function()
+  it("preserves order and carries through section/name/level/reason", function()
     local results = health.evaluate(spec, function()
       return false
     end)
     assert.equals(#spec, #results)
     for i, r in ipairs(results) do
+      assert.equals(spec[i].section, r.section)
       assert.equals(spec[i].name, r.name)
       assert.equals(spec[i].level, r.level)
       assert.equals(spec[i].reason, r.reason)

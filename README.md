@@ -8,15 +8,34 @@ system as is but feel free to take what you can from it.
 - **Neovim 0.12+** — CI-verified at `v0.12.3` (uses `vim.lsp.enable`,
   `vim.system`, `vim.treesitter.foldexpr`, etc.).
 - **`git`**, **`ripgrep`** (`rg`), and **`fd`** — for plugin management and pickers.
+- **`cc`**, **`curl`**, **`tar`**, **`gzip`**, and **`unzip`** — treesitter
+  compiles its parsers locally, and Mason downloads and unpacks its tools.
+- **Node.js** (`node` + `npm`) — the npm-based Mason tools (bash, TypeScript,
+  JSON and YAML language servers; markdownlint-cli2) and Copilot.
 
 Optional, enabling specific features:
 
+- **`python3`** (with the `venv` module) — pip-based Mason tools such as
+  ansible-lint.
 - **`xrdb`** — source of the `spf` colorscheme palette (falls back to baked-in
   colors if absent).
 - **[`snote`][snote]** — required by the slipbox (`:SlipNew` / `:SlipEdit` / save).
 - **`dict`**, **`pandoc`** + **`zathura`** — used by individual
   keymaps/ftplugins (dictionary lookup, markdown export).
 - **`find-dotfiles`** — backs the `<leader>f.` dotfiles picker.
+- **`tmux`** — zen mode toggles the tmux status bar (only inside tmux).
+- **`lazygit`** — `<leader>gg` (LazyVim maps it only when installed).
+- **`ranger`**, **`vifm`** — `:Ranger` / `:Vifm` and the `_` keymap (fm-nvim).
+
+Language toolchains, needed only when working in that language:
+
+- **Haskell:** a GHC toolchain (e.g. via ghcup) for haskell-language-server;
+  **`cabal-fmt`** for `.cabal` formatting.
+- **Rust:** **`rust-analyzer`** (`rustup component add rust-analyzer`).
+- **Terraform:** **`terraform`** for formatting and validation; **`packer`**
+  for HCL formatting.
+- **.NET:** the **`dotnet`** SDK (Mason installs csharpier and fantomas as
+  dotnet tools).
 
 Run **`:checkhealth bw`** to see which of these are present on the current
 machine and what each one powers.
