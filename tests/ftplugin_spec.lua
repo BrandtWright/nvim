@@ -53,3 +53,17 @@ describe("after/ftplugin/python.vim", function()
     assert.equals(80, vim.bo.textwidth)
   end)
 end)
+
+describe("after/ftplugin/markdown.vim", function()
+  it("wraps at 80 columns with the built-in formatter", function()
+    -- Simulate LazyVim's global formatexpr, which the ftplugin must override:
+    -- it would route gq to conform/markdownlint-cli2, which doesn't reflow.
+    local saved = vim.go.formatexpr
+    vim.go.formatexpr = "v:lua.LazyVim.format.formatexpr()"
+    assert.is_true((source_ftplugin("markdown.vim")))
+    vim.go.formatexpr = saved
+    assert.equals(80, vim.bo.textwidth)
+    assert.equals("81", vim.wo.colorcolumn)
+    assert.equals("", vim.bo.formatexpr)
+  end)
+end)
