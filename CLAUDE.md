@@ -5,9 +5,22 @@ code in this repository.
 
 ## Development Commands
 
-### Linting
+### Everything at once
 
-- `luacheck .` - Run Lua linting (luacheck is installed)
+- `make check` - Run every check CI runs: `format-check`, `lint`, `test`
+  (stops at the first failing group, or use `make -k check` to run them all)
+
+### Linting and formatting
+
+Targets are grouped by action, not by tool; each runs all its tools even after
+one fails, then fails if any did.
+
+- `make lint` - luacheck, markdownlint-cli2 (config in `.markdownlint-cli2.yaml`),
+  and `make lint-types`
+- `make format` - Rewrite files: `stylua .` and `markdownlint-cli2 --fix`
+- `make format-check` - `stylua --check .`; changes nothing
+- stylua is found via `STYLUA=`, `$PATH`, or Mason, with a warning if it isn't
+  the version CI pins; markdownlint-cli2 always runs at the version CI pins
 - Code formatting uses stylua configuration in `stylua.toml` (2 spaces, 120 columns)
 
 ### Type checking

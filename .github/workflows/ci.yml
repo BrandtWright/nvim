@@ -56,7 +56,8 @@ jobs:
 
       # Pinned for the same reason: stylua's default formatting can shift
       # between releases. Keep this in sync with the version you format with
-      # locally. Use `-- stylua: ignore` on any span you want to hand-format.
+      # locally (STYLUA_VERSION in the Makefile, which `make format-check` warns on).
+      # Use `-- stylua: ignore` on any span you want to hand-format.
       - name: stylua --check
         uses: JohnnyMorganz/stylua-action@v5
         with:
@@ -70,8 +71,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # Pinned, like the other linters. Globs/ignores live in
-      # .markdownlint-cli2.yaml so this matches the local invocation exactly.
+      # Pinned, like the other linters (keep in sync with MARKDOWNLINT_VERSION
+      # in the Makefile). Globs/ignores live in .markdownlint-cli2.yaml so this
+      # matches the local invocation exactly.
       # npx uses the runner's preinstalled Node; no extra setup needed.
       - name: markdownlint
         run: npx --yes markdownlint-cli2@0.22.1
