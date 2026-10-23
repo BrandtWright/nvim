@@ -7,7 +7,9 @@ setlocal spell
 " Wrap prose at 80 columns, both while typing (the runtime markdown ftplugin
 " adds 't' to formatoptions) and with gq. Matches markdownlint's MD013 limit.
 setlocal textwidth=80
-setlocal colorcolumn=81
+" No overflow marker. Cleared explicitly: colorcolumn is window-local, so a
+" new buffer would otherwise inherit it from whatever the window showed before.
+setlocal colorcolumn=
 " LazyVim's global formatexpr routes gq to conform, whose markdown formatter
 " (markdownlint-cli2) fixes style but never reflows. Empty restores Vim's
 " built-in reflow for gq; style fixes still happen on save.

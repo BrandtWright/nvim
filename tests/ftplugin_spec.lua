@@ -63,7 +63,7 @@ describe("after/ftplugin/markdown.vim", function()
     assert.is_true((source_ftplugin("markdown.vim")))
     vim.go.formatexpr = saved
     assert.equals(80, vim.bo.textwidth)
-    assert.equals("81", vim.wo.colorcolumn)
+    assert.equals("", vim.wo.colorcolumn)
     assert.equals("", vim.bo.formatexpr)
   end)
 end)
