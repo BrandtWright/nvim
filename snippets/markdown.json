@@ -1,0 +1,12 @@
+{
+  "Feedback": {
+    "prefix": "fe",
+    "body": [
+      "> **Brandt**\\",
+      "> $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE",
+      ">",
+      "> $1"
+    ],
+    "description": "Dated feedback blockquote"
+  }
+}
