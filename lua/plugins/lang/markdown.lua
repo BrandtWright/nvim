@@ -5,8 +5,11 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = function(_, opts)
       highlights.on_colorscheme("RenderMarkdownHighlights", function()
-        vim.cmd("hi! link RenderMarkdownH1Bg markdownH1")
-        vim.cmd("hi! link RenderMarkdownH2Bg markdownH2")
+        -- Background bands for the top two heading levels only. H3-H6 link to
+        -- their fg-only heading groups (no band); `hi clear` would let
+        -- render-markdown's default links, applied at setup, bring bands back.
+        vim.cmd("hi! link RenderMarkdownH1Bg nothing_on_secondary_accent")
+        vim.cmd("hi! link RenderMarkdownH2Bg nothing_on_cursorline")
         vim.cmd("hi! link RenderMarkdownH3Bg markdownH3")
         vim.cmd("hi! link RenderMarkdownH4Bg markdownH4")
         vim.cmd("hi! link RenderMarkdownH5Bg markdownH5")
