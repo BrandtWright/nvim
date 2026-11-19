@@ -82,7 +82,6 @@ return {
 
   nothing_on_visual = { bg = colors.visual_selection },
   nothing_on_cursorline = { bg = colors.cursorline },
-  nothing_on_secondary_accent = { bg = colors.secondary_accent_background },
   nothing_on_black = { bg = colors.black },
   nothing_on_dark_green = { bg = colors.dark_green },
   nothing_on_dark_yellow = { bg = colors.dark_yellow },
