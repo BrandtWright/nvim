@@ -21,30 +21,30 @@ return {
   bright_black = { fg = colors.bright_black },
   bright_black_bold = { bold = true, fg = colors.bright_black },
   bright_black_strikethrough = { strikethrough = true, fg = colors.bright_black },
-  bright_black_italic = { italic = true, fg = colors.bright_black },
 
   red = { fg = colors.red },
   red_on_black = { fg = colors.red, bg = colors.black },
   red_underline = { fg = colors.red, underline = true },
+  red_bold = { bold = true, fg = colors.red },
   bright_red = { fg = colors.bright_red },
+  bright_red_bold = { bold = true, fg = colors.bright_red },
 
   orange = { fg = colors.orange },
+  bright_orange_bold = { bold = true, fg = colors.bright_orange },
 
   yellow = { fg = colors.yellow },
   yellow_on_black = { fg = colors.yellow, bg = colors.black },
   yellow_italic = { italic = true, fg = colors.yellow },
   yellow_undercurl = { undercurl = true, fg = colors.yellow },
+  bright_yellow = { fg = colors.bright_yellow },
 
   green = { fg = colors.green },
   green_on_black = { fg = colors.green, bg = colors.black },
   bright_green = { fg = colors.bright_green },
-  bright_green_bold = { bold = true, fg = colors.bright_green },
   green_undercurl = { undercurl = true, fg = colors.green },
 
   cyan = { fg = colors.cyan },
-  cyan_bold = { bold = true, fg = colors.cyan },
   bright_cyan = { fg = colors.bright_cyan },
-  bright_cyan_bold = { bold = true, fg = colors.bright_cyan },
 
   blue = { fg = colors.blue },
   blue_on_black = { fg = colors.blue, bg = colors.black },
@@ -64,9 +64,6 @@ return {
     fg = colors.primary_accent_foreground,
     bg = colors.primary_accent_background,
   },
-
-  -- markdownH5
-  accent_italic = { italic = true, fg = colors.primary_accent_foreground },
 
   -- WinbarNC
   secondary_accent = {
